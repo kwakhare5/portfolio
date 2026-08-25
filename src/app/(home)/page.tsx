@@ -227,18 +227,10 @@ export default function Page() {
         className="space-y-4"
       >
         <div className="flex items-center justify-between border-b border-border/60 pb-2.5">
-          <Link
-            href="/artifacts"
-            className="text-base sm:text-lg font-normal text-foreground tracking-tight hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors editorial-link group"
-          >
+          <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight">
             artifacts
-          </Link>
-          <Link
-            href="/artifacts"
-            className="font-mono text-xs text-muted-foreground/60 hover:text-foreground transition-colors editorial-link"
-          >
-            gallery ↗
-          </Link>
+          </h2>
+          <span className="font-mono text-xs text-muted-foreground/60">gallery</span>
         </div>
 
         <PhotoPreview />

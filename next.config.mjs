@@ -1,5 +1,3 @@
-import { withContentCollections } from "@content-collections/next";
-
 const isProd = process.env.NODE_ENV === "production";
 
 // Content Security Policy (Strict with allowed analytics & fonts)
@@ -25,7 +23,7 @@ const nextConfig = {
   compress: true,
 
   experimental: {
-    optimizePackageImports: ["lucide-react", "motion", "content-collections"],
+    optimizePackageImports: ["lucide-react", "motion"],
   },
 
   // High-performance image optimization for crisp Retina & 4K displays
@@ -71,5 +69,4 @@ const nextConfig = {
   },
 };
 
-// withContentCollections must be the outermost plugin
-export default withContentCollections(nextConfig);
+export default nextConfig;

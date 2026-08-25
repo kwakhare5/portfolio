@@ -7,7 +7,6 @@ export default defineConfig({
     globals: true,
     alias: {
       '@': path.resolve(__dirname, './src'),
-      'content-collections': path.resolve(__dirname, './.content-collections/generated'),
     },
   },
 });
