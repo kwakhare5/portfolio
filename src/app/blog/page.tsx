@@ -1,143 +1,56 @@
-import AnimatedEntrance from "@/components/animations/animated-entrance";
-import { ChevronRight } from "lucide-react";
-import { allPosts } from "content-collections";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { normalizePage, paginate } from "@/lib/pagination";
+import { ModeToggle } from "@/components/layout/mode-toggle";
 
 export const metadata: Metadata = {
   title: "Blog",
-  description: "Thoughts on software development, life, and more.",
-  openGraph: {
-    title: "Blog",
-    description: "Thoughts on software development, life, and more.",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Blog",
-    description: "Thoughts on software development, life, and more.",
-  },
+  description: "Essays on building things, life lessons, and figuring it out along the way.",
 };
 
-const PAGE_SIZE = 5;
-const BLUR_FADE_DELAY = 0.04;
-
-export default async function BlogPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ page?: string }>;
-}) {
-  const { page: pageParam } = await searchParams;
-
-  const posts = allPosts;
-  const sortedPosts = [...posts].sort((a, b) => {
-    if (new Date(a.publishedAt) > new Date(b.publishedAt)) {
-      return -1;
-    }
-    return 1;
-  });
-
-  const currentPage = normalizePage(pageParam);
-  const { items: paginatedPosts, pagination } = paginate(sortedPosts, {
-    page: currentPage,
-    pageSize: PAGE_SIZE,
-  });
-
+export default function BlogPage() {
   return (
-    <section id="blog">
-      <AnimatedEntrance delay={BLUR_FADE_DELAY}>
-        <h1 className="text-2xl font-semibold tracking-tight mb-2">Blog <span className="ml-1 bg-card border border-border rounded-md px-2 py-1 text-muted-foreground text-sm">{sortedPosts.length} posts</span></h1>
-        <p className="text-sm text-muted-foreground mb-8">
-          My thoughts on software development, life, and more.
+    <section id="blog" className="flex flex-col min-h-screen space-y-8 antialiased">
+      {/* Top in-page nav row */}
+      <div className="flex items-center justify-between border-b border-border/50 pb-3 font-mono text-xs">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors cursor-pointer editorial-link"
+          aria-label="Back to Home"
+        >
+          <ArrowLeft className="size-3.5" />
+          <span>back to home</span>
+        </Link>
+        <ModeToggle className="size-5 text-muted-foreground hover:text-foreground transition-colors cursor-pointer" />
+      </div>
+
+      {/* Header Intro */}
+      <div className="flex flex-col gap-1.5">
+        <h1 className="text-xl sm:text-2xl font-normal tracking-tight text-foreground">
+          blog
+        </h1>
+        <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+          Essays on building things, life lessons, and figuring it out along the way.
         </p>
-      </AnimatedEntrance>
+      </div>
 
-      {paginatedPosts.length > 0 ? (
-        <>
-          <AnimatedEntrance delay={BLUR_FADE_DELAY * 2}>
-            <div className="flex flex-col gap-5">
-              {paginatedPosts.map((post, id) => {
-                const slug = post._meta.path.replace(/\.mdx$/, "");
-                const indexNumber = (pagination.page - 1) * PAGE_SIZE + id + 1;
-                return (
-                  <AnimatedEntrance delay={BLUR_FADE_DELAY * 3 + id * 0.05} key={slug}>
-                    <Link
-                      className="flex items-start gap-x-2 group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                      href={`/blog/${slug}`}
-                    >
-                      <span className="text-xs font-mono tabular-nums font-medium mt-[5px]">
-                        {String(indexNumber).padStart(2, "0")}.
-                      </span>
-                      <div className="flex flex-col gap-y-2 flex-1">
-                        <p className="tracking-tight text-lg font-medium">
-                          <span className="group-hover:text-foreground transition-colors">
-                            {post.title}
-                            <ChevronRight
-                              className="ml-1 inline-block size-4 stroke-3 text-muted-foreground opacity-0 -translate-x-2 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0"
-                              aria-hidden
-                            />
-                          </span>
-                        </p>
-                        <p className="text-xs text-muted-foreground">
-                          {post.publishedAt}
-                        </p>
-                      </div>
-                    </Link>
-                  </AnimatedEntrance>
-                );
-              })}
-            </div>
-          </AnimatedEntrance>
-
-          {/* Pagination Controls */}
-          {pagination.totalPages > 1 && (
-            <AnimatedEntrance delay={BLUR_FADE_DELAY * 4}>
-              <div className="flex gap-3 flex-row items-center justify-between mt-8">
-                <div className="text-sm text-muted-foreground">
-                  Page {pagination.page} of {pagination.totalPages}
-                </div>
-                <div className="flex gap-2 sm:justify-end">
-                  {pagination.hasPreviousPage ? (
-                    <Link
-                      href={`/blog?page=${pagination.page - 1}`}
-                      className="h-8 w-fit px-2 flex items-center justify-center text-sm border border-border rounded-lg hover:bg-accent/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                    >
-                      Previous
-                    </Link>
-                  ) : (
-                    <span className="h-8 w-fit px-2 flex items-center justify-center text-sm border border-border rounded-lg opacity-50 cursor-not-allowed">
-                      Previous
-                    </span>
-                  )}
-                  {pagination.hasNextPage ? (
-                    <Link
-                      href={`/blog?page=${pagination.page + 1}`}
-                      className="h-8 w-fit px-2 flex items-center justify-center text-sm border border-border rounded-lg hover:bg-accent/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                    >
-                      Next
-                    </Link>
-                  ) : (
-                    <span className="h-8 w-fit px-2 flex items-center justify-center text-sm border border-border rounded-lg opacity-50 cursor-not-allowed">
-                      Next
-                    </span>
-                  )}
-                </div>
-              </div>
-            </AnimatedEntrance>
-          )}
-        </>
-      ) : (
-        <AnimatedEntrance delay={BLUR_FADE_DELAY * 2}>
-          <div className="flex flex-col items-center justify-center py-12 px-4 border border-border rounded-xl">
-            <p className="text-muted-foreground text-center">
-              No blog posts yet. Check back soon!
-            </p>
-          </div>
-        </AnimatedEntrance>
-      )}
+      {/* Ultra-minimal Notice */}
+      <div className="pt-2 flex flex-col gap-2 font-mono text-sm sm:text-base text-muted-foreground">
+        <p className="text-foreground">
+          cooking something new.
+        </p>
+        <p className="text-xs sm:text-sm">
+          <a
+            href="https://x.com/kwakhare5"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-foreground hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors editorial-link"
+          >
+            <span>follow updates on x (@kwakhare5)</span>
+            <ArrowUpRight className="size-3.5" />
+          </a>
+        </p>
+      </div>
     </section>
   );
 }
-
-
-
