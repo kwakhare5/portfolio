@@ -45,7 +45,6 @@ export function paginate<T>(
   const endIndex = startIndex + pageSize;
   const paginatedItems = safeItems.slice(startIndex, endIndex);
 
-
   return {
     items: paginatedItems,
     pagination: {
