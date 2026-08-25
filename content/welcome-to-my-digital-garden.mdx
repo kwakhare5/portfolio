@@ -1,0 +1,44 @@
+---
+title: "Building in Public: Welcome to My Digital Garden"
+publishedAt: "2026-08-22"
+updatedAt: "2026-08-22"
+author: "Karan Wakhare"
+summary: "Notes on building full-stack apps, AI agent workflows, and shipping side projects in public."
+image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=192&fit=crop"
+---
+
+# Welcome to My Digital Garden
+
+I started this site to write down what actually happens when building side projects and experimenting with software. 
+
+Reading docs and tutorials only gets you so far. Most real learning happens when you try to connect three separate APIs at 2 AM and everything breaks.
+
+---
+
+## What I'm Building & Writing About
+
+1. **AI Agent Workflows & Tool Calling**: Building stateful agent loops with local models, Cloudflare Workers, and structured outputs.
+2. **Next.js & Frontend Architecture**: Next.js App Router, React 19, TypeScript, and keeping interfaces fast without bloated dependencies.
+3. **Indie Side Projects**: Taking an idea from local prototype to production deployment and sharing the progress on X.
+
+---
+
+## Live Telemetry Example
+
+Here is the helper function this portfolio uses to fetch real-time analytics from Umami Cloud with a 60-second stale-while-revalidate cache:
+
+```typescript
+export async function getLiveMetrics(websiteId: string) {
+  const res = await fetch(`https://api.umami.is/v1/websites/${websiteId}/stats`, {
+    next: { revalidate: 60 },
+  });
+  
+  if (!res.ok) {
+    throw new Error(`Failed to fetch metrics: ${res.statusText}`);
+  }
+  
+  return res.json();
+}
+```
+
+I'll be posting teardowns of bugs I run into, architectural decisions behind my projects, and lessons from building in public.
