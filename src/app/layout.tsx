@@ -1,22 +1,11 @@
-import { PhotoBanner } from "@/components/layout/photo-banner";
-import { Particles } from "@/components/animations/particles";
-import { CustomCursor } from "@/components/layout/custom-cursor";
-import Navbar from "@/components/layout/navbar";
 import { ThemeProvider } from "@/components/layout/theme-provider";
 
 import { DATA } from "@/data/resume";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, VT323 } from "next/font/google";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
-
-const vt323 = VT323({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-pixel",
-});
 
 const geist = Geist({
   subsets: ["latin"],
@@ -38,16 +27,32 @@ const baseUrl = process.env.NEXT_PUBLIC_APP_URL
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
+  alternates: {
+    canonical: "/",
+  },
   title: {
     default: DATA.name,
     template: `%s | ${DATA.name}`,
   },
-  description: DATA.description,
+  description: DATA.description || "Personal portfolio, AI agent architectures, and products by Karan Wakhare.",
+  keywords: [
+    "Karan Wakhare",
+    "Indie Builder",
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Python",
+    "AI Agents",
+    "Portfolio",
+  ],
+  authors: [{ name: DATA.name, url: baseUrl }],
+  creator: DATA.name,
+  publisher: DATA.name,
   openGraph: {
-    title: `${DATA.name}`,
-    description: DATA.description,
+    title: DATA.name,
+    description: DATA.description || "Personal portfolio and products by Karan Wakhare.",
     url: baseUrl,
-    siteName: `${DATA.name}`,
+    siteName: DATA.name,
     locale: "en_US",
     type: "website",
     images: [
@@ -55,7 +60,7 @@ export const metadata: Metadata = {
         url: "/me-og.png",
         width: 1200,
         height: 630,
-        alt: `${DATA.name} | Portfolio`,
+        alt: DATA.name,
       },
     ],
   },
@@ -71,15 +76,55 @@ export const metadata: Metadata = {
     },
   },
   twitter: {
-    title: `${DATA.name}`,
+    title: DATA.name,
+    description: DATA.description || "Personal portfolio and products by Karan Wakhare.",
     card: "summary_large_image",
     images: ["/me-og.png"],
+    creator: "@kwakhare5",
   },
   icons: {
-    icon: "/me.webp",
-    shortcut: "/me.webp",
-    apple: "/me.webp",
+    icon: "/me.png",
+    shortcut: "/me.png",
+    apple: "/me.png",
   },
+  verification: {
+    google: "d608787966abdc5e",
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${DATA.url}/#person`,
+      name: DATA.name,
+      url: DATA.url,
+      image: `${DATA.url}/me.png`,
+      jobTitle: DATA.role,
+      description: DATA.description,
+      sameAs: DATA.contact.socials.map((s) => s.url),
+      knowsAbout: [
+        "Artificial Intelligence",
+        "AI Agents",
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Python",
+        "Full-Stack Development",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${DATA.url}/#website`,
+      url: DATA.url,
+      name: `${DATA.name} — Portfolio`,
+      description: "Personal developer portfolio and technical blog of Karan Wakhare.",
+      publisher: {
+        "@id": `${DATA.url}/#person`,
+      },
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -89,25 +134,32 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://cloud.umami.is" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://cloud.umami.is" />
+      </head>
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased relative",
+          "min-h-screen bg-background font-sans antialiased relative selection:bg-foreground selection:text-background",
           geist.variable,
-          geistMono.variable,
-          vt323.variable
+          geistMono.variable
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="light">
-          <CustomCursor />
-          <PhotoBanner images={DATA.bannerUrls} />
-          <Particles className="fixed inset-0" quantity={30} />
-          <div className="relative z-10 max-w-2xl mx-auto pt-32 pb-16 sm:pt-36 sm:pb-20 px-4">
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
+          <div className="max-w-[720px] mx-auto px-4 sm:px-6 pt-8 sm:pt-14 pb-16 sm:pb-28 w-full overflow-x-hidden">
             {children}
           </div>
-          <Navbar />
-          <Analytics />
-          <SpeedInsights />
         </ThemeProvider>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+        />
+        <Script
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id="523ba8f6-640f-44a2-8150-09f701687782"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
