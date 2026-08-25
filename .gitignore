@@ -12,8 +12,7 @@
 /out/
 /build
 
-# Content Collections & TypeScript
-.content-collections
+# TypeScript & Environment
 *.tsbuildinfo
 next-env.d.ts
 
