@@ -4,18 +4,20 @@ This file documents the core domain model and ubiquitous language used across th
 
 ## 1. Domain Terminology
 
-- **Portfolio**: Personal developer portfolio website showcasing biography, projects, skills, coding statistics, and blog posts.
-- **ResumeData**: Static and dynamic data model representing Karan Wakhare's skills, work experience, education, and projects (`src/types/resume.ts`).
-- **VisitorStore**: Serverless-compatible visitor tracking engine utilizing local `/tmp` caching and remote KV fallback (`src/lib/visitor-store.ts`).
-- **Heartbeat Status**: Real-time coding/online status indicator tracking workstation ping timestamps via `/api/status`.
-- **WakaTime Stats**: Productivity statistics aggregated from the WakaTime API (`src/lib/get-wakatime.ts`).
-- **GitHub Activity**: Dynamically fetched and ISR-cached repository and contribution statistics (`src/lib/get-github-projects.ts`).
-- **Custom Cursor**: Interactive macOS-styled cursor tracking mouse movement and contextual element hover states (`src/components/layout/custom-cursor.tsx`).
+- **Portfolio**: Personal engineering portfolio and interactive project showcase of Karan Wakhare.
+- **ResumeData**: Centralized type-safe data model representing Karan Wakhare's skills, builds, work experience, education, manifesto, photos, and socials (`src/types/resume.ts` & `src/data/resume.tsx`).
+- **Featured Builds**: Curated showcase of deep engineering projects with interactive specs, architecture blueprints, and live demos (`src/components/home/project-row.tsx`).
+- **GitHub Activity Heatmap**: Real-time scalable SVG contribution calendar querying GitHub (`src/components/home/github-calendar.tsx`).
+- **Artifacts Gallery**: Interactive photo gallery with keyboard navigation and fullscreen lightbox inspection (`src/components/artifacts/artifacts-gallery.tsx` & `src/components/artifacts/photo-lightbox.tsx`).
+- **Content Engine**: Type-safe MDX pipeline powered by Content Collections and Shiki syntax highlighting (`content-collections.ts`).
 
 ## 2. Directory Architecture Standard
 
-- `src/types/`: Central TypeScript definitions (`resume.ts`, `api.ts`, `github.ts`, `wakatime.ts`).
-- `src/components/ui/`: Atomic design system components (`button.tsx`, `badge.tsx`, `avatar.tsx`, `logo-image.tsx`, `skill-icons.tsx`, `social-icons.tsx`).
-- `src/components/features/`: Domain feature modules grouped by feature area (`home/`, `photos/`, `blog/`).
-- `src/components/layout/`: Global layout components (`navbar.tsx`, `mode-toggle.tsx`, `theme-provider.tsx`, `photo-banner.tsx`, `custom-cursor.tsx`).
-- `src/lib/`: Core backend utilities, API integration clients, and test files.
+- `src/types/`: Central TypeScript domain definitions (`resume.ts`).
+- `src/data/`: Centralized static and dynamic data source (`resume.tsx`).
+- `src/components/home/`: Home page modular presentation components (`hero-greeting.tsx`, `status-timeline.tsx`, `project-row.tsx`, `github-calendar.tsx`, `photo-preview.tsx`).
+- `src/components/artifacts/`: Artifacts gallery view and fullscreen lightbox (`artifacts-gallery.tsx`, `photo-lightbox.tsx`).
+- `src/components/layout/`: Global layout & theme components (`mode-toggle.tsx`, `theme-provider.tsx`).
+- `src/components/mdx/`: Custom MDX rendering blocks (`code-block.tsx`, `media-container.tsx`).
+- `src/lib/`: Core utilities & content engine (`pagination.ts`, `posts.ts`, `remark-code-meta.ts`, `utils.ts`) and unit tests.
+- `content/`: Markdown/MDX technical articles.

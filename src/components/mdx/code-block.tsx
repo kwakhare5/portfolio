@@ -2,8 +2,7 @@
 
 import { useState, useRef, useEffect, type ComponentProps } from "react";
 import { Copy, Check } from "lucide-react";
-import { Button } from "../ui/button";
-import { codeToHtml } from "shiki/bundle/web";
+import { codeToHtml, type BundledLanguage } from "shiki/bundle/web";
 import { cn } from "@/lib/utils";
 
 type CodeBlockProps = ComponentProps<"pre">;
@@ -40,12 +39,12 @@ export function CodeBlock({ children, ...props }: CodeBlockProps) {
         dark: "github-dark",
       },
       defaultColor: false,
-      lang: lang as any,
+      lang: (lang || "plaintext") as BundledLanguage,
     })
-      .then((html) => {
+      .then((highlightedHtml) => {
         if (!active) return;
         const parser = new DOMParser();
-        const doc = parser.parseFromString(html, "text/html");
+        const doc = parser.parseFromString(highlightedHtml, "text/html");
         setRenderState({
           html: doc.querySelector("code")?.innerHTML ?? "",
           className: nextClassName,
@@ -64,7 +63,8 @@ export function CodeBlock({ children, ...props }: CodeBlockProps) {
   }, [children]);
 
   const handleCopy = async () => {
-    const code = preRef.current?.textContent || "";
+    const codeEl = preRef.current?.querySelector("code");
+    const code = codeEl?.textContent || preRef.current?.textContent || "";
     try {
       await navigator.clipboard.writeText(code);
       setCopied(true);
@@ -87,15 +87,17 @@ export function CodeBlock({ children, ...props }: CodeBlockProps) {
           </div>
         )}
 
-        <Button
+        <button
+          type="button"
           onClick={handleCopy}
-          variant="outline"
-          size="icon"
-          className={cn("absolute size-8 text-primary cursor-pointer right-3 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity rounded-md border border-border shadow-none", title ? "top-13" : "top-3", props.className)}
+          className={cn(
+            "absolute size-8 text-primary cursor-pointer right-3 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity rounded-md border border-border bg-background/80 hover:bg-muted flex items-center justify-center shadow-none",
+            title ? "top-13" : "top-3"
+          )}
           aria-label="Copy code"
         >
           {copied ? <Check className="size-4" /> : <Copy className="size-4" />}
-        </Button>
+        </button>
         {html && (
           <div className="p-3">
             <code
@@ -105,16 +107,8 @@ export function CodeBlock({ children, ...props }: CodeBlockProps) {
           </div>
         )}
 
-        {!html && (
-          <div className="p-4">
-            {children}
-          </div>
-        )}
-      </pre >
-    </div >
+        {!html && <div className="p-4">{children}</div>}
+      </pre>
+    </div>
   );
 }
-
-
-
-

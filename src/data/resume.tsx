@@ -1,176 +1,267 @@
-import { Css3, Docker, FastAPI, FramerMotion, Git, Html5, Java, Javascript, NextjsIconDark, Nodejs, Postgresql, Python, ReactLight, Supabase, Tailwind, Typescript, Vite } from '@/components/ui/skill-icons';
+import type { ResumeData } from "@/types/resume";
 
-export const DATA = {
+export const DATA: ResumeData = {
   name: "Karan Wakhare",
-  initials: "KW",
   url: "https://karan30.vercel.app",
   location: "Pune, Maharashtra",
-
+  role: "Full Stack Developer & Indie Builder",
   description:
-    "figuring out",
-  summary:
-    "I am a **Full-Stack AI Developer** focused on building end-to-end AI agent systems and high-fidelity user experiences. I design interactive web applications using **React**, **Next.js**, **TypeScript**, and **Python**.",
+    "I build AI agent tools, fast web apps, and indie products — figuring it out along the way.",
+  manifesto: [
+    "building fast, minimal tools and exploring AI",
+    "crafting interfaces that feel fast, tactile, and simple",
+    (
+      <span key="x-link">
+        shipping side projects and building in public on{" "}
+        <a
+          href="https://x.com/kwakhare5"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="editorial-link hover:text-emerald-600 dark:hover:text-emerald-400 font-medium text-foreground transition-colors"
+        >
+          X
+        </a>
+      </span>
+    ),
+  ],
+  avatarUrl: "/me.png",
 
-  avatarUrl: "/me.webp",
-  bannerUrls: ["/sg.webp"],
-  skills: [
-    { name: "CSS3", icon: Css3 },
-    { name: "Docker", icon: Docker },
-    { name: "FastAPI", icon: FastAPI },
-    { name: "Framer Motion", icon: FramerMotion },
-    { name: "Git", icon: Git },
-    { name: "HTML5", icon: Html5 },
-    { name: "Java", icon: Java },
-    { name: "JavaScript", icon: Javascript },
-    { name: "Next.js", icon: NextjsIconDark },
-    { name: "Node.js", icon: Nodejs },
-    { name: "PostgreSQL", icon: Postgresql },
-    { name: "Python", icon: Python },
-    { name: "React", icon: ReactLight },
-    { name: "Supabase", icon: Supabase },
-    { name: "Tailwind CSS", icon: Tailwind },
-    { name: "TypeScript", icon: Typescript },
-    { name: "Vite", icon: Vite }
+  status: {
+    currently: [
+      {
+        prefix: "building indie dev tools @ ",
+        links: [
+          { label: "indieforest", url: "https://indieforest.vercel.app", accent: "emerald" },
+          { label: "git for prompts", url: "https://gitforprompts.vercel.app/", accent: "emerald" },
+        ],
+      },
+      {
+        prefix: "exploring ai agents, llm tools & modern web stacks",
+      },
+      {
+        prefix: "studying computer engineering @ ",
+        links: [
+          { label: "adypu", url: "https://adypu.edu.in", accent: "blue" },
+        ],
+      },
+    ],
+    previously: [
+      {
+        prefix: "full-stack developer intern @ ",
+        links: [
+          { label: "ateion", accent: "emerald" },
+        ],
+      },
+      {
+        prefix: "high school education @ ",
+        links: [
+          { label: "wisdom high", url: "https://www.whis.edu.in/", accent: "blue" },
+        ],
+      },
+    ],
+  },
+
+  featuredProjects: [
+    {
+      title: "IndieForest",
+      year: "'26",
+      accent: "emerald",
+      oneLiner: "Visual shipping streak tracker that grows living digital trees as you push commits to GitHub.",
+      liveUrl: "https://indieforest.vercel.app",
+      githubUrl: "https://github.com/kwakhare5/IndieForest",
+      stack: [
+        { name: "Next.js 16", type: "blue" },
+        { name: "React 19", type: "blue" },
+        { name: "TypeScript", type: "blue" },
+        { name: "Tailwind CSS v4", type: "neutral" },
+        { name: "GitHub API", type: "emerald" },
+        { name: "Motion", type: "amber" },
+      ],
+      specs: {
+        problem: "Shipping side projects alone gets lonely, making it easy to lose momentum without visual feedback.",
+        architecture: "Listens for GitHub push webhooks, calculates active streaks via cached ISR endpoints, and generates dynamic SVG trees without canvas overhead.",
+        highlights: [
+          "Sub-100ms streak verification via ISR-cached GitHub event ingestion pipeline",
+          "Generative SVG tree algorithm with zero canvas dependencies",
+          "Automated dynamic OG card generator for 1-click sharing to X",
+        ],
+      },
+    },
+    {
+      title: "Git for Prompts",
+      year: "'26",
+      accent: "blue",
+      oneLiner: "Version control and eval playground for LLM prompts with git-style branching and side-by-side token diffs.",
+      liveUrl: "https://gitforprompts.vercel.app/",
+      githubUrl: "https://github.com/kwakhare5/Git-for-Prompts",
+      stack: [
+        { name: "Next.js 16", type: "blue" },
+        { name: "TypeScript", type: "blue" },
+        { name: "Drizzle ORM", type: "emerald" },
+        { name: "Monaco Editor", type: "blue" },
+        { name: "PostgreSQL", type: "blue" },
+        { name: "Tailwind CSS", type: "neutral" },
+      ],
+      specs: {
+        problem: "Tweaking prompts in pastebins or random notes makes it impossible to trace regressions or compare model costs.",
+        architecture: "Git-like commit tree with branching and semantic token diffing across multiple LLM provider completions simultaneously.",
+        highlights: [
+          "Monaco Editor integration with multi-model prompt branching and syntax highlighting",
+          "Parallel model evaluation runner benchmarking latency, token cost, and output consistency",
+          "Type-safe PostgreSQL relational schema modeled with Drizzle ORM",
+        ],
+      },
+    },
+    {
+      title: "Tonal",
+      year: "'26",
+      accent: "amber",
+      oneLiner: "Chrome extension that translates raw drafts into clear, natural messages across Slack, Gmail, and LinkedIn in under 200ms.",
+      liveUrl: "https://tonall.vercel.app/",
+      githubUrl: "https://github.com/kwakhare5/tonal",
+      stack: [
+        { name: "Groq LLMs", type: "amber" },
+        { name: "Cloudflare Workers", type: "amber" },
+        { name: "TypeScript", type: "blue" },
+        { name: "Next.js", type: "blue" },
+        { name: "WebExtension", type: "emerald" },
+      ],
+      specs: {
+        problem: "Corporate chat often suffers from stiff phrasing, misunderstandings, and dense buzzwords.",
+        architecture: "Edge-based low-latency Groq inference runtime on Cloudflare Workers streaming inline tone adjustments directly into webmail and chat clients.",
+        highlights: [
+          "Sub-200ms real-time tone rewrite engine powered by ultra-low latency Groq LLMs",
+          "Zero-footprint Chrome Extension integrating directly into Gmail, Slack, and LinkedIn",
+          "Instant corporate jargon decoder that turns bloated office phrases into plain English",
+        ],
+      },
+    },
+    {
+      title: "Grocer",
+      year: "'26",
+      accent: "emerald",
+      oneLiner: "Autonomous assistant that tracks grocery consumption cycles and sends 1-tap WhatsApp reorder prompts before you run out.",
+      githubUrl: "https://github.com/kwakhare5/Grocer",
+      stack: [
+        { name: "Python", type: "amber" },
+        { name: "FastAPI", type: "amber" },
+        { name: "AI Agents", type: "emerald" },
+        { name: "WhatsApp API", type: "emerald" },
+        { name: "React", type: "blue" },
+      ],
+      specs: {
+        problem: "Manually checking the pantry and re-buying the same weekly groceries across Blinkit, Zepto, and Instamart is tedious.",
+        architecture: "Local-first order history vector parsing with an autonomous agent loop predicting depletion cycles and dispatching 1-tap WhatsApp approvals.",
+        highlights: [
+          "Time-series consumption modeling predicting item exhaustion based on household size",
+          "FastAPI async backend handling asynchronous WhatsApp webhook dialogues",
+          "Zero-knowledge encrypted local storage for receipt and purchase privacy",
+        ],
+      },
+    },
+  ],
+
+  coreStack: [
+    {
+      category: "Languages & Frameworks",
+      items: ["TypeScript", "Python", "Next.js 16", "React 19", "FastAPI", "Node.js"],
+    },
+    {
+      category: "AI, Agents & Workflows",
+      items: ["Groq LLMs", "Cloudflare Workers", "Ollama", "LangGraph", "AI Agents", "Agents SDK"],
+    },
+    {
+      category: "Infrastructure & Dev Tools",
+      items: ["Git", "GitHub", "PostgreSQL", "Supabase", "Drizzle ORM", "Docker", "Tailwind CSS v4"],
+    },
+  ],
+
+  photos: [
+    {
+      url: "/photos/burj-khalifa-clouds.jpg",
+      caption: "// downtown, dubai",
+    },
+    {
+      url: "/photos/supertree-grove-gardens-by-the-bay.jpg",
+      caption: "// gardens by the bay",
+    },
+    {
+      url: "/photos/sheikh-zayed-grand-mosque.jpg",
+      caption: "// grand mosque, abu dhabi",
+    },
+    {
+      url: "/photos/marina-barrage-singapore.jpg",
+      caption: "// marina barrage park",
+    },
+    {
+      url: "/photos/burj-al-arab-gulf.jpg",
+      caption: "// arabian gulf",
+    },
+    {
+      url: "/photos/founders-memorial-abu-dhabi.jpg",
+      caption: "// the constellation, abu dhabi",
+    },
+    {
+      url: "/photos/dubai-marina-golden-hour.jpg",
+      caption: "// dubai marina",
+    },
+    {
+      url: "/photos/pawna-lake-sunset.jpg",
+      caption: "// pawna lake sunset",
+    },
+    {
+      url: "/photos/burj-khalifa-night.jpg",
+      caption: "// burj khalifa at night",
+    },
+    {
+      url: "/photos/dubai-at-the-top.jpg",
+      caption: "// dubai from 148th floor",
+    },
+    {
+      url: "/photos/dubai-skyline-mist.jpg",
+      caption: "// dubai skyline in mist",
+    },
+    {
+      url: "/photos/sentosa-beach-singapore.jpg",
+      caption: "// sentosa island, singapore",
+    },
+    {
+      url: "/photos/singapore-flyer-marina-bay.jpg",
+      caption: "// singapore skyline",
+    },
+    {
+      url: "/photos/lake-pichola-udaipur.jpg",
+      caption: "// lake pichola, udaipur",
+    },
   ],
 
   contact: {
     email: "kwakhare5@gmail.com",
-    social: {
-      GitHub: {
-        name: "GitHub",
-        url: "https://github.com/kwakhare5",
-        navbar: true,
-      },
-      LinkedIn: {
-        name: "LinkedIn",
-        url: "https://www.linkedin.com/in/karanwakhare",
-        navbar: true,
-      },
-      X: {
+    socials: [
+      {
         name: "X",
         url: "https://x.com/kwakhare5",
-        navbar: false,
+        label: "x.com/kwakhare5",
+        accent: "emerald",
       },
-
-      email: {
-        name: "Send Email",
+      {
+        name: "GitHub",
+        url: "https://github.com/kwakhare5",
+        label: "github.com/kwakhare5",
+        accent: "blue",
+      },
+      {
+        name: "LinkedIn",
+        url: "https://www.linkedin.com/in/karanwakhare",
+        label: "linkedin",
+        accent: "blue",
+      },
+      {
+        name: "Email",
         url: "mailto:kwakhare5@gmail.com",
-        navbar: true,
+        label: "kwakhare5@gmail.com",
+        accent: "amber",
       },
-    },
+    ],
   },
-  work: [
-    {
-      company: "Ateion",
-      href: "#",
-      badges: [],
-      location: "Pune, Maharashtra",
-      title: "Application Developer Intern",
-      logoUrl: "/ateion.png",
-      start: "Feb 2026",
-      end: "June 2026",
-      description:
-        "- Engineered scalable web applications utilizing the MERN stack (**React.js, Node.js, Express.js, MongoDB**), integrating robust **RESTful APIs** to enable dynamic data handling and seamless frontend-backend communication.\n- Designed and implemented responsive, high-fidelity user interfaces, focusing on accessibility, usability, and frontend performance optimization to improve page loading speeds.\n- Led a development team to build production-ready client applications, managing task distribution, **Git version control**, debugging, testing, and deployment workflows to guarantee timely delivery.",
-    }
-  ],
-  education: [
-    {
-      school: "Ajeenkya DY Patil College",
-      href: "#",
-      degree: "Bachelor of Engineering (Computer Engineering)",
-      logoUrl: "/adypu.png",
-      start: "2023",
-      end: "2027",
-    },
-    {
-      school: "Pace Junior Science College",
-      href: "#",
-      degree: "High School (11-12)",
-      logoUrl: "/pace.png",
-      start: "May 2021",
-      end: "Mar 2023",
-    },
-    {
-      school: "Wisdom High International School - India",
-      href: "#",
-      degree: "Cambridge IGCSE (CAIE) • Grade: 7th - 10th",
-      logoUrl: "/wisdom.png",
-      start: "May 2017",
-      end: "Mar 2021",
-    }
-  ],
-  projects: [
-    {
-      title: "Git for Prompts",
-      href: "https://github.com/kwakhare5/git-for-prompts",
-      dates: "2025",
-      active: true,
-      description:
-        "A version control system specifically designed for LLM prompts. Track prompt iterations, diff responses, run automated evaluations, and collaborate on prompt engineering workflows seamlessly.",
-      technologies: [
-        "Next.js",
-        "React",
-        "TypeScript",
-        "Tailwind CSS",
-        "PostgreSQL",
-        "Prisma",
-      ],
-      links: [
-        {
-          type: "Source",
-          href: "https://github.com/kwakhare5/git-for-prompts",
-        },
-      ],
-      image: "/git-for-prompts.png",
-      video: "",
-    },
-    {
-      title: "Tonal",
-      href: "https://github.com/kwakhare5/tonal",
-      dates: "2025",
-      active: true,
-      description:
-        "An AI-powered audio generation and voice synthesis platform. Features real-time voice cloning, custom text-to-speech pipelines, and multi-track audio editing for content creators.",
-      technologies: [
-        "React",
-        "Python",
-        "FastAPI",
-        "PyTorch",
-        "Tailwind CSS",
-        "Web Audio API",
-      ],
-      links: [
-        {
-          type: "Source",
-          href: "https://github.com/kwakhare5/tonal",
-        },
-      ],
-      image: "/tonal.png",
-      video: "",
-    },
-    {
-      title: "PreFill",
-      href: "https://github.com/kwakhare5/prefill",
-      dates: "2024",
-      active: true,
-      description:
-        "Smart form auto-filler extension powered by local LLMs. Learns user context securely on-device to intelligently complete complex web forms, job applications, and survey responses.",
-      technologies: [
-        "TypeScript",
-        "React",
-        "WebExtension API",
-        "Ollama",
-        "Tailwind CSS",
-      ],
-      links: [
-        {
-          type: "Source",
-          href: "https://github.com/kwakhare5/prefill",
-        },
-      ],
-      image: "/prefill.png",
-      video: "",
-    },
-  ],
-  hackathons: [],
 };
