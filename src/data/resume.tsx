@@ -6,10 +6,9 @@ export const DATA: ResumeData = {
   location: "Pune, Maharashtra",
   role: "Full Stack Developer & Indie Builder",
   description:
-    "I build AI agent tools, fast web apps, and indie products — figuring it out along the way.",
+    "I build developer tools, web apps, and indie products.",
   manifesto: [
-    "building fast, minimal tools and exploring AI",
-    "crafting interfaces that feel fast, tactile, and simple",
+    "exploring AI and building fast, minimal tools",
     (
       <span key="x-link">
         shipping side projects and building in public on{" "}
@@ -29,14 +28,18 @@ export const DATA: ResumeData = {
   status: {
     currently: [
       {
+        prefix: "building ",
+        links: [
+          { label: "grocer", url: "https://grocerr.vercel.app/", accent: "emerald" },
+          { label: "swiggy builders club", url: "https://mcp.swiggy.com/builders/", accent: "amber", separator: " with " },
+        ],
+      },
+      {
         prefix: "building indie dev tools @ ",
         links: [
           { label: "indieforest", url: "https://indieforest.vercel.app", accent: "emerald" },
           { label: "git for prompts", url: "https://gitforprompts.vercel.app/", accent: "emerald" },
         ],
-      },
-      {
-        prefix: "exploring ai agents, llm tools & modern web stacks",
       },
       {
         prefix: "studying computer engineering @ ",
@@ -241,13 +244,13 @@ export const DATA: ResumeData = {
       {
         name: "X",
         url: "https://x.com/kwakhare5",
-        label: "x.com/kwakhare5",
+        label: "X",
         accent: "emerald",
       },
       {
         name: "GitHub",
         url: "https://github.com/kwakhare5",
-        label: "github.com/kwakhare5",
+        label: "github",
         accent: "blue",
       },
       {
