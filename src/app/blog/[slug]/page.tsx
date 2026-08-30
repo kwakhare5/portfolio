@@ -2,24 +2,16 @@ import { DATA } from "@/data/resume";
 import { mdxComponents } from "@/mdx-components";
 import { formatDate } from "@/lib/utils";
 import { MDXContent } from "@content-collections/mdx/react";
-import { allPosts } from "content-collections";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { getAllPostSlugs, getPostBySlug, getAdjacentPosts, getPostSlug } from "@/lib/posts";
+import { ModeToggle } from "@/components/layout/mode-toggle";
+import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-function getSortedPosts() {
-  return [...allPosts].sort((a, b) => {
-    if (new Date(a.publishedAt) > new Date(b.publishedAt)) {
-      return -1;
-    }
-    return 1;
-  });
-}
-
 export async function generateStaticParams() {
-  return allPosts.map((post) => ({
-    slug: post._meta.path.replace(/\.mdx$/, ""),
+  return getAllPostSlugs().map((slug) => ({
+    slug,
   }));
 }
 
@@ -31,7 +23,7 @@ export async function generateMetadata({
   }>;
 }): Promise<Metadata | undefined> {
   const { slug } = await params;
-  const post = allPosts.find((p) => p._meta.path.replace(/\.mdx$/, "") === slug);
+  const post = getPostBySlug(slug);
 
   if (!post) {
     return undefined;
@@ -44,6 +36,12 @@ export async function generateMetadata({
     image,
   } = post;
 
+  const resolvedImageUrl = image
+    ? image.startsWith("http")
+      ? image
+      : `${DATA.url}${image.startsWith("/") ? "" : "/"}${image}`
+    : undefined;
+
   return {
     title,
     description,
@@ -53,10 +51,10 @@ export async function generateMetadata({
       type: "article",
       publishedTime,
       url: `${DATA.url}/blog/${slug}`,
-      ...(image && {
+      ...(resolvedImageUrl && {
         images: [
           {
-            url: `${DATA.url}${image}`,
+            url: resolvedImageUrl,
           },
         ],
       }),
@@ -65,8 +63,8 @@ export async function generateMetadata({
       card: "summary_large_image",
       title,
       description,
-      ...(image && {
-        images: [`${DATA.url}${image}`],
+      ...(resolvedImageUrl && {
+        images: [resolvedImageUrl],
       }),
     },
   };
@@ -80,21 +78,13 @@ export default async function Blog({
   }>;
 }) {
   const { slug } = await params;
-  const sortedPosts = getSortedPosts();
-  const currentIndex = sortedPosts.findIndex(
-    (p) => p._meta.path.replace(/\.mdx$/, "") === slug
-  );
-  const post = sortedPosts[currentIndex];
+  const post = getPostBySlug(slug);
 
   if (!post) {
     notFound();
   }
 
-  const previousPost = currentIndex > 0 ? sortedPosts[currentIndex - 1] : null;
-  const nextPost = currentIndex < sortedPosts.length - 1 ? sortedPosts[currentIndex + 1] : null;
-
-  const getSlug = (post: (typeof sortedPosts)[0]) =>
-    post._meta.path.replace(/\.mdx$/, "");
+  const { previousPost, nextPost } = getAdjacentPosts(slug);
 
   const jsonLdContent = JSON.stringify({
     "@context": "https://schema.org",
@@ -117,16 +107,21 @@ export default async function Blog({
     <section id="blog">
       <script
         type="application/ld+json"
-        suppressHydrationWarning
         dangerouslySetInnerHTML={{
           __html: jsonLdContent,
         }}
       />
-      <div className="flex justify-start gap-4 items-center">
-        <Link href="/blog" className="text-sm text-muted-foreground hover:text-foreground transition-colors border border-border rounded-lg px-2 py-1 inline-flex items-center gap-1 mb-6 group" aria-label="Back to Blog">
-          <ChevronLeft className="size-3 group-hover:-translate-x-px transition-transform" />
-          Back to Blog
+      {/* Top in-page nav row */}
+      <div className="flex items-center justify-between border-b border-border/50 pb-3 font-mono text-xs mb-6">
+        <Link
+          href="/blog"
+          className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors cursor-pointer editorial-link"
+          aria-label="Back to Blog"
+        >
+          <ArrowLeft className="size-3.5" />
+          <span>back to blog</span>
         </Link>
+        <ModeToggle className="size-5 text-muted-foreground hover:text-foreground transition-colors cursor-pointer" />
       </div>
       <div className="flex flex-col gap-4">
         <h1 className="title font-semibold text-3xl md:text-4xl tracking-tighter leading-tight">
@@ -155,7 +150,7 @@ export default async function Blog({
         <div className="flex flex-col sm:flex-row justify-between gap-4">
           {previousPost ? (
             <Link
-              href={`/blog/${getSlug(previousPost)}`}
+              href={`/blog/${getPostSlug(previousPost)}`}
               className="group flex-1 flex flex-col gap-1 p-4 rounded-lg border border-border hover:bg-accent/50 transition-colors"
             >
               <span className="flex items-center gap-1 text-xs text-muted-foreground">
@@ -172,7 +167,7 @@ export default async function Blog({
 
           {nextPost ? (
             <Link
-              href={`/blog/${getSlug(nextPost)}`}
+              href={`/blog/${getPostSlug(nextPost)}`}
               className="group flex-1 flex flex-col gap-1 p-4 rounded-lg border border-border hover:bg-accent/50 transition-colors text-right"
             >
               <span className="flex items-center justify-end gap-1 text-xs text-muted-foreground">
