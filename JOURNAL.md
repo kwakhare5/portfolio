@@ -15,12 +15,17 @@ During the Session End ritual (called automatically whenever significant changes
 
 ## Log Entries
 
-### [Portfolio — Anti-AI-Slop Copy Refinement & Voice Polish] 2026-08-25
-- **Commit**: `09c81f4`
+### [Portfolio — Deep Codebase Purge, Blog Subsystem Decoupling & Tool Cleanup] 2026-08-25
+- **Commit**: `2aec163`
 - **Shipped**:
-  - Audited and stripped AI-slop patterns across `src/data/resume.tsx`: eliminated marketing clichés, vague buzzwords, and corporate filler in project one-liners, problem descriptions, and architectural highlights.
-  - Rewrote `content/welcome-to-my-digital-garden.mdx` to reflect authentic human developer voice, removing fake profound quotes and generic wrap-ups in favor of concrete engineering realities.
-  - Verified 100% test pass rate (18/18 tests in Vitest), 0 ESLint errors, and clean Next.js 16.3 static exports.
+  - Purged external tool caches and dead CLI lockfiles (`.freebuff/`, `.opencode/`, `.codegraph/`, `skills-lock.json`).
+  - Decoupled and pruned the entire boilerplate blog subsystem: deleted `content/` (8 boilerplate `.mdx` files), `content-collections.ts`, `src/app/blog/[slug]`, `src/components/mdx/` (`code-block.tsx`, `media-container.tsx`), `src/mdx-components.tsx`, `src/lib/posts.ts`, `src/lib/remark-code-meta.ts`, and `public/fonts/Geist-Regular.ttf`.
+  - Uninstalled 8 unneeded heavy dependencies (`@content-collections/core`, `@content-collections/mdx`, `@content-collections/next`, `content-collections`, `remark-gfm`, `shiki`, `zod`, `@tailwindcss/typography`), reducing `node_modules` by 268 packages.
+  - Simplified `next.config.mjs` by removing Content Collections wrapper and plugins.
+  - Cleaned `src/app/globals.css` by stripping typography plugins and 106 lines of dead Shiki/prose overrides.
+  - Rebuilt graphify knowledge graph AST (235 nodes, 256 edges, 26 communities).
+  - Verified 100% test pass rate in Vitest, 0 ESLint warnings, and flawless static generation across all 8 core application routes (`/`, `/_not-found`, `/api/contributions`, `/artifacts`, `/blog`, `/robots.txt`, `/sitemap.xml`).
+- **Vibe**: ⚡ Ultra-lean, zero boilerplate, 100% focused builder portfolio!
 
 ### [Portfolio — Deep Codebase Cleanup, Reorganization & Decoupling] 2026-08-23
 - **Commit**: `a974d30`
