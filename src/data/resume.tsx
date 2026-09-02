@@ -6,7 +6,7 @@ export const DATA: ResumeData = {
   location: "Pune, Maharashtra",
   role: "Full Stack Developer & Indie Builder",
   description:
-    "I build developer tools, web apps, and indie products.",
+    "I build developer tools and web apps.",
   manifesto: [
     "exploring AI and building fast, minimal tools",
     (
@@ -35,7 +35,7 @@ export const DATA: ResumeData = {
         ],
       },
       {
-        prefix: "building indie dev tools @ ",
+        prefix: "building indie dev tools ",
         links: [
           { label: "indieforest", url: "https://indieforest.vercel.app", accent: "emerald" },
           { label: "git for prompts", url: "https://gitforprompts.vercel.app/", accent: "emerald" },
@@ -94,7 +94,7 @@ export const DATA: ResumeData = {
       title: "Git for Prompts",
       year: "'26",
       accent: "blue",
-      oneLiner: "Version control and eval playground for LLM prompts with git-style branching and side-by-side token diffs.",
+      oneLiner: "Version control for LLM prompts with branching and token-by-token diffing.",
       liveUrl: "https://gitforprompts.vercel.app/",
       githubUrl: "https://github.com/kwakhare5/Git-for-Prompts",
       stack: [
@@ -119,7 +119,7 @@ export const DATA: ResumeData = {
       title: "Tonal",
       year: "'26",
       accent: "amber",
-      oneLiner: "Chrome extension that translates raw drafts into clear, natural messages across Slack, Gmail, and LinkedIn in under 200ms.",
+      oneLiner: "Turns raw message drafts into clear Slack, Gmail, and LinkedIn messages in under 200ms.",
       liveUrl: "https://tonall.vercel.app/",
       githubUrl: "https://github.com/kwakhare5/tonal",
       stack: [
@@ -143,7 +143,7 @@ export const DATA: ResumeData = {
       title: "Grocer",
       year: "'26",
       accent: "emerald",
-      oneLiner: "Autonomous assistant that tracks grocery consumption cycles and sends 1-tap WhatsApp reorder prompts before you run out.",
+      oneLiner: "Tracking grocery consumption and ordering via WhatsApp before you run out.",
       githubUrl: "https://github.com/kwakhare5/Grocer",
       stack: [
         { name: "Python", type: "amber" },

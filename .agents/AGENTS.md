@@ -50,7 +50,7 @@ npm run lint         # Check ESLint & TypeScript types
 ---
 
 ## 7. SESSION RESUME
-**Last session date:** 2026-08-25
-- **Current State:** Executed comprehensive deep purge: eliminated all external tool caches and lockfiles (`.freebuff/`, `.opencode/`, `.codegraph/`, `skills-lock.json`), decoupled the entire boilerplate blog subsystem (deleted `content/*.mdx`, `content-collections.ts`, `src/app/blog/[slug]`, `src/components/mdx/`, `src/mdx-components.tsx`, `src/lib/posts.ts`, `src/lib/remark-code-meta.ts`, `public/fonts/`), uninstalled 8 unneeded dependencies (268 fewer packages), and cleaned `globals.css` and `next.config.mjs`. All unit tests, ESLint, TypeScript types, and Next.js 16 Turbopack production builds passing with 0 errors across all 8 static application routes.
-- **Immediate next task:** Ready for new product showcases, UI enhancements, or custom essays.
+**Last session date:** 2026-09-02
+- **Current State:** Removed `@` prefix on indie dev tools, polished project copy & descriptions across all sections to remove AI slop, verified preview cards / icons / SEO metadata, and integrated `@vercel/analytics` directly into `layout.tsx`. Pushed cleanly to GitHub `main` with 0 build or test errors.
+- **Immediate next task:** Ready for new project showcases or feature updates.
 - **Open blockers:** None.
