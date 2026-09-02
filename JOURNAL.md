@@ -16,7 +16,7 @@ During the Session End ritual (called automatically whenever significant changes
 ## Log Entries
 
 ### [Portfolio — Anti-AI-Slop Copy Refinement & Voice Polish] 2026-08-25
-- **Commit**: `9c32781`
+- **Commit**: `09c81f4`
 - **Shipped**:
   - Audited and stripped AI-slop patterns across `src/data/resume.tsx`: eliminated marketing clichés, vague buzzwords, and corporate filler in project one-liners, problem descriptions, and architectural highlights.
   - Rewrote `content/welcome-to-my-digital-garden.mdx` to reflect authentic human developer voice, removing fake profound quotes and generic wrap-ups in favor of concrete engineering realities.

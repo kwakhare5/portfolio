@@ -9,18 +9,18 @@ This document outlines the software architecture, module boundaries, data flow, 
 ```
                ┌────────────────────────────────────────┐
                │    Presentation Layer (App & UI)       │
-               │  Next.js App Router (16.1.1 Turbopack)  │
-               │ React 19 + Motion v12 + Tailwind v4    │
+               │  Next.js App Router (16.3 Turbopack)   │
+               │ React 19 + Motion + Tailwind CSS v4    │
                └───────────────────┬────────────────────┘
                                    │
                     ┌──────────────┴──────────────┐
                     ▼                             ▼
        ┌─────────────────────────┐   ┌──────────────────────────┐
-       │   Domain Use Cases      │   │ Infrastructure & Data    │
-       │  (Visitor & Project)    │   │ (APIs, KV & Fallbacks)   │
-       │ - Visitor Store         │   │ - KeyValue Storage       │
-       │ - GitHub & WakaTime     │   │ - CounterAPI             │
-       │ - Status Heartbeat      │   │ - Local File Cache       │
+       │   Domain & Content      │   │ Infrastructure & Data    │
+       │ (Portfolio Data & MDX)  │   │      (Umami Cloud)       │
+       │ - Typed Resume Data     │   │ - Real-time Telemetry    │
+       │ - Content Collections   │   │ - Live Traffic iFrame    │
+       │ - Interactive Photo Box │   │ - Static Route Sitemaps  │
        └─────────────────────────┘   └──────────────────────────┘
 ```
 
@@ -29,24 +29,30 @@ This document outlines the software architecture, module boundaries, data flow, 
 ## 2. Layer Definitions & Bounded Contexts
 
 ### A. Presentation Layer (`src/app/` & `src/components/`)
-- **App Router Pages**: Clean server components rendering static and dynamic views (`/`, `/blog`, `/photos`).
-- **Section Components**: Modular layout sections (`projects-section.tsx`, `github-activity-section.tsx`, `work-experience-section.tsx`).
-- **Shared UI Components**: Single-purpose UI components (`visitor-popover.tsx`, `online-status-indicator.tsx`, `project-card.tsx`).
+- **App Router Pages**: Next.js App Router root layout (`layout.tsx`), home experience (`/`), artifacts gallery (`/artifacts`), and technical blog (`/blog`, `/blog/[slug]`).
+- **Domain UI Modules**: High-cohesion presentation blocks grouped cleanly by domain:
+  - `src/components/home/`: `hero-greeting.tsx`, `status-timeline.tsx`, `project-row.tsx`, `github-calendar.tsx`, `photo-preview.tsx`.
+  - `src/components/artifacts/`: `artifacts-gallery.tsx`, `photo-lightbox.tsx`.
+- **Layout Primitives**: Theme management (`mode-toggle.tsx`, `theme-provider.tsx`).
+- **MDX Primitives**: Custom syntax-highlighted code blocks (`code-block.tsx`, `media-container.tsx`).
 
-### B. Domain & Application Layer (`src/lib/`)
-- **`visitor-store.ts`**: Encapsulates 14-day history calculations, total unique counting, and CounterAPI baseline synchronization.
-- **`get-github-projects.ts`**: Manages GitHub API project fetching with 1-hour ISR cache and static data fallbacks.
-- **`get-wakatime.ts`**: Encapsulates Basic Auth WakaTime statistics fetching with 100% uptime fallback data.
-- **`sound-synthesis.ts`**: Web Audio API sound synthesizer engine.
+### B. Domain & Application Layer (`src/types/` & `src/data/` & `src/lib/`)
+- **`src/types/resume.ts`**: Strict domain interfaces for `ProjectSpec`, `StackCategory`, `StatusTimeline`, `StatusItem`, `PhotoItem`, `SocialItem`, and `ResumeData`.
+- **`src/data/resume.tsx`**: Single source of truth containing curated project blueprints, tech radar categories, structured timeline, and socials.
+- **`src/lib/posts.ts`**: Pure, test-backed content querying module (`getSortedPosts`, `getPostBySlug`, `getAllPostSlugs`, `getAdjacentPosts`, `getPostSlug`).
+- **`src/lib/pagination.ts`**: Pure, zero-dependency pagination engine with unit tests.
+- **`src/lib/remark-code-meta.ts`**: MDX AST code meta title parsing plugin with unit tests.
+- **`src/lib/utils.ts`**: Pure utilities (`cn`, `formatDate`) with unit tests.
 
-### C. Infrastructure Layer (`src/app/api/`)
-- **`/api/status`**: Handles real-time POST heartbeats from Windows `ping-status.ps1` with 75s threshold and local timestamp fallback caching.
-- **`/api/visits`**: Handles GET/POST visitor tracking with `pv_id` cookie & IP signature hash deduplication.
+### C. Content Engine (`content/` & `content-collections.ts`)
+- **Content Collections**: Type-safe MDX processing with Zod schema validation, remark plugins, and GFM markdown support.
 
 ---
 
 ## 3. Architectural Rules & Best Practices
 
-1. **Early Return Pattern**: All API handlers and utility functions use early guard clauses rather than deep nesting.
-2. **Library-First Principle**: Uses standard libraries (`lucide-react`, `motion`, `@tailwindcss/postcss`) rather than bespoke reinvented helpers.
-3. **No Mixed Concerns**: Database/KV storage calls are isolated in `/api/` routes and domain stores; UI components consume typed API interfaces.
+1. **Pure Presentation**: UI components consume typed data interfaces with zero hardcoded domain data duplication.
+2. **Early Return Pattern**: All utility functions and components use early guard clauses rather than deep nesting.
+3. **Zero Dead Code**: No unused dependencies or orphaned helper functions.
+4. **Test-Backed Utilities**: All domain and transformation utilities are covered by Vitest unit tests.
+
