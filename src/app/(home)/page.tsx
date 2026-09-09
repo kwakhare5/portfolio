@@ -115,16 +115,18 @@ export default function Page() {
           <p className="text-foreground/90 font-normal">
             {description}
           </p>
-          <div className="space-y-2 pl-4 text-sm sm:text-base pt-0.5">
-            {manifesto.map((item, idx) => (
-              <div
-                key={idx}
-                className="relative before:content-['-'] before:absolute before:-left-4 before:text-amber-500 text-foreground/85 leading-normal"
-              >
-                {item}
-              </div>
-            ))}
-          </div>
+          {manifesto && manifesto.length > 0 && (
+            <div className="space-y-2 pl-4 text-sm sm:text-base pt-0.5">
+              {manifesto.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="relative before:content-['-'] before:absolute before:-left-4 before:text-amber-500 text-foreground/85 leading-normal"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* -- Currently & Previously (Structured Timeline) -- */}

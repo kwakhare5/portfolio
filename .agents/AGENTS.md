@@ -50,7 +50,7 @@ npm run lint         # Check ESLint & TypeScript types
 ---
 
 ## 7. SESSION RESUME
-**Last session date:** 2026-08-25
-- **Current State:** Executed comprehensive deep purge: eliminated all external tool caches and lockfiles (`.freebuff/`, `.opencode/`, `.codegraph/`, `skills-lock.json`), decoupled the entire boilerplate blog subsystem (deleted `content/*.mdx`, `content-collections.ts`, `src/app/blog/[slug]`, `src/components/mdx/`, `src/mdx-components.tsx`, `src/lib/posts.ts`, `src/lib/remark-code-meta.ts`, `public/fonts/`), uninstalled 8 unneeded dependencies (268 fewer packages), and cleaned `globals.css` and `next.config.mjs`. All unit tests, ESLint, TypeScript types, and Next.js 16 Turbopack production builds passing with 0 errors across all 8 static application routes.
-- **Immediate next task:** Ready for new product showcases, UI enhancements, or custom essays.
+**Last session date:** 2026-09-09
+- **Current State:** Reordered Featured Builds to place Grocer first and Tonal last (`Grocer` → `Git for Prompts` → `IndieForest` → `Tonal`). Attached live demo link (`https://grocerr.vercel.app/`) to Grocer. Realigned all 4 project descriptions and architecture specs with real-time codebase objectives (Swiggy Instamart MCP, immutable prompt versions, 3D WebGL diorama with React Three Fiber, Shadow DOM Groq edge extension) rewritten into simple, human-understandable English. Graphify AST updated, Vitest tests passing, Turbopack build 100% green.
+- **Immediate next task:** Ready for new showcase expansions or deployment.
 - **Open blockers:** None.

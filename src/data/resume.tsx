@@ -6,10 +6,9 @@ export const DATA: ResumeData = {
   location: "Pune, Maharashtra",
   role: "Full Stack Developer & Indie Builder",
   description:
-    "I build AI agent tools, fast web apps, and indie products — figuring it out along the way.",
+    "I build developer tools and web apps.",
   manifesto: [
-    "building fast, minimal tools and exploring AI",
-    "crafting interfaces that feel fast, tactile, and simple",
+    "exploring AI and building fast, minimal tools",
     (
       <span key="x-link">
         shipping side projects and building in public on{" "}
@@ -29,14 +28,18 @@ export const DATA: ResumeData = {
   status: {
     currently: [
       {
-        prefix: "building indie dev tools @ ",
+        prefix: "building ",
+        links: [
+          { label: "grocer", url: "https://grocerr.vercel.app/", accent: "emerald" },
+          { label: "swiggy builders club", url: "https://mcp.swiggy.com/builders/", accent: "amber", separator: " with " },
+        ],
+      },
+      {
+        prefix: "building indie dev tools ",
         links: [
           { label: "indieforest", url: "https://indieforest.vercel.app", accent: "emerald" },
           { label: "git for prompts", url: "https://gitforprompts.vercel.app/", accent: "emerald" },
         ],
-      },
-      {
-        prefix: "exploring ai agents, llm tools & modern web stacks",
       },
       {
         prefix: "studying computer engineering @ ",
@@ -63,27 +66,26 @@ export const DATA: ResumeData = {
 
   featuredProjects: [
     {
-      title: "IndieForest",
+      title: "Grocer",
       year: "'26",
       accent: "emerald",
-      oneLiner: "Visual shipping streak tracker that grows living digital trees as you push commits to GitHub.",
-      liveUrl: "https://indieforest.vercel.app",
-      githubUrl: "https://github.com/kwakhare5/IndieForest",
+      oneLiner: "WhatsApp grocery assistant that verifies your order against live Swiggy Instamart inventory and auto-fixes out-of-stock items.",
+      liveUrl: "https://grocerr.vercel.app/",
+      githubUrl: "https://github.com/kwakhare5/Grocer",
       stack: [
+        { name: "Python", type: "amber" },
+        { name: "FastAPI", type: "amber" },
+        { name: "Swiggy Instamart MCP", type: "emerald" },
+        { name: "WhatsApp API", type: "emerald" },
         { name: "Next.js 16", type: "blue" },
-        { name: "React 19", type: "blue" },
-        { name: "TypeScript", type: "blue" },
-        { name: "Tailwind CSS v4", type: "neutral" },
-        { name: "GitHub API", type: "emerald" },
-        { name: "Motion", type: "amber" },
       ],
       specs: {
-        problem: "Shipping side projects alone gets lonely, making it easy to lose momentum without visual feedback.",
-        architecture: "Listens for GitHub push webhooks, calculates active streaks via cached ISR endpoints, and generates dynamic SVG trees without canvas overhead.",
+        problem: "Quick-commerce carts constantly break when items go out of stock or pack sizes change, forcing you to start over.",
+        architecture: "A FastAPI backend turns WhatsApp messages into a strict order contract, checks live Swiggy Instamart inventory via MCP, and automatically suggests valid swaps before you confirm checkout.",
         highlights: [
-          "Sub-100ms streak verification via ISR-cached GitHub event ingestion pipeline",
-          "Generative SVG tree algorithm with zero canvas dependencies",
-          "Automated dynamic OG card generator for 1-click sharing to X",
+          "Direct Swiggy Instamart cart integration via Model Context Protocol (MCP)",
+          "Automatic cart repair that replaces out-of-stock items without breaking dietary rules",
+          "Explicit 1-tap WhatsApp checkout confirmation to prevent accidental purchases",
         ],
       },
     },
@@ -91,7 +93,7 @@ export const DATA: ResumeData = {
       title: "Git for Prompts",
       year: "'26",
       accent: "blue",
-      oneLiner: "Version control and eval playground for LLM prompts with git-style branching and side-by-side token diffs.",
+      oneLiner: "Git-style version control for AI prompts with commit histories, token diffing, and multi-model evals.",
       liveUrl: "https://gitforprompts.vercel.app/",
       githubUrl: "https://github.com/kwakhare5/Git-for-Prompts",
       stack: [
@@ -103,12 +105,37 @@ export const DATA: ResumeData = {
         { name: "Tailwind CSS", type: "neutral" },
       ],
       specs: {
-        problem: "Tweaking prompts in pastebins or random notes makes it impossible to trace regressions or compare model costs.",
-        architecture: "Git-like commit tree with branching and semantic token diffing across multiple LLM provider completions simultaneously.",
+        problem: "Editing prompts in messy text files leads to broken outputs, lost versions, and unnoticed token cost spikes.",
+        architecture: "A Next.js and PostgreSQL platform that stores immutable prompt versions, renders word-by-word diffs in Monaco Editor, and runs automated tests across multiple AI models simultaneously.",
         highlights: [
-          "Monaco Editor integration with multi-model prompt branching and syntax highlighting",
-          "Parallel model evaluation runner benchmarking latency, token cost, and output consistency",
-          "Type-safe PostgreSQL relational schema modeled with Drizzle ORM",
+          "Monaco Editor diff viewer showing exact word and token changes between versions",
+          "Automated test runner benchmarking accuracy, latency, and cost across models",
+          "Native gfp CLI and webhooks for pulling versioned prompts straight into production code",
+        ],
+      },
+    },
+    {
+      title: "IndieForest",
+      year: "'26",
+      accent: "emerald",
+      oneLiner: "Interactive 3D isometric island that turns your daily GitHub commits and Stripe revenue into growing digital forests.",
+      liveUrl: "https://indieforest.vercel.app",
+      githubUrl: "https://github.com/kwakhare5/IndieForest",
+      stack: [
+        { name: "Next.js 16", type: "blue" },
+        { name: "React Three Fiber", type: "amber" },
+        { name: "Three.js", type: "amber" },
+        { name: "Supabase", type: "emerald" },
+        { name: "TypeScript", type: "blue" },
+        { name: "Tailwind CSS v4", type: "neutral" },
+      ],
+      specs: {
+        problem: "Building side projects alone can feel lonely and unrewarding without a visual way to track consistency.",
+        architecture: "A Next.js and Three.js diorama that syncs with GitHub commits to grow pine trees and Stripe webhooks to grow golden oaks on an expanding isometric island.",
+        highlights: [
+          "Living 3D WebGL diorama built with React Three Fiber and low-poly procedural assets",
+          "Dual-grove engine growing code trees from commits and gold trees from Stripe sales",
+          "Burnout protection shields and dynamic SVG badges for GitHub profile READMEs",
         ],
       },
     },
@@ -116,7 +143,7 @@ export const DATA: ResumeData = {
       title: "Tonal",
       year: "'26",
       accent: "amber",
-      oneLiner: "Chrome extension that translates raw drafts into clear, natural messages across Slack, Gmail, and LinkedIn in under 200ms.",
+      oneLiner: "Chrome extension that rewrites rough drafts into clear Slack, Gmail, and LinkedIn messages in under 200ms.",
       liveUrl: "https://tonall.vercel.app/",
       githubUrl: "https://github.com/kwakhare5/tonal",
       stack: [
@@ -124,38 +151,15 @@ export const DATA: ResumeData = {
         { name: "Cloudflare Workers", type: "amber" },
         { name: "TypeScript", type: "blue" },
         { name: "Next.js", type: "blue" },
-        { name: "WebExtension", type: "emerald" },
+        { name: "Chrome Extension", type: "emerald" },
       ],
       specs: {
-        problem: "Corporate chat often suffers from stiff phrasing, misunderstandings, and dense buzzwords.",
-        architecture: "Edge-based low-latency Groq inference runtime on Cloudflare Workers streaming inline tone adjustments directly into webmail and chat clients.",
+        problem: "Drafting emails and workplace chat messages often sounds stiff, wordy, or blunt, causing unnecessary back-and-forth.",
+        architecture: "A Chrome extension using Shadow DOM for style isolation that streams text to Groq LLMs on Cloudflare Workers, replacing words directly in your text box without leaking API keys.",
         highlights: [
-          "Sub-200ms real-time tone rewrite engine powered by ultra-low latency Groq LLMs",
-          "Zero-footprint Chrome Extension integrating directly into Gmail, Slack, and LinkedIn",
-          "Instant corporate jargon decoder that turns bloated office phrases into plain English",
-        ],
-      },
-    },
-    {
-      title: "Grocer",
-      year: "'26",
-      accent: "emerald",
-      oneLiner: "Autonomous assistant that tracks grocery consumption cycles and sends 1-tap WhatsApp reorder prompts before you run out.",
-      githubUrl: "https://github.com/kwakhare5/Grocer",
-      stack: [
-        { name: "Python", type: "amber" },
-        { name: "FastAPI", type: "amber" },
-        { name: "AI Agents", type: "emerald" },
-        { name: "WhatsApp API", type: "emerald" },
-        { name: "React", type: "blue" },
-      ],
-      specs: {
-        problem: "Manually checking the pantry and re-buying the same weekly groceries across Blinkit, Zepto, and Instamart is tedious.",
-        architecture: "Local-first order history vector parsing with an autonomous agent loop predicting depletion cycles and dispatching 1-tap WhatsApp approvals.",
-        highlights: [
-          "Time-series consumption modeling predicting item exhaustion based on household size",
-          "FastAPI async backend handling asynchronous WhatsApp webhook dialogues",
-          "Zero-knowledge encrypted local storage for receipt and purchase privacy",
+          "Sub-200ms edge inference powered by Groq LPUs on Cloudflare Workers",
+          "Shadow DOM encapsulation preventing style collisions in Gmail, Slack, and LinkedIn",
+          "Offline tone engine with 30+ fallback rules that work even without an internet connection",
         ],
       },
     },
@@ -241,13 +245,13 @@ export const DATA: ResumeData = {
       {
         name: "X",
         url: "https://x.com/kwakhare5",
-        label: "x.com/kwakhare5",
+        label: "X",
         accent: "emerald",
       },
       {
         name: "GitHub",
         url: "https://github.com/kwakhare5",
-        label: "github.com/kwakhare5",
+        label: "github",
         accent: "blue",
       },
       {

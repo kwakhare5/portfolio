@@ -23,10 +23,13 @@ export function StatusTimeline({ status }: StatusTimelineProps) {
                 const hoverClass =
                   link.accent === "blue"
                     ? "hover:text-blue-600 dark:hover:text-blue-400"
+                    : link.accent === "amber"
+                    ? "hover:text-amber-600 dark:hover:text-amber-400"
                     : "hover:text-emerald-600 dark:hover:text-emerald-400";
+                const separator = link.separator ?? " & ";
                 return (
                   <React.Fragment key={link.label}>
-                    {linkIdx > 0 && " & "}
+                    {linkIdx > 0 && separator}
                     {link.url ? (
                       <a
                         href={link.url}
