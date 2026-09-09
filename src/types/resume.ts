@@ -43,6 +43,7 @@ export interface StatusLink {
   readonly label: string;
   readonly url?: string;
   readonly accent?: "emerald" | "blue" | "amber";
+  readonly separator?: string;
 }
 
 export interface StatusItem {
@@ -62,7 +63,7 @@ export interface ResumeData {
   readonly location: string;
   readonly role: string;
   readonly description: string;
-  readonly manifesto: readonly (string | React.ReactNode)[];
+  readonly manifesto?: readonly (string | React.ReactNode)[];
   readonly avatarUrl: string;
   readonly status: StatusTimeline;
   readonly featuredProjects: readonly ProjectSpec[];

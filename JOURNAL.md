@@ -15,6 +15,17 @@ During the Session End ritual (called automatically whenever significant changes
 
 ## Log Entries
 
+### [Portfolio — Featured Builds Real-Time Scope & Copy Alignment] 2026-09-09
+- **Commit**: `1981c7b`
+- **Shipped**:
+  - Reordered Featured Builds on home page to place Grocer first and Tonal last (`Grocer` → `Git for Prompts` → `IndieForest` → `Tonal`).
+  - Added live demo URL (`https://grocerr.vercel.app/`) for Grocer alongside its GitHub repository.
+  - Deeply audited real-time codebase architectures across `D:\Grocer` (Swiggy Instamart MCP + WhatsApp intent contract verification & auto-repair), `D:\Git for Prompts` (immutable versions, Monaco token diffing, multi-model evals, CLI), `D:\IndieForest` (3D WebGL diorama with React Three Fiber + Three.js, dual-grove commit pines and Stripe revenue oaks), and `Tonal` (Shadow DOM style encapsulation, sub-200ms Groq edge inference via Cloudflare Workers, 30+ offline fallback rules).
+  - Rewrote all one-liners, problem statements, architectures, and engineering highlights into simple, plain English stripped of corporate jargon and AI slop.
+  - Rebuilt Graphify knowledge graph AST (237 nodes, 258 edges).
+  - Verified 100% test pass rate in Vitest and flawless Next.js Turbopack production build with 0 TypeScript or lint errors.
+- **Vibe**: 🎯 Crystal clear, authentic, and grounded directly in real code!
+
 ### [Portfolio — Deep Codebase Purge, Blog Subsystem Decoupling & Tool Cleanup] 2026-08-25
 - **Commit**: `2aec163`
 - **Shipped**:

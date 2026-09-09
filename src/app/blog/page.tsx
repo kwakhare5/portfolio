@@ -5,7 +5,7 @@ import { ModeToggle } from "@/components/layout/mode-toggle";
 
 export const metadata: Metadata = {
   title: "Blog",
-  description: "Essays on building things, life lessons, and figuring it out along the way.",
+  description: "Essays on building tools, side projects, and life lessons.",
 };
 
 export default function BlogPage() {
@@ -30,7 +30,7 @@ export default function BlogPage() {
           blog
         </h1>
         <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-          Essays on building things, life lessons, and figuring it out along the way.
+          Essays on building tools, side projects, and life lessons.
         </p>
       </div>
 

@@ -1,10 +1,10 @@
 import { ThemeProvider } from "@/components/layout/theme-provider";
+import { Analytics } from "@vercel/analytics/react";
 
 import { DATA } from "@/data/resume";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 
 const geist = Geist({
@@ -134,10 +134,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <link rel="preconnect" href="https://cloud.umami.is" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://cloud.umami.is" />
-      </head>
+      <head />
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased relative selection:bg-foreground selection:text-background",
@@ -154,12 +151,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
         />
-        <Script
-          defer
-          src="https://cloud.umami.is/script.js"
-          data-website-id="523ba8f6-640f-44a2-8150-09f701687782"
-          strategy="afterInteractive"
-        />
+        <Analytics />
       </body>
     </html>
   );
