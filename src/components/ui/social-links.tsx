@@ -56,8 +56,9 @@ export function SocialLinks({
       <CopyEmailButton email={email} />
 
       <AnimatedLink
-        href="/Karan Wakhare.docx"
+        href="/resume.docx"
         target="_blank"
+
         rel="noopener noreferrer"
         className="group flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors duration-150"
       >
