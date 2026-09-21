@@ -3,7 +3,6 @@ import type { ResumeData } from "@/types/resume";
 export const DATA: ResumeData = {
   name: "Karan Wakhare",
   url: "https://karan30.vercel.app",
-  location: "Pune, Maharashtra",
   role: "Full Stack Developer & Indie Builder",
   description:
     "I build developer tools and web apps.",
@@ -16,7 +15,7 @@ export const DATA: ResumeData = {
           href="https://x.com/kwakhare5"
           target="_blank"
           rel="noopener noreferrer"
-          className="editorial-link hover:text-emerald-600 dark:hover:text-emerald-400 font-medium text-foreground transition-colors"
+          className="editorial-link hover:text-emerald-500 dark:hover:text-emerald-400 font-medium text-foreground transition-colors"
         >
           X
         </a>
@@ -37,8 +36,9 @@ export const DATA: ResumeData = {
       {
         prefix: "building indie dev tools ",
         links: [
-          { label: "indieforest", url: "https://indieforest.vercel.app", accent: "emerald" },
-          { label: "git for prompts", url: "https://gitforprompts.vercel.app/", accent: "emerald" },
+          { label: "outpost", url: "https://dark-store-operator.vercel.app", accent: "emerald" },
+          { label: "git for prompts", url: "https://gitforprompts.vercel.app/", accent: "emerald", separator: ", " },
+          { label: "indieforest", url: "https://indieforest.vercel.app", accent: "emerald", separator: " & " },
         ],
       },
       {
@@ -68,17 +68,10 @@ export const DATA: ResumeData = {
     {
       title: "Grocer",
       year: "'26",
-      accent: "emerald",
       oneLiner: "WhatsApp grocery assistant that verifies your order against live Swiggy Instamart inventory and auto-fixes out-of-stock items.",
       liveUrl: "https://grocerr.vercel.app/",
       githubUrl: "https://github.com/kwakhare5/Grocer",
-      stack: [
-        { name: "Python", type: "amber" },
-        { name: "FastAPI", type: "amber" },
-        { name: "Swiggy Instamart MCP", type: "emerald" },
-        { name: "WhatsApp API", type: "emerald" },
-        { name: "Next.js 16", type: "blue" },
-      ],
+      stack: ["Python", "FastAPI", "Swiggy Instamart MCP", "WhatsApp API", "Next.js 16"],
       specs: {
         problem: "Quick-commerce carts constantly break when items go out of stock or pack sizes change, forcing you to start over.",
         architecture: "A FastAPI backend turns WhatsApp messages into a strict order contract, checks live Swiggy Instamart inventory via MCP, and automatically suggests valid swaps before you confirm checkout.",
@@ -90,20 +83,29 @@ export const DATA: ResumeData = {
       },
     },
     {
+      title: "Outpost",
+      year: "'26",
+      oneLiner: "Inventory replenishment decision engine for quick-commerce dark stores that forecasts stockouts and routes inter-store transfers with human-in-the-loop approval.",
+      liveUrl: "https://dark-store-operator.vercel.app",
+      githubUrl: "https://github.com/kwakhare5/Outpost",
+      stack: ["Python", "FastAPI", "LangGraph", "Next.js 16", "TypeScript", "SQLite"],
+      specs: {
+        problem: "Quick-commerce dark stores lose margin to sudden stockouts during demand surges and perishable food expiry, while blind auto-reorders risk phantom stock or costly emergency courier runs.",
+        architecture: "A FastAPI and LangGraph 5-node state machine paired with Holt Linear demand forecasting that tracks physical FIFO inventory batches across 5 Mumbai hubs and proposes transfers or purchase orders behind a human approval gate.",
+        highlights: [
+          "Holt Linear double exponential smoothing evaluated on a 3-day holdout using WAPE and MAE",
+          "Physical FIFO batch ledger enforcing strict conservation of mass and realistic transit ETAs",
+          "Level-2 autonomy gate requiring operator sign-off with stale-state detection and idempotency locks",
+        ],
+      },
+    },
+    {
       title: "Git for Prompts",
       year: "'26",
-      accent: "blue",
       oneLiner: "Git-style version control for AI prompts with commit histories, token diffing, and multi-model evals.",
       liveUrl: "https://gitforprompts.vercel.app/",
       githubUrl: "https://github.com/kwakhare5/Git-for-Prompts",
-      stack: [
-        { name: "Next.js 16", type: "blue" },
-        { name: "TypeScript", type: "blue" },
-        { name: "Drizzle ORM", type: "emerald" },
-        { name: "Monaco Editor", type: "blue" },
-        { name: "PostgreSQL", type: "blue" },
-        { name: "Tailwind CSS", type: "neutral" },
-      ],
+      stack: ["Next.js 16", "TypeScript", "Drizzle ORM", "Monaco Editor", "PostgreSQL", "Tailwind CSS"],
       specs: {
         problem: "Editing prompts in messy text files leads to broken outputs, lost versions, and unnoticed token cost spikes.",
         architecture: "A Next.js and PostgreSQL platform that stores immutable prompt versions, renders word-by-word diffs in Monaco Editor, and runs automated tests across multiple AI models simultaneously.",
@@ -117,18 +119,10 @@ export const DATA: ResumeData = {
     {
       title: "IndieForest",
       year: "'26",
-      accent: "emerald",
       oneLiner: "Interactive 3D isometric island that turns your daily GitHub commits and Stripe revenue into growing digital forests.",
       liveUrl: "https://indieforest.vercel.app",
       githubUrl: "https://github.com/kwakhare5/IndieForest",
-      stack: [
-        { name: "Next.js 16", type: "blue" },
-        { name: "React Three Fiber", type: "amber" },
-        { name: "Three.js", type: "amber" },
-        { name: "Supabase", type: "emerald" },
-        { name: "TypeScript", type: "blue" },
-        { name: "Tailwind CSS v4", type: "neutral" },
-      ],
+      stack: ["Next.js 16", "React Three Fiber", "Three.js", "Supabase", "TypeScript", "Tailwind CSS v4"],
       specs: {
         problem: "Building side projects alone can feel lonely and unrewarding without a visual way to track consistency.",
         architecture: "A Next.js and Three.js diorama that syncs with GitHub commits to grow pine trees and Stripe webhooks to grow golden oaks on an expanding isometric island.",
@@ -142,17 +136,10 @@ export const DATA: ResumeData = {
     {
       title: "Tonal",
       year: "'26",
-      accent: "amber",
       oneLiner: "Chrome extension that rewrites rough drafts into clear Slack, Gmail, and LinkedIn messages in under 200ms.",
       liveUrl: "https://tonall.vercel.app/",
       githubUrl: "https://github.com/kwakhare5/tonal",
-      stack: [
-        { name: "Groq LLMs", type: "amber" },
-        { name: "Cloudflare Workers", type: "amber" },
-        { name: "TypeScript", type: "blue" },
-        { name: "Next.js", type: "blue" },
-        { name: "Chrome Extension", type: "emerald" },
-      ],
+      stack: ["Groq LLMs", "Cloudflare Workers", "TypeScript", "Next.js", "Chrome Extension"],
       specs: {
         problem: "Drafting emails and workplace chat messages often sounds stiff, wordy, or blunt, causing unnecessary back-and-forth.",
         architecture: "A Chrome extension using Shadow DOM for style isolation that streams text to Groq LLMs on Cloudflare Workers, replacing words directly in your text box without leaking API keys.",
@@ -240,7 +227,6 @@ export const DATA: ResumeData = {
   ],
 
   contact: {
-    email: "kwakhare5@gmail.com",
     socials: [
       {
         name: "X",

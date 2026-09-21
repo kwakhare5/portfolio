@@ -63,16 +63,13 @@ export default function Page() {
         className="flex flex-col gap-6 sm:gap-7"
       >
         {/* In-Page Navigation Bar */}
-        <div className="flex items-center justify-between gap-2 text-xs font-mono border-b border-border/50 pb-3">
+        <div className="flex items-center justify-between gap-2 text-xs font-mono border-b border-border pb-3">
           <nav className="flex flex-wrap items-center gap-2.5 sm:gap-5 text-muted-foreground text-xs sm:text-[13px]">
             <a href="#builds" className="editorial-link hover:text-foreground py-0.5">
               builds
             </a>
             <Link href="/artifacts" className="editorial-link hover:text-foreground py-0.5">
               artifacts
-            </Link>
-            <Link href="/blog" className="editorial-link hover:text-foreground py-0.5">
-              blog
             </Link>
             <a href="#socials" className="editorial-link hover:text-foreground py-0.5">
               socials
@@ -81,7 +78,7 @@ export default function Page() {
 
           <div className="flex items-center gap-2 sm:gap-3">
             {timeStr && (
-              <span className="text-muted-foreground/60 text-xs hidden sm:inline">
+              <span className="text-muted-foreground text-xs hidden sm:inline">
                 Pune {timeStr}
               </span>
             )}
@@ -98,7 +95,7 @@ export default function Page() {
             </p>
           </div>
 
-          <div className="relative size-16 sm:size-20 shrink-0 overflow-hidden rounded-full border border-border/80 bg-muted hover:ring-2 hover:ring-primary/20 transition-all shadow-xs">
+          <div className="relative size-16 sm:size-20 shrink-0 overflow-hidden rounded-full border border-border bg-muted hover:ring-2 hover:ring-primary/20 transition-all shadow-xs">
             <Image
               src={avatarUrl}
               alt={name}
@@ -112,7 +109,7 @@ export default function Page() {
 
         {/* Bio & Builder Manifesto */}
         <div className="space-y-3.5 text-sm sm:text-base leading-relaxed text-muted-foreground">
-          <p className="text-foreground/90 font-normal">
+          <p className="text-foreground font-normal">
             {description}
           </p>
           {manifesto && manifesto.length > 0 && (
@@ -120,7 +117,7 @@ export default function Page() {
               {manifesto.map((item, idx) => (
                 <div
                   key={idx}
-                  className="relative before:content-['-'] before:absolute before:-left-4 before:text-amber-500 text-foreground/85 leading-normal"
+                  className="relative before:content-['-'] before:absolute before:-left-4 before:text-amber-500 dark:before:text-amber-400 text-foreground leading-normal"
                 >
                   {item}
                 </div>
@@ -142,12 +139,12 @@ export default function Page() {
         variants={staggerVariants}
         className="space-y-3"
       >
-        <div className="flex items-center justify-between border-b border-border/60 pb-2.5 mb-2">
+        <div className="flex items-center justify-between border-b border-border pb-2.5 mb-2">
           <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight flex items-center gap-2">
             <span>featured builds</span>
             <span className="font-mono text-xs font-normal text-muted-foreground">({featuredProjects.length})</span>
           </h2>
-          <span className="font-mono text-xs text-muted-foreground/60">click [specs] to inspect</span>
+          <span className="font-mono text-xs text-muted-foreground">click [specs] to inspect</span>
         </div>
 
         <div className="flex flex-col">
@@ -166,11 +163,11 @@ export default function Page() {
         variants={staggerVariants}
         className="space-y-4"
       >
-        <div className="flex items-center justify-between border-b border-border/60 pb-2.5">
+        <div className="flex items-center justify-between border-b border-border pb-2.5">
           <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight">
             activity
           </h2>
-          <span className="font-mono text-xs text-muted-foreground/60">github</span>
+          <span className="font-mono text-xs text-muted-foreground">github</span>
         </div>
 
         <GitHubCalendar />
@@ -184,17 +181,21 @@ export default function Page() {
         variants={staggerVariants}
         className="space-y-4"
       >
-        <div className="flex items-center justify-between border-b border-border/60 pb-2.5">
+        <div className="flex items-center justify-between border-b border-border pb-2.5">
           <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight">
             daily drivers &amp; tooling
           </h2>
-          <span className="font-mono text-xs text-muted-foreground/60">stack</span>
+          <span className="font-mono text-xs text-muted-foreground">stack</span>
         </div>
 
         <div className="space-y-4 pt-1">
           {coreStack.map((group, idx) => {
             const dotColor =
-              idx === 0 ? "bg-emerald-500" : idx === 1 ? "bg-amber-500" : "bg-blue-500";
+              idx === 0
+                ? "bg-emerald-500 dark:bg-emerald-400"
+                : idx === 1
+                  ? "bg-amber-500 dark:bg-amber-400"
+                  : "bg-blue-500 dark:bg-blue-400";
             return (
               <div key={group.category} className="space-y-2">
                 <div className="flex items-center gap-2">
@@ -207,7 +208,7 @@ export default function Page() {
                   {group.items.map((item) => (
                     <span
                       key={item}
-                      className="px-2.5 py-1 text-xs font-mono rounded-full border border-border/70 bg-background/80 hover:border-foreground/50 hover:bg-muted/30 text-foreground/90 transition-all cursor-default select-none active:scale-95"
+                      className="px-2.5 py-1 text-xs font-mono rounded-full border border-border bg-background hover:border-foreground hover:bg-muted text-foreground transition-all cursor-default select-none active:scale-95"
                     >
                       {item}
                     </span>
@@ -228,11 +229,11 @@ export default function Page() {
         variants={staggerVariants}
         className="space-y-4"
       >
-        <div className="flex items-center justify-between border-b border-border/60 pb-2.5">
+        <div className="flex items-center justify-between border-b border-border pb-2.5">
           <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight">
             artifacts
           </h2>
-          <span className="font-mono text-xs text-muted-foreground/60">gallery</span>
+          <span className="font-mono text-xs text-muted-foreground">gallery</span>
         </div>
 
         <PhotoPreview />
@@ -245,26 +246,26 @@ export default function Page() {
         initial="hidden"
         animate="visible"
         variants={staggerVariants}
-        className="pt-4 border-t border-border/60"
+        className="pt-4 border-t border-border"
       >
         <div className="flex flex-wrap items-center gap-y-2 gap-x-2.5 text-xs sm:text-[13px] font-mono text-muted-foreground">
-          <span className="text-foreground/70 font-medium">find me on</span>
-          <span className="text-muted-foreground/40 hidden sm:inline">-</span>
+          <span className="text-foreground font-medium">find me on</span>
+          <span className="text-muted-foreground hidden sm:inline">-</span>
           <div className="flex flex-wrap items-center gap-2.5 sm:gap-3.5">
             {contact.socials.map((social, idx) => {
               const hoverColor =
                 social.accent === "emerald"
-                  ? "hover:text-emerald-600 dark:hover:text-emerald-400"
+                  ? "hover:text-emerald-500 dark:hover:text-emerald-400"
                   : social.accent === "amber"
-                    ? "hover:text-amber-600 dark:hover:text-amber-400"
-                    : "hover:text-blue-600 dark:hover:text-blue-400";
+                    ? "hover:text-amber-500 dark:hover:text-amber-400"
+                    : "hover:text-blue-500 dark:hover:text-blue-400";
               return (
                 <React.Fragment key={social.name}>
-                  {idx > 0 && <span className="text-muted-foreground/30">/</span>}
+                  {idx > 0 && <span className="text-muted-foreground">/</span>}
                   <a
                     href={social.url}
                     {...(social.url.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                    className={`editorial-link text-foreground/90 ${hoverColor}`}
+                    className={`editorial-link text-foreground ${hoverColor}`}
                   >
                     {social.label}
                   </a>

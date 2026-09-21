@@ -6,16 +6,17 @@ A high-performance, modern developer portfolio and project showcase built with N
 
 ## 🚀 Key Features
 
-- **GitHub Activity Heatmap**: Responsive, zero-dependency SVG contribution heatmap rendering current calendar year activity directly from GitHub.
+- **GitHub Activity Heatmap**: Responsive, zero-dependency SVG contribution heatmap rendering rolling 365-day activity directly from GitHub.
 - **Showcase of AI & Engineering Builds (2026)**:
-  - **IndieForest**: Gamified momentum and shipping accountability platform for indie developers.
-  - **Git for Prompts**: Version control system for AI prompts with branching, automated evals, and diffing.
-  - **Tonal**: Two-way tone translator for Gmail, Slack, and LinkedIn powered by Groq LLMs and Cloudflare Workers.
-  - **Grocer**: Multi-platform quick commerce AI assistant predicting pantry depletion and automating WhatsApp restocking.
-- **Artifacts Gallery**: Interactive photo and prototype gallery with keyboard navigation and fullscreen lightbox.
+  - **Grocer**: WhatsApp grocery assistant verifying orders against live Swiggy Instamart inventory via MCP and auto-fixing out-of-stock items.
+  - **Outpost**: Quick-commerce inventory replenishment decision engine forecasting stockouts and routing inter-store transfers with human-in-the-loop approval.
+  - **Git for Prompts**: Git-style version control for AI prompts with commit histories, token diffing, and multi-model evals.
+  - **IndieForest**: Interactive 3D isometric WebGL island turning daily GitHub commits and Stripe revenue into growing digital forests.
+  - **Tonal**: Chrome extension rewriting rough drafts into clear Slack, Gmail, and LinkedIn messages in under 200ms via Groq LPUs on Cloudflare Workers.
+- **Artifacts Gallery**: Interactive photo gallery with keyboard navigation and fullscreen lightbox.
 - **Tooling Radar**: Minimalist tag cloud tracking core languages, AI agent runtimes, and infrastructure stacks.
 - **SEO & Discoverability**: Dynamic XML sitemap (`/sitemap.xml`), `robots.txt`, and Schema.org `Person` & `WebSite` JSON-LD graphs.
-- **Fluid Micro-Interactions**: Apple-grade spring physics, interactive architecture spec drawers, and seamless theme switching.
+- **Fluid Micro-Interactions**: Expandable architecture spec drawers and seamless system/manual theme switching.
 
 ---
 
@@ -25,7 +26,7 @@ A high-performance, modern developer portfolio and project showcase built with N
 - **UI Library**: React 19.2.8
 - **Styling**: Tailwind CSS v4 (`@tailwindcss/postcss`)
 - **Animations**: Motion (`motion/react`)
-- **Content Engine**: Content Collections (`@content-collections/mdx`)
+- **Analytics**: Vercel Web Analytics (`@vercel/analytics`)
 - **Testing**: Vitest
 - **Language**: TypeScript 5.9
 
@@ -52,8 +53,6 @@ Create a `.env.local` file in the root directory:
 
 ```env
 NEXT_PUBLIC_APP_URL="https://karan30.vercel.app"
-NEXT_PUBLIC_UMAMI_WEBSITE_ID="523ba8f6-640f-44a2-8150-09f701687782"
-GITHUB_TOKEN="your-github-token"
 ```
 
 ### 3. Run Development Server

@@ -59,14 +59,14 @@ export function PhotoLightbox({
     >
       {/* Top Bar: Counter & Close */}
       <div className="absolute top-4 inset-x-4 sm:inset-x-8 flex items-center justify-between z-50">
-        <span className="font-mono text-xs sm:text-sm text-muted-foreground px-3 py-1 rounded-full bg-muted/80 border border-border/40 backdrop-blur-xs select-none">
+        <span className="font-mono text-xs sm:text-sm text-muted-foreground px-3 py-1 rounded-full bg-muted border border-border backdrop-blur-xs select-none">
           {activeIndex + 1} / {photos.length}
         </span>
 
         <button
           type="button"
           onClick={onClose}
-          className="size-9 rounded-full bg-muted/80 border border-border flex items-center justify-center text-foreground hover:bg-accent focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-hidden transition-all cursor-pointer active:scale-95"
+          className="size-9 rounded-full bg-muted border border-border flex items-center justify-center text-foreground hover:bg-accent focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-hidden transition-all cursor-pointer active:scale-95"
           aria-label="Close preview"
         >
           <X className="size-4" />
@@ -80,7 +80,7 @@ export function PhotoLightbox({
           e.stopPropagation();
           handlePrev();
         }}
-        className="absolute left-3 sm:left-6 z-50 size-10 rounded-full bg-muted/80 border border-border flex items-center justify-center text-foreground hover:bg-accent focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-hidden transition-all cursor-pointer active:scale-90"
+        className="absolute left-3 sm:left-6 z-50 size-10 rounded-full bg-muted border border-border flex items-center justify-center text-foreground hover:bg-accent focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-hidden transition-all cursor-pointer active:scale-90"
         aria-label="Previous photo"
       >
         <ChevronLeft className="size-5" />
@@ -92,7 +92,7 @@ export function PhotoLightbox({
           e.stopPropagation();
           handleNext();
         }}
-        className="absolute right-3 sm:right-6 z-50 size-10 rounded-full bg-muted/80 border border-border flex items-center justify-center text-foreground hover:bg-accent focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-hidden transition-all cursor-pointer active:scale-90"
+        className="absolute right-3 sm:right-6 z-50 size-10 rounded-full bg-muted border border-border flex items-center justify-center text-foreground hover:bg-accent focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-hidden transition-all cursor-pointer active:scale-90"
         aria-label="Next photo"
       >
         <ChevronRight className="size-5" />

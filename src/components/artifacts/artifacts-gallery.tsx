@@ -20,7 +20,7 @@ export function ArtifactsGallery({ photos }: { photos: readonly PhotoItem[] }) {
             onClick={() => setActivePhotoIndex(index)}
             className="group m-0 cursor-zoom-in space-y-2 transition-transform duration-300 hover:-translate-y-1 active:scale-95"
           >
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[4px] border border-border/60 bg-muted transition-all duration-300 group-hover:border-foreground/50 group-hover:shadow-md">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[4px] border border-border bg-muted transition-all duration-300 group-hover:border-foreground group-hover:shadow-md">
               <Image
                 src={photo.url}
                 alt={photo.caption.replace(/^\/\/\s*/, "") || `Photo ${index + 1}`}
@@ -31,11 +31,11 @@ export function ArtifactsGallery({ photos }: { photos: readonly PhotoItem[] }) {
                 loading="lazy"
               />
             </div>
-            <div className="flex items-center justify-between text-muted-foreground/70 font-mono text-[11px]">
+            <div className="flex items-center justify-between text-muted-foreground font-mono text-[11px]">
               <p className="group-hover:text-foreground transition-colors truncate leading-none">
                 {photo.caption}
               </p>
-              <span className="text-[10px] opacity-40">
+              <span className="text-[10px]">
                 {index + 1 < 10 ? `0${index + 1}` : index + 1}
               </span>
             </div>

@@ -27,7 +27,7 @@ export function PhotoPreview() {
             onClick={() => setActivePhotoIndex(index)}
             className="group m-0 cursor-zoom-in space-y-1.5 transition-transform duration-300 hover:-translate-y-1 active:scale-95"
           >
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[3px] border border-border/60 bg-muted transition-all duration-300 group-hover:border-foreground/40 group-hover:shadow-md">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[3px] border border-border bg-muted transition-all duration-300 group-hover:border-foreground group-hover:shadow-md">
               <Image
                 src={photo.url}
                 alt={photo.caption.replace(/^\/\/\s*/, "") || `Photo ${index + 1}`}
@@ -38,7 +38,7 @@ export function PhotoPreview() {
                 loading="lazy"
               />
             </div>
-            <p className="font-mono text-[10px] sm:text-[11px] text-muted-foreground/70 group-hover:text-foreground transition-colors truncate leading-none">
+            <p className="font-mono text-[10px] sm:text-[11px] text-muted-foreground group-hover:text-foreground transition-colors truncate leading-none">
               {photo.caption}
             </p>
           </figure>
@@ -46,11 +46,11 @@ export function PhotoPreview() {
       </div>
 
       {/* -- See All Action Trigger -- */}
-      <div className="flex items-center justify-between text-xs font-mono text-muted-foreground/70 pt-0.5">
+      <div className="flex items-center justify-between text-xs font-mono text-muted-foreground pt-0.5">
         <span>showing 4 of {PHOTOS.length} captures</span>
         <Link
           href="/artifacts"
-          className="editorial-link text-foreground hover:text-emerald-600 dark:hover:text-emerald-400 cursor-pointer active:scale-95 transition-colors"
+          className="editorial-link text-foreground hover:text-emerald-500 dark:hover:text-emerald-400 cursor-pointer active:scale-95 transition-colors"
         >
           see all {PHOTOS.length} images →
         </Link>

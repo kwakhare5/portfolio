@@ -1,19 +1,82 @@
 # Product Journal
 
-A chronological record of project milestones, features shipped, and metrics. This file is append-only.
+A chronological, append-only record of real product work and its evidence. This journal feeds engineering continuity and build-in-public drafts. Record facts, not marketing copy.
 
 ---
 
-## How to Maintain This Journal (For the Agent)
-During the Session End ritual (called automatically whenever significant changes are made), the agent:
-1. Reads the current `JOURNAL.md`.
-2. Formats all work under **at most ONE date heading per calendar day** (`### [Project — Summary] YYYY-MM-DD`).
-3. If today's date heading (`YYYY-MM-DD`) already exists under `## Log Entries`, merges/appends the new bullet points under `- **Shipped**:`, updates `- **Commit**:`, and updates `- **Vibe**:`.
-4. If today's date heading does NOT exist, prepends a new date heading `### [Project — Summary] YYYY-MM-DD` directly under `## Log Entries` (newest date on top).
+## How to maintain this journal
+
+At the end of a session with meaningful changes:
+
+1. Read the current `JOURNAL.md`.
+2. Use at most one heading per project per calendar date:
+   `### [Project - short factual summary] YYYY-MM-DD`
+3. If today's project heading exists, merge new facts into it. Do not create a second heading for the same project and date.
+4. Keep exact metrics and their context. Never round up or convert local/test evidence into production claims.
+5. Record one or more atomic work cards. A large session may have several cards because it may contain several independent tensions.
+6. Keep commit hashes and paths only in `Engineering references`. They are not tweet copy.
+7. Do not add a `Vibe` field.
 
 ---
 
-## Log Entries
+## Entry schema
+
+```markdown
+### [Project - short factual summary] YYYY-MM-DD
+
+#### Work card 1: [one tension]
+- **Problem / tension:** What broke, surprised you, stayed ambiguous, or forced a decision?
+- **Change / decision:** What one or two changes caused the result? Write in plain English first.
+- **Proof:** Exact test result, metric, screenshot path, demo path, benchmark, user-visible behavior, or before/after result.
+- **Still broken / unproven:** What remains risky, disabled, unmeasured, local-only, synthetic-only, or not replay-proven?
+- **Metric context:** Environment, denominator/sample size, time window, baseline, excluded cases, and whether reproduced. Use `N/A` when there is no metric.
+- **Question (optional):** One real question whose answer could change the product.
+- **Trial-ready flow (optional):** The one flow a relevant person can try and the feedback needed.
+- **Engineering references:** Commit hash, issue, file, test command, or internal link. Keep these out of public copy unless specifically needed.
+
+#### Work card 2: [another independent tension]
+[repeat fields]
+```
+
+---
+
+## Log entries
+
+### [GitHub Profile — README Selected Work Sync & GitHub Sanitizer Fixes] 2026-09-29
+
+#### Work card 1: GitHub HTML sanitizer stripping inline styles and Light Mode SVG invisibility
+- **Problem / tension:** GitHub's `github-markup` HTML sanitizer strips inline `style="..."` attributes (`style="border-radius: 50%;"`, `style="vertical-align: middle;"`), causing `./me.webp` to render as a hard square (`alpha=255` at corners) instead of a circle, while `./x.svg` (`fill="#ffffff"`) was invisible on GitHub Light Mode (`#ffffff` background). Meanwhile, `## Selected Work` still listed the Portfolio repo itself, missed `IndieForest`, and linked `Grocer` to its repo with outdated copy instead of the live Swiggy Builders Club MCP app.
+- **Change / decision:** Applied a 4x-supersampled (`2048x2048` $\rightarrow$ `512x512` Lanczos) circular alpha mask directly to `me.webp` (`Corner: (0, 0, 0, 0)`), wrapped the `x.svg` glyph in a `#0F1419` rounded badge (`rx="4"`, `stroke="#30363d"`) so it contrasts on both Light and Dark GitHub themes, replaced stripped inline styles with `align="absmiddle"`, removed Portfolio from `## Selected Work`, and synced all 4 Featured Builds (`Grocer`, `Git for Prompts`, `IndieForest`, `Tonal`) with both live URLs and `(code)` links. Squashed repo history into a single clean root commit.
+- **Proof:** Verified `me.webp` RGBA corner pixel `(0, 0, 0, 0)` vs center `(108, 65, 36, 255)` via Pillow, verified `x.svg` dark badge container, and force-pushed clean single-commit history (`8f9c901`) to `origin/main` (`kwakhare5/kwakhare5`).
+- **Still broken / unproven:** Live GitHub Camo cache may take a few minutes to invalidate `me.webp` and `x.svg` CDN URLs if previously cached.
+- **Metric context:** `512x512` lossless WebP alpha mask (`4x` supersampled Lanczos downsample); 1 root commit on `main` (`8f9c901`).
+- **Engineering references:** Commit `8f9c901` in `d:\Github Profile` (`README.md`, `me.webp`, `x.svg`).
+
+### [Portfolio - GitHub Activity Heatmap Fix & Project Row UX Polish] 2026-09-29
+
+#### Work card 1: GitHub contribution calendar future-date padding, outlier compression, and heavy square contrast
+- **Problem / tension:** The GitHub activity calendar on the portfolio looked broken and overly dark compared to text for four reasons: (1) querying `?y=2026` returned all 365 calendar days through Dec 31, padding Oct–Dec with 90+ future `0`-commit squares that `scrollLeft = scrollWidth` immediately scrolled into view on narrow screens; (2) a single 122-commit day (`2026-09-06`) caused upstream linear scaling to compress 18, 24, 32, and 44-commit days (`2026-09-19`) into `level: 1`; (3) solid 10x10px `emerald-600` squares with `stroke-border` gray outlines looked twice as dark and muddy as thin 12px green text; and (4) `setLoading(false)` only executed when `contributions.length > 0`, leaving the UI stuck on `"Loading contributions..."` whenever the API returned its empty fallback.
+- **Change / decision:** Switched `/api/contributions` to fetch `?y=last` (rolling 365-day window ending today), bumped `localStorage` cache key to `gh_contributions_cache_v2`, moved `setLoading(false)` into `finally`, added client-side commit intensity tiers (`0` -> 0, `1–3` -> 1, `4–9` -> 2, `10–19` -> 3, `20+` -> 4) via `getComputedLevel`, removed the gray `stroke-border` outline from squares, and softened the heatmap squares to `emerald-500 dark:emerald-400` at `/20`, `/40`, `/65`, and `/85` opacities over a soft `zinc-100 dark:zinc-800/60` empty cell.
+- **Proof:** Upstream `?y=last` returns `3,291` rolling-year contributions across 367 days ending today (`2026-09-29`); `src/lib/utils.test.ts` passes 5/5 unit tests verifying `getComputedLevel` maps `7 -> 2`, `14 -> 3`, and `32/44/122 -> 4` without compression; `npm run lint` passes with 0 errors.
+- **Still broken / unproven:** Depends on `github-contributions-api.jogruber.de` availability at revalidate boundaries (mitigated by 1-hour ISR cache + `localStorage` cache fallback).
+- **Metric context:** Tested against live `@kwakhare5` GitHub contribution dataset (3,291 commits over rolling 365 days ending 2026-09-29, max single-day outlier = 122 commits on 2026-09-06).
+- **Engineering references:** `src/app/api/contributions/route.ts`, `src/components/home/github-calendar.tsx`, `src/lib/utils.test.ts`.
+
+#### Work card 2: Unified site-wide color tokens and flipping accent colors from static tech stack to interactive ProjectRow actions
+- **Problem / tension:** Across the portfolio, every color family (`emerald`, `blue`, `amber`, `foreground`, `muted-foreground`, `border`) had 4–7 inconsistent shade and opacity variations (`-300`, `-400`, `-500`, `-600`, `-800`, `/90`, `/85`, `/70`, `/60`, `/40`). Additionally, in `ProjectRow`, non-clickable tech stack labels (`Python · FastAPI · Next.js 16`) were colored in amber/green/blue while the clickable buttons (`live`, `code`, `specs`) sat in muted gray, and clicking anywhere on a row body unexpectedly forced `window.open` into a new tab.
+- **Change / decision:** Standardized every color family across the entire site to a single canonical token (`emerald-500 dark:emerald-400`, `blue-500 dark:blue-400`, `amber-500 dark:amber-400`, `text-foreground`, `text-muted-foreground`, `border-border`). Removed the arrow next to project titles, changed `Python · FastAPI · ...` stack labels to uniform muted monospace (`text-muted-foreground`), colored the interactive `live` (emerald), `code` (blue), and `specs` (amber) controls directly, made row-body clicks toggle `[specs]`, enabled `defaultTheme="system"`, and hid `/blog` from the top nav until the first essay ships.
+- **Proof:** `npm test` (3/3 passed), `npm run lint` (0 warnings/errors), and `npm run build` pass cleanly.
+- **Still broken / unproven:** N/A
+- **Metric context:** N/A
+- **Engineering references:** `src/components/home/project-row.tsx`, `src/app/(home)/page.tsx`, `src/components/home/status-timeline.tsx`, `src/components/home/photo-preview.tsx`, `src/data/resume.tsx`, `src/app/layout.tsx`.
+
+#### Work card 3: Adding Outpost to Featured Builds and purging dead wrappers, orphaned routes, and stale MDX/Umami docs
+- **Problem / tension:** `Outpost` (`dark-store-operator.vercel.app` / `github.com/kwakhare5/Outpost`) was missing from the portfolio's `featuredProjects` and `status.currently` timeline. Furthermore, a full-repo audit revealed leftover artifacts from deleted subsystems (`src/app/blog/page.tsx` still indexed in `sitemap.ts`, `src/components/layout/theme-provider.tsx` 9-line pass-through wrapper, 38 lines of raw SVG coordinates in `mode-toggle.tsx`, duplicate copy-pasted column loops in `status-timeline.tsx`, unused `ProjectTech` / `accent` / `location` / `contact.email` fields in `resume.ts` & `resume.tsx`, dead `formatDate` in `utils.ts`, 11 unused shadcn variables and dev-indicator CSS hacks in `globals.css`, `.freebuff/`, `components.json`, `CLAUDE.md`, and deleted `Umami`/`content-collections` references in `next.config.mjs`, `ARCHITECTURE.md`, `CONTEXT.md`, and `README.md`), while `public/me.png` needed to remain untouched to preserve full photo sharpness.
+- **Change / decision:** Added `Outpost` at `#2` in `featuredProjects` (`Grocer` -> `Outpost` -> `Git for Prompts` -> `IndieForest` -> `Tonal`) and into `status.currently`; simplified project `stack` to `readonly string[]`; deleted `src/app/blog/page.tsx`, `src/components/layout/theme-provider.tsx`, `.freebuff/`, `components.json`, and `CLAUDE.md`; removed `/blog` from `sitemap.ts`; replaced raw SVGs in `mode-toggle.tsx` with `lucide-react` `Moon`/`Sun`; deduplicated `status-timeline.tsx`; pruned dead CSS variables and helpers; updated `ARCHITECTURE.md`, `CONTEXT.md`, `README.md`, and `next.config.mjs`; and kept `public/me.png` 100% untouched at original resolution.
+- **Proof:** `npm test -- --run` passes, `npm run lint` passes with 0 errors, and Next.js 16.3.2 production build (`npm run build`) generates clean static routes (`/`, `/artifacts`, `/api/contributions`, `/robots.txt`, `/sitemap.xml`).
+- **Still broken / unproven:** N/A
+- **Metric context:** 5 featured projects in `src/data/resume.tsx`; 5 orphaned files/folders removed (`src/app/blog`, `theme-provider.tsx`, `.freebuff`, `components.json`, `CLAUDE.md`).
+- **Engineering references:** `src/data/resume.tsx`, `src/types/resume.ts`, `src/components/layout/mode-toggle.tsx`, `src/components/home/status-timeline.tsx`, `src/app/globals.css`, `src/app/sitemap.ts`, `next.config.mjs`, `ARCHITECTURE.md`, `CONTEXT.md`, `README.md`.
 
 ### [Portfolio — Featured Builds Real-Time Scope & Copy Alignment] 2026-09-09
 - **Commit**: `1981c7b`

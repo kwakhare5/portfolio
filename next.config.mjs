@@ -3,11 +3,11 @@ const isProd = process.env.NODE_ENV === "production";
 // Content Security Policy (Strict with allowed analytics & fonts)
 const cspHeader = `
   default-src 'self';
-  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cloud.umami.is https://va.vercel-scripts.com;
+  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.vercel-scripts.com;
   style-src 'self' 'unsafe-inline';
   img-src 'self' blob: data: https:;
   font-src 'self' data: https:;
-  connect-src 'self' https://cloud.umami.is https://api-gateway.umami.dev https://github-contributions-api.jogruber.de https://*.vercel-insights.com;
+  connect-src 'self' https://github-contributions-api.jogruber.de https://*.vercel-insights.com;
   frame-ancestors 'self';
   form-action 'self';
   base-uri 'self';

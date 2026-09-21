@@ -19,7 +19,15 @@ interface ApiResponse {
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-const CACHE_KEY = "gh_contributions_cache_v1";
+const CACHE_KEY = "gh_contributions_cache_v2";
+
+export function getComputedLevel(count: number): number {
+  if (count <= 0) return 0;
+  if (count <= 3) return 1;
+  if (count <= 9) return 2;
+  if (count <= 19) return 3;
+  return 4;
+}
 
 export function GitHubCalendar() {
   const [data, setData] = useState<ApiResponse | null>(null);
@@ -56,12 +64,13 @@ export function GitHubCalendar() {
         const json: ApiResponse = await res.json();
         if (isMounted && json.contributions?.length > 0) {
           setData(json);
-          setLoading(false);
           try {
             localStorage.setItem(CACHE_KEY, JSON.stringify(json));
           } catch {}
         }
       } catch {
+        // Fallback handled gracefully by state
+      } finally {
         if (isMounted) {
           setLoading(false);
         }
@@ -82,12 +91,15 @@ export function GitHubCalendar() {
 
     const contributions = data.contributions;
     const currentYear = new Date().getFullYear().toString();
-    const total = data.total?.[currentYear] ?? contributions.reduce((acc, curr) => acc + curr.count, 0);
+    const total =
+      data.total?.lastYear ??
+      data.total?.[currentYear] ??
+      contributions.reduce((acc, curr) => acc + curr.count, 0);
 
     const weekColumns: ContributionDay[][] = [];
     let currentWeek: ContributionDay[] = [];
 
-    // First day of year day-of-week (0 = Sun, 1 = Mon, ..., 6 = Sat)
+    // First day day-of-week (0 = Sun, 1 = Mon, ..., 6 = Sat)
     const firstDate = new Date(contributions[0].date);
     const firstDayIndex = firstDate.getUTCDay();
 
@@ -97,7 +109,10 @@ export function GitHubCalendar() {
     }
 
     contributions.forEach((day) => {
-      currentWeek.push(day);
+      currentWeek.push({
+        ...day,
+        level: getComputedLevel(day.count),
+      });
       if (currentWeek.length === 7) {
         weekColumns.push(currentWeek);
         currentWeek = [];
@@ -111,8 +126,8 @@ export function GitHubCalendar() {
       weekColumns.push(currentWeek);
     }
 
-    // Determine month label positions
-    const labels: { month: string; xPos: number }[] = [];
+    // Determine month label positions while preventing overlap on partial leading months
+    const rawLabels: { month: string; xPos: number }[] = [];
     let lastMonth = -1;
 
     weekColumns.forEach((week, weekIdx) => {
@@ -120,10 +135,17 @@ export function GitHubCalendar() {
       if (validDay) {
         const month = new Date(validDay.date).getUTCMonth();
         if (month !== lastMonth) {
-          labels.push({ month: MONTHS[month], xPos: weekIdx * 13 });
+          rawLabels.push({ month: MONTHS[month], xPos: weekIdx * 13 });
           lastMonth = month;
         }
       }
+    });
+
+    const labels = rawLabels.filter((lbl, idx) => {
+      if (idx === 0 && rawLabels.length > 1 && rawLabels[1].xPos - lbl.xPos < 26) {
+        return false;
+      }
+      return true;
     });
 
     return { weeks: weekColumns, monthLabels: labels, totalCount: total };
@@ -132,16 +154,16 @@ export function GitHubCalendar() {
   const getLevelColor = (level: number) => {
     switch (level) {
       case 1:
-        return "fill-emerald-300 dark:fill-emerald-900";
+        return "fill-emerald-500/20 dark:fill-emerald-400/20";
       case 2:
-        return "fill-emerald-400 dark:fill-emerald-700";
+        return "fill-emerald-500/40 dark:fill-emerald-400/40";
       case 3:
-        return "fill-emerald-500 dark:fill-emerald-500";
+        return "fill-emerald-500/65 dark:fill-emerald-400/65";
       case 4:
-        return "fill-emerald-600 dark:fill-emerald-400";
+        return "fill-emerald-500/85 dark:fill-emerald-400/85";
       case 0:
       default:
-        return "fill-muted/70 dark:fill-muted/40";
+        return "fill-zinc-100 dark:fill-zinc-800/60";
     }
   };
 
@@ -165,7 +187,7 @@ export function GitHubCalendar() {
             <span className="animate-pulse">Loading contributions...</span>
           ) : (
             <span>
-              <strong className="text-foreground font-semibold">{totalCount}</strong> contributions in {new Date().getFullYear()}
+              <strong className="text-foreground font-semibold">{totalCount.toLocaleString()}</strong> contributions in the last year
             </span>
           )}
         </span>
@@ -174,7 +196,7 @@ export function GitHubCalendar() {
           href="https://github.com/kwakhare5"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 text-muted-foreground hover:text-blue-600 dark:hover:text-blue-400 transition-colors editorial-link"
+          className="inline-flex items-center gap-1 text-muted-foreground hover:text-blue-500 dark:hover:text-blue-400 transition-colors editorial-link"
         >
           <span>@kwakhare5</span>
           <ExternalLink className="size-3" />
@@ -182,7 +204,7 @@ export function GitHubCalendar() {
       </div>
 
       {/* Unified Non-Sliding Heatmap Container */}
-      <div className="relative w-full border border-border/60 rounded-lg p-2.5 sm:p-4 bg-card/30">
+      <div className="relative w-full border border-border rounded-lg p-2.5 sm:p-4 bg-card">
         {loading ? (
           <div className="h-[100px] w-full flex items-center justify-center text-xs font-mono text-muted-foreground animate-pulse">
             Fetching GitHub activity...
@@ -206,7 +228,7 @@ export function GitHubCalendar() {
                       key={i}
                       x={lbl.xPos}
                       y={10}
-                      className="fill-muted-foreground/70 font-mono text-[9px]"
+                      className="fill-muted-foreground font-mono text-[9px]"
                     >
                       {lbl.month}
                     </text>
@@ -228,7 +250,7 @@ export function GitHubCalendar() {
                           onMouseEnter={() => setHoveredDay(day)}
                           onMouseLeave={() => setHoveredDay(null)}
                           onTouchStart={() => setHoveredDay(day)}
-                          className={`cursor-pointer transition-all duration-150 stroke-border/40 hover:stroke-foreground/60 ${getLevelColor(
+                          className={`cursor-pointer transition-all duration-150 hover:stroke-foreground/40 ${getLevelColor(
                             day.level
                           )}`}
                         />
@@ -240,7 +262,7 @@ export function GitHubCalendar() {
             </div>
 
             {/* Footer with Legend & Tooltip detail */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-0 text-[11px] font-mono text-muted-foreground/70 pt-1.5 border-t border-border/30">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-0 text-[11px] font-mono text-muted-foreground pt-1.5 border-t border-border">
               <div className="min-h-[16px]">
                 {hoveredDay ? (
                   <span className="text-foreground">
@@ -254,11 +276,11 @@ export function GitHubCalendar() {
 
               <div className="flex items-center gap-1.5 text-[10px] self-end sm:self-auto">
                 <span>Less</span>
-                <div className="size-[9px] rounded-[1px] bg-muted/70 dark:bg-muted/40 border border-border/40" />
-                <div className="size-[9px] rounded-[1px] bg-emerald-300 dark:bg-emerald-900 border border-emerald-400/50" />
-                <div className="size-[9px] rounded-[1px] bg-emerald-400 dark:bg-emerald-700 border border-emerald-500/60" />
-                <div className="size-[9px] rounded-[1px] bg-emerald-500 dark:bg-emerald-500 border border-emerald-600" />
-                <div className="size-[9px] rounded-[1px] bg-emerald-600 dark:bg-emerald-400 border border-emerald-700" />
+                <div className="size-[9px] rounded-[2px] bg-zinc-100 dark:bg-zinc-800/60" />
+                <div className="size-[9px] rounded-[2px] bg-emerald-500/20 dark:bg-emerald-400/20" />
+                <div className="size-[9px] rounded-[2px] bg-emerald-500/40 dark:bg-emerald-400/40" />
+                <div className="size-[9px] rounded-[2px] bg-emerald-500/65 dark:bg-emerald-400/65" />
+                <div className="size-[9px] rounded-[2px] bg-emerald-500/85 dark:bg-emerald-400/85" />
                 <span>More</span>
               </div>
             </div>
