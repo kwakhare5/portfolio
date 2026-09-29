@@ -1,9 +1,4 @@
-export type AccentColor = "emerald" | "amber" | "blue" | "neutral";
-
-export interface ProjectTech {
-  readonly name: string;
-  readonly type?: AccentColor;
-}
+export type AccentColor = "emerald" | "amber" | "blue";
 
 export interface ProjectSpecs {
   readonly problem: string;
@@ -14,11 +9,10 @@ export interface ProjectSpecs {
 export interface ProjectSpec {
   readonly title: string;
   readonly year: string;
-  readonly accent?: AccentColor;
   readonly oneLiner: string;
   readonly liveUrl?: string;
   readonly githubUrl?: string;
-  readonly stack: readonly ProjectTech[];
+  readonly stack: readonly string[];
   readonly specs: ProjectSpecs;
 }
 
@@ -36,13 +30,13 @@ export interface SocialItem {
   readonly name: string;
   readonly url: string;
   readonly label: string;
-  readonly accent?: "emerald" | "blue" | "amber";
+  readonly accent?: AccentColor;
 }
 
 export interface StatusLink {
   readonly label: string;
   readonly url?: string;
-  readonly accent?: "emerald" | "blue" | "amber";
+  readonly accent?: AccentColor;
   readonly separator?: string;
 }
 
@@ -60,7 +54,6 @@ export interface StatusTimeline {
 export interface ResumeData {
   readonly name: string;
   readonly url: string;
-  readonly location: string;
   readonly role: string;
   readonly description: string;
   readonly manifesto?: readonly (string | React.ReactNode)[];
@@ -70,7 +63,6 @@ export interface ResumeData {
   readonly coreStack: readonly StackCategory[];
   readonly photos: readonly PhotoItem[];
   readonly contact: {
-    readonly email: string;
     readonly socials: readonly SocialItem[];
   };
 }

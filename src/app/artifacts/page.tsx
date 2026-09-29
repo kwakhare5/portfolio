@@ -21,7 +21,7 @@ export default function ArtifactsPage() {
   return (
     <section className="flex flex-col min-h-screen space-y-8 antialiased">
       {/* Top Navigation */}
-      <div className="flex items-center justify-between border-b border-border/50 pb-3 font-mono text-xs">
+      <div className="flex items-center justify-between border-b border-border pb-3 font-mono text-xs">
         <Link
           href="/"
           className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors cursor-pointer editorial-link"
@@ -38,7 +38,7 @@ export default function ArtifactsPage() {
           <h1 className="text-xl sm:text-2xl font-normal tracking-tight text-foreground">
             artifacts
           </h1>
-          <span className="border border-border/70 rounded px-1.5 py-0.5 text-muted-foreground text-xs font-mono">
+          <span className="border border-border rounded px-1.5 py-0.5 text-muted-foreground text-xs font-mono">
             {photos.length} captures
           </span>
         </div>

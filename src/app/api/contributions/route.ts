@@ -4,9 +4,8 @@ export const revalidate = 3600; // Cache for 1 hour
 
 export async function GET() {
   try {
-    const currentYear = new Date().getFullYear();
     const res = await fetch(
-      `https://github-contributions-api.jogruber.de/v4/kwakhare5?y=${currentYear}`,
+      `https://github-contributions-api.jogruber.de/v4/kwakhare5?y=last`,
       {
         next: { revalidate: 3600 },
         headers: {

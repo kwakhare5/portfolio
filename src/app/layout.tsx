@@ -1,4 +1,4 @@
-import { ThemeProvider } from "@/components/layout/theme-provider";
+import { ThemeProvider } from "next-themes";
 import { Analytics } from "@vercel/analytics/react";
 
 import { DATA } from "@/data/resume";
@@ -142,7 +142,7 @@ export default function RootLayout({
           geistMono.variable
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <div className="max-w-[720px] mx-auto px-4 sm:px-6 pt-8 sm:pt-14 pb-16 sm:pb-28 w-full overflow-x-hidden">
             {children}
           </div>

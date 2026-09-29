@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { cn, formatDate } from "./utils";
+import { cn } from "./utils";
+import { getComputedLevel } from "@/components/home/github-calendar";
 
 describe("utils", () => {
   describe("cn", () => {
@@ -14,15 +15,15 @@ describe("utils", () => {
     });
   });
 
-  describe("formatDate", () => {
-    it("formats ISO date string in UTC long format", () => {
-      const formatted = formatDate("2026-08-22");
-      expect(formatted).toBe("August 22, 2026");
-    });
-
-    it("formats Date instance accurately", () => {
-      const date = new Date("2025-12-25T00:00:00Z");
-      expect(formatDate(date)).toBe("December 25, 2025");
+  describe("getComputedLevel", () => {
+    it("assigns distinct intensity tiers without collapsing high commit days under a 122-commit outlier", () => {
+      expect(getComputedLevel(0)).toBe(0);
+      expect(getComputedLevel(2)).toBe(1);
+      expect(getComputedLevel(7)).toBe(2);
+      expect(getComputedLevel(14)).toBe(3);
+      expect(getComputedLevel(32)).toBe(4);
+      expect(getComputedLevel(44)).toBe(4);
+      expect(getComputedLevel(122)).toBe(4);
     });
   });
 });
