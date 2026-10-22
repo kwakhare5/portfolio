@@ -1,28 +1,102 @@
-import type { ResumeData } from "@/types/resume";
+export type AccentColor = "emerald" | "amber" | "blue";
+
+export interface ProjectSpecs {
+  readonly problem: string;
+  readonly architecture: string;
+  readonly highlights: readonly string[];
+}
+
+export interface ProjectSpec {
+  readonly title: string;
+  readonly year: string;
+  readonly oneLiner: string;
+  readonly liveUrl?: string;
+  readonly githubUrl?: string;
+  readonly stack: readonly string[];
+  readonly specs: ProjectSpecs;
+}
+
+export interface StackCategory {
+  readonly category: string;
+  readonly items: readonly string[];
+}
+
+export interface PhotoItem {
+  readonly url: string;
+  readonly caption: string;
+}
+
+export interface SocialItem {
+  readonly name: string;
+  readonly url: string;
+  readonly label: string;
+  readonly accent?: AccentColor;
+}
+
+export interface StatusLink {
+  readonly label: string;
+  readonly url?: string;
+  readonly accent?: AccentColor;
+  readonly separator?: string;
+}
+
+export interface StatusItem {
+  readonly prefix: string;
+  readonly links?: readonly StatusLink[];
+  readonly suffix?: string;
+}
+
+export interface StatusTimeline {
+  readonly currently: readonly StatusItem[];
+  readonly previously: readonly StatusItem[];
+}
+
+export interface ResumeData {
+  readonly name: string;
+  readonly url: string;
+  readonly role: string;
+  readonly description: string;
+  readonly bio: readonly (string | React.ReactNode)[];
+  readonly avatarUrl: string;
+  readonly status: StatusTimeline;
+  readonly featuredProjects: readonly ProjectSpec[];
+  readonly coreStack: readonly StackCategory[];
+  readonly photos: readonly PhotoItem[];
+  readonly contact: {
+    readonly socials: readonly SocialItem[];
+  };
+}
 
 export const DATA: ResumeData = {
   name: "Karan Wakhare",
   url: "https://karan30.vercel.app",
-  role: "Full Stack Developer & Indie Builder",
+  role: "kwakhare5 · typescript/python · ai systems & full-stack",
   description:
-    "I build developer tools and web apps.",
-  manifesto: [
-    "exploring AI and building fast, minimal tools",
+    "Karan Wakhare is an AI & full-stack engineer in Pune specializing in autonomous AI systems, Model Context Protocol (MCP) servers, and low-latency tools.",
+  bio: [
+    "i'm karan, an ai & full-stack engineer based in pune.",
     (
-      <span key="x-link">
-        shipping side projects and building in public on{" "}
+      <span key="para-builds">
+        autonomous ai systems, mcp servers, and low-latency tools are what i specialize in. builder of{" "}
         <a
-          href="https://x.com/kwakhare5"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="editorial-link hover:text-emerald-500 dark:hover:text-emerald-400 font-medium text-foreground transition-colors"
+          href="#builds"
+          className="editorial-link text-foreground hover:text-emerald-500 dark:hover:text-emerald-400 font-medium transition-colors"
         >
-          X
+          grocer
+        </a>{" "}
+        (instamart mcp) and{" "}
+        <a
+          href="#builds"
+          className="editorial-link text-foreground hover:text-emerald-500 dark:hover:text-emerald-400 font-medium transition-colors"
+        >
+          outpost
         </a>
+        .
       </span>
     ),
+    "high-agency developer workflows and agentic tooling are what i'm most into right now.",
   ],
-  avatarUrl: "/me.png",
+  avatarUrl: "/me-avatar.png",
 
   status: {
     currently: [
@@ -37,8 +111,7 @@ export const DATA: ResumeData = {
         prefix: "building indie dev tools ",
         links: [
           { label: "outpost", url: "https://dark-store-operator.vercel.app", accent: "emerald" },
-          { label: "git for prompts", url: "https://gitforprompts.vercel.app/", accent: "emerald", separator: ", " },
-          { label: "indieforest", url: "https://indieforest.vercel.app", accent: "emerald", separator: " & " },
+          { label: "git for prompts", url: "https://gitforprompts.vercel.app/", accent: "emerald", separator: " & " },
         ],
       },
       {
@@ -117,23 +190,6 @@ export const DATA: ResumeData = {
       },
     },
     {
-      title: "IndieForest",
-      year: "'26",
-      oneLiner: "Interactive 3D isometric island that turns your daily GitHub commits and Stripe revenue into growing digital forests.",
-      liveUrl: "https://indieforest.vercel.app",
-      githubUrl: "https://github.com/kwakhare5/IndieForest",
-      stack: ["Next.js 16", "React Three Fiber", "Three.js", "Supabase", "TypeScript", "Tailwind CSS v4"],
-      specs: {
-        problem: "Building side projects alone can feel lonely and unrewarding without a visual way to track consistency.",
-        architecture: "A Next.js and Three.js diorama that syncs with GitHub commits to grow pine trees and Stripe webhooks to grow golden oaks on an expanding isometric island.",
-        highlights: [
-          "Living 3D WebGL diorama built with React Three Fiber and low-poly procedural assets",
-          "Dual-grove engine growing code trees from commits and gold trees from Stripe sales",
-          "Burnout protection shields and dynamic SVG badges for GitHub profile READMEs",
-        ],
-      },
-    },
-    {
       title: "Tonal",
       year: "'26",
       oneLiner: "Chrome extension that rewrites rough drafts into clear Slack, Gmail, and LinkedIn messages in under 200ms.",
@@ -159,11 +215,11 @@ export const DATA: ResumeData = {
     },
     {
       category: "AI, Agents & Workflows",
-      items: ["Groq LLMs", "Cloudflare Workers", "Ollama", "LangGraph", "AI Agents", "Agents SDK"],
+      items: ["Groq LLMs", "Cloudflare Workers", "Ollama", "LangGraph", "Agents SDK"],
     },
     {
       category: "Infrastructure & Dev Tools",
-      items: ["Git", "GitHub", "PostgreSQL", "Supabase", "Drizzle ORM", "Docker", "Tailwind CSS v4"],
+      items: ["Git", "PostgreSQL", "Supabase", "Drizzle ORM", "Docker", "Tailwind CSS v4"],
     },
   ],
 

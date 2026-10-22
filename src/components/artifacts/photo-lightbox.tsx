@@ -3,7 +3,7 @@
 import React, { useEffect, useCallback } from "react";
 import Image from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
-import type { PhotoItem } from "@/types/resume";
+import type { PhotoItem } from "@/data/resume";
 
 interface PhotoLightboxProps {
   readonly photos: readonly PhotoItem[];
@@ -45,6 +45,15 @@ export function PhotoLightbox({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [activeIndex, onClose, handlePrev, handleNext]);
 
+  useEffect(() => {
+    if (activeIndex === null) return;
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [activeIndex]);
+
   if (activeIndex === null || !photos[activeIndex]) return null;
 
   const currentPhoto = photos[activeIndex];
@@ -55,18 +64,18 @@ export function PhotoLightbox({
       aria-modal="true"
       aria-label="Enlarged photo preview"
       onClick={onClose}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-background/90 p-3 sm:p-8 backdrop-blur-md cursor-zoom-out animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 p-3 sm:p-8 backdrop-blur-xl cursor-zoom-out animate-in fade-in duration-250 ease-out"
     >
       {/* Top Bar: Counter & Close */}
-      <div className="absolute top-4 inset-x-4 sm:inset-x-8 flex items-center justify-between z-50">
-        <span className="font-mono text-xs sm:text-sm text-muted-foreground px-3 py-1 rounded-full bg-muted border border-border backdrop-blur-xs select-none">
+      <div className="absolute top-4 sm:top-6 pt-[env(safe-area-inset-top)] inset-x-4 sm:inset-x-8 flex items-center justify-between z-50">
+        <span className="font-mono text-xs text-muted-foreground px-3 py-1 rounded-full bg-muted border border-border backdrop-blur-xs select-none">
           {activeIndex + 1} / {photos.length}
         </span>
 
         <button
           type="button"
           onClick={onClose}
-          className="size-9 rounded-full bg-muted border border-border flex items-center justify-center text-foreground hover:bg-accent focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-hidden transition-all cursor-pointer active:scale-95"
+          className="size-9 rounded-full bg-muted border border-border flex items-center justify-center text-foreground hover:bg-accent focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-hidden transition-[transform,background-color] duration-150 ease-out cursor-pointer active:scale-[0.96]"
           aria-label="Close preview"
         >
           <X className="size-4" />
@@ -80,7 +89,7 @@ export function PhotoLightbox({
           e.stopPropagation();
           handlePrev();
         }}
-        className="absolute left-3 sm:left-6 z-50 size-10 rounded-full bg-muted border border-border flex items-center justify-center text-foreground hover:bg-accent focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-hidden transition-all cursor-pointer active:scale-90"
+        className="absolute left-3 sm:left-6 z-50 size-10 rounded-full bg-muted border border-border flex items-center justify-center text-foreground hover:bg-accent focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-hidden transition-[transform,background-color] duration-150 ease-out cursor-pointer active:scale-[0.96]"
         aria-label="Previous photo"
       >
         <ChevronLeft className="size-5" />
@@ -92,7 +101,7 @@ export function PhotoLightbox({
           e.stopPropagation();
           handleNext();
         }}
-        className="absolute right-3 sm:right-6 z-50 size-10 rounded-full bg-muted border border-border flex items-center justify-center text-foreground hover:bg-accent focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-hidden transition-all cursor-pointer active:scale-90"
+        className="absolute right-3 sm:right-6 z-50 size-10 rounded-full bg-muted border border-border flex items-center justify-center text-foreground hover:bg-accent focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-hidden transition-[transform,background-color] duration-150 ease-out cursor-pointer active:scale-[0.96]"
         aria-label="Next photo"
       >
         <ChevronRight className="size-5" />
@@ -100,10 +109,10 @@ export function PhotoLightbox({
 
       {/* Active Image Container */}
       <div
-        className="relative max-h-[90vh] max-w-[95vw] sm:max-w-[90vw] flex flex-col items-center gap-3 animate-in zoom-in-95 duration-200 select-none"
+        className="relative max-h-[90dvh] max-w-[95vw] sm:max-w-[90vw] flex flex-col items-center gap-3 animate-in zoom-in-95 duration-250 [animation-timing-function:cubic-bezier(0.32,0.72,0,1)] select-none"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="relative max-h-[75vh] sm:max-h-[82vh] max-w-[92vw] sm:max-w-[85vw] overflow-hidden rounded border border-border shadow-2xl">
+        <div className="relative max-h-[75dvh] sm:max-h-[82dvh] max-w-[92vw] sm:max-w-[85vw] overflow-hidden rounded border border-border shadow-2xl">
           <Image
             src={currentPhoto.url}
             alt={currentPhoto.caption.replace(/^\/\/\s*/, "") || "Photo"}
@@ -111,11 +120,11 @@ export function PhotoLightbox({
             height={900}
             quality={95}
             priority
-            className="h-auto max-h-[75vh] sm:max-h-[80vh] w-auto max-w-[92vw] sm:max-w-[85vw] object-contain"
+            className="h-auto max-h-[75dvh] sm:max-h-[80dvh] w-auto max-w-[92vw] sm:max-w-[85vw] object-contain"
           />
         </div>
         {currentPhoto.caption && (
-          <p className="text-xs sm:text-sm font-mono text-muted-foreground tracking-wide text-center">
+          <p className="text-xs font-mono text-muted-foreground tracking-wide text-center">
             {currentPhoto.caption}
           </p>
         )}

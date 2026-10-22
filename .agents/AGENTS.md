@@ -39,7 +39,7 @@ npm run lint         # Check ESLint & TypeScript types
 ## 5. KEY PROJECT PATTERNS
 - `src/components/` — Modular UI blocks (`home/`, `artifacts/`, `layout/`).
 - `src/app/` — Next.js 16 App Router pages (`(home)`, `artifacts`, `api/contributions`).
-- `src/data/resume.tsx` — Centralized portfolio data source (`Grocer`, `Outpost`, `Git for Prompts`, `IndieForest`, `Tonal`).
+- `src/data/resume.tsx` — Centralized portfolio data source (`Grocer`, `Outpost`, `Git for Prompts`, `Tonal`).
 
 ---
 

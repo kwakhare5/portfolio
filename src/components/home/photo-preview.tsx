@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { DATA } from "@/data/resume";
-import type { PhotoItem } from "@/types/resume";
+import type { PhotoItem } from "@/data/resume";
 import { PhotoLightbox } from "@/components/artifacts/photo-lightbox";
 
 const PHOTOS: readonly PhotoItem[] = DATA.photos || [];
@@ -25,20 +25,20 @@ export function PhotoPreview() {
           <figure
             key={photo.url}
             onClick={() => setActivePhotoIndex(index)}
-            className="group m-0 cursor-zoom-in space-y-1.5 transition-transform duration-300 hover:-translate-y-1 active:scale-95"
+            className="group m-0 cursor-zoom-in space-y-1.5 transition-transform duration-200 ease-out hover:-translate-y-0.5 active:scale-[0.98]"
           >
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[3px] border border-border bg-muted transition-all duration-300 group-hover:border-foreground group-hover:shadow-md">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded border border-border bg-muted transition-[border-color,box-shadow] duration-200 ease-out group-hover:border-foreground group-hover:shadow-sm">
               <Image
                 src={photo.url}
                 alt={photo.caption.replace(/^\/\/\s*/, "") || `Photo ${index + 1}`}
                 fill
                 sizes="(max-width: 640px) 50vw, 25vw"
                 quality={90}
-                className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                className="object-cover transition-transform duration-250 ease-out group-hover:scale-[1.03]"
                 loading="lazy"
               />
             </div>
-            <p className="font-mono text-[10px] sm:text-[11px] text-muted-foreground group-hover:text-foreground transition-colors truncate leading-none">
+            <p className="font-mono text-xs text-muted-foreground group-hover:text-foreground transition-colors line-clamp-2 leading-normal">
               {photo.caption}
             </p>
           </figure>

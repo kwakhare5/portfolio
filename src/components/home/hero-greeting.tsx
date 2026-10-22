@@ -8,7 +8,7 @@ const GREETINGS = [
   "Bonjour",
   "Konnichiwa",
   "Namaste",
-  "Ciao"
+  "Ciao",
 ];
 
 const ASCII_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+{}|:<>?~";
@@ -23,7 +23,7 @@ export function HeroGreeting({ name }: { name: string }) {
 
     const triggerDecode = (targetWord: string) => {
       let frame = 0;
-      const totalFrames = 14;
+      const totalFrames = 12;
 
       if (scrambleTimerRef.current) {
         clearInterval(scrambleTimerRef.current);
@@ -61,7 +61,7 @@ export function HeroGreeting({ name }: { name: string }) {
       if (!isMounted) return;
       indexRef.current = (indexRef.current + 1) % GREETINGS.length;
       triggerDecode(GREETINGS[indexRef.current]);
-    }, 3500);
+    }, 3800);
 
     return () => {
       isMounted = false;
@@ -73,9 +73,9 @@ export function HeroGreeting({ name }: { name: string }) {
   }, []);
 
   return (
-    <h1 id="hero-greeting" className="text-2xl sm:text-3xl font-semibold tracking-tight text-foreground min-h-[36px] flex items-center">
+    <h1 id="hero-greeting" className="text-2xl sm:text-3xl font-semibold tracking-tight text-foreground min-h-[36px] sm:min-h-[40px] flex items-center">
       <span>
-        <span className="font-mono font-medium tracking-normal text-foreground">
+        <span className="font-mono font-semibold tracking-normal text-foreground">
           {displayText}
         </span>
         <span>, I&apos;m {name}</span>

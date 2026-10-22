@@ -31,13 +31,12 @@ This document outlines the software architecture, module boundaries, data flow, 
 ### A. Presentation Layer (`src/app/` & `src/components/`)
 - **App Router Pages**: Next.js App Router root layout (`layout.tsx`), home experience (`/`), artifacts gallery (`/artifacts`), and GitHub contribution proxy (`/api/contributions`).
 - **Domain UI Modules**: High-cohesion presentation blocks grouped cleanly by domain:
-  - `src/components/home/`: `hero-greeting.tsx`, `status-timeline.tsx`, `project-row.tsx`, `github-calendar.tsx`, `photo-preview.tsx`.
+  - `src/components/home/`: `hero-greeting.tsx`, `project-row.tsx`, `github-calendar.tsx`, `photo-preview.tsx`.
   - `src/components/artifacts/`: `artifacts-gallery.tsx`, `photo-lightbox.tsx`.
 - **Layout Primitives**: Theme toggle (`mode-toggle.tsx`).
 
-### B. Domain & Application Layer (`src/types/` & `src/data/` & `src/lib/`)
-- **`src/types/resume.ts`**: Strict domain interfaces for `ProjectSpec`, `StackCategory`, `StatusTimeline`, `StatusItem`, `PhotoItem`, `SocialItem`, and `ResumeData`.
-- **`src/data/resume.tsx`**: Single source of truth containing curated project blueprints (`Grocer`, `Outpost`, `Git for Prompts`, `IndieForest`, `Tonal`), tech stack categories, structured timeline, and socials.
+### B. Domain & Application Layer (`src/data/` & `src/lib/`)
+- **`src/data/resume.tsx`**: Single source of truth containing type definitions and curated project blueprints (`Grocer`, `Outpost`, `Git for Prompts`, `Tonal`), tech stack categories, structured timeline, and socials.
 - **`src/lib/utils.ts`**: Pure class-merging utility (`cn`) with unit tests (`src/lib/utils.test.ts`).
 
 ---

@@ -22,11 +22,11 @@ export function ModeToggle({ className }: { className?: string }) {
       aria-label="Toggle theme"
       onClick={() => setTheme(isDark ? "light" : "dark")}
       className={cn(
-        "relative flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors overflow-hidden",
+        "relative size-7 flex items-center justify-center p-1 text-muted-foreground hover:text-foreground transition-colors overflow-hidden touch-manipulation cursor-pointer after:absolute after:-inset-2.5 after:content-['']",
         className
       )}
     >
-      {mounted && (isDark ? <Moon className="size-[15px]" /> : <Sun className="size-[15px]" />)}
+      {mounted && (isDark ? <Moon className="size-4" /> : <Sun className="size-4" />)}
     </button>
   );
 }
