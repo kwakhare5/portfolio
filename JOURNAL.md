@@ -233,3 +233,108 @@ At the end of a session with meaningful changes:
   - Added text rendering and subpixel antialiasing in `globals.css`.
   - Resolved project preview image visibility by eliminating React hydration `opacity-0` gate in `project-card.tsx` and removed 30-day `minimumCacheTTL` in `next.config.mjs` to allow instant image refresh.
 - **Vibe**: ⚡ Zero lag, razor-sharp Retina visuals, rock-solid security, and pristine code architecture!
+
+
+### [Portfolio - Geist typography & clutter purge] 2026-10-22
+- **Problem / tension:** Navbar was hardcoded to monospace font creating typographic friction with the header, while duplicate bio text and UI coaching ("click [specs] to inspect") added clutter.
+- **Change / decision:** Set navbar containers to Geist Sans while preserving monospace timestamp numbers; pruned coaching copy in featured builds header, deduplicated bio/manifesto copy, and dropped redundant stack badges.
+- **Proof:** Vitest unit test suite passed (3/3), ESLint passed clean, graphify updated to 235 nodes with 0 errors.
+- **Still broken / unproven:** Local verification only; production Vercel deployment pending.
+
+
+### [Portfolio - IndieForest purge & codebase demodularization] 2026-10-22
+- **Problem / tension:** IndieForest was discontinued but lingered across data models, timeline links, and documentation; while single-caller components and separate types folders created structural bloat.
+- **Change / decision:** Purged IndieForest from `resume.tsx`, `README.md`, and architectural specs; inlined `StatusTimeline` into `(home)/page.tsx`, moved types directly into `resume.tsx`, decoupled `getComputedLevel` into `utils.ts`, and purged dead foreground CSS tokens.
+- **Proof:** Vitest (3/3), ESLint (0 errors), Next.js Turbopack production build (7/7 static routes compiled in 4.0s), and graphify update succeeded.
+- **Still broken / unproven:** GitHub contribution heatmap latency investigation complete; fix pending user preference.
+
+
+### [Portfolio - Template author removal & typographic rhythm polish] 2026-10-22
+- **Problem / tension:** Upstream template author notice in LICENSE remained, while arbitrary pixel sizes ([13px], [15px]), raw zinc tokens, and mismatched section spacing broke visual consistency.
+- **Change / decision:** Replaced LICENSE copyright with Karan Wakhare; standardized typographic scale steps to canonical Tailwind tokens, unified section rhythm across Home and Artifacts, replaced raw zinc with semantic muted tokens, and fixed caption descender clipping.
+- **Proof:** Vitest (3/3), ESLint (0 errors), Next.js Turbopack build (7/7 static routes in 1.69s), and graphify update succeeded.
+- **Still broken / unproven:** None.
+
+
+### [Portfolio - Maximum SEO & legibility bump-ups] 2026-10-22
+- **Problem / tension:** Subtext elements (heatmap months at 9px, legend/tooltips at 10px, photo captions at 11px, dense specs copy at 12px) were strained for reading, while `/artifacts` lacked canonical metadata and PWA manifest was missing.
+- **Change / decision:** Bumped heatmap months to 11px, microcopy to 12px, specs architectural copy to 14px, and nav to responsive `text-xs sm:text-sm`; added dynamic Web Manifest, enriched layout metadata & keywords, and expanded Schema.org JSON-LD graph.
+- **Proof:** Vitest unit test suite passed (3/3), ESLint passed (0 errors), Next.js Turbopack production build compiled 8/8 routes (including `/manifest.webmanifest`), and graphify updated to 229 nodes.
+- **Still broken / unproven:** Local verification only; Google Search Console indexing pending post-deployment.
+
+
+### [Portfolio - Emil Kowalski motion & jitter optimization] 2026-10-22
+- **Problem / tension:** Layout shifts from variable-length hero greeting scrambling, frame thrashing from Framer Motion raw height animation in specs drawer, 371 SVG rects with transition-all, and mismatched photo hover durations created visual jitter and lag.
+- **Change / decision:** Stabilized hero greeting width, replaced raw height interpolation with CSS Grid disclosure (0fr -> 1fr), scoped SVG transitions to stroke, unified photo hover durations to 200-250ms, replaced gradient underline with GPU-composited transform, and removed global smooth-scroll.
+- **Proof:** Vitest unit test suite passed (3/3), ESLint passed (0 errors), Next.js Turbopack production build compiled 8/8 routes, and graphify updated to 230 nodes.
+- **Still broken / unproven:** None.
+
+
+### [Portfolio - Anchor headings, instant page render & bio narrative] 2026-10-22
+- **Problem / tension:** Section headings lacked visual presence without weight or indicators, page-load stagger wrappers delayed initial content render, and bio was split into fragmented resume dashes with a spacing gap in the greeting.
+- **Change / decision:** Added developer '#' anchor indicators with font-semibold headers, deleted whole-page motion stagger wrappers in favor of instant native sections, restored matrix scramble with zero spacing gap, and unified bio into a cohesive narrative paragraph.
+- **Proof:** Vitest unit test suite passed (3/3), ESLint passed (0 errors), Next.js Turbopack production build compiled 8/8 routes in 2.5s, and graphify updated to 230 nodes.
+- **Still broken / unproven:** None.
+
+
+### [Portfolio - Non-bold section headings, original greeting rotation & Apple reload animation] 2026-10-22
+- **Problem / tension:** Bold section headings felt heavy, the greeting pool included added words ("Hey", "Hello") that weren't original, and reloading rendered instantly without the smooth Apple-style sequential entrance animation.
+- **Change / decision:** Reverted headings to unbolded `font-normal text-base sm:text-lg` with muted `#` anchors; purged "Hey" and "Hello" from `GREETINGS` restoring the original 6 greetings; re-introduced Apple-style page reload entrance animation (`motion.section` with `opacity: 0 -> 1, y: 8 -> 0`, Apple spring curve `[0.32, 0.72, 0, 1]`, duration 0.35s, stagger `i * 0.06s`).
+- **Proof:** Vitest unit test suite passed (3/3), ESLint passed (0 errors), Next.js Turbopack production build compiled 8/8 static routes in 2.2s, and graphify updated to 232 nodes.
+- **Still broken / unproven:** None.
+
+
+### [Portfolio - Mobile ergonomics, touch hitboxes & lightbox hygiene] 2026-10-22
+- **Problem / tension:** Tiny 20px action buttons in project rows caused mis-taps that triggered accordion drawers, small phones (<390px) suffered 28px layout jumps when the greeting scrambled to "Konnichiwa", middle-dot separators wrapped alone, and the photo lightbox overlapped notches with missing background scroll locks.
+- **Change / decision:** Expanded action links and theme toggle to 40px touch boundaries with invisible tap padding, stopped link click propagation, fluidly scaled greeting typography on small viewports, bundled middle dots with stack tags, added hardware safe-area insets & body scroll lock to lightbox with `dvh` units, and added a subtle mobile swipe hint to GitHub activity.
+- **Proof:** Vitest (3/3), ESLint (0 errors), Next.js Turbopack build (8/8 static routes compiled in 0.89s), and graphify updated to 233 nodes.
+- **Still broken / unproven:** None.
+
+
+### [Portfolio - High-DPI icon suite from me.png, mobile chrome tint & caption polish] 2026-10-22
+- **Problem / tension:** Favicon was missing causing 404s, manifest pointed to 6MB photo, mobile browser status bar lacked background tinting, photo captions were cut off on mobile grids, and swiping GitHub activity flickered tooltips.
+- **Change / decision:** Generated Lanczos3 anti-aliased Retina icons (favicon.ico, apple-icon, icon-192, icon-512) from me.png while preserving the original photo at full 6MB; exported themeColor viewport in layout.tsx; switched photo captions to line-clamp-2; and bound calendar tooltip selection to click/tap.
+- **Proof:** Vitest (3/3), ESLint (0 errors), Next.js Turbopack build (10/10 static routes compiled in 1.01s), and graphify updated to 235 nodes.
+- **Still broken / unproven:** None.
+
+
+### [Portfolio - Monospace middle-dot subtitle & 3-paragraph lowercase bio] 2026-10-22
+- **Problem / tension:** Subtitle was a generic role string and bio was a single text block lacking the clean, brutalist breathing room from reference minimalist portfolios.
+- **Change / decision:** Restyled subtitle to monospace middle-dot line with linked GitHub handle (`kwakhare5 · typescript/python · ai systems & full-stack`), and restructured bio into 3 spaced conversational paragraphs in all-lowercase with inline links to builds.
+- **Proof:** Vitest (3/3), ESLint (0 errors), Next.js Turbopack build (10/10 static routes in 1.96s), and graphify updated to 236 nodes.
+- **Still broken / unproven:** None.
+
+
+### [Portfolio - Mobile scale elevation, 24px padding & SEO overhaul] 2026-10-22
+- **Problem / tension:** 6MB avatar download severely impaired mobile LCP speed, container padding (16px) was too tight on phones, 12px text felt shrunken on high-DPI screens, and title/schema lacked target occupational keywords.
+- **Change / decision:** Switched avatar thumbnail to 50KB Retina asset (`me-thumb.png`) while keeping original `me.png` intact; bumped mobile padding to 24px (`px-6 sm:px-8`); elevated typography scale (16px body, 14px meta/nav, 18px titles); expanded title tag to 52 chars; repaired heading hierarchy (H1 -> H2 -> H3); added ImageGallery schema; and locked canonical domain.
+- **Proof:** Vitest (3/3), ESLint (0 errors), Next.js Turbopack build (10/10 static routes in 1.73s), and graphify updated to 237 nodes.
+- **Still broken / unproven:** None.
+
+
+### [Portfolio - Super-sampled 512x512 avatar for zoom-in clarity] 2026-10-22
+- **Problem / tension:** 160px avatar became visibly blurry when pinch-zoomed on mobile, while raw 6MB was too heavy for initial page loads.
+- **Change / decision:** Generated a 512×512 super-sampled master avatar (`public/me-avatar.png` and `public/me-avatar.webp`) with Lanczos3 anti-aliasing; declared responsive sizes in Next.js Image component; preserving crystal-clear detail when zoomed while maintaining fast 85KB load weight.
+- **Proof:** Vitest (3/3), ESLint (0 errors), Next.js Turbopack build (10/10 static routes in 1.33s), and graphify updated to 238 nodes.
+- **Still broken / unproven:** None.
+
+
+### [Portfolio - 7-Tier typography, heading hierarchy & design system harmonization] 2026-10-22
+- **Problem / tension:** Child project titles (`font-semibold text-lg sm:text-xl`) visually overpowered parent section headings (`font-normal text-lg sm:text-xl`), body text drifted between `text-sm` and `text-base`, hero greeting scrambled with a font-weight stutter, calendar used an arbitrary `text-[11px]` rule, and theme toggle buttons varied across pages.
+- **Change / decision:** Standardized on a 7-tier semantic typography scale: section headings elevated to `text-xl sm:text-2xl font-medium` with matching `#` prefixes, project titles set to `text-base sm:text-lg font-semibold`, unified all narrative body text to `text-sm sm:text-base font-normal leading-relaxed`, hero scramble weight synced to `font-semibold`, calendar months moved to `text-xs font-mono`, and theme toggle unified to `size-7 p-1` with 40px touch padding.
+- **Proof:** Vitest (3/3 passing), ESLint (0 errors, 0 warnings), Next.js Turbopack build (10/10 static routes generated in 1.01s), and graphify updated to 239 nodes.
+- **Still broken / unproven:** None.
+
+
+### [Portfolio - Navbar floating line fix, section scale reversion & codebase cleanup] 2026-10-22
+- **Problem / tension:** A rogue black line hovered above the navbar's `artifacts` link due to an `editorial-link` underline clashing with Tailwind's `after:-inset-2` touch-padding on an element lacking `relative`. Section headings felt oversized at `text-2xl`, status narrative was accidentally monospaced, avatar became blurry on pinch-zoom due to Next.js downsampling to 96px, and `/artifacts` lacked a socials footer.
+- **Change / decision:** Stripped `editorial-link` from top navbar links, action buttons, and back-buttons; added native persistent underlines (`font-medium underline underline-offset-4 decoration-border hover:decoration-foreground`); generated an 800×800 Lanczos master avatar with `unoptimized` on `<Image>` for razor-sharp pinch-zoom clarity; extracted `<SocialsFooter />` and added it to both home and artifacts pages; restored section headings to quiet `text-base sm:text-lg font-normal` with muted `#` anchors; returned status updates to reading `font-sans`; deleted orphaned `public/me-avatar.webp`; pruned dead `manifesto` fields in `resume.tsx`; and removed duplicate ease tokens in `globals.css`.
+- **Proof:** Vitest unit tests passed (3/3), ESLint passed (0 errors, 0 warnings), Next.js Turbopack production build compiled 10/10 static routes in 2.1s, and graphify knowledge graph updated to 243 nodes.
+- **Still broken / unproven:** None.
+
+
+### [Portfolio - High-DPI icon suite from 2410px master & artifacts title calm scale] 2026-10-22
+- **Problem / tension:** Favicons were previously generated at only 32×32 pixels, causing them to look fuzzy on 4K, Retina, and scaled Windows displays, while the artifacts sub-page title shouted at 30px, overpowering the photography.
+- **Change / decision:** Generated a 512×512 high-DPI `src/app/icon.png` and `public/icon-512.png`, 180×180 `apple-icon.png`, 192×192 `icon-192.png`, multi-layer `favicon.ico` (16/32/48/64px), and 1024×1024 `me-avatar.png` directly from `public/me.png` with Lanczos3 resampling and micro-sharpening; reduced the artifacts heading from `text-2xl sm:text-3xl` down to `text-xl sm:text-2xl font-semibold`.
+- **Proof:** Vitest unit tests passed (3/3), ESLint passed (0 errors, 0 warnings), Next.js Turbopack production build compiled 10/10 static routes in 1.17s, and graphify knowledge graph updated to 243 nodes.
+- **Still broken / unproven:** None.

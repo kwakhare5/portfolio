@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useMemo } from "react";
 import { ExternalLink } from "lucide-react";
+import { getComputedLevel } from "@/lib/utils";
 
 interface ContributionDay {
   date: string;
@@ -21,13 +22,6 @@ const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "
 
 const CACHE_KEY = "gh_contributions_cache_v2";
 
-export function getComputedLevel(count: number): number {
-  if (count <= 0) return 0;
-  if (count <= 3) return 1;
-  if (count <= 9) return 2;
-  if (count <= 19) return 3;
-  return 4;
-}
 
 export function GitHubCalendar() {
   const [data, setData] = useState<ApiResponse | null>(null);
@@ -37,7 +31,7 @@ export function GitHubCalendar() {
 
   useEffect(() => {
     if (!loading && scrollRef.current) {
-      scrollRef.current.scrollLeft = scrollRef.current.scrollWidth;
+      scrollRef.current.scrollTo({ left: scrollRef.current.scrollWidth, behavior: "smooth" });
     }
   }, [loading]);
 
@@ -163,7 +157,7 @@ export function GitHubCalendar() {
         return "fill-emerald-500/85 dark:fill-emerald-400/85";
       case 0:
       default:
-        return "fill-zinc-100 dark:fill-zinc-800/60";
+        return "fill-muted dark:fill-muted/50";
     }
   };
 
@@ -206,12 +200,17 @@ export function GitHubCalendar() {
       {/* Unified Non-Sliding Heatmap Container */}
       <div className="relative w-full border border-border rounded-lg p-2.5 sm:p-4 bg-card">
         {loading ? (
-          <div className="h-[100px] w-full flex items-center justify-center text-xs font-mono text-muted-foreground animate-pulse">
+          <div className="min-h-[160px] w-full flex items-center justify-center text-xs font-mono text-muted-foreground animate-pulse">
             Fetching GitHub activity...
           </div>
         ) : weeks.length > 0 ? (
           <div className="w-full flex flex-col gap-2 select-none">
             {/* Scrollable grid wrapper for mobile with full 10px crisp squares */}
+            <div className="relative w-full">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-card to-transparent sm:hidden z-10"
+              />
             <div
               ref={scrollRef}
               className="w-full overflow-x-auto pb-1 -mb-1 scrollbar-none"
@@ -228,7 +227,7 @@ export function GitHubCalendar() {
                       key={i}
                       x={lbl.xPos}
                       y={10}
-                      className="fill-muted-foreground font-mono text-[9px]"
+                      className="fill-muted-foreground font-mono text-xs"
                     >
                       {lbl.month}
                     </text>
@@ -249,8 +248,8 @@ export function GitHubCalendar() {
                           ry={2}
                           onMouseEnter={() => setHoveredDay(day)}
                           onMouseLeave={() => setHoveredDay(null)}
-                          onTouchStart={() => setHoveredDay(day)}
-                          className={`cursor-pointer transition-all duration-150 hover:stroke-foreground/40 ${getLevelColor(
+                          onClick={() => setHoveredDay(day)}
+                          className={`cursor-pointer transition-[stroke] duration-100 ease-out hover:stroke-foreground/50 ${getLevelColor(
                             day.level
                           )}`}
                         />
@@ -261,8 +260,10 @@ export function GitHubCalendar() {
               </div>
             </div>
 
+            </div>
+
             {/* Footer with Legend & Tooltip detail */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-0 text-[11px] font-mono text-muted-foreground pt-1.5 border-t border-border">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-0 text-xs font-mono text-muted-foreground pt-1.5 border-t border-border">
               <div className="min-h-[16px]">
                 {hoveredDay ? (
                   <span className="text-foreground">
@@ -274,9 +275,9 @@ export function GitHubCalendar() {
                 )}
               </div>
 
-              <div className="flex items-center gap-1.5 text-[10px] self-end sm:self-auto">
+              <div className="flex items-center gap-1.5 text-xs self-end sm:self-auto">
                 <span>Less</span>
-                <div className="size-[9px] rounded-[2px] bg-zinc-100 dark:bg-zinc-800/60" />
+                <div className="size-[9px] rounded-[2px] bg-muted dark:bg-muted/50" />
                 <div className="size-[9px] rounded-[2px] bg-emerald-500/20 dark:bg-emerald-400/20" />
                 <div className="size-[9px] rounded-[2px] bg-emerald-500/40 dark:bg-emerald-400/40" />
                 <div className="size-[9px] rounded-[2px] bg-emerald-500/65 dark:bg-emerald-400/65" />

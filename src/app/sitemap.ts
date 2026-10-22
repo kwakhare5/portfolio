@@ -6,7 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return ["", "/artifacts"].map((route) => ({
     url: `${baseUrl}${route}`,
-    lastModified: new Date().toISOString(),
+    lastModified: "2026-10-22T00:00:00.000Z",
     changeFrequency: "weekly",
     priority: route === "" ? 1.0 : 0.8,
   }));

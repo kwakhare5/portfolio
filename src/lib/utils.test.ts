@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { cn } from "./utils";
-import { getComputedLevel } from "@/components/home/github-calendar";
+import { cn, getComputedLevel } from "./utils";
+
 
 describe("utils", () => {
   describe("cn", () => {

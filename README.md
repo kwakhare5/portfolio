@@ -11,7 +11,6 @@ A high-performance, modern developer portfolio and project showcase built with N
   - **Grocer**: WhatsApp grocery assistant verifying orders against live Swiggy Instamart inventory via MCP and auto-fixing out-of-stock items.
   - **Outpost**: Quick-commerce inventory replenishment decision engine forecasting stockouts and routing inter-store transfers with human-in-the-loop approval.
   - **Git for Prompts**: Git-style version control for AI prompts with commit histories, token diffing, and multi-model evals.
-  - **IndieForest**: Interactive 3D isometric WebGL island turning daily GitHub commits and Stripe revenue into growing digital forests.
   - **Tonal**: Chrome extension rewriting rough drafts into clear Slack, Gmail, and LinkedIn messages in under 200ms via Groq LPUs on Cloudflare Workers.
 - **Artifacts Gallery**: Interactive photo gallery with keyboard navigation and fullscreen lightbox.
 - **Tooling Radar**: Minimalist tag cloud tracking core languages, AI agent runtimes, and infrastructure stacks.
