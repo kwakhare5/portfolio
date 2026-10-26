@@ -1,5 +1,8 @@
 # AGENTS.md — Portfolio Project Rules
 
+> **MANDATORY INSTRUCTION:** Read and obey the global master rules at C:\Users\kwakh\.agents\AGENTS.md. Treat this file as project-specific facts and invariants that override or extend global rules.
+
+
 ---
 
 ## 1. PROJECT IDENTITY
