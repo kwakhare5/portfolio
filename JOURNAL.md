@@ -375,3 +375,9 @@ At the end of a session with meaningful changes:
 - **Change / decision:** Moved the sentence from the builds intro into the bio; removed Tonal everywhere (data, schema meta, keywords, llms.txt, docs); dropped Outpost's live link; added Beam with a `/builds/beam` case study sourced from its live site and README.
 - **Proof:** tsc 0, ESLint 0, Vitest 1/1; dev home shows the sentence in About and builds `(4)` with Grocer, Outpost, Git for Prompts, Beam; `/builds/beam` 200, `/builds/tonal` 404, Outpost page has no dead app link; sitemap lists 6 URLs ending in `beam`. Headless Chrome renders all 14 gallery photos at 390px and 1440px; the Qoder preview reports a 0×0 viewport, which is why its gallery appears empty.
 - **Still broken / unproven:** Changes not deployed or pushed; gallery behavior in Karan's own browser unconfirmed.
+
+### [Portfolio - bio merge deployed] 2026-11-11
+- **Problem / tension:** The two bio lines sat in different sections on the live site because the earlier fix was never shipped.
+- **Change / decision:** Committed `88e5238` and pushed to `main`; Vercel's Git integration built and promoted production automatically.
+- **Proof:** Live home renders both lines once inside About (byte 9964, before `id="builds"` at 12116); `/builds/beam` 200, `/builds/tonal` 404, Outpost page has zero dead app links; sitemap 6 URLs ending in `beam`; `llms.txt` lists Beam and no Tonal.
+- **Still broken / unproven:** None for this change.
