@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     "Grocer",
     "Outpost",
     "Git for Prompts",
-    "Tonal",
+    "Beam",
     "Pune",
     "India",
     "Indie Builder",

@@ -369,3 +369,9 @@ At the end of a session with meaningful changes:
 - **Change / decision:** Committed as `b550c5d`, pushed `main` to origin with upstream, deployed to Vercel production, alias confirmed on `karan30.vercel.app`.
 - **Proof:** Live home contains "i build ai tools and full-stack apps, from grocery shopping on whatsapp to version control for prompts."; `/`, four `/builds/*`, `/artifacts`, `/llms.txt`, `/sitemap.xml`, `/robots.txt` all 200; Grocer title "Grocer — '26 | Karan Wakhare", canonical `https://karan30.vercel.app/builds/grocer`, H1 "Grocer"; sitemap lists 6 URLs.
 - **Still broken / unproven:** Google Search Console and Bing Webmaster submission not done (needs account access); no writing posts or per-project OG images.
+
+### [Portfolio - current builds, About line, Beam case study] 2026-11-11
+- **Problem / tension:** The About section lacked the "i build ai tools..." line, the builds list still showed Tonal (app and repo gone) and a dead Outpost live URL, and Beam was missing.
+- **Change / decision:** Moved the sentence from the builds intro into the bio; removed Tonal everywhere (data, schema meta, keywords, llms.txt, docs); dropped Outpost's live link; added Beam with a `/builds/beam` case study sourced from its live site and README.
+- **Proof:** tsc 0, ESLint 0, Vitest 1/1; dev home shows the sentence in About and builds `(4)` with Grocer, Outpost, Git for Prompts, Beam; `/builds/beam` 200, `/builds/tonal` 404, Outpost page has no dead app link; sitemap lists 6 URLs ending in `beam`. Headless Chrome renders all 14 gallery photos at 390px and 1440px; the Qoder preview reports a 0×0 viewport, which is why its gallery appears empty.
+- **Still broken / unproven:** Changes not deployed or pushed; gallery behavior in Karan's own browser unconfirmed.
