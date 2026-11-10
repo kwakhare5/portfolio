@@ -1,6 +1,6 @@
 # Karan Wakhare — Portfolio & Projects Showcase
 
-A high-performance, modern developer portfolio and project showcase built with Next.js 16 (App Router + Turbopack), React 19, Tailwind CSS v4, Motion, and TypeScript.
+A high-performance, modern developer portfolio and project showcase built with Next.js 16 (App Router + Turbopack), React 19, Tailwind CSS v4, and TypeScript.
 
 ---
 
@@ -12,6 +12,7 @@ A high-performance, modern developer portfolio and project showcase built with N
   - **Outpost**: Quick-commerce inventory replenishment decision engine forecasting stockouts and routing inter-store transfers with human-in-the-loop approval.
   - **Git for Prompts**: Git-style version control for AI prompts with commit histories, token diffing, and multi-model evals.
   - **Tonal**: Chrome extension rewriting rough drafts into clear Slack, Gmail, and LinkedIn messages in under 200ms via Groq LPUs on Cloudflare Workers.
+- **Project Case Studies**: Indexable pages for each build with the problem, architecture, and engineering highlights.
 - **Artifacts Gallery**: Interactive photo gallery with keyboard navigation and fullscreen lightbox.
 - **Tooling Radar**: Minimalist tag cloud tracking core languages, AI agent runtimes, and infrastructure stacks.
 - **SEO & Discoverability**: Dynamic XML sitemap (`/sitemap.xml`), `robots.txt`, and Schema.org `Person` & `WebSite` JSON-LD graphs.
@@ -24,7 +25,7 @@ A high-performance, modern developer portfolio and project showcase built with N
 - **Framework**: Next.js 16.3.2 (App Router + Turbopack)
 - **UI Library**: React 19.2.8
 - **Styling**: Tailwind CSS v4 (`@tailwindcss/postcss`)
-- **Animations**: Motion (`motion/react`)
+- **Animations**: CSS keyframes & transitions
 - **Analytics**: Vercel Web Analytics (`@vercel/analytics`)
 - **Testing**: Vitest
 - **Language**: TypeScript 5.9
@@ -35,29 +36,21 @@ A high-performance, modern developer portfolio and project showcase built with N
 
 ### Prerequisites
 
-- Node.js >= 18.0.0
-- npm
+- Node.js >= 20.9.0
+- pnpm
 
 ### 1. Clone & Install Dependencies
 
 ```bash
 git clone https://github.com/kwakhare5/portfolio.git
 cd portfolio
-npm install
+pnpm install
 ```
 
-### 2. Configure Environment Variables
-
-Create a `.env.local` file in the root directory:
-
-```env
-NEXT_PUBLIC_APP_URL="https://karan30.vercel.app"
-```
-
-### 3. Run Development Server
+### 2. Run Development Server
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
@@ -68,11 +61,12 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 | Script | Description |
 |---|---|
-| `npm run dev` | Start Next.js development server with Turbopack |
-| `npm run build` | Build optimized production bundle & static pages |
-| `npm run start` | Start production server |
-| `npm run test` | Run Vitest unit test suite |
-| `npm run lint` | Run Next.js ESLint checks |
+| `pnpm dev` | Start Next.js development server with Turbopack |
+| `pnpm build` | Build optimized production bundle & static pages |
+| `pnpm start` | Start production server |
+| `pnpm test` | Run Vitest once |
+| `pnpm typecheck` | Type-check with TypeScript |
+| `pnpm lint` | Run ESLint |
 
 ---
 

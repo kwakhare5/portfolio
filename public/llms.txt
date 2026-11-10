@@ -1,0 +1,22 @@
+# Karan Wakhare
+
+> Computer engineering student and developer in Pune building AI tools and full-stack apps.
+
+## Builds
+
+- [Grocer](https://karan30.vercel.app/builds/grocer): WhatsApp grocery assistant that verifies orders against live Swiggy Instamart inventory and auto-fixes out-of-stock items.
+- [Outpost](https://karan30.vercel.app/builds/outpost): Inventory replenishment decision engine for quick-commerce dark stores.
+- [Git for Prompts](https://karan30.vercel.app/builds/git-for-prompts): Git-style version control for AI prompts with commit histories, token diffing, and multi-model evals.
+- [Tonal](https://karan30.vercel.app/builds/tonal): Chrome extension that rewrites rough drafts into clear Slack, Gmail, and LinkedIn messages in under 200ms.
+
+## Site
+
+- [Portfolio](https://karan30.vercel.app)
+- [Artifacts](https://karan30.vercel.app/artifacts)
+
+## Profiles
+
+- [GitHub](https://github.com/kwakhare5)
+- [LinkedIn](https://www.linkedin.com/in/karanwakhare)
+- [X](https://x.com/kwakhare5)
+- Email: kwakhare5@gmail.com

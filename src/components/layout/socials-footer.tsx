@@ -1,11 +1,11 @@
 import React from "react";
 import { DATA } from "@/data/resume";
 
-export function SocialsFooter({ id = "socials" }: { id?: string }) {
+export function SocialsFooter() {
   const { contact } = DATA;
 
   return (
-    <footer id={id} className="pt-4 border-t border-border">
+    <footer id="socials" className="pt-4 border-t border-border">
       <div className="flex flex-wrap items-center gap-y-2 gap-x-2.5 text-xs sm:text-sm font-mono text-muted-foreground">
         <span className="text-foreground font-medium">find me on</span>
         <span className="text-muted-foreground hidden sm:inline">-</span>

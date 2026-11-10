@@ -10,7 +10,7 @@ This document outlines the software architecture, module boundaries, data flow, 
                ┌────────────────────────────────────────┐
                │    Presentation Layer (App & UI)       │
                │  Next.js App Router (16.3 Turbopack)   │
-               │ React 19 + Motion + Tailwind CSS v4    │
+               │     React 19 + Tailwind CSS v4         │
                └───────────────────┬────────────────────┘
                                    │
                     ┌──────────────┴──────────────┐
@@ -29,15 +29,15 @@ This document outlines the software architecture, module boundaries, data flow, 
 ## 2. Layer Definitions & Bounded Contexts
 
 ### A. Presentation Layer (`src/app/` & `src/components/`)
-- **App Router Pages**: Next.js App Router root layout (`layout.tsx`), home experience (`/`), artifacts gallery (`/artifacts`), and GitHub contribution proxy (`/api/contributions`).
+- **App Router Pages**: Next.js App Router root layout (`layout.tsx`), home experience (`/`), project case studies (`/builds/[slug]`), artifacts gallery (`/artifacts`), and GitHub contribution proxy (`/api/contributions`).
 - **Domain UI Modules**: High-cohesion presentation blocks grouped cleanly by domain:
   - `src/components/home/`: `hero-greeting.tsx`, `project-row.tsx`, `github-calendar.tsx`, `photo-preview.tsx`.
   - `src/components/artifacts/`: `artifacts-gallery.tsx`, `photo-lightbox.tsx`.
-- **Layout Primitives**: Theme toggle (`mode-toggle.tsx`).
+- **Layout Primitives**: Theme toggle (`mode-toggle.tsx`) and socials footer (`socials-footer.tsx`).
 
 ### B. Domain & Application Layer (`src/data/` & `src/lib/`)
-- **`src/data/resume.tsx`**: Single source of truth containing type definitions and curated project blueprints (`Grocer`, `Outpost`, `Git for Prompts`, `Tonal`), tech stack categories, structured timeline, and socials.
-- **`src/lib/utils.ts`**: Pure class-merging utility (`cn`) with unit tests (`src/lib/utils.test.ts`).
+- **`src/data/resume.ts`**: Single source of truth containing type definitions and curated project blueprints (`Grocer`, `Outpost`, `Git for Prompts`, `Tonal`), tech stack categories, structured timeline, and socials.
+- **`src/lib/utils.ts`**: Contribution-level helper (`getComputedLevel`) with unit tests (`src/lib/utils.test.ts`).
 
 ---
 

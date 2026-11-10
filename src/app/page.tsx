@@ -3,8 +3,6 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import type { Variants } from "motion/react";
-import { motion } from "motion/react";
 import { HeroGreeting } from "@/components/home/hero-greeting";
 import { ProjectRow } from "@/components/home/project-row";
 import { GitHubCalendar } from "@/components/home/github-calendar";
@@ -58,7 +56,6 @@ function StatusTimeline({ status }: { readonly status: typeof DATA.status }) {
                     </React.Fragment>
                   );
                 })}
-                {item.suffix}
               </li>
             ))}
           </ul>
@@ -68,40 +65,21 @@ function StatusTimeline({ status }: { readonly status: typeof DATA.status }) {
   );
 }
 
-const staggerVariants: Variants = {
-  hidden: { opacity: 0, y: 8 },
-  visible: (i: number = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.06,
-      duration: 0.35,
-      ease: [0.32, 0.72, 0, 1],
-    },
-  }),
-};
+const TIME_FORMATTER = new Intl.DateTimeFormat("en-US", {
+  timeZone: "Asia/Kolkata",
+  hour: "numeric",
+  minute: "2-digit",
+  hour12: true,
+});
 
 export default function Page() {
   const { name, avatarUrl, status, featuredProjects, coreStack, bio } = DATA;
   const firstName = name.split(" ")[0];
 
-  const [timeStr, setTimeStr] = useState<string>("");
+  const [timeStr, setTimeStr] = useState("");
 
   useEffect(() => {
-    const updateTime = () => {
-      try {
-        const formatter = new Intl.DateTimeFormat("en-US", {
-          timeZone: "Asia/Kolkata",
-          hour: "numeric",
-          minute: "2-digit",
-          hour12: true,
-        });
-        setTimeStr(formatter.format(new Date()));
-      } catch {
-        setTimeStr("");
-      }
-    };
-
+    const updateTime = () => setTimeStr(TIME_FORMATTER.format(new Date()));
     updateTime();
     const interval = setInterval(updateTime, 10000);
     return () => clearInterval(interval);
@@ -110,12 +88,9 @@ export default function Page() {
   return (
     <main className="w-full flex flex-col space-y-14 sm:space-y-20 antialiased">
       {/* -- 1. Masthead & In-Page Navigation ------------------------- */}
-      <motion.section
-        custom={0}
-        initial="hidden"
-        animate="visible"
-        variants={staggerVariants}
-        className="flex flex-col gap-6 sm:gap-7"
+      <section
+        className="reveal flex flex-col gap-6 sm:gap-7"
+        style={{ animationDelay: "0ms" }}
       >
         {/* In-Page Navigation Bar */}
         <div className="flex items-center justify-between gap-2 text-sm font-sans border-b border-border pb-3">
@@ -167,7 +142,7 @@ export default function Page() {
               alt={name}
               fill
               priority
-              unoptimized
+              sizes="(max-width: 640px) 64px, 80px"
               className="object-cover"
             />
           </div>
@@ -184,16 +159,13 @@ export default function Page() {
 
         {/* -- Currently & Previously (Structured Timeline) -- */}
         <StatusTimeline status={status} />
-      </motion.section>
+      </section>
 
       {/* -- 2. Featured Products (Linear System Rows) ------------------ */}
-      <motion.section
+      <section
         id="builds"
-        custom={1}
-        initial="hidden"
-        animate="visible"
-        variants={staggerVariants}
-        className="space-y-4"
+        className="reveal space-y-4"
+        style={{ animationDelay: "60ms" }}
       >
         <div className="flex items-center justify-between border-b border-border pb-2.5">
           <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight flex items-center gap-2">
@@ -203,21 +175,22 @@ export default function Page() {
           </h2>
         </div>
 
+        <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+          i build ai tools and full-stack apps, from grocery shopping on whatsapp to version control for prompts.
+        </p>
+
         <div className="flex flex-col">
           {featuredProjects.map((project) => (
             <ProjectRow key={project.title} project={project} />
           ))}
         </div>
-      </motion.section>
+      </section>
 
       {/* -- 3. Open Source Activity (GitHub Heatmap) ------------------ */}
-      <motion.section
+      <section
         id="activity"
-        custom={2}
-        initial="hidden"
-        animate="visible"
-        variants={staggerVariants}
-        className="space-y-4"
+        className="reveal space-y-4"
+        style={{ animationDelay: "120ms" }}
       >
         <div className="flex items-center justify-between border-b border-border pb-2.5">
           <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight flex items-center gap-2">
@@ -228,16 +201,13 @@ export default function Page() {
         </div>
 
         <GitHubCalendar />
-      </motion.section>
+      </section>
 
       {/* -- 4. Tech Stack & Tooling ------------------------------------ */}
-      <motion.section
+      <section
         id="stack"
-        custom={3}
-        initial="hidden"
-        animate="visible"
-        variants={staggerVariants}
-        className="space-y-4"
+        className="reveal space-y-4"
+        style={{ animationDelay: "180ms" }}
       >
         <div className="flex items-center justify-between border-b border-border pb-2.5">
           <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight flex items-center gap-2">
@@ -277,16 +247,13 @@ export default function Page() {
             );
           })}
         </div>
-      </motion.section>
+      </section>
 
       {/* -- 5. Artifacts Section ---------------------------------------- */}
-      <motion.section
+      <section
         id="artifacts"
-        custom={4}
-        initial="hidden"
-        animate="visible"
-        variants={staggerVariants}
-        className="space-y-4"
+        className="reveal space-y-4"
+        style={{ animationDelay: "240ms" }}
       >
         <div className="flex items-center justify-between border-b border-border pb-2.5">
           <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight flex items-center gap-2">
@@ -297,17 +264,12 @@ export default function Page() {
         </div>
 
         <PhotoPreview />
-      </motion.section>
+      </section>
 
       {/* -- 6. Epilogue & Socials --------------------------------- */}
-      <motion.div
-        custom={5}
-        initial="hidden"
-        animate="visible"
-        variants={staggerVariants}
-      >
+      <div className="reveal" style={{ animationDelay: "300ms" }}>
         <SocialsFooter />
-      </motion.div>
+      </div>
     </main>
   );
 }
