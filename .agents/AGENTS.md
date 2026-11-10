@@ -43,7 +43,7 @@ pnpm lint            # Run ESLint
 ## 5. KEY PROJECT PATTERNS
 - `src/components/` — Modular UI blocks (`home/`, `artifacts/`, `layout/`).
 - `src/app/` — Next.js 16 App Router pages (`/`, `builds/[slug]`, `artifacts`, `api/contributions`).
-- `src/data/resume.ts` — Centralized portfolio data source (`Grocer`, `Outpost`, `Git for Prompts`, `Tonal`).
+- `src/data/resume.ts` — Centralized portfolio data source (`Grocer`, `Outpost`, `Git for Prompts`, `Beam`).
 
 ---
 

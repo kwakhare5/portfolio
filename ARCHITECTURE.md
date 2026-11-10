@@ -36,7 +36,7 @@ This document outlines the software architecture, module boundaries, data flow, 
 - **Layout Primitives**: Theme toggle (`mode-toggle.tsx`) and socials footer (`socials-footer.tsx`).
 
 ### B. Domain & Application Layer (`src/data/` & `src/lib/`)
-- **`src/data/resume.ts`**: Single source of truth containing type definitions and curated project blueprints (`Grocer`, `Outpost`, `Git for Prompts`, `Tonal`), tech stack categories, structured timeline, and socials.
+- **`src/data/resume.ts`**: Single source of truth containing type definitions and curated project blueprints (`Grocer`, `Outpost`, `Git for Prompts`, `Beam`), tech stack categories, structured timeline, and socials.
 - **`src/lib/utils.ts`**: Contribution-level helper (`getComputedLevel`) with unit tests (`src/lib/utils.test.ts`).
 
 ---

@@ -10,7 +10,7 @@ const SCHEMA_META: Record<string, { category: string; platform: string }> = {
   grocer: { category: "BusinessApplication", platform: "Web" },
   outpost: { category: "BusinessApplication", platform: "Web" },
   "git-for-prompts": { category: "DeveloperApplication", platform: "Web" },
-  tonal: { category: "ProductivityApplication", platform: "Chrome" },
+  beam: { category: "UtilitiesApplication", platform: "Windows 11" },
 };
 
 function getProject(slug: string) {

@@ -73,6 +73,7 @@ export const DATA: ResumeData = {
     "Karan Wakhare is a computer engineering student and developer in Pune building AI tools and full-stack apps.",
   bio: [
     "i'm karan, a computer engineering student and developer based in pune.",
+    "i build ai tools and full-stack apps, from grocery shopping on whatsapp to version control for prompts.",
   ],
   avatarUrl: "/me-avatar.png",
 
@@ -139,7 +140,6 @@ export const DATA: ResumeData = {
       slug: "outpost",
       year: "'26",
       oneLiner: "Inventory replenishment decision engine for quick-commerce dark stores that forecasts stockouts and routes inter-store transfers with human-in-the-loop approval.",
-      liveUrl: "https://dark-store-operator.vercel.app",
       githubUrl: "https://github.com/kwakhare5/Outpost",
       stack: ["Python", "FastAPI", "LangGraph", "Next.js 16", "TypeScript", "SQLite"],
       specs: {
@@ -171,20 +171,21 @@ export const DATA: ResumeData = {
       },
     },
     {
-      title: "Tonal",
-      slug: "tonal",
+      title: "Beam",
+      slug: "beam",
       year: "'26",
-      oneLiner: "Chrome extension that rewrites rough drafts into clear Slack, Gmail, and LinkedIn messages in under 200ms.",
-      liveUrl: "https://tonall.vercel.app/",
-      githubUrl: "https://github.com/kwakhare5/tonal",
-      stack: ["Groq LLMs", "Cloudflare Workers", "TypeScript", "Next.js", "Chrome Extension"],
+      oneLiner: "Offline Windows 11 capsule above your taskbar with live music controls, a file shelf, a countdown, and a calendar.",
+      liveUrl: "https://beamm.vercel.app/",
+      githubUrl: "https://github.com/kwakhare5/beam",
+      stack: ["TypeScript", "Electron", "Vite", ".NET", "Windows SMTC"],
       specs: {
-        problem: "Drafting emails and workplace chat messages often sounds stiff, wordy, or blunt, causing unnecessary back-and-forth.",
-        architecture: "A Chrome extension using Shadow DOM for style isolation that streams text to Groq LLMs on Cloudflare Workers, replacing words directly in your text box without leaking API keys.",
+        problem: "Windows 11 scatters media controls, timers, and quick file drops across taskbar flyouts and separate apps.",
+        architecture: "An Electron shell renders a 136×42 transparent capsule that reads Windows media sessions through a .NET helper, persists its position, and runs fully offline with no accounts or network calls.",
         highlights: [
-          "Sub-200ms edge inference powered by Groq LPUs on Cloudflare Workers",
-          "Shadow DOM encapsulation preventing style collisions in Gmail, Slack, and LinkedIn",
-          "Offline tone engine with 30+ fallback rules that work even without an internet connection",
+          "Live SMTC media controls with seek, artwork, and automatic player switching",
+          "Drag-and-drop file shelf with drag-out back to Explorer and a 50-file cap",
+          "Countdown that chimes and sends a Windows notification while the pill is hidden",
+          "30-check PowerShell suite covering real Explorer drags and helper crash recovery",
         ],
       },
     },

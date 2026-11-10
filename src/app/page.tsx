@@ -175,10 +175,6 @@ export default function Page() {
           </h2>
         </div>
 
-        <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-          i build ai tools and full-stack apps, from grocery shopping on whatsapp to version control for prompts.
-        </p>
-
         <div className="flex flex-col">
           {featuredProjects.map((project) => (
             <ProjectRow key={project.title} project={project} />
