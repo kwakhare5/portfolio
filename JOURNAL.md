@@ -381,3 +381,9 @@ At the end of a session with meaningful changes:
 - **Change / decision:** Committed `88e5238` and pushed to `main`; Vercel's Git integration built and promoted production automatically.
 - **Proof:** Live home renders both lines once inside About (byte 9964, before `id="builds"` at 12116); `/builds/beam` 200, `/builds/tonal` 404, Outpost page has zero dead app links; sitemap 6 URLs ending in `beam`; `llms.txt` lists Beam and no Tonal.
 - **Still broken / unproven:** None for this change.
+
+### [Portfolio - natural About bio] 2026-11-11
+- **Problem / tension:** The About copy repeated "i'm karan" under the hero, stacked clauses, and ended with an em dash; it read robotic.
+- **Change / decision:** Replaced the bio with two short natural sentences that keep the AI engineer + full-stack identity and both build examples, with no name repeat and no em dash.
+- **Proof:** tsc 0, Vitest 1/1; pushed `a1e062c`, Vercel auto-deployed; live home serves "i'm an ai engineer and full-stack developer studying computer engineering in pune. i build ai tools and apps, from grocery shopping on whatsapp to version control for prompts." with zero em dashes in the bio.
+- **Still broken / unproven:** Browser tab, OG title, and JSON-LD still use "—" in `Karan Wakhare — AI Engineer & Full-Stack Developer`.
