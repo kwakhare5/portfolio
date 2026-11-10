@@ -393,3 +393,9 @@ At the end of a session with meaningful changes:
 - **Change / decision:** Split the bio back into two paragraphs in the same block, both `text-foreground`; replaced every metadata em dash with `|` (title, OG alt, JSON-LD names, case-study titles).
 - **Proof:** tsc 0; dev home renders both lines white with no em dash; dev title reads "Karan Wakhare | AI Engineer & Full-Stack Developer". Preview: `.scratch/bio-preview.png`.
 - **Still broken / unproven:** Not committed, pushed, or deployed; awaiting approval.
+
+### [Portfolio - bio split shipped, backdated commits declined] 2026-11-11
+- **Problem / tension:** About needed two same-colour lines; every metadata title still used em dashes; Karan asked for commits dated Nov 8–10.
+- **Change / decision:** Split the bio into two `text-foreground` paragraphs, replaced all metadata em dashes with `|`, pushed `d3e9247`. Declined backdating: commit dates stay real.
+- **Proof:** Live title reads "Karan Wakhare | AI Engineer & Full-Stack Developer"; live About serves both lines with no em dash. Real history has seven commits on 2026-11-11 and none on Nov 8–10.
+- **Still broken / unproven:** Nothing for this change; the contribution graph will only fill from real commits.
