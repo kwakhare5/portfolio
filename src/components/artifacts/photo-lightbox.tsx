@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import Image from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import type { PhotoItem } from "@/data/resume";
@@ -19,12 +19,12 @@ export function PhotoLightbox({
   onIndexChange,
 }: PhotoLightboxProps) {
   const handlePrev = useCallback(() => {
-    if (activeIndex === null || photos.length === 0) return;
+    if (activeIndex === null) return;
     onIndexChange(activeIndex === 0 ? photos.length - 1 : activeIndex - 1);
   }, [activeIndex, photos.length, onIndexChange]);
 
   const handleNext = useCallback(() => {
-    if (activeIndex === null || photos.length === 0) return;
+    if (activeIndex === null) return;
     onIndexChange(activeIndex === photos.length - 1 ? 0 : activeIndex + 1);
   }, [activeIndex, photos.length, onIndexChange]);
 
@@ -54,7 +54,7 @@ export function PhotoLightbox({
     };
   }, [activeIndex]);
 
-  if (activeIndex === null || !photos[activeIndex]) return null;
+  if (activeIndex === null) return null;
 
   const currentPhoto = photos[activeIndex];
 
@@ -64,7 +64,7 @@ export function PhotoLightbox({
       aria-modal="true"
       aria-label="Enlarged photo preview"
       onClick={onClose}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 p-3 sm:p-8 backdrop-blur-xl cursor-zoom-out animate-in fade-in duration-250 ease-out"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 p-3 sm:p-8 backdrop-blur-xl cursor-zoom-out"
     >
       {/* Top Bar: Counter & Close */}
       <div className="absolute top-4 sm:top-6 pt-[env(safe-area-inset-top)] inset-x-4 sm:inset-x-8 flex items-center justify-between z-50">
@@ -109,7 +109,7 @@ export function PhotoLightbox({
 
       {/* Active Image Container */}
       <div
-        className="relative max-h-[90dvh] max-w-[95vw] sm:max-w-[90vw] flex flex-col items-center gap-3 animate-in zoom-in-95 duration-250 [animation-timing-function:cubic-bezier(0.32,0.72,0,1)] select-none"
+        className="relative max-h-[90dvh] max-w-[95vw] sm:max-w-[90vw] flex flex-col items-center gap-3 select-none"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="relative max-h-[75dvh] sm:max-h-[82dvh] max-w-[92vw] sm:max-w-[85vw] overflow-hidden rounded border border-border shadow-2xl">
@@ -118,6 +118,7 @@ export function PhotoLightbox({
             alt={currentPhoto.caption.replace(/^\/\/\s*/, "") || "Photo"}
             width={1200}
             height={900}
+            sizes="(max-width: 640px) 92vw, 85vw"
             quality={95}
             priority
             className="h-auto max-h-[75dvh] sm:max-h-[80dvh] w-auto max-w-[92vw] sm:max-w-[85vw] object-contain"

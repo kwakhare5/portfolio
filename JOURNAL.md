@@ -338,3 +338,28 @@ At the end of a session with meaningful changes:
 - **Change / decision:** Generated a 512×512 high-DPI `src/app/icon.png` and `public/icon-512.png`, 180×180 `apple-icon.png`, 192×192 `icon-192.png`, multi-layer `favicon.ico` (16/32/48/64px), and 1024×1024 `me-avatar.png` directly from `public/me.png` with Lanczos3 resampling and micro-sharpening; reduced the artifacts heading from `text-2xl sm:text-3xl` down to `text-xl sm:text-2xl font-semibold`.
 - **Proof:** Vitest unit tests passed (3/3), ESLint passed (0 errors, 0 warnings), Next.js Turbopack production build compiled 10/10 static routes in 1.17s, and graphify knowledge graph updated to 243 nodes.
 - **Still broken / unproven:** None.
+
+
+### [Portfolio - Social preview card typography & subline overhaul] 2026-11-10
+- **Problem / tension:** Preview image (`me-og.png`) had an outdated "Figuring Out" pixel subline and mismatched font sizing/letter-spacing across social embeds.
+- **Change / decision:** Replaced subline with "AI Systems & Full-Stack • Pune, IND", scaled all typography up 20% on the unzoomed 1200x630 sky canvas, and rendered using active project Geist typography with -0.04em tight display tracking.
+- **Proof:** Regenerated `public/me-og.png` (1200×630, 178 KB), pixel-clean background gradient, zero artifacts.
+- **Still broken / unproven:** None.
+
+### [Portfolio - dependency and config audit] 2026-11-10
+- **Problem / tension:** The site shipped a client animation library, class-merge utilities, and a coverage package for one small effect and two static class joins; three base-URL sources, a 472 KB duplicate favicon, a 1.7 MB raw avatar, and year-long immutable caching on unhashed public images created drift and stale-asset risk.
+- **Change / decision:** Removed `motion`, `clsx`, `tailwind-merge`, `cn()`, `@vitest/coverage-v8`, the empty `(home)` route group, dead data fields/guards, and dead animation classes; replaced the stagger with reduced-motion-aware CSS; unified URLs on `DATA.url`; tightened CSP/image config and deleted the public-image cache rules; replaced the 512px favicon with a 9.7 KB 64px PNG; served the avatar through `next/image` at 96w; fixed lightbox sizing and gallery index spacing; standardized on pnpm and added `typecheck`/`allowBuilds`.
+- **Proof:** ESLint 0 errors, `tsc --noEmit` clean, Vitest 1/1, production build 10/10 routes. Browser: lightbox 1/14→2/14 via ArrowRight, Escape restores body scroll, specs expands to 338px, theme toggles dark/light, avatar serves at 96w, desktop/500px/artifacts screenshots clean; only local Vercel Analytics 404.
+- **Still broken / unproven:** `.env.local` has unused Wakatime/GitHub/OIDC tokens; Google verification is duplicated; `me.png` (5.8 MB), `icon-512.png` (472 KB), and 12 MB of source photos need compression if desired; Prettier config has no Prettier; project `AGENTS.md` is nested; lightbox lacks a focus trap; a11y items listed in the audit remain.
+
+### [Portfolio - student positioning and indexable case studies] 2026-11-11
+- **Problem / tension:** Four projects shared one URL with collapsed specs, the new student positioning was not in the bio or metadata, and there was almost no indexable surface for name or project searches.
+- **Change / decision:** Applied the approved copy split (about line 1, builds intro line 2), removed the old third bio paragraph and inline links, updated `DATA.description`, renamed `resume.tsx` to `resume.ts`, added slugs and four `/builds/[slug]` case-study pages with canonical/OG metadata, `SoftwareApplication` + `BreadcrumbList` JSON-LD, home title links, a "read full case study" link, and sitemap entries.
+- **Proof:** ESLint 0, `tsc --noEmit` 0, Vitest 1/1, production build 14/14 routes (four SSG case studies). Browser click from home to `/builds/grocer` returned H1 "Grocer" and title "Grocer — '26 | Karan Wakhare"; sitemap lists 6 URLs.
+- **Still broken / unproven:** No custom domain by constraint; no `llms.txt`, writing posts, per-project OG images, or GSC/Bing submission yet; heavy `me.png`/photo sources remain; the global `ProfilePage` JSON-LD is still emitted on every page; the top AEO/GEO skill was found but not installed.
+
+### [Portfolio - dev server rescue, llms.txt, GEO skill] 2026-11-11
+- **Problem / tension:** `localhost:3000` returned nothing while a stale Next dev server (PID 23956) held the dev lock; `.next/dev/logs/next-development.log` showed Turbopack failing to resolve `next/font/google`; there was no AI-crawler summary file and no GEO playbook installed.
+- **Change / decision:** Killed PID 23956, deleted `.next`, restarted `pnpm dev`; added `public/llms.txt` listing the four builds, site pages, and profiles; installed `kostja94/marketing-skills@generative-engine-optimization` (1.4K installs, 1.1K stars) globally.
+- **Proof:** `/`, four `/builds/*`, `/artifacts`, and `/llms.txt` all 200; home and case-study consoles clean; fonts/images/analytics requests 200. Source file unchanged for the fix (cache + lock only).
+- **Still broken / unproven:** Production deploy blocked by the permission classifier until Karan explicitly authorizes it; GSC/Bing submission and social/product links need account access; no writing posts or per-project OG images yet.

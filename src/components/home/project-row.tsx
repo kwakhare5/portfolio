@@ -1,13 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { ChevronDown, ExternalLink, Code2 } from "lucide-react";
 
 import type { ProjectSpec } from "@/data/resume";
 
 export function ProjectRow({ project }: { project: ProjectSpec }) {
   const [isOpen, setIsOpen] = useState(false);
-  const projectLink = project.liveUrl || project.githubUrl;
 
   const handleRowClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
@@ -29,19 +29,12 @@ export function ProjectRow({ project }: { project: ProjectSpec }) {
       <div className="flex items-start sm:items-center justify-between gap-3 flex-wrap">
         <div className="flex items-baseline gap-2.5 flex-wrap">
           <h3 className="font-semibold text-base sm:text-lg text-foreground tracking-tight m-0 inline">
-            {projectLink ? (
-              <a
-                href={projectLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="inline-flex items-baseline text-foreground hover:text-emerald-500 dark:hover:text-emerald-400 tracking-tight transition-colors"
-              >
-                <span className="editorial-link">{project.title}</span>
-              </a>
-            ) : (
-              <span>{project.title}</span>
-            )}
+            <Link
+              href={`/builds/${project.slug}`}
+              className="inline-flex items-baseline text-foreground hover:text-emerald-500 dark:hover:text-emerald-400 tracking-tight transition-colors"
+            >
+              <span className="editorial-link">{project.title}</span>
+            </Link>
           </h3>
           <span className="font-mono text-xs text-muted-foreground">
             {project.year}
@@ -55,8 +48,7 @@ export function ProjectRow({ project }: { project: ProjectSpec }) {
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="relative inline-flex items-center gap-1 py-1 px-1 -my-1 -mx-1 font-semibold text-emerald-500 dark:text-emerald-400 transition-[transform,color] duration-150 [transition-timing-function:cubic-bezier(0.2,0,0,1)] cursor-pointer active:scale-[0.97] touch-manipulation after:absolute after:-inset-2 after:content-['']"
+              className="relative inline-flex items-center gap-1 py-1 px-1 -my-1 -mx-1 font-semibold text-emerald-500 dark:text-emerald-400 transition-[transform,color] duration-150 ease-snappy cursor-pointer active:scale-[0.97] touch-manipulation after:absolute after:-inset-2 after:content-['']"
             >
               <span>live</span>
               <ExternalLink className="size-3" />
@@ -67,8 +59,7 @@ export function ProjectRow({ project }: { project: ProjectSpec }) {
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="relative inline-flex items-center gap-1 py-1 px-1 -my-1 -mx-1 font-semibold text-blue-500 dark:text-blue-400 transition-[transform,color] duration-150 [transition-timing-function:cubic-bezier(0.2,0,0,1)] cursor-pointer active:scale-[0.97] touch-manipulation after:absolute after:-inset-2 after:content-['']"
+              className="relative inline-flex items-center gap-1 py-1 px-1 -my-1 -mx-1 font-semibold text-blue-500 dark:text-blue-400 transition-[transform,color] duration-150 ease-snappy cursor-pointer active:scale-[0.97] touch-manipulation after:absolute after:-inset-2 after:content-['']"
             >
               <span>code</span>
               <Code2 className="size-3" />
@@ -76,16 +67,13 @@ export function ProjectRow({ project }: { project: ProjectSpec }) {
           )}
           <button
             type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              setIsOpen(!isOpen);
-            }}
-            className="relative inline-flex items-center gap-1 py-1 px-1 -my-1 -mx-1 font-semibold text-amber-500 dark:text-amber-400 transition-[transform,color] duration-150 [transition-timing-function:cubic-bezier(0.2,0,0,1)] cursor-pointer active:scale-[0.97] touch-manipulation after:absolute after:-inset-2 after:content-['']"
+            onClick={() => setIsOpen(!isOpen)}
+            className="relative inline-flex items-center gap-1 py-1 px-1 -my-1 -mx-1 font-semibold text-amber-500 dark:text-amber-400 transition-[transform,color] duration-150 ease-snappy cursor-pointer active:scale-[0.97] touch-manipulation after:absolute after:-inset-2 after:content-['']"
             aria-expanded={isOpen}
           >
             <span>specs</span>
             <ChevronDown
-              className={`size-3 transition-transform duration-300 [transition-timing-function:cubic-bezier(0.32,0.72,0,1)] ${isOpen ? "rotate-180" : ""}`}
+              className={`size-3 transition-transform duration-300 ease-apple ${isOpen ? "rotate-180" : ""}`}
             />
           </button>
         </div>
@@ -147,6 +135,13 @@ export function ProjectRow({ project }: { project: ProjectSpec }) {
                 ))}
               </ul>
             </div>
+
+            <Link
+              href={`/builds/${project.slug}`}
+              className="editorial-link inline-flex items-center gap-1 text-foreground hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors"
+            >
+              read full case study <span aria-hidden="true">→</span>
+            </Link>
           </div>
         </div>
       </div>

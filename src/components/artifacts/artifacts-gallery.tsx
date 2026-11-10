@@ -1,14 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import type { PhotoItem } from "@/data/resume";
 import { PhotoLightbox } from "@/components/artifacts/photo-lightbox";
 
 export function ArtifactsGallery({ photos }: { photos: readonly PhotoItem[] }) {
   const [activePhotoIndex, setActivePhotoIndex] = useState<number | null>(null);
-
-  if (!photos || photos.length === 0) return null;
 
   return (
     <div className="w-full flex flex-col gap-6">
@@ -26,16 +24,15 @@ export function ArtifactsGallery({ photos }: { photos: readonly PhotoItem[] }) {
                 alt={photo.caption.replace(/^\/\/\s*/, "") || `Photo ${index + 1}`}
                 fill
                 sizes="(max-width: 640px) 50vw, 33vw"
-                quality={92}
+                quality={90}
                 className="object-cover transition-transform duration-250 ease-out group-hover:scale-[1.03]"
-                loading="lazy"
               />
             </div>
-            <div className="flex items-center justify-between text-muted-foreground font-mono text-xs">
-              <p className="group-hover:text-foreground transition-colors line-clamp-2 leading-normal">
+            <div className="flex items-start justify-between gap-3 text-muted-foreground font-mono text-xs">
+              <p className="min-w-0 group-hover:text-foreground transition-colors line-clamp-2 leading-normal">
                 {photo.caption}
               </p>
-              <span className="text-xs">
+              <span className="shrink-0 text-xs">
                 {index + 1 < 10 ? `0${index + 1}` : index + 1}
               </span>
             </div>

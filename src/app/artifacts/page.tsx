@@ -15,8 +15,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Artifacts & Photography — Karan Wakhare',
     description: 'High-resolution architectural captures, travel photography, and daily moments by Karan Wakhare across Dubai, Singapore, Abu Dhabi, Udaipur, and Pune.',
-    url: 'https://karan30.vercel.app/artifacts',
-    siteName: 'Karan Wakhare',
+    url: `${DATA.url}/artifacts`,
+    siteName: `${DATA.name} Portfolio`,
     locale: 'en_US',
     type: 'website',
     images: [
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
 };
 
 export default function ArtifactsPage() {
-  const photos = DATA.photos || [];
+  const photos = DATA.photos;
 
   const jsonLd = {
     '@context': 'https://schema.org',

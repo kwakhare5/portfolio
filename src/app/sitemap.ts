@@ -2,12 +2,13 @@ import { DATA } from "@/data/resume";
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = DATA.url || "https://karan30.vercel.app";
+  const routes = [
+    "",
+    "/artifacts",
+    ...DATA.featuredProjects.map((project) => `/builds/${project.slug}`),
+  ];
 
-  return ["", "/artifacts"].map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: "2026-10-22T00:00:00.000Z",
-    changeFrequency: "weekly",
-    priority: route === "" ? 1.0 : 0.8,
+  return routes.map((route) => ({
+    url: `${DATA.url}${route}`,
   }));
 }

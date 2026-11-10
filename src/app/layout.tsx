@@ -2,7 +2,6 @@ import { ThemeProvider } from "next-themes";
 import { Analytics } from "@vercel/analytics/react";
 
 import { DATA } from "@/data/resume";
-import { cn } from "@/lib/utils";
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -19,10 +18,8 @@ const geistMono = Geist_Mono({
   variable: "--font-mono",
 });
 
-const baseUrl = process.env.NEXT_PUBLIC_APP_URL || DATA.url;
-
 export const metadata: Metadata = {
-  metadataBase: new URL(baseUrl),
+  metadataBase: new URL(DATA.url),
   alternates: {
     canonical: "/",
   },
@@ -58,13 +55,13 @@ export const metadata: Metadata = {
     "Indie Builder",
     "Portfolio",
   ],
-  authors: [{ name: DATA.name, url: baseUrl }],
+  authors: [{ name: DATA.name, url: DATA.url }],
   creator: DATA.name,
   publisher: DATA.name,
   openGraph: {
     title: `${DATA.name} — AI Engineer & Full-Stack Developer`,
     description: DATA.description,
-    url: baseUrl,
+    url: DATA.url,
     siteName: `${DATA.name} Portfolio`,
     locale: "en_US",
     type: "website",
@@ -95,16 +92,6 @@ export const metadata: Metadata = {
     images: ["/me-og.png"],
     creator: "@kwakhare5",
     site: "@kwakhare5",
-  },
-  icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/icon.png", type: "image/png", sizes: "32x32" },
-    ],
-    shortcut: "/favicon.ico",
-    apple: [
-      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
-    ],
   },
   verification: {
     google: "d608787966abdc5e",
@@ -182,13 +169,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head />
       <body
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased relative selection:bg-foreground selection:text-background",
-          geist.variable,
-          geistMono.variable
-        )}
+        className={`min-h-screen bg-background font-sans antialiased relative selection:bg-foreground selection:text-background ${geist.variable} ${geistMono.variable}`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <div className="max-w-[720px] mx-auto px-6 sm:px-8 pt-8 sm:pt-14 pb-16 sm:pb-28 w-full overflow-x-hidden">

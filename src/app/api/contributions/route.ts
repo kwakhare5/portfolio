@@ -7,7 +7,6 @@ export async function GET() {
     const res = await fetch(
       `https://github-contributions-api.jogruber.de/v4/kwakhare5?y=last`,
       {
-        next: { revalidate: 3600 },
         headers: {
           "User-Agent": "Portfolio-App/1.0",
         },

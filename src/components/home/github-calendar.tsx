@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useMemo } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ExternalLink } from "lucide-react";
 import { getComputedLevel } from "@/lib/utils";
 
@@ -20,14 +20,21 @@ interface ApiResponse {
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-const CACHE_KEY = "gh_contributions_cache_v2";
+const LEVEL_COLORS = [
+  "fill-muted dark:fill-muted/50",
+  "fill-emerald-500/20 dark:fill-emerald-400/20",
+  "fill-emerald-500/40 dark:fill-emerald-400/40",
+  "fill-emerald-500/65 dark:fill-emerald-400/65",
+  "fill-emerald-500/85 dark:fill-emerald-400/85",
+] as const;
 
+const CACHE_KEY = "gh_contributions_cache_v2";
 
 export function GitHubCalendar() {
   const [data, setData] = useState<ApiResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [hoveredDay, setHoveredDay] = useState<ContributionDay | null>(null);
-  const scrollRef = React.useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!loading && scrollRef.current) {
@@ -145,21 +152,7 @@ export function GitHubCalendar() {
     return { weeks: weekColumns, monthLabels: labels, totalCount: total };
   }, [data]);
 
-  const getLevelColor = (level: number) => {
-    switch (level) {
-      case 1:
-        return "fill-emerald-500/20 dark:fill-emerald-400/20";
-      case 2:
-        return "fill-emerald-500/40 dark:fill-emerald-400/40";
-      case 3:
-        return "fill-emerald-500/65 dark:fill-emerald-400/65";
-      case 4:
-        return "fill-emerald-500/85 dark:fill-emerald-400/85";
-      case 0:
-      default:
-        return "fill-muted dark:fill-muted/50";
-    }
-  };
+  const getLevelColor = (level: number) => LEVEL_COLORS[level] ?? LEVEL_COLORS[0];
 
   const formatDate = (dateStr: string) => {
     if (!dateStr) return "";

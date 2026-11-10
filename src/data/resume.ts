@@ -8,6 +8,7 @@ export interface ProjectSpecs {
 
 export interface ProjectSpec {
   readonly title: string;
+  readonly slug: string;
   readonly year: string;
   readonly oneLiner: string;
   readonly liveUrl?: string;
@@ -43,7 +44,6 @@ export interface StatusLink {
 export interface StatusItem {
   readonly prefix: string;
   readonly links?: readonly StatusLink[];
-  readonly suffix?: string;
 }
 
 export interface StatusTimeline {
@@ -54,9 +54,8 @@ export interface StatusTimeline {
 export interface ResumeData {
   readonly name: string;
   readonly url: string;
-  readonly role: string;
   readonly description: string;
-  readonly bio: readonly (string | React.ReactNode)[];
+  readonly bio: readonly string[];
   readonly avatarUrl: string;
   readonly status: StatusTimeline;
   readonly featuredProjects: readonly ProjectSpec[];
@@ -70,31 +69,10 @@ export interface ResumeData {
 export const DATA: ResumeData = {
   name: "Karan Wakhare",
   url: "https://karan30.vercel.app",
-  role: "kwakhare5 · typescript/python · ai systems & full-stack",
   description:
-    "Karan Wakhare is an AI & full-stack engineer in Pune specializing in autonomous AI systems, Model Context Protocol (MCP) servers, and low-latency tools.",
+    "Karan Wakhare is a computer engineering student and developer in Pune building AI tools and full-stack apps.",
   bio: [
-    "i'm karan, an ai & full-stack engineer based in pune.",
-    (
-      <span key="para-builds">
-        autonomous ai systems, mcp servers, and low-latency tools are what i specialize in. builder of{" "}
-        <a
-          href="#builds"
-          className="editorial-link text-foreground hover:text-emerald-500 dark:hover:text-emerald-400 font-medium transition-colors"
-        >
-          grocer
-        </a>{" "}
-        (instamart mcp) and{" "}
-        <a
-          href="#builds"
-          className="editorial-link text-foreground hover:text-emerald-500 dark:hover:text-emerald-400 font-medium transition-colors"
-        >
-          outpost
-        </a>
-        .
-      </span>
-    ),
-    "high-agency developer workflows and agentic tooling are what i'm most into right now.",
+    "i'm karan, a computer engineering student and developer based in pune.",
   ],
   avatarUrl: "/me-avatar.png",
 
@@ -140,6 +118,7 @@ export const DATA: ResumeData = {
   featuredProjects: [
     {
       title: "Grocer",
+      slug: "grocer",
       year: "'26",
       oneLiner: "WhatsApp grocery assistant that verifies your order against live Swiggy Instamart inventory and auto-fixes out-of-stock items.",
       liveUrl: "https://grocerr.vercel.app/",
@@ -157,6 +136,7 @@ export const DATA: ResumeData = {
     },
     {
       title: "Outpost",
+      slug: "outpost",
       year: "'26",
       oneLiner: "Inventory replenishment decision engine for quick-commerce dark stores that forecasts stockouts and routes inter-store transfers with human-in-the-loop approval.",
       liveUrl: "https://dark-store-operator.vercel.app",
@@ -174,6 +154,7 @@ export const DATA: ResumeData = {
     },
     {
       title: "Git for Prompts",
+      slug: "git-for-prompts",
       year: "'26",
       oneLiner: "Git-style version control for AI prompts with commit histories, token diffing, and multi-model evals.",
       liveUrl: "https://gitforprompts.vercel.app/",
@@ -191,6 +172,7 @@ export const DATA: ResumeData = {
     },
     {
       title: "Tonal",
+      slug: "tonal",
       year: "'26",
       oneLiner: "Chrome extension that rewrites rough drafts into clear Slack, Gmail, and LinkedIn messages in under 200ms.",
       liveUrl: "https://tonall.vercel.app/",
