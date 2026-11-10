@@ -387,3 +387,9 @@ At the end of a session with meaningful changes:
 - **Change / decision:** Replaced the bio with two short natural sentences that keep the AI engineer + full-stack identity and both build examples, with no name repeat and no em dash.
 - **Proof:** tsc 0, Vitest 1/1; pushed `a1e062c`, Vercel auto-deployed; live home serves "i'm an ai engineer and full-stack developer studying computer engineering in pune. i build ai tools and apps, from grocery shopping on whatsapp to version control for prompts." with zero em dashes in the bio.
 - **Still broken / unproven:** Browser tab, OG title, and JSON-LD still use "—" in `Karan Wakhare — AI Engineer & Full-Stack Developer`.
+
+### [Portfolio - About bio two lines, same colour, pipe titles] 2026-11-11
+- **Problem / tension:** The bio mixed white and muted paragraph colours, the build line was merged into one run-on line, and metadata titles still used em dashes.
+- **Change / decision:** Split the bio back into two paragraphs in the same block, both `text-foreground`; replaced every metadata em dash with `|` (title, OG alt, JSON-LD names, case-study titles).
+- **Proof:** tsc 0; dev home renders both lines white with no em dash; dev title reads "Karan Wakhare | AI Engineer & Full-Stack Developer". Preview: `.scratch/bio-preview.png`.
+- **Still broken / unproven:** Not committed, pushed, or deployed; awaiting approval.

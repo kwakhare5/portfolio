@@ -149,11 +149,9 @@ export default function Page() {
         </div>
 
         {/* Bio & Builder Narrative (Aditya minimalist style) */}
-        <div className="space-y-3.5 sm:space-y-4 text-sm sm:text-base leading-relaxed text-muted-foreground font-normal">
+        <div className="space-y-3.5 sm:space-y-4 text-sm sm:text-base leading-relaxed text-foreground font-normal">
           {bio.map((paragraph, idx) => (
-            <p key={idx} className={idx === 0 ? "text-foreground" : undefined}>
-              {paragraph}
-            </p>
+            <p key={idx}>{paragraph}</p>
           ))}
         </div>
 
