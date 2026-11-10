@@ -32,7 +32,7 @@ export async function generateMetadata({
   const project = getProject(slug);
   if (!project) return {};
 
-  const title = `${project.title} — ${project.year}`;
+  const title = `${project.title} | ${project.year}`;
 
   return {
     title,
@@ -52,7 +52,7 @@ export async function generateMetadata({
           url: "/me-og.png",
           width: 1200,
           height: 630,
-          alt: `${title} — ${DATA.name}`,
+          alt: `${title} | ${DATA.name}`,
         },
       ],
     },

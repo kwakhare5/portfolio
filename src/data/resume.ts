@@ -72,7 +72,8 @@ export const DATA: ResumeData = {
   description:
     "Karan Wakhare is a computer engineering student and developer in Pune building AI tools and full-stack apps.",
   bio: [
-    "i'm an ai engineer and full-stack developer studying computer engineering in pune. i build ai tools and apps, from grocery shopping on whatsapp to version control for prompts.",
+    "i'm an ai engineer and full-stack developer studying computer engineering in pune.",
+    "i build ai tools and apps, from grocery shopping on whatsapp to version control for prompts.",
   ],
   avatarUrl: "/me-avatar.png",
 

@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   title: {
-    default: `${DATA.name} — AI Engineer & Full-Stack Developer`,
+    default: `${DATA.name} | AI Engineer & Full-Stack Developer`,
     template: `%s | ${DATA.name}`,
   },
   description: DATA.description,
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
   creator: DATA.name,
   publisher: DATA.name,
   openGraph: {
-    title: `${DATA.name} — AI Engineer & Full-Stack Developer`,
+    title: `${DATA.name} | AI Engineer & Full-Stack Developer`,
     description: DATA.description,
     url: DATA.url,
     siteName: `${DATA.name} Portfolio`,
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
         url: "/me-og.png",
         width: 1200,
         height: 630,
-        alt: `${DATA.name} — AI Engineer & Full-Stack Developer`,
+        alt: `${DATA.name} | AI Engineer & Full-Stack Developer`,
       },
     ],
   },
@@ -86,7 +86,7 @@ export const metadata: Metadata = {
     },
   },
   twitter: {
-    title: `${DATA.name} — AI Engineer & Full-Stack Developer`,
+    title: `${DATA.name} | AI Engineer & Full-Stack Developer`,
     description: DATA.description,
     card: "summary_large_image",
     images: ["/me-og.png"],
@@ -143,7 +143,7 @@ const jsonLd = {
       "@type": "WebSite",
       "@id": `${DATA.url}/#website`,
       url: DATA.url,
-      name: `${DATA.name} — Portfolio`,
+      name: `${DATA.name} | Portfolio`,
       description: "Personal developer portfolio of Karan Wakhare.",
       inLanguage: "en-US",
       publisher: {
@@ -154,7 +154,7 @@ const jsonLd = {
       "@type": "ProfilePage",
       "@id": `${DATA.url}/#profilepage`,
       url: DATA.url,
-      name: `${DATA.name} — Personal Engineering Portfolio`,
+      name: `${DATA.name} | Personal Engineering Portfolio`,
       mainEntity: {
         "@id": `${DATA.url}/#person`,
       },
