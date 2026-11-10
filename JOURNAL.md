@@ -363,3 +363,9 @@ At the end of a session with meaningful changes:
 - **Change / decision:** Killed PID 23956, deleted `.next`, restarted `pnpm dev`; added `public/llms.txt` listing the four builds, site pages, and profiles; installed `kostja94/marketing-skills@generative-engine-optimization` (1.4K installs, 1.1K stars) globally.
 - **Proof:** `/`, four `/builds/*`, `/artifacts`, and `/llms.txt` all 200; home and case-study consoles clean; fonts/images/analytics requests 200. Source file unchanged for the fix (cache + lock only).
 - **Still broken / unproven:** Production deploy blocked by the permission classifier until Karan explicitly authorizes it; GSC/Bing submission and social/product links need account access; no writing posts or per-project OG images yet.
+
+### [Portfolio - production deploy and push] 2026-11-11
+- **Problem / tension:** The new copy and four case-study pages existed only on localhost; karan30.vercel.app still served the old build because the deploy gate had blocked earlier attempts.
+- **Change / decision:** Committed as `b550c5d`, pushed `main` to origin with upstream, deployed to Vercel production, alias confirmed on `karan30.vercel.app`.
+- **Proof:** Live home contains "i build ai tools and full-stack apps, from grocery shopping on whatsapp to version control for prompts."; `/`, four `/builds/*`, `/artifacts`, `/llms.txt`, `/sitemap.xml`, `/robots.txt` all 200; Grocer title "Grocer — '26 | Karan Wakhare", canonical `https://karan30.vercel.app/builds/grocer`, H1 "Grocer"; sitemap lists 6 URLs.
+- **Still broken / unproven:** Google Search Console and Bing Webmaster submission not done (needs account access); no writing posts or per-project OG images.
