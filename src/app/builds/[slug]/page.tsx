@@ -5,21 +5,31 @@ import { ArrowLeft } from "lucide-react";
 import { ModeToggle } from "@/components/layout/mode-toggle";
 import { SocialsFooter } from "@/components/layout/socials-footer";
 import { DATA } from "@/data/resume";
-import { getTechTagClass } from "@/lib/utils";
+import { getTechInkClass } from "@/lib/utils";
 import {
   SketchArrow,
   SketchTote,
   SketchBox,
   SketchPromptBranch,
   SketchSoundPill,
+  SketchGithub,
+  SketchCheck,
 } from "@/components/home/stationery-icons";
 
-const PROJECT_ICONS: Record<string, React.ReactNode> = {
-  grocer: <SketchTote className="size-6 text-[var(--notion-green-text)]" />,
-  outpost: <SketchBox className="size-6 text-[var(--notion-red-text)]" />,
-  "git-for-prompts": <SketchPromptBranch className="size-6 text-[var(--notion-blue-text)]" />,
-  beam: <SketchSoundPill className="size-6 text-[var(--notion-yellow-text)]" />,
-};
+function renderProjectIcon(slug: string, className = "size-4 shrink-0") {
+  switch (slug) {
+    case "grocer":
+      return <SketchTote className={`${className} text-[var(--notion-green-text)]`} />;
+    case "outpost":
+      return <SketchBox className={`${className} text-[var(--notion-red-text)]`} />;
+    case "git-for-prompts":
+      return <SketchPromptBranch className={`${className} text-[var(--notion-blue-text)]`} />;
+    case "beam":
+      return <SketchSoundPill className={`${className} text-[var(--notion-yellow-text)]`} />;
+    default:
+      return null;
+  }
+}
 
 const SCHEMA_META: Record<string, { category: string; platform: string }> = {
   grocer: { category: "BusinessApplication", platform: "Web" },
@@ -156,7 +166,7 @@ export default async function ProjectPage({
 
       <header className="flex flex-col gap-3">
         <div className="flex items-center gap-3 flex-wrap">
-          {PROJECT_ICONS[project.slug]}
+          {renderProjectIcon(project.slug, "size-6")}
           <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-foreground">
             {project.title}
           </h1>
@@ -167,43 +177,51 @@ export default async function ProjectPage({
           {project.oneLiner}
         </p>
 
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2 font-mono text-xs sm:text-sm">
           {project.liveUrl && (
             <a
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="notion-tag notion-tag-green"
+              className="inline-flex items-center gap-1 font-medium text-[var(--notion-green-text)] hover:underline underline-offset-4"
             >
               <span>live</span>
               <SketchArrow className="size-2.5" />
             </a>
+          )}
+          {project.liveUrl && project.githubUrl && (
+            <span className="text-muted-foreground/40 select-none">·</span>
           )}
           {project.githubUrl && (
             <a
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="notion-tag notion-tag-blue"
+              className="inline-flex items-center gap-1 font-medium text-[var(--notion-blue-text)] hover:underline underline-offset-4"
             >
+              <SketchGithub className="size-3.5" />
               <span>github</span>
               <SketchArrow className="size-2.5" />
             </a>
           )}
         </div>
 
-        <div className="flex flex-wrap gap-1.5 pt-1">
-          <span className="font-mono text-xs text-muted-foreground w-full mb-0.5">
+        <div className="space-y-1 pt-1">
+          <span className="font-mono text-xs text-muted-foreground block">
             technologies
           </span>
-          {project.stack.map((tech) => (
-            <span
-              key={tech}
-              className={`notion-tag ${getTechTagClass(tech)}`}
-            >
-              {tech}
-            </span>
-          ))}
+          <p className="text-xs sm:text-sm font-mono leading-relaxed">
+            {project.stack.map((tech, idx) => (
+              <span key={tech}>
+                {idx > 0 && (
+                  <span className="text-muted-foreground/40 mx-2 select-none">·</span>
+                )}
+                <span className={`${getTechInkClass(tech)} font-medium`}>
+                  {tech}
+                </span>
+              </span>
+            ))}
+          </p>
         </div>
       </header>
 
@@ -236,7 +254,7 @@ export default async function ProjectPage({
           <ul className="space-y-2 text-sm sm:text-base font-normal text-muted-foreground">
             {project.specs.highlights.map((highlight, idx) => (
               <li key={idx} className="flex items-start gap-2 leading-relaxed">
-                <span className="select-none shrink-0 mt-0.5" style={{ color: "var(--notion-green-text)" }}>–</span>
+                <SketchCheck className="size-3.5 shrink-0 mt-1 text-[var(--notion-green-text)]" />
                 <span>{highlight}</span>
               </li>
             ))}
@@ -253,16 +271,19 @@ export default async function ProjectPage({
             <Link
               key={other.slug}
               href={`/builds/${other.slug}`}
-              className="group flex items-center justify-between gap-3 py-3 border-b border-border last:border-b-0 rounded-sm px-2 -mx-2 hover:bg-muted/70 transition-colors"
+              className="group flex items-center justify-between gap-3 py-3 border-b border-border last:border-b-0 rounded-sm px-2 -mx-2 hover:bg-muted/40 transition-colors"
             >
-              <span className="text-sm sm:text-base font-medium text-foreground group-hover:underline underline-offset-4 transition-all">
-                {other.title}
-              </span>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2.5">
+                {renderProjectIcon(other.slug, "size-4")}
+                <span className="text-sm sm:text-base font-medium text-foreground group-hover:underline underline-offset-4 transition-all">
+                  {other.title}
+                </span>
+              </div>
+              <div className="flex items-center gap-2 font-mono text-xs">
                 <span className="ink-stamp">{other.year}</span>
-                <span className="notion-tag notion-tag-sand text-[11px] hover:opacity-85 transition-opacity">
+                <span className="inline-flex items-center gap-0.5 text-muted-foreground group-hover:text-foreground transition-colors">
                   <span>view</span>
-                  <SketchArrow className="size-2.5" />
+                  <span className="select-none text-[0.85em]">→</span>
                 </span>
               </div>
             </Link>

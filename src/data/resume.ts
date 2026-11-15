@@ -213,7 +213,7 @@ export const DATA: ResumeData = {
       {
         name: "X",
         url: "https://x.com/kwakhare5",
-        label: "X",
+        label: "x",
         accent: "emerald",
       },
       {
@@ -231,7 +231,7 @@ export const DATA: ResumeData = {
       {
         name: "Email",
         url: "mailto:kwakhare5@gmail.com",
-        label: "kwakhare5@gmail.com",
+        label: "email",
         accent: "amber",
       },
     ],

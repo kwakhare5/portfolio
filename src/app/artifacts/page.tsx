@@ -5,6 +5,7 @@ import { ModeToggle } from '@/components/layout/mode-toggle';
 import { SocialsFooter } from '@/components/layout/socials-footer';
 import { ArtifactsGallery } from '@/components/artifacts/artifacts-gallery';
 import { DATA } from '@/data/resume';
+import { SketchCamera } from '@/components/home/stationery-icons';
 
 export const metadata: Metadata = {
   title: 'Artifacts & Photography',
@@ -85,6 +86,7 @@ export default function ArtifactsPage() {
       {/* Header Intro */}
       <div className="flex flex-col gap-1.5">
         <div className="flex items-center gap-2">
+          <SketchCamera className="size-5 text-[var(--notion-blue-text)] shrink-0" />
           <h1 className="text-xl sm:text-2xl font-semibold tracking-tight text-foreground">
             artifacts
           </h1>

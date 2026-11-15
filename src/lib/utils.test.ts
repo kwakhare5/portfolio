@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { getComputedLevel, getTechTagClass } from "./utils";
+import { getComputedLevel, getTechInkClass } from "./utils";
 
 describe("getComputedLevel", () => {
   it("assigns distinct intensity tiers without collapsing high commit days under a 122-commit outlier", () => {
@@ -13,14 +13,19 @@ describe("getComputedLevel", () => {
   });
 });
 
-describe("getTechTagClass", () => {
-  it("maps technologies to silent Notion stationery pastel tag classes with zero gray or purple", () => {
-    expect(getTechTagClass("TypeScript")).toBe("notion-tag-blue");
-    expect(getTechTagClass("Python")).toBe("notion-tag-yellow");
-    expect(getTechTagClass("FastAPI")).toBe("notion-tag-green");
-    expect(getTechTagClass("Swiggy Instamart MCP")).toBe("notion-tag-orange");
-    expect(getTechTagClass("Docker")).toBe("notion-tag-red");
-    expect(getTechTagClass("Tailwind CSS")).toBe("notion-tag-sand");
-    expect(getTechTagClass("LangGraph")).toBe("notion-tag-sand");
+describe("getTechInkClass", () => {
+  it("maps technologies to subtle borderless Notion stationery ink classes", () => {
+    expect(getTechInkClass("TypeScript")).toBe("notion-ink-blue");
+    expect(getTechInkClass("Tailwind CSS")).toBe("notion-ink-blue");
+    expect(getTechInkClass("Python")).toBe("notion-ink-yellow");
+    expect(getTechInkClass("FastAPI")).toBe("notion-ink-green");
+    expect(getTechInkClass("Supabase")).toBe("notion-ink-green");
+    expect(getTechInkClass("LangGraph")).toBe("notion-ink-orange");
+    expect(getTechInkClass("Groq LLMs")).toBe("notion-ink-orange");
+    expect(getTechInkClass("Cloudflare Workers")).toBe("notion-ink-amber");
+    expect(getTechInkClass("Agents SDK")).toBe("notion-ink-amber");
+    expect(getTechInkClass("Docker")).toBe("notion-ink-red");
+    expect(getTechInkClass("Git")).toBe("notion-ink-red");
+    expect(getTechInkClass("Custom Tool")).toBe("notion-ink-sand");
   });
 });

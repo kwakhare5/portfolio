@@ -68,13 +68,61 @@ At the end of a session with meaningful changes:
 - **Metric context:** 0 gray tags remaining; 0 purple tags upfront; 0 animated color shifts on hover.
 - **Engineering references:** `src/app/globals.css`, `src/lib/utils.ts`, `src/lib/utils.test.ts`, `src/components/home/project-row.tsx`, `src/app/builds/[slug]/page.tsx`.
 
-#### Work card 4: Project sequence reordering, nav reduction, and cross-repo GitHub profile synchronization
+#### Work card 4: Subtle stationery ink typography for tech stack and project technologies
+- **Problem / tension:** Wrapping 17 technology items in individual `.notion-tag` boxes created a visually heavy, crowded wall of pills in the Tech Stack section and project headers.
+- **Change / decision:** Replaced boxed pill containers with clean, borderless stationery ink monospace text (`getTechInkClass`) separated by middle dots (`·`) across both `#stack` on the homepage and the `technologies` list on project detail pages.
+- **Proof:** Vitest passes 3/3 unit tests (including `getTechInkClass`), `pnpm typecheck` passes with 0 errors, Next.js 16.3.2 Turbopack production build succeeds with all 14 static pages generated cleanly, and knowledge graph updated via `graphify update .`.
+- **Still broken / unproven:** N/A
+- **Metric context:** 17 boxed pills replaced with subtle typographic flow; 0 layout shifts; 3/3 tests passing.
+- **Engineering references:** `src/app/globals.css`, `src/lib/utils.ts`, `src/lib/utils.test.ts`, `src/app/page.tsx`, `src/app/builds/[slug]/page.tsx`.
+
+#### Work card 5: Project sequence reordering, nav reduction, and cross-repo GitHub profile synchronization
 - **Problem / tension:** Top navigation had too many internal anchors, GitHub Profile README (`d:\Github Profile\README.md`) fell out of sync with old unmaintained projects, and project order needed active builds prioritized.
 - **Change / decision:** Removed `stack` from top navigation (`builds · artifacts · socials`); reordered `featuredProjects` to `Beam` $\rightarrow$ `Grocer` $\rightarrow$ `Git for Prompts` $\rightarrow$ `Outpost`; applied stationery `ink-stamp` badges to `/artifacts` photo counts and gallery indices; and created automated profile sync script `scripts/sync-profile.mjs` (`pnpm sync:profile`) that dynamically compiles `d:\Github Profile\README.md` from `src/data/resume.ts`.
 - **Proof:** Ran `pnpm sync:profile` syncing all 4 projects cleanly to `d:\Github Profile\README.md`; Vitest passed 2/2 tests; Next.js 16.3.2 production build succeeded in 668ms.
 - **Still broken / unproven:** N/A
 - **Metric context:** 4 projects synchronized across 2 separate git repositories in 1 CLI command.
 - **Engineering references:** `src/app/page.tsx`, `src/data/resume.ts`, `src/app/artifacts/page.tsx`, `src/components/artifacts/artifacts-gallery.tsx`, `scripts/sync-profile.mjs`, `package.json`, `d:\Github Profile\README.md`.
+
+#### Work card 6: Balanced silent ink palette, refined hero pen underline, and ubiquitous project icons
+- **Problem / tension:** Tech stack was heavily biased towards brown due to default fallback on AI tools; hero name highlighter had an awkward, smudged 7px stroke; socials used inconsistent casing and slashes; and project icons were missing from detail page navigation.
+- **Change / decision:** Mapped AI/agent tools to silent orange, Cloudflare to amber, Tailwind to blue, Supabase to green, and Git to red in `getTechColorName`; refactored `SketchHighlighter` into a clean 1.8px hand-drawn organic pen underline that doesn't smudge or clip; unified socials to lowercase with middle dots and stationery arrows (`find me on — x ↗ · github ↗ · linkedin ↗ · email ↗`); and added project icons to `more builds` on detail pages.
+- **Proof:** Vitest passes 3/3 unit tests (including all color mappings), `tsc --noEmit` passes with 0 errors, Next.js 16.3.2 Turbopack production build succeeds generating all 14 static pages in 1143ms, and `graphify update .` completed.
+- **Still broken / unproven:** N/A
+- **Metric context:** 0 tools defaulting to brown in coreStack; 100% of project references include sketch icons; 3/3 tests passing.
+- **Engineering references:** `src/lib/utils.ts`, `src/lib/utils.test.ts`, `src/components/home/stationery-icons.tsx`, `src/data/resume.ts`, `src/components/layout/socials-footer.tsx`, `src/app/builds/[slug]/page.tsx`.
+
+#### Work card 7: Elimination of box pill containers on project links across home and detail pages
+- **Problem / tension:** `live`, `view`, and `github` action buttons were styled as rectangular `.notion-tag` box pills, creating unnecessary boxiness and cluttering project rows.
+- **Change / decision:** Replaced all pill box backgrounds and borders with clean monospace text links separated by middle dots (`live ↗ · view →`); preserved stationery ink colors and `SketchArrow` on `live` and `github` links; and kept `view →` in subtle `text-muted-foreground` that shifts to foreground on hover.
+- **Proof:** Vitest passes 3/3 unit tests; `tsc --noEmit` passes with 0 errors; Next.js 16.3.2 Turbopack production build succeeds generating all 14 static pages in 1038ms; and `graphify update .` completed.
+- **Still broken / unproven:** N/A
+- **Metric context:** 100% of `.notion-tag` boxes eliminated from project cards and headers; 3/3 tests passing.
+- **Engineering references:** `src/components/home/project-row.tsx`, `src/app/builds/[slug]/page.tsx`.
+
+#### Work card 8: Respective monoline social icons with static stationery ink coloring
+- **Problem / tension:** Social links in the footer lacked icons and only showed faint color transitions on hover.
+- **Change / decision:** Created custom 1.4px monoline SVGs (`SketchX`, `SketchGithub`, `SketchLinkedin`, `SketchMail`) in `src/components/home/stationery-icons.tsx`; mapped each social link to its static canonical stationery ink color (`text-[var(--notion-green-text)]` for X, `text-[var(--notion-blue-text)]` for GitHub and LinkedIn, `text-[var(--notion-amber-text)]` for Email); and paired each with `SketchArrow` and middle-dot separators.
+- **Proof:** Vitest passes 3/3 unit tests; `tsc --noEmit` passes with 0 errors; Next.js 16.3.2 Turbopack production build succeeds generating all 14 static pages in 996ms; and `graphify update .` completed.
+- **Still broken / unproven:** N/A
+- **Metric context:** 4 custom monoline social SVGs added; 0 third-party icon dependencies added; 3/3 tests passing.
+- **Engineering references:** `src/components/home/stationery-icons.tsx`, `src/components/layout/socials-footer.tsx`.
+
+#### Work card 9: Ubiquitous subtle monoline icons across stack, case study specs, artifacts, and masthead
+- **Problem / tension:** Category headers, photo captions, engineering highlights, and location stamps were plain text, missing visual rhythm; and a generic map pin on the Pune timestamp felt misaligned with a live clock.
+- **Change / decision:** Added monoline stationery icons (`SketchCode`, `SketchSparkle`, `SketchGear`, `SketchCamera`, `SketchPin`, `SketchCheck`, `SketchClock`); prefixed Tech Stack categories with their domain icons; paired case study highlights with green checkmarks and `SketchGithub`; added camera and pin icons to `/artifacts` and photo captions; and paired the Pune live clock with a delicate `SketchClock` face. Removed redundant arrows from social links.
+- **Proof:** Vitest passes 2/2 unit tests; `tsc --noEmit` passes with 0 errors; Next.js 16.3.2 Turbopack production build succeeds generating all 14 static pages in 1071ms; and `graphify update .` completed.
+- **Still broken / unproven:** N/A
+- **Metric context:** 7 custom monoline icons added; 0 layout shifts; 2/2 tests passing.
+- **Engineering references:** `src/components/home/stationery-icons.tsx`, `src/app/page.tsx`, `src/app/builds/[slug]/page.tsx`, `src/app/artifacts/page.tsx`, `src/components/artifacts/artifacts-gallery.tsx`.
+
+#### Work card 10: Dead-code purge following transition to borderless stationery typography
+- **Problem / tension:** After removing the boxed pill tag system, obsolete `.notion-tag` CSS classes, unused helper functions (`getTechTagClass`), unused config properties (`tagClass`), and unimported experimental icons (`SketchGlobe`) remained in the codebase.
+- **Change / decision:** Purged 55 lines of `.notion-tag` box CSS rules from `src/app/globals.css`; removed `tagClass` from `PROJECT_CONFIGS` in `src/components/home/project-row.tsx`; removed `getTechTagClass` from `src/lib/utils.ts` and its test; and removed unimported `SketchGlobe` from `src/components/home/stationery-icons.tsx`.
+- **Proof:** Vitest passes 2/2 unit tests; `tsc --noEmit` passes with 0 errors; ESLint passes with 0 warnings; Next.js 16.3.2 Turbopack production build succeeds generating all 14 static pages in 1070ms; and `graphify update .` completed.
+- **Still broken / unproven:** N/A
+- **Metric context:** ~80 lines of dead code purged; 0 regression errors; 0 unused exports.
+- **Engineering references:** `src/app/globals.css`, `src/components/home/project-row.tsx`, `src/lib/utils.ts`, `src/lib/utils.test.ts`, `src/components/home/stationery-icons.tsx`.
 
 ### [GitHub Profile — README Selected Work Sync & GitHub Sanitizer Fixes] 2026-09-29
 

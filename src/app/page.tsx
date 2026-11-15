@@ -10,7 +10,13 @@ import { PhotoPreview } from "@/components/home/photo-preview";
 import { ModeToggle } from "@/components/layout/mode-toggle";
 import { SocialsFooter } from "@/components/layout/socials-footer";
 import { DATA } from "@/data/resume";
-import { getTechTagClass } from "@/lib/utils";
+import { getTechInkClass } from "@/lib/utils";
+import {
+  SketchCode,
+  SketchSparkle,
+  SketchGear,
+  SketchClock,
+} from "@/components/home/stationery-icons";
 
 const TIME_FORMATTER = new Intl.DateTimeFormat("en-US", {
   timeZone: "Asia/Kolkata",
@@ -64,8 +70,9 @@ export default function Page() {
 
           <div className="flex items-center gap-2 sm:gap-3">
             {timeStr && (
-              <span className="text-muted-foreground text-xs sm:text-sm font-mono hidden sm:inline">
-                Pune {timeStr}
+              <span className="text-muted-foreground text-xs sm:text-sm font-mono hidden sm:inline-flex items-center gap-1.5">
+                <SketchClock className="size-3 text-muted-foreground/70 shrink-0" />
+                <span>Pune {timeStr}</span>
               </span>
             )}
             <ModeToggle />
@@ -149,24 +156,38 @@ export default function Page() {
           <span className="font-mono text-xs text-muted-foreground">tooling</span>
         </div>
 
-        <div className="space-y-4 pt-1">
-          {coreStack.map((group) => (
-            <div key={group.category} className="space-y-2">
-              <span className="font-mono text-xs font-medium text-muted-foreground">
-                {group.category}
-              </span>
-              <div className="flex flex-wrap gap-1.5">
-                {group.items.map((item) => (
-                  <span
-                    key={item}
-                    className={`notion-tag ${getTechTagClass(item)} cursor-default select-none`}
-                  >
-                    {item}
-                  </span>
-                ))}
+        <div className="space-y-3.5 pt-1">
+          {coreStack.map((group) => {
+            const cat = group.category.toLowerCase();
+            const icon = cat.includes("language") ? (
+              <SketchCode className="size-3 text-muted-foreground/70 shrink-0" />
+            ) : cat.includes("ai") ? (
+              <SketchSparkle className="size-3 text-[var(--notion-orange-text)] shrink-0" />
+            ) : (
+              <SketchGear className="size-3 text-muted-foreground/70 shrink-0" />
+            );
+
+            return (
+              <div key={group.category} className="space-y-1">
+                <span className="font-mono text-xs font-medium text-muted-foreground inline-flex items-center gap-1.5">
+                  {icon}
+                  <span>{group.category}</span>
+                </span>
+                <p className="text-xs sm:text-sm font-mono leading-relaxed">
+                  {group.items.map((item, idx) => (
+                    <span key={item}>
+                      {idx > 0 && (
+                        <span className="text-muted-foreground/40 mx-2 select-none">·</span>
+                      )}
+                      <span className={`${getTechInkClass(item)} font-medium select-none`}>
+                        {item}
+                      </span>
+                    </span>
+                  ))}
+                </p>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 

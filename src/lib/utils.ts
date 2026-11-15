@@ -6,15 +6,18 @@ export function getComputedLevel(count: number): number {
   return 4;
 }
 
-export function getTechTagClass(tech: string): string {
+export function getTechColorName(
+  tech: string
+): "blue" | "yellow" | "green" | "orange" | "amber" | "red" | "sand" {
   const t = tech.toLowerCase();
   if (
     t.includes("typescript") ||
     t.includes("sql") ||
     t.includes("postgres") ||
-    t.includes("sqlite")
+    t.includes("sqlite") ||
+    t.includes("tailwind")
   ) {
-    return "notion-tag-blue";
+    return "blue";
   }
   if (
     t.includes("python") ||
@@ -22,29 +25,42 @@ export function getTechTagClass(tech: string): string {
     t.includes(".net") ||
     t.includes("vite")
   ) {
-    return "notion-tag-yellow";
+    return "yellow";
   }
   if (
     t.includes("fastapi") ||
     t.includes("react") ||
     t.includes("next") ||
-    t.includes("drizzle")
+    t.includes("drizzle") ||
+    t.includes("supabase")
   ) {
-    return "notion-tag-green";
+    return "green";
   }
   if (
+    t.includes("groq") ||
+    t.includes("ollama") ||
+    t.includes("langgraph") ||
     t.includes("mcp") ||
     t.includes("whatsapp")
   ) {
-    return "notion-tag-orange";
+    return "orange";
+  }
+  if (t.includes("cloudflare") || t.includes("agent")) {
+    return "amber";
   }
   if (
     t.includes("docker") ||
     t.includes("electron") ||
-    t.includes("smtc")
+    t.includes("smtc") ||
+    t.startsWith("git") ||
+    /\bgit\b/.test(t)
   ) {
-    return "notion-tag-red";
+    return "red";
   }
   // Warm sand/kraft paper tone for all other tools (zero gray, zero purple upfront)
-  return "notion-tag-sand";
+  return "sand";
+}
+
+export function getTechInkClass(tech: string): string {
+  return `notion-ink-${getTechColorName(tech)}`;
 }

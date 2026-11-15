@@ -14,29 +14,24 @@ import {
 
 interface ProjectStationeryConfig {
   readonly icon: React.ReactNode;
-  readonly tagClass: string;
   readonly iconColorClass: string;
 }
 
 const PROJECT_CONFIGS: Record<string, ProjectStationeryConfig> = {
   grocer: {
     icon: <SketchTote className="size-4 shrink-0" />,
-    tagClass: "notion-tag-green",
     iconColorClass: "text-[var(--notion-green-text)]",
   },
   outpost: {
     icon: <SketchBox className="size-4 shrink-0" />,
-    tagClass: "notion-tag-red",
     iconColorClass: "text-[var(--notion-red-text)]",
   },
   "git-for-prompts": {
     icon: <SketchPromptBranch className="size-4 shrink-0" />,
-    tagClass: "notion-tag-blue",
     iconColorClass: "text-[var(--notion-blue-text)]",
   },
   beam: {
     icon: <SketchSoundPill className="size-4 shrink-0" />,
-    tagClass: "notion-tag-yellow",
     iconColorClass: "text-[var(--notion-yellow-text)]",
   },
 };
@@ -45,7 +40,6 @@ export function ProjectRow({ project }: { readonly project: ProjectSpec }) {
   const router = useRouter();
   const config = PROJECT_CONFIGS[project.slug] ?? {
     icon: <SketchBox className="size-4 shrink-0" />,
-    tagClass: "notion-tag-sand",
     iconColorClass: "text-muted-foreground",
   };
 
@@ -84,26 +78,29 @@ export function ProjectRow({ project }: { readonly project: ProjectSpec }) {
           </h3>
         </div>
 
-        <div className="flex items-center gap-2 shrink-0">
+        <div className="flex items-center gap-1.5 shrink-0 font-mono text-xs">
           {project.liveUrl && (
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className={`notion-tag ${config.tagClass}`}
-            >
-              <span>live</span>
-              <SketchArrow className="size-2.5" />
-            </a>
+            <>
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className={`inline-flex items-center gap-0.5 font-medium ${config.iconColorClass} hover:underline underline-offset-4`}
+              >
+                <span>live</span>
+                <SketchArrow className="size-2.5" />
+              </a>
+              <span className="text-muted-foreground/40 select-none">·</span>
+            </>
           )}
           <Link
             href={`/builds/${project.slug}`}
             onClick={(e) => e.stopPropagation()}
-            className="notion-tag notion-tag-sand hover:opacity-85 transition-opacity"
+            className="inline-flex items-center gap-0.5 text-muted-foreground hover:text-foreground hover:underline underline-offset-4 transition-colors"
           >
             <span>view</span>
-            <SketchArrow className="size-2.5" />
+            <span className="select-none text-[0.85em]">→</span>
           </Link>
         </div>
       </div>

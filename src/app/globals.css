@@ -149,59 +149,14 @@
   }
 }
 
-/* -- 5. Unified Notion Stationery Tag System ------------------------------- */
-.notion-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.125rem 0.5rem;
-  font-size: 0.75rem;
-  font-family: var(--font-mono);
-  font-weight: 500;
-  border-radius: 0.25rem;
-  line-height: 1.25rem;
-  text-decoration: none;
-  transition: opacity 0.15s ease, background-color 0.15s ease, color 0.15s ease;
-}
-
-.notion-tag:hover {
-  opacity: 0.85;
-}
-
-.notion-tag-green {
-  background-color: var(--notion-green-bg);
-  color: var(--notion-green-text);
-}
-
-.notion-tag-blue {
-  background-color: var(--notion-blue-bg);
-  color: var(--notion-blue-text);
-}
-
-.notion-tag-amber {
-  background-color: var(--notion-amber-bg);
-  color: var(--notion-amber-text);
-}
-
-.notion-tag-yellow {
-  background-color: var(--notion-yellow-bg);
-  color: var(--notion-yellow-text);
-}
-
-.notion-tag-orange {
-  background-color: var(--notion-orange-bg);
-  color: var(--notion-orange-text);
-}
-
-.notion-tag-red {
-  background-color: var(--notion-red-bg);
-  color: var(--notion-red-text);
-}
-
-.notion-tag-sand {
-  background-color: var(--notion-sand-bg);
-  color: var(--notion-sand-text);
-}
+/* -- 5. Notion Stationery Ink System (boxless, borderless) ----------------- */
+.notion-ink-green  { color: var(--notion-green-text); }
+.notion-ink-blue   { color: var(--notion-blue-text); }
+.notion-ink-amber  { color: var(--notion-amber-text); }
+.notion-ink-yellow { color: var(--notion-yellow-text); }
+.notion-ink-orange { color: var(--notion-orange-text); }
+.notion-ink-red    { color: var(--notion-red-text); }
+.notion-ink-sand   { color: var(--notion-sand-text); }
 
 /* Ink stamp date styling */
 .ink-stamp {

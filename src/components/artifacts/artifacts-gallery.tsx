@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import type { PhotoItem } from "@/data/resume";
 import { PhotoLightbox } from "@/components/artifacts/photo-lightbox";
+import { SketchPin } from "@/components/home/stationery-icons";
 
 export function ArtifactsGallery({ photos }: { photos: readonly PhotoItem[] }) {
   const [activePhotoIndex, setActivePhotoIndex] = useState<number | null>(null);
@@ -29,8 +30,9 @@ export function ArtifactsGallery({ photos }: { photos: readonly PhotoItem[] }) {
               />
             </div>
             <div className="flex items-start justify-between gap-3 text-muted-foreground font-mono text-xs">
-              <p className="min-w-0 group-hover:text-foreground transition-colors line-clamp-2 leading-normal">
-                {photo.caption}
+              <p className="min-w-0 group-hover:text-foreground transition-colors line-clamp-2 leading-normal flex items-center gap-1">
+                <SketchPin className="size-3 shrink-0 text-muted-foreground/50" />
+                <span>{photo.caption.replace(/^\/\/\s*/, "")}</span>
               </p>
               <span className="shrink-0 ink-stamp">
                 {index + 1 < 10 ? `0${index + 1}` : index + 1}
