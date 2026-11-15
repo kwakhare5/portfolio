@@ -25,9 +25,17 @@ if (!fs.existsSync(profileReadmePath)) {
 const selectedWorkMarkdown = DATA.featuredProjects
   .map((project) => {
     const targetUrl = project.liveUrl || project.githubUrl || DATA.url;
-    return `- **[${project.title}](${targetUrl})** — ${project.oneLiner}`;
+    const topStack = project.stack.slice(0, 3).map((s) => `\`${s}\``).join(", ");
+    return `- **[${project.title}](${targetUrl})** (${topStack}) — ${project.oneLiner}`;
   })
   .join("\n");
+
+// Build the "Stack & Tooling" list directly from DATA.coreStack
+const stackMarkdown = DATA.coreStack
+  .map((group) => `- **${group.category}:** ${group.items.join(", ")}`)
+  .join("\n");
+
+const bioText = DATA.bio.join("<br/>\n");
 
 const content = `<div align="center">
 
@@ -37,8 +45,8 @@ const content = `<div align="center">
 
 # ${DATA.name}
 
-<p>I turn ideas into code and ship real products to production.<br/>
-<sub>Currently building with <a href="https://mcp.swiggy.com/builders/">Swiggy Builders Club</a> &nbsp;·&nbsp; TypeScript, Python, Next.js, AI Agents</sub></p>
+<p>${bioText}<br/>
+<sub>kwakhare5 &nbsp;·&nbsp; typescript / python &nbsp;·&nbsp; ai systems &amp; full-stack</sub></p>
 
 <a href="${DATA.url}"><img src="./me.webp" width="16" height="16" align="absmiddle" alt="Portfolio" /> Portfolio</a> &nbsp;•&nbsp;
 <a href="https://www.linkedin.com/in/karanwakhare"><img src="./linkedin.svg" width="16" height="16" align="absmiddle" alt="LinkedIn" /> LinkedIn</a> &nbsp;•&nbsp;
@@ -52,7 +60,13 @@ const content = `<div align="center">
 ## Selected Work
 
 ${selectedWorkMarkdown}
+
+---
+
+## Stack & Tooling
+
+${stackMarkdown}
 `;
 
 fs.writeFileSync(profileReadmePath, content, "utf-8");
-console.log(`[sync:profile] Successfully synced ${DATA.featuredProjects.length} projects to ${profileReadmePath}`);
+console.log(`[sync:profile] Successfully synced ${DATA.featuredProjects.length} projects and stack to ${profileReadmePath}`);
