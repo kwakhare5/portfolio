@@ -1,13 +1,53 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
-import { ChevronDown, ExternalLink, Code2 } from "lucide-react";
-
+import { useRouter } from "next/navigation";
 import type { ProjectSpec } from "@/data/resume";
+import {
+  SketchArrow,
+  SketchTote,
+  SketchBox,
+  SketchPromptBranch,
+  SketchSoundPill,
+} from "./stationery-icons";
 
-export function ProjectRow({ project }: { project: ProjectSpec }) {
-  const [isOpen, setIsOpen] = useState(false);
+interface ProjectStationeryConfig {
+  readonly icon: React.ReactNode;
+  readonly tagClass: string;
+  readonly iconColorClass: string;
+}
+
+const PROJECT_CONFIGS: Record<string, ProjectStationeryConfig> = {
+  grocer: {
+    icon: <SketchTote className="size-4 shrink-0" />,
+    tagClass: "notion-tag-green",
+    iconColorClass: "text-[var(--notion-green-text)]",
+  },
+  outpost: {
+    icon: <SketchBox className="size-4 shrink-0" />,
+    tagClass: "notion-tag-red",
+    iconColorClass: "text-[var(--notion-red-text)]",
+  },
+  "git-for-prompts": {
+    icon: <SketchPromptBranch className="size-4 shrink-0" />,
+    tagClass: "notion-tag-blue",
+    iconColorClass: "text-[var(--notion-blue-text)]",
+  },
+  beam: {
+    icon: <SketchSoundPill className="size-4 shrink-0" />,
+    tagClass: "notion-tag-yellow",
+    iconColorClass: "text-[var(--notion-yellow-text)]",
+  },
+};
+
+export function ProjectRow({ project }: { readonly project: ProjectSpec }) {
+  const router = useRouter();
+  const config = PROJECT_CONFIGS[project.slug] ?? {
+    icon: <SketchBox className="size-4 shrink-0" />,
+    tagClass: "notion-tag-sand",
+    iconColorClass: "text-muted-foreground",
+  };
 
   const handleRowClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
@@ -17,134 +57,60 @@ export function ProjectRow({ project }: { project: ProjectSpec }) {
     if (window.getSelection()?.toString()) {
       return;
     }
-    setIsOpen((prev) => !prev);
+    router.push(`/builds/${project.slug}`);
   };
 
   return (
     <div
       onClick={handleRowClick}
-      className="group flex flex-col gap-2.5 py-5 sm:py-6 border-b border-border last:border-b-0 transition-colors cursor-pointer"
+      className="group flex flex-col gap-2 py-4 border-b border-border last:border-b-0 rounded-md px-3 -mx-3 hover:bg-muted/40 transition-colors cursor-pointer"
     >
-      {/* -- Main Row Header ------------------------------------------- */}
-      <div className="flex items-start sm:items-center justify-between gap-3 flex-wrap">
-        <div className="flex items-baseline gap-2.5 flex-wrap">
-          <h3 className="font-semibold text-base sm:text-lg text-foreground tracking-tight m-0 inline">
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-2.5">
+          <span className={`${config.iconColorClass} transition-transform duration-200 group-hover:scale-105`}>
+            {config.icon}
+          </span>
+          <h3 className="font-semibold text-sm sm:text-base text-foreground tracking-tight flex items-center gap-2">
             <Link
               href={`/builds/${project.slug}`}
-              className="inline-flex items-baseline text-foreground hover:text-emerald-500 dark:hover:text-emerald-400 tracking-tight transition-colors"
+              className="hover:underline underline-offset-4 text-foreground"
+              onClick={(e) => e.stopPropagation()}
             >
-              <span className="editorial-link">{project.title}</span>
+              {project.title}
             </Link>
+            <span className="ink-stamp">
+              {project.year}
+            </span>
           </h3>
-          <span className="font-mono text-xs text-muted-foreground">
-            {project.year}
-          </span>
         </div>
 
-        {/* Action Links & Specs Toggle */}
-        <div className="flex items-center gap-3 sm:gap-3.5 text-xs font-mono">
+        <div className="flex items-center gap-2 shrink-0">
           {project.liveUrl && (
             <a
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative inline-flex items-center gap-1 py-1 px-1 -my-1 -mx-1 font-semibold text-emerald-500 dark:text-emerald-400 transition-[transform,color] duration-150 ease-snappy cursor-pointer active:scale-[0.97] touch-manipulation after:absolute after:-inset-2 after:content-['']"
+              onClick={(e) => e.stopPropagation()}
+              className={`notion-tag ${config.tagClass}`}
             >
               <span>live</span>
-              <ExternalLink className="size-3" />
+              <SketchArrow className="size-2.5" />
             </a>
           )}
-          {project.githubUrl && (
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative inline-flex items-center gap-1 py-1 px-1 -my-1 -mx-1 font-semibold text-blue-500 dark:text-blue-400 transition-[transform,color] duration-150 ease-snappy cursor-pointer active:scale-[0.97] touch-manipulation after:absolute after:-inset-2 after:content-['']"
-            >
-              <span>code</span>
-              <Code2 className="size-3" />
-            </a>
-          )}
-          <button
-            type="button"
-            onClick={() => setIsOpen(!isOpen)}
-            className="relative inline-flex items-center gap-1 py-1 px-1 -my-1 -mx-1 font-semibold text-amber-500 dark:text-amber-400 transition-[transform,color] duration-150 ease-snappy cursor-pointer active:scale-[0.97] touch-manipulation after:absolute after:-inset-2 after:content-['']"
-            aria-expanded={isOpen}
+          <Link
+            href={`/builds/${project.slug}`}
+            onClick={(e) => e.stopPropagation()}
+            className="notion-tag notion-tag-sand hover:opacity-85 transition-opacity"
           >
-            <span>specs</span>
-            <ChevronDown
-              className={`size-3 transition-transform duration-300 ease-apple ${isOpen ? "rotate-180" : ""}`}
-            />
-          </button>
+            <span>view</span>
+            <SketchArrow className="size-2.5" />
+          </Link>
         </div>
       </div>
 
-      {/* One-Liner Description */}
-      <p className="text-sm sm:text-base font-normal text-muted-foreground leading-relaxed">
+      <p className="text-xs sm:text-sm font-normal text-muted-foreground leading-relaxed line-clamp-2">
         {project.oneLiner}
       </p>
-
-      {/* Unboxed Tech Stack (Clean neutral text inline separated by middle dots) */}
-      <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs sm:text-sm font-mono pt-0.5 text-muted-foreground">
-        {project.stack.map((tech, idx) => (
-          <span key={tech} className="inline-flex items-center gap-2 whitespace-nowrap">
-            {idx > 0 && <span className="select-none text-muted-foreground/50">·</span>}
-            <span>{tech}</span>
-          </span>
-        ))}
-      </div>
-
-      {/* -- Expandable Architecture Specs Inline with GPU-composited Grid -- */}
-      <div
-        className={`grid transition-[grid-template-rows,opacity] duration-200 ease-out ${
-          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0 pointer-events-none"
-        }`}
-      >
-        <div className="overflow-hidden">
-          <div className="mt-4 pl-4 border-l-2 border-amber-500 dark:border-amber-400 space-y-3.5 text-xs py-2">
-            <div className="space-y-1">
-              <span className="font-mono font-medium text-foreground text-xs block">
-                Problem &amp; Value
-              </span>
-              <p className="text-muted-foreground text-sm font-normal leading-relaxed">
-                {project.specs.problem}
-              </p>
-            </div>
-
-            <div className="space-y-1">
-              <span className="font-mono font-medium text-foreground text-xs block">
-                System Architecture
-              </span>
-              <p className="text-muted-foreground text-sm font-normal leading-relaxed">
-                {project.specs.architecture}
-              </p>
-            </div>
-
-            <div className="space-y-1.5">
-              <span className="font-mono font-medium text-xs block text-amber-500 dark:text-amber-400">
-                Engineering Highlights
-              </span>
-              <ul className="space-y-1.5 pl-3.5 text-sm font-normal text-muted-foreground">
-                {project.specs.highlights.map((highlight, idx) => (
-                  <li
-                    key={idx}
-                    className="relative before:content-['-'] before:absolute before:-left-3.5 before:text-amber-500 dark:before:text-amber-400 leading-relaxed"
-                  >
-                    {highlight}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <Link
-              href={`/builds/${project.slug}`}
-              className="editorial-link inline-flex items-center gap-1 text-foreground hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors"
-            >
-              read full case study <span aria-hidden="true">→</span>
-            </Link>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

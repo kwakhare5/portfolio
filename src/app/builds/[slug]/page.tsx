@@ -1,10 +1,25 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Code2, ExternalLink } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { ModeToggle } from "@/components/layout/mode-toggle";
 import { SocialsFooter } from "@/components/layout/socials-footer";
 import { DATA } from "@/data/resume";
+import { getTechTagClass } from "@/lib/utils";
+import {
+  SketchArrow,
+  SketchTote,
+  SketchBox,
+  SketchPromptBranch,
+  SketchSoundPill,
+} from "@/components/home/stationery-icons";
+
+const PROJECT_ICONS: Record<string, React.ReactNode> = {
+  grocer: <SketchTote className="size-6 text-[var(--notion-green-text)]" />,
+  outpost: <SketchBox className="size-6 text-[var(--notion-red-text)]" />,
+  "git-for-prompts": <SketchPromptBranch className="size-6 text-[var(--notion-blue-text)]" />,
+  beam: <SketchSoundPill className="size-6 text-[var(--notion-yellow-text)]" />,
+};
 
 const SCHEMA_META: Record<string, { category: string; platform: string }> = {
   grocer: { category: "BusinessApplication", platform: "Web" },
@@ -140,27 +155,28 @@ export default async function ProjectPage({
       </div>
 
       <header className="flex flex-col gap-3">
-        <div className="flex items-baseline gap-3 flex-wrap">
+        <div className="flex items-center gap-3 flex-wrap">
+          {PROJECT_ICONS[project.slug]}
           <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-foreground">
             {project.title}
           </h1>
-          <span className="font-mono text-xs text-muted-foreground">{project.year}</span>
+          <span className="ink-stamp">{project.year}</span>
         </div>
 
         <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
           {project.oneLiner}
         </p>
 
-        <div className="flex flex-wrap items-center gap-3.5 text-xs font-mono">
+        <div className="flex flex-wrap items-center gap-2">
           {project.liveUrl && (
             <a
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative inline-flex items-center gap-1 py-1 px-1 -my-1 -mx-1 font-semibold text-emerald-500 dark:text-emerald-400 transition-colors after:absolute after:-inset-2 after:content-['']"
+              className="notion-tag notion-tag-green"
             >
               <span>live</span>
-              <ExternalLink className="size-3" />
+              <SketchArrow className="size-2.5" />
             </a>
           )}
           {project.githubUrl && (
@@ -168,19 +184,24 @@ export default async function ProjectPage({
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative inline-flex items-center gap-1 py-1 px-1 -my-1 -mx-1 font-semibold text-blue-500 dark:text-blue-400 transition-colors after:absolute after:-inset-2 after:content-['']"
+              className="notion-tag notion-tag-blue"
             >
-              <span>code</span>
-              <Code2 className="size-3" />
+              <span>github</span>
+              <SketchArrow className="size-2.5" />
             </a>
           )}
         </div>
 
-        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 pt-1 text-xs sm:text-sm font-mono text-muted-foreground">
-          {project.stack.map((tech, idx) => (
-            <span key={tech} className="inline-flex items-center gap-2 whitespace-nowrap">
-              {idx > 0 && <span className="select-none text-muted-foreground/50">·</span>}
-              <span>{tech}</span>
+        <div className="flex flex-wrap gap-1.5 pt-1">
+          <span className="font-mono text-xs text-muted-foreground w-full mb-0.5">
+            technologies
+          </span>
+          {project.stack.map((tech) => (
+            <span
+              key={tech}
+              className={`notion-tag ${getTechTagClass(tech)}`}
+            >
+              {tech}
             </span>
           ))}
         </div>
@@ -212,13 +233,11 @@ export default async function ProjectPage({
             <span className="select-none font-mono text-base sm:text-lg font-normal text-muted-foreground/50">#</span>
             <span>engineering highlights</span>
           </h2>
-          <ul className="space-y-2 pl-3.5 text-sm sm:text-base font-normal text-muted-foreground">
+          <ul className="space-y-2 text-sm sm:text-base font-normal text-muted-foreground">
             {project.specs.highlights.map((highlight, idx) => (
-              <li
-                key={idx}
-                className="relative before:content-['-'] before:absolute before:-left-3.5 before:text-amber-500 dark:before:text-amber-400 leading-relaxed"
-              >
-                {highlight}
+              <li key={idx} className="flex items-start gap-2 leading-relaxed">
+                <span className="select-none shrink-0 mt-0.5" style={{ color: "var(--notion-green-text)" }}>–</span>
+                <span>{highlight}</span>
               </li>
             ))}
           </ul>
@@ -234,12 +253,18 @@ export default async function ProjectPage({
             <Link
               key={other.slug}
               href={`/builds/${other.slug}`}
-              className="group flex items-center justify-between gap-3 py-3 border-b border-border last:border-b-0"
+              className="group flex items-center justify-between gap-3 py-3 border-b border-border last:border-b-0 rounded-sm px-2 -mx-2 hover:bg-muted/70 transition-colors"
             >
-              <span className="text-sm sm:text-base font-medium text-foreground group-hover:text-emerald-500 dark:group-hover:text-emerald-400 transition-colors">
+              <span className="text-sm sm:text-base font-medium text-foreground group-hover:underline underline-offset-4 transition-all">
                 {other.title}
               </span>
-              <span className="font-mono text-xs text-muted-foreground">{other.year}</span>
+              <div className="flex items-center gap-2">
+                <span className="ink-stamp">{other.year}</span>
+                <span className="notion-tag notion-tag-sand text-[11px] hover:opacity-85 transition-opacity">
+                  <span>view</span>
+                  <SketchArrow className="size-2.5" />
+                </span>
+              </div>
             </Link>
           ))}
         </div>

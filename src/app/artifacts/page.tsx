@@ -88,7 +88,7 @@ export default function ArtifactsPage() {
           <h1 className="text-xl sm:text-2xl font-semibold tracking-tight text-foreground">
             artifacts
           </h1>
-          <span className="border border-border rounded px-1.5 py-0.5 text-muted-foreground text-xs font-mono">
+          <span className="ink-stamp">
             {photos.length} captures
           </span>
         </div>

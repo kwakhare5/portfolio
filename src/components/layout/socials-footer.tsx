@@ -1,6 +1,12 @@
 import React from "react";
 import { DATA } from "@/data/resume";
 
+const ACCENT_CLASS: Record<string, string> = {
+  emerald: "notion-green-hover",
+  blue:    "notion-blue-hover",
+  amber:   "notion-amber-hover",
+};
+
 export function SocialsFooter() {
   const { contact } = DATA;
 
@@ -10,26 +16,18 @@ export function SocialsFooter() {
         <span className="text-foreground font-medium">find me on</span>
         <span className="text-muted-foreground hidden sm:inline">-</span>
         <div className="flex flex-wrap items-center gap-2.5 sm:gap-3.5">
-          {contact.socials.map((social, idx) => {
-            const hoverColor =
-              social.accent === "emerald"
-                ? "hover:text-emerald-500 dark:hover:text-emerald-400"
-                : social.accent === "amber"
-                  ? "hover:text-amber-500 dark:hover:text-amber-400"
-                  : "hover:text-blue-500 dark:hover:text-blue-400";
-            return (
-              <React.Fragment key={social.name}>
-                {idx > 0 && <span className="text-muted-foreground">/</span>}
-                <a
-                  href={social.url}
-                  {...(social.url.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                  className={`editorial-link text-foreground ${hoverColor}`}
-                >
-                  {social.label}
-                </a>
-              </React.Fragment>
-            );
-          })}
+          {contact.socials.map((social, idx) => (
+            <React.Fragment key={social.name}>
+              {idx > 0 && <span className="text-muted-foreground">/</span>}
+              <a
+                href={social.url}
+                {...(social.url.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                className={`editorial-link text-foreground ${ACCENT_CLASS[social.accent ?? "blue"] ?? "notion-blue-hover"}`}
+              >
+                {social.label}
+              </a>
+            </React.Fragment>
+          ))}
         </div>
       </div>
     </footer>

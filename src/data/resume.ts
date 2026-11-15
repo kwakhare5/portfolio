@@ -34,30 +34,12 @@ export interface SocialItem {
   readonly accent?: AccentColor;
 }
 
-export interface StatusLink {
-  readonly label: string;
-  readonly url?: string;
-  readonly accent?: AccentColor;
-  readonly separator?: string;
-}
-
-export interface StatusItem {
-  readonly prefix: string;
-  readonly links?: readonly StatusLink[];
-}
-
-export interface StatusTimeline {
-  readonly currently: readonly StatusItem[];
-  readonly previously: readonly StatusItem[];
-}
-
 export interface ResumeData {
   readonly name: string;
   readonly url: string;
   readonly description: string;
   readonly bio: readonly string[];
   readonly avatarUrl: string;
-  readonly status: StatusTimeline;
   readonly featuredProjects: readonly ProjectSpec[];
   readonly coreStack: readonly StackCategory[];
   readonly photos: readonly PhotoItem[];
@@ -77,46 +59,26 @@ export const DATA: ResumeData = {
   ],
   avatarUrl: "/me-avatar.png",
 
-  status: {
-    currently: [
-      {
-        prefix: "building ",
-        links: [
-          { label: "grocer", url: "https://grocerr.vercel.app/", accent: "emerald" },
-          { label: "swiggy builders club", url: "https://mcp.swiggy.com/builders/", accent: "amber", separator: " with " },
-        ],
-      },
-      {
-        prefix: "building indie dev tools ",
-        links: [
-          { label: "outpost", url: "https://dark-store-operator.vercel.app", accent: "emerald" },
-          { label: "git for prompts", url: "https://gitforprompts.vercel.app/", accent: "emerald", separator: " & " },
-        ],
-      },
-      {
-        prefix: "studying computer engineering @ ",
-        links: [
-          { label: "adypu", url: "https://adypu.edu.in", accent: "blue" },
-        ],
-      },
-    ],
-    previously: [
-      {
-        prefix: "full-stack developer intern @ ",
-        links: [
-          { label: "ateion", accent: "emerald" },
-        ],
-      },
-      {
-        prefix: "high school education @ ",
-        links: [
-          { label: "wisdom high", url: "https://www.whis.edu.in/", accent: "blue" },
-        ],
-      },
-    ],
-  },
-
   featuredProjects: [
+    {
+      title: "Beam",
+      slug: "beam",
+      year: "'26",
+      oneLiner: "Offline Windows 11 capsule above your taskbar with live music controls, a file shelf, a countdown, and a calendar.",
+      liveUrl: "https://beamm.vercel.app/",
+      githubUrl: "https://github.com/kwakhare5/beam",
+      stack: ["TypeScript", "Electron", "Vite", ".NET", "Windows SMTC"],
+      specs: {
+        problem: "Windows 11 scatters media controls, timers, and quick file drops across taskbar flyouts and separate apps.",
+        architecture: "An Electron shell renders a 136×42 transparent capsule that reads Windows media sessions through a .NET helper, persists its position, and runs fully offline with no accounts or network calls.",
+        highlights: [
+          "Live SMTC media controls with seek, artwork, and automatic player switching",
+          "Drag-and-drop file shelf with drag-out back to Explorer and a 50-file cap",
+          "Countdown that chimes and sends a Windows notification while the pill is hidden",
+          "30-check PowerShell suite covering real Explorer drags and helper crash recovery",
+        ],
+      },
+    },
     {
       title: "Grocer",
       slug: "grocer",
@@ -132,23 +94,6 @@ export const DATA: ResumeData = {
           "Direct Swiggy Instamart cart integration via Model Context Protocol (MCP)",
           "Automatic cart repair that replaces out-of-stock items without breaking dietary rules",
           "Explicit 1-tap WhatsApp checkout confirmation to prevent accidental purchases",
-        ],
-      },
-    },
-    {
-      title: "Outpost",
-      slug: "outpost",
-      year: "'26",
-      oneLiner: "Inventory replenishment decision engine for quick-commerce dark stores that forecasts stockouts and routes inter-store transfers with human-in-the-loop approval.",
-      githubUrl: "https://github.com/kwakhare5/Outpost",
-      stack: ["Python", "FastAPI", "LangGraph", "Next.js 16", "TypeScript", "SQLite"],
-      specs: {
-        problem: "Quick-commerce dark stores lose margin to sudden stockouts during demand surges and perishable food expiry, while blind auto-reorders risk phantom stock or costly emergency courier runs.",
-        architecture: "A FastAPI and LangGraph 5-node state machine paired with Holt Linear demand forecasting that tracks physical FIFO inventory batches across 5 Mumbai hubs and proposes transfers or purchase orders behind a human approval gate.",
-        highlights: [
-          "Holt Linear double exponential smoothing evaluated on a 3-day holdout using WAPE and MAE",
-          "Physical FIFO batch ledger enforcing strict conservation of mass and realistic transit ETAs",
-          "Level-2 autonomy gate requiring operator sign-off with stale-state detection and idempotency locks",
         ],
       },
     },
@@ -171,21 +116,19 @@ export const DATA: ResumeData = {
       },
     },
     {
-      title: "Beam",
-      slug: "beam",
+      title: "Outpost",
+      slug: "outpost",
       year: "'26",
-      oneLiner: "Offline Windows 11 capsule above your taskbar with live music controls, a file shelf, a countdown, and a calendar.",
-      liveUrl: "https://beamm.vercel.app/",
-      githubUrl: "https://github.com/kwakhare5/beam",
-      stack: ["TypeScript", "Electron", "Vite", ".NET", "Windows SMTC"],
+      oneLiner: "Inventory replenishment decision engine for quick-commerce dark stores that forecasts stockouts and routes inter-store transfers with human-in-the-loop approval.",
+      githubUrl: "https://github.com/kwakhare5/Outpost",
+      stack: ["Python", "FastAPI", "LangGraph", "Next.js 16", "TypeScript", "SQLite"],
       specs: {
-        problem: "Windows 11 scatters media controls, timers, and quick file drops across taskbar flyouts and separate apps.",
-        architecture: "An Electron shell renders a 136×42 transparent capsule that reads Windows media sessions through a .NET helper, persists its position, and runs fully offline with no accounts or network calls.",
+        problem: "Quick-commerce dark stores lose margin to sudden stockouts during demand surges and perishable food expiry, while blind auto-reorders risk phantom stock or costly emergency courier runs.",
+        architecture: "A FastAPI and LangGraph 5-node state machine paired with Holt Linear demand forecasting that tracks physical FIFO inventory batches across 5 Mumbai hubs and proposes transfers or purchase orders behind a human approval gate.",
         highlights: [
-          "Live SMTC media controls with seek, artwork, and automatic player switching",
-          "Drag-and-drop file shelf with drag-out back to Explorer and a 50-file cap",
-          "Countdown that chimes and sends a Windows notification while the pill is hidden",
-          "30-check PowerShell suite covering real Explorer drags and helper crash recovery",
+          "Holt Linear double exponential smoothing evaluated on a 3-day holdout using WAPE and MAE",
+          "Physical FIFO batch ledger enforcing strict conservation of mass and realistic transit ETAs",
+          "Level-2 autonomy gate requiring operator sign-off with stale-state detection and idempotency locks",
         ],
       },
     },

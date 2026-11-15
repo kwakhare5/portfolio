@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import { SketchHighlighter } from "@/components/home/stationery-icons";
 
 const GREETINGS = [
   "Hi",
@@ -78,7 +79,7 @@ export function HeroGreeting({ name }: { name: string }) {
         <span className="font-mono font-semibold tracking-normal text-foreground">
           {displayText}
         </span>
-        <span>, I&apos;m {name}</span>
+        <span>, I&apos;m <SketchHighlighter>{name}</SketchHighlighter></span>
       </span>
     </h1>
   );

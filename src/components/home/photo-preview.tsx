@@ -47,7 +47,7 @@ export function PhotoPreview() {
         <span>showing {PREVIEW_COUNT} of {PHOTOS.length} captures</span>
         <Link
           href="/artifacts"
-          className="editorial-link text-foreground hover:text-emerald-500 dark:hover:text-emerald-400 cursor-pointer active:scale-95 transition-colors"
+          className="editorial-link text-foreground notion-green-hover cursor-pointer active:scale-95 transition-colors"
         >
           see all {PHOTOS.length} images →
         </Link>

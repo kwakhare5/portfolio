@@ -42,6 +42,40 @@ At the end of a session with meaningful changes:
 
 ## Log entries
 
+### [Portfolio — Layout Redesign, Unified Notion Tag System & Dead Code Purge] 2026-11-15
+
+#### Work card 1: Notion color token unification, project clickability, and dead code cleanup
+- **Problem / tension:** Action buttons (`live`, `view`) and technology tags had inconsistent styling across the homepage and detail pages, project cards were unclickable `div` containers, and dead code (`status.currently/previously`, dead types, unused CSS animations) cluttered the codebase.
+- **Change / decision:** Built a canonical `.notion-tag` CSS system with subtle pastel palettes (green for live, blue for github/languages, amber for python/runtimes, orange for protocols, gray for tooling) shared across home and detail pages, made project titles and cards navigate to `/builds/[slug]` while preserving external `live` link isolation, and purged dead status structures, interfaces, and unused CSS rules.
+- **Proof:** Vitest passes 2/2 unit tests (including `getTechTagClass`), TypeScript typecheck passes with 0 errors, Next.js 16.3.2 Turbopack production build succeeds with all 14 static pages generated cleanly, and knowledge graph updated via `graphify update .`.
+- **Still broken / unproven:** N/A
+- **Metric context:** 14 static routes generated in 941ms; 0 TypeScript or lint errors.
+- **Engineering references:** `src/app/globals.css`, `src/lib/utils.ts`, `src/lib/utils.test.ts`, `src/data/resume.ts`, `src/components/home/project-row.tsx`, `src/app/page.tsx`, `src/app/builds/[slug]/page.tsx`.
+
+#### Work card 2: Playful Notion stationery theme, hand-drawn monoline icons, and nav refinement
+- **Problem / tension:** The portfolio felt sterile/monochromatic, the top nav was cluttered with `#activity`, and project cards lacked visual tactility and distinct product identity.
+- **Change / decision:** Removed `activity` from the top navigation bar while keeping the heatmap on page; added hand-drawn monoline sketch icons (`SketchTote`, `SketchBox`, `SketchPromptBranch`, `SketchSoundPill`) with distinct stationery colors (mint, coral, lavender, yellow); implemented ink-stamp date badges (`.ink-stamp`); created custom hand-drawn sketch arrows (`SketchArrow`); added a stationery highlighter marker underline (`SketchHighlighter`) under the hero name; and expanded the tech stack to a 7-color stationery rainbow (yellow, red, purple, blue, green, orange, gray).
+- **Proof:** Vitest passed 2/2 tests, `pnpm typecheck` passed with 0 errors, and Next.js 16.3.2 production build generated all 14 routes in 999ms.
+- **Still broken / unproven:** N/A
+- **Metric context:** 4 custom hand-drawn SVGs added; 0 external icon dependencies added.
+- **Engineering references:** `src/components/home/stationery-icons.tsx`, `src/components/home/project-row.tsx`, `src/components/home/hero-greeting.tsx`, `src/app/globals.css`, `src/lib/utils.ts`, `src/app/page.tsx`, `src/app/builds/[slug]/page.tsx`.
+
+#### Work card 3: Silent stationery palette refinement, eliminating gray/purple, and removing animated hover tints
+- **Problem / tension:** Colored card hover animations felt distracting, purple felt too intense upfront, and gray tag boxes looked dull.
+- **Change / decision:** Removed all animated card hover color flashes in favor of a faint paper warmth (`hover:bg-muted/40`); replaced purple upfront by mapping `Git for Prompts` to Notion Sky Blue; purged gray tags by introducing warm Notion Sand/Kraft (`#f4eeee` in light / `#2e2521` in dark) for general tools and the `view` action; and locked colors statically to text and tag backgrounds.
+- **Proof:** Vitest passed 2/2 tests, `pnpm typecheck` passed with 0 errors, and Next.js 16.3.2 production build succeeded in 908ms across 14 static pages.
+- **Still broken / unproven:** N/A
+- **Metric context:** 0 gray tags remaining; 0 purple tags upfront; 0 animated color shifts on hover.
+- **Engineering references:** `src/app/globals.css`, `src/lib/utils.ts`, `src/lib/utils.test.ts`, `src/components/home/project-row.tsx`, `src/app/builds/[slug]/page.tsx`.
+
+#### Work card 4: Project sequence reordering, nav reduction, and cross-repo GitHub profile synchronization
+- **Problem / tension:** Top navigation had too many internal anchors, GitHub Profile README (`d:\Github Profile\README.md`) fell out of sync with old unmaintained projects, and project order needed active builds prioritized.
+- **Change / decision:** Removed `stack` from top navigation (`builds · artifacts · socials`); reordered `featuredProjects` to `Beam` $\rightarrow$ `Grocer` $\rightarrow$ `Git for Prompts` $\rightarrow$ `Outpost`; applied stationery `ink-stamp` badges to `/artifacts` photo counts and gallery indices; and created automated profile sync script `scripts/sync-profile.mjs` (`pnpm sync:profile`) that dynamically compiles `d:\Github Profile\README.md` from `src/data/resume.ts`.
+- **Proof:** Ran `pnpm sync:profile` syncing all 4 projects cleanly to `d:\Github Profile\README.md`; Vitest passed 2/2 tests; Next.js 16.3.2 production build succeeded in 668ms.
+- **Still broken / unproven:** N/A
+- **Metric context:** 4 projects synchronized across 2 separate git repositories in 1 CLI command.
+- **Engineering references:** `src/app/page.tsx`, `src/data/resume.ts`, `src/app/artifacts/page.tsx`, `src/components/artifacts/artifacts-gallery.tsx`, `scripts/sync-profile.mjs`, `package.json`, `d:\Github Profile\README.md`.
+
 ### [GitHub Profile — README Selected Work Sync & GitHub Sanitizer Fixes] 2026-09-29
 
 #### Work card 1: GitHub HTML sanitizer stripping inline styles and Light Mode SVG invisibility

@@ -21,27 +21,63 @@
   --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
 }
 
-/* -- 3. Color Palette System (Light & Dark OKLCH) -------------------------- */
+/* -- 3. Color Palette System (Notion Stationery tokens) --------------------- */
 :root {
-  --background: oklch(0.985 0.002 90);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --primary: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --border: oklch(0.922 0 0);
+  --background:        #fbfbfa;
+  --foreground:        #37352f;
+  --card:              #ffffff;
+  --primary:           #37352f;
+  --muted:             #f1f1ef;
+  --muted-foreground:  #787774;
+  --accent:            #f1f1ef;
+  --border:            #e9e9e7;
+
+  /* Notion stationery pastel palette — Light */
+  --notion-green-bg:    #edf6f1;
+  --notion-green-text:  #2c6e49;
+  --notion-blue-bg:     #edf3f8;
+  --notion-blue-text:   #205493;
+  --notion-amber-bg:    #fbf4e2;
+  --notion-amber-text:  #8f6213;
+  --notion-yellow-bg:   #fef9c3;
+  --notion-yellow-text: #854d0e;
+  --notion-orange-bg:   #faece3;
+  --notion-orange-text: #aa5012;
+  --notion-red-bg:      #fbe4e4;
+  --notion-red-text:    #c12b2b;
+  --notion-sand-bg:     #f4eeee;
+  --notion-sand-text:   #64473a;
+  --notion-gray-bg:     #f1f1ef;
+  --notion-gray-text:   #5a5a57;
 }
 
 .dark {
-  --background: oklch(0.18 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --primary: oklch(0.922 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --border: oklch(1 0 0 / 10%);
+  --background:        #191919;
+  --foreground:        #f1f1ef;
+  --card:              #202020;
+  --primary:           #f1f1ef;
+  --muted:             #2a2a2a;
+  --muted-foreground:  #9b9a97;
+  --accent:            #2a2a2a;
+  --border:            #2f2f2f;
+
+  /* Notion stationery jewel palette — Dark */
+  --notion-green-bg:    #1c3829;
+  --notion-green-text:  #7ce38b;
+  --notion-blue-bg:     #1d334e;
+  --notion-blue-text:   #85bbf0;
+  --notion-amber-bg:    #3f311a;
+  --notion-amber-text:  #e8c679;
+  --notion-yellow-bg:   #3a3212;
+  --notion-yellow-text: #fde047;
+  --notion-orange-bg:   #3a2216;
+  --notion-orange-text: #e99a64;
+  --notion-red-bg:      #381c1c;
+  --notion-red-text:    #f87171;
+  --notion-sand-bg:     #2e2521;
+  --notion-sand-text:   #c49d8c;
+  --notion-gray-bg:     #2a2a2a;
+  --notion-gray-text:   #b0afab;
 }
 
 /* -- 4. Base & Layout System ----------------------------------------------- */
@@ -113,7 +149,79 @@
   }
 }
 
-/* -- 5. Scrollbar Utilities ------------------------------------------------ */
+/* -- 5. Unified Notion Stationery Tag System ------------------------------- */
+.notion-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.125rem 0.5rem;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  border-radius: 0.25rem;
+  line-height: 1.25rem;
+  text-decoration: none;
+  transition: opacity 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+.notion-tag:hover {
+  opacity: 0.85;
+}
+
+.notion-tag-green {
+  background-color: var(--notion-green-bg);
+  color: var(--notion-green-text);
+}
+
+.notion-tag-blue {
+  background-color: var(--notion-blue-bg);
+  color: var(--notion-blue-text);
+}
+
+.notion-tag-amber {
+  background-color: var(--notion-amber-bg);
+  color: var(--notion-amber-text);
+}
+
+.notion-tag-yellow {
+  background-color: var(--notion-yellow-bg);
+  color: var(--notion-yellow-text);
+}
+
+.notion-tag-orange {
+  background-color: var(--notion-orange-bg);
+  color: var(--notion-orange-text);
+}
+
+.notion-tag-red {
+  background-color: var(--notion-red-bg);
+  color: var(--notion-red-text);
+}
+
+.notion-tag-sand {
+  background-color: var(--notion-sand-bg);
+  color: var(--notion-sand-text);
+}
+
+/* Ink stamp date styling */
+.ink-stamp {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  padding: 0.1rem 0.35rem;
+  border-radius: 0.2rem;
+  background-color: var(--muted);
+  color: var(--muted-foreground);
+  border: 1px solid var(--border);
+  letter-spacing: -0.02em;
+}
+
+/* Notion link hover color transitions */
+.notion-green-hover:hover  { color: var(--notion-green-text); }
+.notion-blue-hover:hover   { color: var(--notion-blue-text); }
+.notion-amber-hover:hover  { color: var(--notion-amber-text); }
+.notion-red-hover:hover    { color: var(--notion-red-text); }
+
+/* -- 6. Scrollbar Utilities ------------------------------------------------ */
 html,
 body,
 .scrollbar-none {
@@ -129,4 +237,3 @@ body::-webkit-scrollbar,
   height: 0px !important;
   background: transparent !important;
 }
-

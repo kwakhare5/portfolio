@@ -32,7 +32,7 @@ export function ArtifactsGallery({ photos }: { photos: readonly PhotoItem[] }) {
               <p className="min-w-0 group-hover:text-foreground transition-colors line-clamp-2 leading-normal">
                 {photo.caption}
               </p>
-              <span className="shrink-0 text-xs">
+              <span className="shrink-0 ink-stamp">
                 {index + 1 < 10 ? `0${index + 1}` : index + 1}
               </span>
             </div>

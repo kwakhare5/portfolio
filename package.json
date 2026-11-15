@@ -12,7 +12,8 @@
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "sync:profile": "node --no-warnings --experimental-strip-types scripts/sync-profile.mjs"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.3.3",

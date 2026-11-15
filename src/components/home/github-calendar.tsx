@@ -183,7 +183,7 @@ export function GitHubCalendar() {
           href="https://github.com/kwakhare5"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 text-muted-foreground hover:text-blue-500 dark:hover:text-blue-400 transition-colors editorial-link"
+          className="inline-flex items-center gap-1 text-muted-foreground transition-colors editorial-link notion-blue-hover"
         >
           <span>@kwakhare5</span>
           <ExternalLink className="size-3" />
