@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { HeroGreeting } from "@/components/hero-greeting";
 import { ProjectRow } from "@/components/project-row";
@@ -89,14 +88,16 @@ export default function Page() {
           </div>
 
           <div className="relative size-16 sm:size-20 shrink-0 overflow-hidden rounded-full border border-border bg-muted shadow-xs">
-            <Image
+            {/* Raw original, no optimizer: browser zoom needs the real pixels. */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src={avatarUrl}
               alt={name}
-              fill
-              priority
-              sizes="(max-width: 640px) 64px, 80px"
-              quality={90}
-              className="object-cover"
+              width={2410}
+              height={2410}
+              fetchPriority="high"
+              decoding="async"
+              className="absolute inset-0 size-full object-cover"
             />
           </div>
         </div>
