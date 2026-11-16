@@ -46,7 +46,7 @@ export function PhotoGrid({
           </span>
           <Link
             href="/artifacts"
-            className="relative inline-flex items-center gap-1 font-medium text-[var(--notion-blue-text)] hover:underline underline-offset-4 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary after:absolute after:-inset-2 after:content-[''] touch-manipulation"
+            className="relative inline-flex items-center gap-1 font-medium text-[var(--notion-blue-text)] underline underline-offset-4 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary after:absolute after:-inset-2 after:content-[''] touch-manipulation"
           >
             <SketchCamera className="size-3.5" />
             <span>see all {photos.length} images</span>

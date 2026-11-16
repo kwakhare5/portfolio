@@ -62,7 +62,7 @@ export const DATA: ResumeData = {
   bio: [
     "i'm an ai engineer and full-stack developer studying computer engineering in pune.",
     "i build ai tools and apps, from grocery shopping on whatsapp to version control for prompts.",
-    "grocer got me selected for the swiggy builder club.",
+    "for grocer, swiggy whitelisted instamart mcp access and picked me for the builder club.",
   ],
   avatarUrl: "/me-avatar.png",
 
@@ -112,7 +112,7 @@ export const DATA: ResumeData = {
           "Out-of-stock items reported honestly with valid swaps, never silently dropped",
           "Addresses and basket snapshots deleted after 24 hours for DPDP compliance",
         ],
-        status: "293 tests (191 offline, 82 database, 20 live) and a 40/40 router eval with zero unsafe writes. Checkout is built but never live-tested — no order has been placed. Independent project, not affiliated with Swiggy.",
+        status: "293 tests (191 offline, 82 database, 20 live) and a 40/40 router eval with zero unsafe writes. Checkout is built; no live order has been placed yet.",
       },
     },
     {
@@ -135,7 +135,7 @@ export const DATA: ResumeData = {
           "Batch regression evals across Groq, OpenRouter, OpenAI, Anthropic, and Ollama",
           "API keys stored as one-way SHA-256 hashes, HMAC-signed webhooks, and an MCP manifest for Claude Desktop and Cursor",
         ],
-        status: "v1.0.0 under MIT; real-PostgreSQL integration tests with zero internal mocks.",
+        status: "v1.0.0, MIT licensed, with real-postgres integration tests and no mocks.",
       },
     },
     {
@@ -157,7 +157,7 @@ export const DATA: ResumeData = {
           "Donor safety-buffer proof before any lateral transfer; stale approvals rejected server-side with 409",
           "109 passing tests; WAPE and MAE reported on a 3-day holdout",
         ],
-        status: "Live operations console on a deterministic simulator stated upfront — not a live dark store network.",
+        status: "The live console runs on a seeded simulator, not a real dark store network.",
       },
     },
   ],

@@ -30,7 +30,7 @@ export function SocialsFooter() {
                 <a
                   href={social.url}
                   {...(social.url.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                  className="relative inline-flex items-center gap-1 font-medium text-foreground hover:underline underline-offset-4 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary after:absolute after:-inset-2 after:content-[''] touch-manipulation"
+                  className="relative inline-flex items-center gap-1 font-medium text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary after:absolute after:-inset-2 after:content-[''] touch-manipulation"
                 >
                   {SOCIAL_ICONS[social.name] ?? null}
                   <span>{social.label}</span>

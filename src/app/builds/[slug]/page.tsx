@@ -130,7 +130,7 @@ export default async function ProjectPage({
       <div className="flex items-center justify-between border-b border-border pb-3 font-sans text-sm">
         <Link
           href="/#builds"
-          className="relative inline-flex items-center gap-1.5 font-medium text-muted-foreground hover:text-foreground hover:underline underline-offset-4 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary after:absolute after:-inset-2 after:content-[''] touch-manipulation"
+          className="relative inline-flex items-center gap-1.5 font-medium text-muted-foreground underline underline-offset-4 decoration-muted-foreground/40 hover:text-foreground hover:decoration-foreground transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary after:absolute after:-inset-2 after:content-[''] touch-manipulation"
         >
           <SketchBackArrow className="size-3.5" />
           <span>back to builds</span>
@@ -157,7 +157,7 @@ export default async function ProjectPage({
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative inline-flex items-center gap-1 font-medium text-[var(--notion-blue-text)] hover:underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary after:absolute after:-inset-2 after:content-[''] touch-manipulation"
+              className="relative inline-flex items-center gap-1 font-medium text-[var(--notion-blue-text)] underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary after:absolute after:-inset-2 after:content-[''] touch-manipulation"
             >
               <span>live</span>
               <SketchArrow className="size-2.5" />
@@ -171,7 +171,7 @@ export default async function ProjectPage({
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative inline-flex items-center gap-1 font-medium text-[var(--notion-blue-text)] hover:underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary after:absolute after:-inset-2 after:content-[''] touch-manipulation"
+              className="relative inline-flex items-center gap-1 font-medium text-[var(--notion-blue-text)] underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary after:absolute after:-inset-2 after:content-[''] touch-manipulation"
             >
               <SketchGithub className="size-3.5" />
               <span>github</span>
@@ -258,13 +258,13 @@ export default async function ProjectPage({
             >
               <div className="flex items-center gap-2.5">
                 <ProjectIcon project={other} />
-                <span className="text-sm sm:text-base font-medium text-foreground group-hover:underline underline-offset-4 transition-all">
+                <span className="text-sm sm:text-base font-medium text-foreground underline underline-offset-4 decoration-border group-hover:decoration-foreground transition-colors">
                   {other.title}
                 </span>
               </div>
               <div className="flex items-center gap-2 font-mono text-xs">
                 <span className="ink-stamp">{other.year}</span>
-                <span className="inline-flex items-center gap-0.5 font-medium text-[var(--notion-blue-text)] group-hover:underline underline-offset-4 transition-colors">
+                <span className="inline-flex items-center gap-0.5 font-medium text-[var(--notion-blue-text)] underline underline-offset-4 transition-colors">
                   <span>view</span>
                   <SketchArrow className="size-2.5 opacity-80" />
                 </span>

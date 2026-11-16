@@ -165,7 +165,7 @@ export function GitHubCalendar() {
           href="https://github.com/kwakhare5"
           target="_blank"
           rel="noopener noreferrer"
-          className="relative inline-flex items-center gap-1 text-foreground font-medium hover:underline underline-offset-4 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary after:absolute after:-inset-1.5 after:content-[''] touch-manipulation"
+          className="relative inline-flex items-center gap-1 text-foreground font-medium underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary after:absolute after:-inset-1.5 after:content-[''] touch-manipulation"
         >
           <SketchGithub className="size-3.5" />
           <span>@kwakhare5</span>
