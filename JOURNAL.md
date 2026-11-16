@@ -108,6 +108,14 @@ At the end of a session with meaningful changes:
 - **Metric context:** Deploy dpl for e19984f via `vercel --prod` (23s class builds); home Age header confirmed the new deployment after promotion.
 - **Engineering references:** `src/data/resume.ts`, `src/app/page.tsx`, `src/app/builds/[slug]/page.tsx`, `src/components/photo-lightbox.tsx`, `src/components/mode-toggle.tsx`, `src/components/stationery-icons.tsx`, `package.json`.
 
+#### Work card 9: Avatar zoom softness — size hint limited the optimizer to 160px
+- **Problem / tension:** Browser zoom on the avatar got soft even after switching to the 2410px original; the avatar was still rendered through next/image with `sizes="… 64px, 80px"`, so the optimizer only ever delivered ~160px files for a 3x-zoom view.
+- **Change / decision:** Avatar now renders as a raw `<img src="/me.png">` (2410x2410, untouched original, no optimizer, no srcset); `me-avatar.png` stays deleted; `me-og.png` remains the preview image. Lint's no-img-element rule disabled for that one line with the reason inline.
+- **Proof:** Headless CDP at DPR 3: avatar src `/me.png`, natural 2410x2410, complete; 4x-zoom screenshot shows original pixels, not stretch. Live: HTML has `src="/me.png"`, `/me.png` HEAD 200 with 6,071,383 bytes.
+- **Still broken / unproven:** The raw 5.79 MB PNG now downloads once per device (immutable-cached after). Gallery originals still missing. Vercel Git auto-deploy still dead; CLI deploys used.
+- **Metric context:** Local production build on :3100; deploy via `vercel --prod --yes`.
+- **Engineering references:** `src/app/page.tsx` avatar block, `public/me.png`, `src/data/resume.ts`.
+
 ### [Portfolio — Layout Redesign, Unified Notion Tag System & Dead Code Purge] 2026-11-15
 
 #### Work card 1: Notion color token unification, project clickability, and dead code cleanup
