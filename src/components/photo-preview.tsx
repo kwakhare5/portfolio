@@ -36,7 +36,7 @@ export function PhotoPreview() {
         <span>showing {PREVIEW_COUNT} of {PHOTOS.length} captures</span>
         <Link
           href="/artifacts"
-          className="inline-flex items-center gap-1 font-medium text-[var(--notion-green-text)] hover:underline underline-offset-4 transition-colors"
+          className="inline-flex items-center gap-1 font-medium text-[var(--notion-blue-text)] hover:underline underline-offset-4 transition-colors"
         >
           <SketchCamera className="size-3.5" />
           <span>see all {PHOTOS.length} images</span>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { ProjectSpec } from "@/data/resume";
-import { ProjectIcon, projectInkClass } from "@/components/project-icon";
+import { ProjectIcon } from "@/components/project-icon";
 import { SketchArrow } from "@/components/stationery-icons";
 
 export function ProjectRow({ project }: { readonly project: ProjectSpec }) {
@@ -33,7 +33,7 @@ export function ProjectRow({ project }: { readonly project: ProjectSpec }) {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`pointer-events-auto inline-flex items-center gap-0.5 font-medium ${projectInkClass(project.icon)} hover:underline underline-offset-4`}
+                className="pointer-events-auto inline-flex items-center gap-0.5 font-medium text-[var(--notion-blue-text)] hover:underline underline-offset-4"
               >
                 <span>live</span>
                 <SketchArrow className="size-2.5" />
@@ -41,7 +41,7 @@ export function ProjectRow({ project }: { readonly project: ProjectSpec }) {
               <span className="text-muted-foreground/40 select-none">·</span>
             </>
           )}
-          <span className="inline-flex items-center gap-0.5 font-medium text-[var(--notion-amber-text)] group-hover:underline underline-offset-4 transition-colors">
+          <span className="inline-flex items-center gap-0.5 font-medium text-[var(--notion-blue-text)] group-hover:underline underline-offset-4 transition-colors">
             <span>view</span>
             <SketchArrow className="size-2.5 opacity-80" />
           </span>

@@ -6,16 +6,12 @@ import {
   SketchSoundPill,
 } from "@/components/stationery-icons";
 
-const ICON_META: Record<ProjectIconKey, { Icon: typeof SketchTote; ink: string }> = {
-  tote: { Icon: SketchTote, ink: "text-[var(--notion-green-text)]" },
-  box: { Icon: SketchBox, ink: "text-[var(--notion-red-text)]" },
-  prompt: { Icon: SketchPromptBranch, ink: "text-[var(--notion-blue-text)]" },
-  sound: { Icon: SketchSoundPill, ink: "text-[var(--notion-yellow-text)]" },
+const ICON_MAP: Record<ProjectIconKey, typeof SketchTote> = {
+  tote: SketchTote,
+  box: SketchBox,
+  prompt: SketchPromptBranch,
+  sound: SketchSoundPill,
 };
-
-export function projectInkClass(key: ProjectIconKey): string {
-  return ICON_META[key].ink;
-}
 
 export function ProjectIcon({
   project,
@@ -24,6 +20,6 @@ export function ProjectIcon({
   project: ProjectSpec;
   className?: string;
 }) {
-  const { Icon, ink } = ICON_META[project.icon];
-  return <Icon className={`${className} ${ink}`} />;
+  const Icon = ICON_MAP[project.icon];
+  return <Icon className={`${className} text-[var(--notion-blue-text)]`} />;
 }

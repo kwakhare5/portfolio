@@ -9,13 +9,12 @@ import { ModeToggle } from "@/components/mode-toggle";
 import { SocialsFooter } from "@/components/socials-footer";
 import { DATA } from "@/data/resume";
 import type { StackIconKey } from "@/data/resume";
-import { getTechInkClass } from "@/lib/utils";
 import { SketchCode, SketchSparkle, SketchGear } from "@/components/stationery-icons";
 
-const STACK_ICON: Record<StackIconKey, { Icon: typeof SketchCode; ink: string }> = {
-  code: { Icon: SketchCode, ink: "text-[var(--notion-blue-text)]" },
-  sparkle: { Icon: SketchSparkle, ink: "text-[var(--notion-amber-text)]" },
-  gear: { Icon: SketchGear, ink: "text-[var(--notion-green-text)]" },
+const STACK_ICON: Record<StackIconKey, typeof SketchCode> = {
+  code: SketchCode,
+  sparkle: SketchSparkle,
+  gear: SketchGear,
 };
 
 const profileJsonLd = {
@@ -121,7 +120,7 @@ export default function Page() {
       >
         <div className="flex items-center justify-between gap-3 border-b border-border pb-2.5">
           <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight flex items-center gap-2">
-            <span className="text-muted-foreground/60 font-mono select-none">#</span>
+            <span className="text-[var(--notion-blue-text)] font-mono select-none">#</span>
             <span>builds</span>
           </h2>
           <span className="font-mono text-xs text-muted-foreground">
@@ -144,7 +143,7 @@ export default function Page() {
       >
         <div className="flex items-center justify-between gap-3 border-b border-border pb-2.5">
           <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight flex items-center gap-2">
-            <span className="text-muted-foreground/60 font-mono select-none">#</span>
+            <span className="text-[var(--notion-amber-text)] font-mono select-none">#</span>
             <span>stack</span>
           </h2>
           <span className="font-mono text-xs text-muted-foreground">tooling</span>
@@ -152,12 +151,12 @@ export default function Page() {
 
         <div className="space-y-3.5 pt-1">
           {coreStack.map((group) => {
-            const { Icon, ink } = STACK_ICON[group.icon];
+            const Icon = STACK_ICON[group.icon];
 
             return (
               <div key={group.category} className="space-y-1">
                 <span className="font-mono text-xs font-medium text-muted-foreground inline-flex items-center gap-1.5">
-                  <Icon className={`size-3 shrink-0 ${ink}`} />
+                  <Icon className="size-3 shrink-0 text-[var(--notion-amber-text)]" />
                   <span>{group.category}</span>
                 </span>
                 <p className="text-xs sm:text-sm font-mono leading-relaxed">
@@ -166,7 +165,7 @@ export default function Page() {
                       {idx > 0 && (
                         <span className="text-muted-foreground/40 mx-2 select-none">·</span>
                       )}
-                      <span className={`${getTechInkClass(item)} font-medium select-none`}>
+                      <span className="text-foreground font-medium select-none">
                         {item}
                       </span>
                     </span>
@@ -186,7 +185,7 @@ export default function Page() {
       >
         <div className="flex items-center justify-between gap-3 border-b border-border pb-2.5">
           <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight flex items-center gap-2">
-            <span className="text-muted-foreground/60 font-mono select-none">#</span>
+            <span className="text-[var(--notion-green-text)] font-mono select-none">#</span>
             <span>activity</span>
           </h2>
           <span className="font-mono text-xs text-muted-foreground">github</span>
@@ -203,7 +202,7 @@ export default function Page() {
       >
         <div className="flex items-center justify-between gap-3 border-b border-border pb-2.5">
           <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight flex items-center gap-2">
-            <span className="text-muted-foreground/60 font-mono select-none">#</span>
+            <span className="text-[var(--notion-blue-text)] font-mono select-none">#</span>
             <span>artifacts</span>
           </h2>
           <span className="font-mono text-xs text-muted-foreground">gallery</span>

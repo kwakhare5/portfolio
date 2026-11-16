@@ -128,15 +128,7 @@
   }
 }
 
-/* -- 5. Notion Stationery Ink System (boxless, borderless) ----------------- */
-.notion-ink-green  { color: var(--notion-green-text); }
-.notion-ink-blue   { color: var(--notion-blue-text); }
-.notion-ink-amber  { color: var(--notion-amber-text); }
-.notion-ink-yellow { color: var(--notion-yellow-text); }
-.notion-ink-orange { color: var(--notion-orange-text); }
-.notion-ink-red    { color: var(--notion-red-text); }
-.notion-ink-sand   { color: var(--notion-sand-text); }
-
+/* -- 5. Ink Stamp & Hover Utilities ---------------------------------------- */
 /* Ink stamp date styling */
 .ink-stamp {
   font-family: var(--font-mono);

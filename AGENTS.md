@@ -36,7 +36,7 @@ pnpm sync:profile    # Sync project data into the local GitHub profile README
 ## 4. LOCAL RULES & DESIGN INVARIANTS
 1. **Anti-AI Slop:** Strict adherence to human writing standards. Zero decorative corporate buzzwords.
 2. **Dark/Light Mode Sync:** All components must support seamless theme switching via `next-themes` (`defaultTheme="system"`, `enableSystem={true}`).
-3. **Unified Color Palette:** Notion ink tokens (`--notion-*-text` via `notion-ink-*`) for accents, plus `text-foreground`, `text-muted-foreground`, and `border-border` for structure.
+3. **Unified Color Palette:** One Notion ink per section (`text-[var(--notion-*-text)]`) — shape carries identity, color carries section. Content text is `text-foreground` / `text-muted-foreground`; structure is `border-border`.
 4. **Minimal Architecture:** YAGNI. Pure presentation components, tested domain helpers, zero unneeded dependencies or pass-through wrappers.
 
 ---

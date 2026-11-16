@@ -231,9 +231,9 @@ export function SketchCode({ className = "size-3.5" }: { readonly className?: st
       className={className}
       aria-hidden="true"
     >
-      <path d="M5.5 4.5L2 8L5.5 11.5" />
-      <path d="M10.5 4.5L14 8L10.5 11.5" />
-      <path d="M9 3.5L7 12.5" />
+      <path d="M5.5 3L2.5 8L5.5 13" />
+      <path d="M10.5 3L13.5 8L10.5 13" />
+      <path d="M9 3L7 13" />
     </svg>
   );
 }
@@ -253,7 +253,7 @@ export function SketchSparkle({ className = "size-3.5" }: { readonly className?:
       className={className}
       aria-hidden="true"
     >
-      <path d="M8 1.5C8 5 11.5 8 15 8C11.5 8 8 11 8 14.5C8 11 4.5 8 1 8C4.5 8 8 5 8 1.5Z" />
+      <path d="M8 2.5C8 5.5 10.5 8 13.5 8C10.5 8 8 10.5 8 13.5C8 10.5 5.5 8 2.5 8C5.5 8 8 5.5 8 2.5Z" />
     </svg>
   );
 }
@@ -273,8 +273,8 @@ export function SketchGear({ className = "size-3.5" }: { readonly className?: st
       className={className}
       aria-hidden="true"
     >
-      <circle cx="8" cy="8" r="2.5" />
-      <path d="M8 1.5V3.5M8 12.5V14.5M1.5 8H3.5M12.5 8H14.5M3.4 3.4L4.8 4.8M11.2 11.2L12.6 12.6M3.4 12.6L4.8 11.2M11.2 4.8L12.6 3.4" />
+      <circle cx="8" cy="8" r="2.4" />
+      <path d="M8 2.5V4.5M8 11.5V13.5M2.5 8H4.5M11.5 8H13.5M4.1 4.1L5.5 5.5M10.5 10.5L11.9 11.9M4.1 11.9L5.5 10.5M10.5 5.5L11.9 4.1" />
     </svg>
   );
 }
@@ -301,9 +301,9 @@ export function SketchCamera({ className = "size-4" }: { readonly className?: st
 }
 
 /**
- * Monoline map pin icon for Location.
+ * Monoline photo frame icon for photo captions.
  */
-export function SketchPin({ className = "size-3" }: { readonly className?: string }) {
+export function SketchFrame({ className = "size-3" }: { readonly className?: string }) {
   return (
     <svg
       viewBox="0 0 16 16"
@@ -315,8 +315,8 @@ export function SketchPin({ className = "size-3" }: { readonly className?: strin
       className={className}
       aria-hidden="true"
     >
-      <path d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6C3.5 9.5 8 14.5 8 14.5C8 14.5 12.5 9.5 12.5 6C12.5 3.5 10.5 1.5 8 1.5Z" />
-      <circle cx="8" cy="6" r="1.5" />
+      <rect x="2.5" y="2.5" width="11" height="11" rx="1.5" />
+      <path d="M4.5 11H11.5" />
     </svg>
   );
 }

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { PhotoItem } from "@/data/resume";
-import { SketchPin } from "@/components/stationery-icons";
+import { SketchFrame } from "@/components/stationery-icons";
 
 interface PhotoCardProps {
   readonly photo: PhotoItem;
@@ -34,7 +34,7 @@ export function PhotoCard({ photo, index, onClick, sizes, stamp }: PhotoCardProp
         }
       >
         <p className="min-w-0 group-hover:text-foreground transition-colors line-clamp-2 leading-normal flex items-center gap-1">
-          <SketchPin className="size-3 shrink-0 text-muted-foreground/50" />
+          <SketchFrame className="size-3 shrink-0 text-muted-foreground/50" />
           <span>{photo.caption}</span>
         </p>
         {stamp && <span className="shrink-0 ink-stamp">{stamp}</span>}

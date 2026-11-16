@@ -4,7 +4,7 @@ import { useCallback, useEffect } from "react";
 import Image from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import type { PhotoItem } from "@/data/resume";
-import { SketchPin } from "@/components/stationery-icons";
+import { SketchFrame } from "@/components/stationery-icons";
 
 interface PhotoLightboxProps {
   readonly photos: readonly PhotoItem[];
@@ -127,7 +127,7 @@ export function PhotoLightbox({
         </div>
         {currentPhoto.caption && (
           <p className="text-xs font-mono text-muted-foreground tracking-wide text-center flex items-center justify-center gap-1">
-            <SketchPin className="size-3 shrink-0 text-muted-foreground/60" />
+            <SketchFrame className="size-3 shrink-0 text-muted-foreground/60" />
             <span>{currentPhoto.caption}</span>
           </p>
         )}

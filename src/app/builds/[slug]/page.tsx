@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import { ModeToggle } from "@/components/mode-toggle";
 import { SocialsFooter } from "@/components/socials-footer";
 import { DATA, SITE_NAME } from "@/data/resume";
-import { getTechInkClass } from "@/lib/utils";
 import { ProjectIcon } from "@/components/project-icon";
 import {
   SketchArrow,
@@ -190,7 +189,7 @@ export default async function ProjectPage({
                 {idx > 0 && (
                   <span className="text-muted-foreground/40 mx-2 select-none">·</span>
                 )}
-                <span className={`${getTechInkClass(tech)} font-medium`}>
+                <span className="text-foreground font-medium">
                   {tech}
                 </span>
               </span>
@@ -203,7 +202,7 @@ export default async function ProjectPage({
         <section className="space-y-3">
           <div className="flex items-center justify-between gap-3 border-b border-border pb-2.5">
             <h2 className="flex items-center gap-2 text-base sm:text-lg font-normal text-foreground tracking-tight">
-              <span className="text-muted-foreground/60 font-mono select-none">#</span>
+              <span className="text-[var(--notion-red-text)] font-mono select-none">#</span>
               <span>problem</span>
             </h2>
           </div>
@@ -215,7 +214,7 @@ export default async function ProjectPage({
         <section className="space-y-3">
           <div className="flex items-center justify-between gap-3 border-b border-border pb-2.5">
             <h2 className="flex items-center gap-2 text-base sm:text-lg font-normal text-foreground tracking-tight">
-              <span className="text-muted-foreground/60 font-mono select-none">#</span>
+              <span className="text-[var(--notion-blue-text)] font-mono select-none">#</span>
               <span>architecture</span>
             </h2>
           </div>
@@ -227,7 +226,7 @@ export default async function ProjectPage({
         <section className="space-y-3">
           <div className="flex items-center justify-between gap-3 border-b border-border pb-2.5">
             <h2 className="flex items-center gap-2 text-base sm:text-lg font-normal text-foreground tracking-tight">
-              <span className="text-muted-foreground/60 font-mono select-none">#</span>
+              <span className="text-[var(--notion-green-text)] font-mono select-none">#</span>
               <span>engineering highlights</span>
             </h2>
           </div>
@@ -261,7 +260,7 @@ export default async function ProjectPage({
               </div>
               <div className="flex items-center gap-2 font-mono text-xs">
                 <span className="ink-stamp">{other.year}</span>
-                <span className="inline-flex items-center gap-0.5 font-medium text-[var(--notion-amber-text)] group-hover:underline underline-offset-4 transition-colors">
+                <span className="inline-flex items-center gap-0.5 font-medium text-[var(--notion-blue-text)] group-hover:underline underline-offset-4 transition-colors">
                   <span>view</span>
                   <SketchArrow className="size-2.5 opacity-80" />
                 </span>
