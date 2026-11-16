@@ -92,6 +92,14 @@ At the end of a session with meaningful changes:
 - **Metric context:** Dev server on :3000 left running; headless Chrome scratch profile pf-verify3 closed after run.
 - **Engineering references:** `src/data/resume.ts`, `src/components/photo-lightbox.tsx`, `.env.local` (deleted).
 
+#### Work card 7: Photo originals absent from history, Vercel Git link re-registered, verify-skill scaffold declined
+- **Problem / tension:** Push e2f0a5b created no Vercel Git deployment; Karan believed full-size photo originals sat in earlier commits; the verify-skill scaffold's value on a static four-route site was challenged.
+- **Change / decision:** Re-registered the Vercel GitHub link (`vercel git disconnect --yes` then `connect` → "Connected"). Searched every ref plus reflog: 35 image blobs total, exactly one version per photo path — originals were never committed; the gallery entered history once (cf07d67) already downscaled. Scaffolded `.agents/skills/verify-portfolio` then deleted it and its scratch dir on Karan's call: static site with no backend/mutations/auth, ad-hoc headless-Chrome CDP proof per change is the verification.
+- **Proof:** Blob inventory shows largest photo blobs equal the current files (lake-pichola 1.95 MB, singapore-flyer 1.79 MB, supertree 1.00 MB); no alternate versions exist. `vercel git connect` printed "Connected". Skill registry no longer lists verify-portfolio; port 3100 has zero listeners after cleanup; the verification server PID had already exited on its own.
+- **Still broken / unproven:** The 12 downscaled photos (11 at 1500x2000 + sheikh-zayed mosque at 1125x2000) still need Karan's original files — not in git, not in Pictures/Downloads/OneDrive/D:\tmp, not in the profile or old-site repos. Webhook re-registration unproven until a Git-triggered deployment appears for this card's push.
+- **Metric context:** `git rev-list --objects --all --reflog` = 1062 objects, 35 image blobs; profile repo kwakhare5/kwakhare5 holds only me.webp; Karan-s-iPod holds no jpgs.
+- **Engineering references:** deleted `.agents/skills/verify-portfolio/`, `.scratch/verify-portfolio/`; `vercel git disconnect --yes`, `vercel git connect https://github.com/kwakhare5/portfolio.git`.
+
 ### [Portfolio — Layout Redesign, Unified Notion Tag System & Dead Code Purge] 2026-11-15
 
 #### Work card 1: Notion color token unification, project clickability, and dead code cleanup
