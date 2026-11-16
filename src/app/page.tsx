@@ -8,14 +8,15 @@ import { LocalClock } from "@/components/local-clock";
 import { ModeToggle } from "@/components/mode-toggle";
 import { SocialsFooter } from "@/components/socials-footer";
 import { DATA } from "@/data/resume";
-import {
-  SketchCode,
-  SketchSparkle,
-  SketchGear,
-  SketchLayersShelf,
-  SketchGithub,
-  SketchCamera,
-} from "@/components/stationery-icons";
+import type { StackIconKey } from "@/data/resume";
+import { getTechInkClass } from "@/lib/utils";
+import { SketchCode, SketchSparkle, SketchGear } from "@/components/stationery-icons";
+
+const STACK_ICON: Record<StackIconKey, { Icon: typeof SketchCode; ink: string }> = {
+  code: { Icon: SketchCode, ink: "text-[var(--notion-blue-text)]" },
+  sparkle: { Icon: SketchSparkle, ink: "text-[var(--notion-amber-text)]" },
+  gear: { Icon: SketchGear, ink: "text-[var(--notion-green-text)]" },
+};
 
 const profileJsonLd = {
   "@context": "https://schema.org",
@@ -120,7 +121,7 @@ export default function Page() {
       >
         <div className="flex items-center justify-between gap-3 border-b border-border pb-2.5">
           <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight flex items-center gap-2">
-            <SketchLayersShelf className="size-4 text-[var(--notion-blue-text)] shrink-0" />
+            <span className="text-muted-foreground/60 font-mono select-none">#</span>
             <span>builds</span>
           </h2>
           <span className="font-mono text-xs text-muted-foreground">
@@ -143,7 +144,7 @@ export default function Page() {
       >
         <div className="flex items-center justify-between gap-3 border-b border-border pb-2.5">
           <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight flex items-center gap-2">
-            <SketchCode className="size-4 text-[var(--notion-amber-text)] shrink-0" />
+            <span className="text-muted-foreground/60 font-mono select-none">#</span>
             <span>stack</span>
           </h2>
           <span className="font-mono text-xs text-muted-foreground">tooling</span>
@@ -151,28 +152,12 @@ export default function Page() {
 
         <div className="space-y-3.5 pt-1">
           {coreStack.map((group) => {
-            const cat = group.category.toLowerCase();
-            const isLang = cat.includes("language");
-            const isAi = cat.includes("ai");
-
-            const icon = isLang ? (
-              <SketchCode className="size-3 text-[var(--notion-blue-text)] shrink-0" />
-            ) : isAi ? (
-              <SketchSparkle className="size-3 text-[var(--notion-amber-text)] shrink-0" />
-            ) : (
-              <SketchGear className="size-3 text-[var(--notion-green-text)] shrink-0" />
-            );
-
-            const groupTextColor = isLang
-              ? "text-[var(--notion-blue-text)]"
-              : isAi
-              ? "text-[var(--notion-amber-text)]"
-              : "text-[var(--notion-green-text)]";
+            const { Icon, ink } = STACK_ICON[group.icon];
 
             return (
               <div key={group.category} className="space-y-1">
                 <span className="font-mono text-xs font-medium text-muted-foreground inline-flex items-center gap-1.5">
-                  {icon}
+                  <Icon className={`size-3 shrink-0 ${ink}`} />
                   <span>{group.category}</span>
                 </span>
                 <p className="text-xs sm:text-sm font-mono leading-relaxed">
@@ -181,7 +166,7 @@ export default function Page() {
                       {idx > 0 && (
                         <span className="text-muted-foreground/40 mx-2 select-none">·</span>
                       )}
-                      <span className={`${groupTextColor} font-medium select-none`}>
+                      <span className={`${getTechInkClass(item)} font-medium select-none`}>
                         {item}
                       </span>
                     </span>
@@ -201,7 +186,7 @@ export default function Page() {
       >
         <div className="flex items-center justify-between gap-3 border-b border-border pb-2.5">
           <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight flex items-center gap-2">
-            <SketchGithub className="size-4 text-[var(--notion-blue-text)] shrink-0" />
+            <span className="text-muted-foreground/60 font-mono select-none">#</span>
             <span>activity</span>
           </h2>
           <span className="font-mono text-xs text-muted-foreground">github</span>
@@ -218,7 +203,7 @@ export default function Page() {
       >
         <div className="flex items-center justify-between gap-3 border-b border-border pb-2.5">
           <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight flex items-center gap-2">
-            <SketchCamera className="size-4 text-[var(--notion-blue-text)] shrink-0" />
+            <span className="text-muted-foreground/60 font-mono select-none">#</span>
             <span>artifacts</span>
           </h2>
           <span className="font-mono text-xs text-muted-foreground">gallery</span>

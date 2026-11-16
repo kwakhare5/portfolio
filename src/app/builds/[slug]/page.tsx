@@ -11,8 +11,6 @@ import {
   SketchBackArrow,
   SketchGithub,
   SketchCheck,
-  SketchTarget,
-  SketchBlueprint,
 } from "@/components/stationery-icons";
 
 function getProject(slug: string) {
@@ -205,7 +203,7 @@ export default async function ProjectPage({
         <section className="space-y-3">
           <div className="flex items-center justify-between gap-3 border-b border-border pb-2.5">
             <h2 className="flex items-center gap-2 text-base sm:text-lg font-normal text-foreground tracking-tight">
-              <SketchTarget className="size-4 text-[var(--notion-red-text)] shrink-0" />
+              <span className="text-muted-foreground/60 font-mono select-none">#</span>
               <span>problem</span>
             </h2>
           </div>
@@ -217,7 +215,7 @@ export default async function ProjectPage({
         <section className="space-y-3">
           <div className="flex items-center justify-between gap-3 border-b border-border pb-2.5">
             <h2 className="flex items-center gap-2 text-base sm:text-lg font-normal text-foreground tracking-tight">
-              <SketchBlueprint className="size-4 text-[var(--notion-blue-text)] shrink-0" />
+              <span className="text-muted-foreground/60 font-mono select-none">#</span>
               <span>architecture</span>
             </h2>
           </div>
@@ -229,7 +227,7 @@ export default async function ProjectPage({
         <section className="space-y-3">
           <div className="flex items-center justify-between gap-3 border-b border-border pb-2.5">
             <h2 className="flex items-center gap-2 text-base sm:text-lg font-normal text-foreground tracking-tight">
-              <SketchCheck className="size-4 text-[var(--notion-green-text)] shrink-0" />
+              <span className="text-muted-foreground/60 font-mono select-none">#</span>
               <span>engineering highlights</span>
             </h2>
           </div>

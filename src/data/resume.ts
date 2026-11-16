@@ -20,8 +20,11 @@ export interface ProjectSpec {
   readonly specs: ProjectSpecs;
 }
 
+export type StackIconKey = "code" | "sparkle" | "gear";
+
 export interface StackCategory {
   readonly category: string;
+  readonly icon: StackIconKey;
   readonly items: readonly string[];
 }
 
@@ -151,14 +154,17 @@ export const DATA: ResumeData = {
   coreStack: [
     {
       category: "Languages & Frameworks",
+      icon: "code",
       items: ["TypeScript", "Python", "Next.js 16", "React 19", "FastAPI", "Node.js"],
     },
     {
       category: "AI, Agents & Workflows",
+      icon: "sparkle",
       items: ["Groq LLMs", "Cloudflare Workers", "Ollama", "LangGraph", "Agents SDK"],
     },
     {
       category: "Infrastructure & Dev Tools",
+      icon: "gear",
       items: ["Git", "PostgreSQL", "Supabase", "Drizzle ORM", "Docker", "Tailwind CSS v4"],
     },
   ],
