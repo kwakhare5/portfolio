@@ -6,6 +6,7 @@ import Link from "next/link";
 import { DATA } from "@/data/resume";
 import type { PhotoItem } from "@/data/resume";
 import { PhotoLightbox } from "@/components/artifacts/photo-lightbox";
+import { SketchPin, SketchCamera, SketchArrow } from "@/components/home/stationery-icons";
 
 const PHOTOS: readonly PhotoItem[] = DATA.photos;
 const PREVIEW_COUNT = 4;
@@ -35,8 +36,9 @@ export function PhotoPreview() {
                 className="object-cover transition-transform duration-250 ease-out group-hover:scale-[1.03]"
               />
             </div>
-            <p className="font-mono text-xs text-muted-foreground group-hover:text-foreground transition-colors line-clamp-2 leading-normal">
-              {photo.caption}
+            <p className="font-mono text-xs text-muted-foreground group-hover:text-foreground transition-colors line-clamp-2 leading-normal flex items-center gap-1">
+              <SketchPin className="size-3 shrink-0 text-muted-foreground/50" />
+              <span>{photo.caption.replace(/^\/\/\s*/, "")}</span>
             </p>
           </figure>
         ))}
@@ -47,9 +49,11 @@ export function PhotoPreview() {
         <span>showing {PREVIEW_COUNT} of {PHOTOS.length} captures</span>
         <Link
           href="/artifacts"
-          className="editorial-link text-foreground notion-green-hover cursor-pointer active:scale-95 transition-colors"
+          className="inline-flex items-center gap-1 font-medium text-[var(--notion-green-text)] hover:underline underline-offset-4 transition-colors"
         >
-          see all {PHOTOS.length} images →
+          <SketchCamera className="size-3.5" />
+          <span>see all {PHOTOS.length} images</span>
+          <SketchArrow className="size-2.5 opacity-80" />
         </Link>
       </div>
 

@@ -361,3 +361,92 @@ export function SketchClock({ className = "size-3" }: { readonly className?: str
     </svg>
   );
 }
+
+/**
+ * Hand-drawn monoline sketch arrow for back navigation.
+ */
+export function SketchBackArrow({ className = "size-3.5" }: { readonly className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M13.5 8H2.5" />
+      <path d="M6.5 4L2.5 8L6.5 12" />
+    </svg>
+  );
+}
+
+/**
+ * Hand-drawn layers / shelf icon for builds section header.
+ */
+export function SketchLayersShelf({ className = "size-4" }: { readonly className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M2.5 5L8 2.5L13.5 5L8 7.5L2.5 5Z" />
+      <path d="M2.5 8.5L8 11L13.5 8.5" />
+      <path d="M2.5 12L8 14.5L13.5 12" />
+    </svg>
+  );
+}
+
+/**
+ * Hand-drawn target / pinpoint icon for problem spec.
+ */
+export function SketchTarget({ className = "size-4" }: { readonly className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <circle cx="8" cy="8" r="5.5" />
+      <circle cx="8" cy="8" r="2" />
+      <path d="M8 1.5V3.5M8 12.5V14.5M1.5 8H3.5M12.5 8H14.5" />
+    </svg>
+  );
+}
+
+/**
+ * Hand-drawn blueprint / system blocks icon for architecture spec.
+ */
+export function SketchBlueprint({ className = "size-4" }: { readonly className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <rect x="2.5" y="2.5" width="4.5" height="4.5" rx="1" />
+      <rect x="9" y="2.5" width="4.5" height="4.5" rx="1" />
+      <rect x="5.5" y="9.5" width="5" height="4.5" rx="1" />
+      <path d="M4.75 7V8.5H8V9.5" />
+      <path d="M11.25 7V8.5H8" />
+    </svg>
+  );
+}

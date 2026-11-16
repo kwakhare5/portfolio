@@ -4,6 +4,7 @@ import { useCallback, useEffect } from "react";
 import Image from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import type { PhotoItem } from "@/data/resume";
+import { SketchPin } from "@/components/home/stationery-icons";
 
 interface PhotoLightboxProps {
   readonly photos: readonly PhotoItem[];
@@ -68,7 +69,7 @@ export function PhotoLightbox({
     >
       {/* Top Bar: Counter & Close */}
       <div className="absolute top-4 sm:top-6 pt-[env(safe-area-inset-top)] inset-x-4 sm:inset-x-8 flex items-center justify-between z-50">
-        <span className="font-mono text-xs text-muted-foreground px-3 py-1 rounded-full bg-muted border border-border backdrop-blur-xs select-none">
+        <span className="ink-stamp select-none text-xs px-2.5 py-0.5">
           {activeIndex + 1} / {photos.length}
         </span>
 
@@ -125,8 +126,9 @@ export function PhotoLightbox({
           />
         </div>
         {currentPhoto.caption && (
-          <p className="text-xs font-mono text-muted-foreground tracking-wide text-center">
-            {currentPhoto.caption}
+          <p className="text-xs font-mono text-muted-foreground tracking-wide text-center flex items-center justify-center gap-1">
+            <SketchPin className="size-3 shrink-0 text-muted-foreground/60" />
+            <span>{currentPhoto.caption.replace(/^\/\/\s*/, "")}</span>
           </p>
         )}
       </div>

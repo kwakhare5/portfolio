@@ -5,10 +5,11 @@
   "3": "compilerOptions",
   "4": "devDependencies",
   "5": "Karan Wakhare — Portfolio & Projects Showcase",
-  "6": "github-calendar.tsx",
+  "6": "app/page.tsx",
   "7": "Issue tracker: GitHub",
   "8": "AGENTS.md — Portfolio Project Rules",
   "9": "scripts",
+  "10": "layout.tsx",
   "11": "Architecture & Software Design Document: Karan Wakhare Portfolio",
   "12": ".prettierrc.json",
   "13": "Domain Docs",
@@ -22,7 +23,6 @@
   "23": "vitest.config.ts",
   "28": "CONTEXT.md — Ubiquitous Language & Domain Terms",
   "29": "route.ts",
-  "30": "not-found.tsx",
   "32": "rules/graphify.md",
   "33": "workflows/graphify.md"
 }

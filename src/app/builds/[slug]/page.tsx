@@ -1,19 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
 import { ModeToggle } from "@/components/layout/mode-toggle";
 import { SocialsFooter } from "@/components/layout/socials-footer";
 import { DATA } from "@/data/resume";
 import { getTechInkClass } from "@/lib/utils";
 import {
   SketchArrow,
+  SketchBackArrow,
   SketchTote,
   SketchBox,
   SketchPromptBranch,
   SketchSoundPill,
   SketchGithub,
   SketchCheck,
+  SketchTarget,
+  SketchBlueprint,
 } from "@/components/home/stationery-icons";
 
 function renderProjectIcon(slug: string, className = "size-4 shrink-0") {
@@ -158,7 +160,7 @@ export default async function ProjectPage({
           href="/#builds"
           className="inline-flex items-center gap-1.5 font-medium text-muted-foreground hover:text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors"
         >
-          <ArrowLeft className="size-3.5" />
+          <SketchBackArrow className="size-3.5" />
           <span>back to builds</span>
         </Link>
         <ModeToggle />
@@ -228,7 +230,7 @@ export default async function ProjectPage({
       <div className="space-y-8">
         <section className="space-y-3">
           <h2 className="flex items-center gap-2 border-b border-border pb-2.5 text-base sm:text-lg font-normal text-foreground tracking-tight">
-            <span className="select-none font-mono text-base sm:text-lg font-normal text-muted-foreground/50">#</span>
+            <SketchTarget className="size-4 text-[var(--notion-red-text)] shrink-0" />
             <span>problem</span>
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
@@ -238,7 +240,7 @@ export default async function ProjectPage({
 
         <section className="space-y-3">
           <h2 className="flex items-center gap-2 border-b border-border pb-2.5 text-base sm:text-lg font-normal text-foreground tracking-tight">
-            <span className="select-none font-mono text-base sm:text-lg font-normal text-muted-foreground/50">#</span>
+            <SketchBlueprint className="size-4 text-[var(--notion-blue-text)] shrink-0" />
             <span>architecture</span>
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
@@ -248,7 +250,7 @@ export default async function ProjectPage({
 
         <section className="space-y-3">
           <h2 className="flex items-center gap-2 border-b border-border pb-2.5 text-base sm:text-lg font-normal text-foreground tracking-tight">
-            <span className="select-none font-mono text-base sm:text-lg font-normal text-muted-foreground/50">#</span>
+            <SketchCheck className="size-4 text-[var(--notion-green-text)] shrink-0" />
             <span>engineering highlights</span>
           </h2>
           <ul className="space-y-2 text-sm sm:text-base font-normal text-muted-foreground">
@@ -281,9 +283,9 @@ export default async function ProjectPage({
               </div>
               <div className="flex items-center gap-2 font-mono text-xs">
                 <span className="ink-stamp">{other.year}</span>
-                <span className="inline-flex items-center gap-0.5 text-muted-foreground group-hover:text-foreground transition-colors">
+                <span className="inline-flex items-center gap-0.5 font-medium text-[var(--notion-amber-text)] group-hover:underline underline-offset-4 transition-colors">
                   <span>view</span>
-                  <span className="select-none text-[0.85em]">→</span>
+                  <SketchArrow className="size-2.5 opacity-80" />
                 </span>
               </div>
             </Link>

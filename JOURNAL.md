@@ -124,6 +124,14 @@ At the end of a session with meaningful changes:
 - **Metric context:** ~80 lines of dead code purged; 0 regression errors; 0 unused exports.
 - **Engineering references:** `src/app/globals.css`, `src/components/home/project-row.tsx`, `src/lib/utils.ts`, `src/lib/utils.test.ts`, `src/components/home/stationery-icons.tsx`.
 
+#### Work card 11: Site-wide stationery icon consistency, subtle stack ink harmony, and colored action buttons
+- **Problem / tension:** Clickable action links (`view`) appeared in muted gray without distinct color affordances; the tech stack had a rainbow effect from individual per-word ink styling; subpages (`/builds/[slug]`, `/artifacts`, `/not-found`) retained generic Lucide back-arrows instead of custom hand-drawn sketches; and spec sections & photo captions lacked matching stationery icons.
+- **Change / decision:** Added 4 new monoline stationery SVGs (`SketchBackArrow`, `SketchLayersShelf`, `SketchTarget`, `SketchBlueprint`); styled `view` triggers in warm stationery amber (`--notion-amber-text`) with `SketchArrow`; grouped Tech Stack rows under single canonical stationery tones (Blue for languages, Amber for AI/Agents, Green for Infra); added stationery marks to section headers (`#builds`, `#stack`, `#activity`, `#artifacts`, `#problem`, `#architecture`, `#highlights`); added `SketchPin` to photo captions; and replaced all Lucide back arrows with `SketchBackArrow`.
+- **Proof:** Vitest passes 2/2 unit tests; `tsc --noEmit` passes with 0 errors; ESLint passes with 0 warnings; Next.js 16.3.2 Turbopack production build succeeds generating all 14 static pages; and `graphify update .` completed.
+- **Still broken / unproven:** N/A
+- **Metric context:** 4 new monoline sketch SVGs; 0 lint warnings; 14/14 static routes generated.
+- **Engineering references:** `src/components/home/stationery-icons.tsx`, `src/components/home/project-row.tsx`, `src/app/page.tsx`, `src/app/builds/[slug]/page.tsx`, `src/app/artifacts/page.tsx`, `src/app/not-found.tsx`, `src/components/home/photo-preview.tsx`, `src/components/artifacts/photo-lightbox.tsx`.
+
 ### [GitHub Profile — README Selected Work Sync & GitHub Sanitizer Fixes] 2026-09-29
 
 #### Work card 1: GitHub HTML sanitizer stripping inline styles and Light Mode SVG invisibility

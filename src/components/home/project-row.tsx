@@ -97,10 +97,10 @@ export function ProjectRow({ project }: { readonly project: ProjectSpec }) {
           <Link
             href={`/builds/${project.slug}`}
             onClick={(e) => e.stopPropagation()}
-            className="inline-flex items-center gap-0.5 text-muted-foreground hover:text-foreground hover:underline underline-offset-4 transition-colors"
+            className="inline-flex items-center gap-0.5 font-medium text-[var(--notion-amber-text)] hover:underline underline-offset-4 transition-colors"
           >
             <span>view</span>
-            <span className="select-none text-[0.85em]">→</span>
+            <SketchArrow className="size-2.5 opacity-80" />
           </Link>
         </div>
       </div>

@@ -1,16 +1,16 @@
-# Graph Report - Portfolio  (2026-11-15)
+# Graph Report - Portfolio  (2026-11-16)
 
 ## Corpus Check
-- 39 files · ~741,617 words
+- 39 files · ~742,063 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 293 nodes · 353 edges · 26 communities (18 shown, 8 thin omitted)
+- 298 nodes · 372 edges · 26 communities (19 shown, 7 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 1 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `b92bd491`
+- Built from commit: `d17a6604`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -21,10 +21,11 @@
 - compilerOptions
 - devDependencies
 - Karan Wakhare — Portfolio & Projects Showcase
-- github-calendar.tsx
+- app/page.tsx
 - Issue tracker: GitHub
 - AGENTS.md — Portfolio Project Rules
 - scripts
+- layout.tsx
 - Architecture & Software Design Document: Karan Wakhare Portfolio
 - .prettierrc.json
 - Domain Docs
@@ -36,18 +37,17 @@
 - Log entries
 - CONTEXT.md — Ubiquitous Language & Domain Terms
 - route.ts
-- not-found.tsx
 - rules/graphify.md
 - workflows/graphify.md
 
 ## God Nodes (most connected - your core abstractions)
 1. `Log entries` - 32 edges
 2. `compilerOptions` - 16 edges
-3. `DATA` - 10 edges
-4. `[Portfolio — Layout Redesign, Unified Notion Tag System & Dead Code Purge] 2026-11-15` - 10 edges
+3. `[Portfolio — Layout Redesign, Unified Notion Tag System & Dead Code Purge] 2026-11-15` - 11 edges
+4. `DATA` - 10 edges
 5. `scripts` - 9 edges
 6. `AGENTS.md — Portfolio Project Rules` - 8 edges
-7. `getTechInkClass()` - 7 edges
+7. `getTechInkClass()` - 6 edges
 8. `include` - 6 edges
 9. `Karan Wakhare — Portfolio & Projects Showcase` - 6 edges
 10. `Issue tracker: GitHub` - 6 edges
@@ -55,8 +55,6 @@
 ## Surprising Connections (you probably didn't know these)
 - `ProjectPage()` --calls--> `getTechInkClass()`  [EXTRACTED]
   src/app/builds/[slug]/page.tsx → src/lib/utils.ts
-- `Page()` --calls--> `getTechInkClass()`  [EXTRACTED]
-  src/app/page.tsx → src/lib/utils.ts
 - `PhotoLightboxProps` --references--> `PhotoItem`  [EXTRACTED]
   src/components/artifacts/photo-lightbox.tsx → src/data/resume.ts
 - `GitHubCalendar()` --calls--> `getComputedLevel()`  [EXTRACTED]
@@ -65,19 +63,19 @@
 ## Import Cycles
 - None detected.
 
-## Communities (26 total, 8 thin omitted)
+## Communities (26 total, 7 thin omitted)
 
 ### Community 0 - "stationery-icons.tsx"
-Cohesion: 0.08
-Nodes (36): metadata, dynamicParams, generateMetadata(), getProject(), ProjectPage(), renderProjectIcon(), SCHEMA_META, TIME_FORMATTER (+28 more)
+Cohesion: 0.11
+Nodes (25): dynamicParams, generateMetadata(), getProject(), ProjectPage(), renderProjectIcon(), SCHEMA_META, metadata, PROJECT_CONFIGS (+17 more)
 
 ### Community 1 - "dependencies"
 Cohesion: 0.12
 Nodes (17): lucide-react, next-themes, dependencies, lucide-react, next, next-themes, react, react-dom (+9 more)
 
 ### Community 2 - "resume.ts"
-Cohesion: 0.11
-Nodes (16): geist, geistMono, jsonLd, metadata, viewport, PhotoLightbox(), PhotoLightboxProps, SketchPin() (+8 more)
+Cohesion: 0.13
+Nodes (14): metadata, ArtifactsGallery(), PhotoLightbox(), PhotoLightboxProps, SketchCamera(), SketchPin(), SocialsFooter(), AccentColor (+6 more)
 
 ### Community 3 - "compilerOptions"
 Cohesion: 0.07
@@ -91,9 +89,9 @@ Nodes (17): eslint, eslint-config-next, devDependencies, eslint, eslint-config-n
 Cohesion: 0.20
 Nodes (9): 1. Clone & Install Dependencies, 2. Run Development Server, 📜 Available Scripts, 💻 Getting Started, Karan Wakhare — Portfolio & Projects Showcase, 🚀 Key Features, 📄 License, Prerequisites (+1 more)
 
-### Community 6 - "github-calendar.tsx"
-Cohesion: 0.24
-Nodes (9): Page(), ApiResponse, ContributionDay, GitHubCalendar(), LEVEL_COLORS, MONTHS, getComputedLevel(), getTechColorName() (+1 more)
+### Community 6 - "app/page.tsx"
+Cohesion: 0.10
+Nodes (21): TIME_FORMATTER, ApiResponse, ContributionDay, GitHubCalendar(), LEVEL_COLORS, MONTHS, GREETINGS, HeroGreeting() (+13 more)
 
 ### Community 7 - "Issue tracker: GitHub"
 Cohesion: 0.29
@@ -106,6 +104,10 @@ Nodes (8): 1. PROJECT IDENTITY, 2. TECH STACK, 3. DEV COMMANDS, 4. LOCAL RULES &
 ### Community 9 - "scripts"
 Cohesion: 0.13
 Nodes (14): engines, node, name, private, scripts, build, dev, lint (+6 more)
+
+### Community 10 - "layout.tsx"
+Cohesion: 0.29
+Nodes (5): geist, geistMono, jsonLd, metadata, viewport
 
 ### Community 11 - "Architecture & Software Design Document: Karan Wakhare Portfolio"
 Cohesion: 0.29
@@ -124,17 +126,17 @@ Cohesion: 0.22
 Nodes (8): bioText, defaultProfileDir, __dirname, __filename, resumePath, rootDir, selectedWorkMarkdown, stackMarkdown
 
 ### Community 15 - "[Portfolio — Layout Redesign, Unified Notion Tag System & Dead Code Purge] 2026-11-15"
-Cohesion: 0.20
-Nodes (10): [Portfolio — Layout Redesign, Unified Notion Tag System & Dead Code Purge] 2026-11-15, Work card 1: Notion color token unification, project clickability, and dead code cleanup, Work card 2: Playful Notion stationery theme, hand-drawn monoline icons, and nav refinement, Work card 3: Silent stationery palette refinement, eliminating gray/purple, and removing animated hover tints, Work card 4: Subtle stationery ink typography for tech stack and project technologies, Work card 5: Project sequence reordering, nav reduction, and cross-repo GitHub profile synchronization, Work card 6: Balanced silent ink palette, refined hero pen underline, and ubiquitous project icons, Work card 7: Elimination of box pill containers on project links across home and detail pages (+2 more)
+Cohesion: 0.18
+Nodes (11): [Portfolio — Layout Redesign, Unified Notion Tag System & Dead Code Purge] 2026-11-15, Work card 10: Dead-code purge following transition to borderless stationery typography, Work card 1: Notion color token unification, project clickability, and dead code cleanup, Work card 2: Playful Notion stationery theme, hand-drawn monoline icons, and nav refinement, Work card 3: Silent stationery palette refinement, eliminating gray/purple, and removing animated hover tints, Work card 4: Subtle stationery ink typography for tech stack and project technologies, Work card 5: Project sequence reordering, nav reduction, and cross-repo GitHub profile synchronization, Work card 6: Balanced silent ink palette, refined hero pen underline, and ubiquitous project icons (+3 more)
 
 ### Community 22 - "Log entries"
 Cohesion: 0.05
 Nodes (38): Entry schema, [GitHub Profile — README Selected Work Sync & GitHub Sanitizer Fixes] 2026-09-29, How to maintain this journal, Log entries, [Portfolio - 7-Tier typography, heading hierarchy & design system harmonization] 2026-10-22, [Portfolio - About bio two lines, same colour, pipe titles] 2026-11-11, [Portfolio - Anchor headings, instant page render & bio narrative] 2026-10-22, [Portfolio - bio merge deployed] 2026-11-11 (+30 more)
 
 ## Knowledge Gaps
-- **171 isolated node(s):** `semi`, `singleQuote`, `jsxSingleQuote`, `trailingComma`, `printWidth` (+166 more)
+- **172 isolated node(s):** `semi`, `singleQuote`, `jsxSingleQuote`, `trailingComma`, `printWidth` (+167 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **8 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **7 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
@@ -142,14 +144,14 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `Log entries` connect `Log entries` to `[Portfolio — Layout Redesign, Unified Notion Tag System & Dead Code Purge] 2026-11-15`?**
   _High betweenness centrality (0.025) - this node is a cross-community bridge._
 - **Why does `dependencies` connect `dependencies` to `scripts`?**
-  _High betweenness centrality (0.015) - this node is a cross-community bridge._
+  _High betweenness centrality (0.014) - this node is a cross-community bridge._
 - **Why does `devDependencies` connect `devDependencies` to `scripts`?**
-  _High betweenness centrality (0.015) - this node is a cross-community bridge._
+  _High betweenness centrality (0.014) - this node is a cross-community bridge._
 - **What connects `semi`, `singleQuote`, `jsxSingleQuote` to the rest of the system?**
-  _171 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _172 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `stationery-icons.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.08309178743961353 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.11088709677419355 - nodes in this community are weakly interconnected._
 - **Should `dependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.11764705882352941 - nodes in this community are weakly interconnected._
 - **Should `resume.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.10582010582010581 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.13230769230769232 - nodes in this community are weakly interconnected._

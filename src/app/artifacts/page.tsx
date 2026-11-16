@@ -1,11 +1,10 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
 import { ModeToggle } from '@/components/layout/mode-toggle';
 import { SocialsFooter } from '@/components/layout/socials-footer';
 import { ArtifactsGallery } from '@/components/artifacts/artifacts-gallery';
 import { DATA } from '@/data/resume';
-import { SketchCamera } from '@/components/home/stationery-icons';
+import { SketchBackArrow, SketchCamera } from '@/components/home/stationery-icons';
 
 export const metadata: Metadata = {
   title: 'Artifacts & Photography',
@@ -77,7 +76,7 @@ export default function ArtifactsPage() {
           href="/"
           className="inline-flex items-center gap-1.5 font-medium text-muted-foreground hover:text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors cursor-pointer"
         >
-          <ArrowLeft className="size-3.5" />
+          <SketchBackArrow className="size-3.5" />
           <span>back to home</span>
         </Link>
         <ModeToggle />

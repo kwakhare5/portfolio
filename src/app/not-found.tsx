@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
+import { SketchBackArrow } from "@/components/home/stationery-icons";
 
 export const metadata: Metadata = {
   title: "404 — Page Not Found",
@@ -15,9 +15,7 @@ export default function NotFound() {
           <h1 className="text-4xl sm:text-5xl font-bold font-mono text-foreground tracking-tight">
             404
           </h1>
-          <span className="border border-border rounded px-1.5 py-0.5 text-muted-foreground text-xs font-mono">
-            not found
-          </span>
+          <span className="ink-stamp">not found</span>
         </div>
 
         <h2 className="text-base sm:text-lg font-medium text-foreground tracking-tight">
@@ -33,7 +31,7 @@ export default function NotFound() {
             href="/"
             className="inline-flex items-center gap-1.5 text-xs text-foreground font-mono editorial-link"
           >
-            <ArrowLeft className="size-3.5" />
+            <SketchBackArrow className="size-3.5" />
             <span>Return Home</span>
           </Link>
         </div>

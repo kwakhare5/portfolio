@@ -16,6 +16,9 @@ import {
   SketchSparkle,
   SketchGear,
   SketchClock,
+  SketchLayersShelf,
+  SketchGithub,
+  SketchCamera,
 } from "@/components/home/stationery-icons";
 
 const TIME_FORMATTER = new Intl.DateTimeFormat("en-US", {
@@ -128,6 +131,7 @@ export default function Page() {
         <div className="flex items-center justify-between border-b border-border pb-2.5">
           <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight flex items-center gap-2">
             <span className="text-muted-foreground/50 font-mono select-none">#</span>
+            <SketchLayersShelf className="size-4 text-[var(--notion-blue-text)] shrink-0" />
             <span>builds</span>
             <span className="font-mono text-xs font-normal text-muted-foreground">
               ({featuredProjects.length})
@@ -151,6 +155,7 @@ export default function Page() {
         <div className="flex items-center justify-between border-b border-border pb-2.5">
           <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight flex items-center gap-2">
             <span className="text-muted-foreground/50 font-mono select-none">#</span>
+            <SketchCode className="size-4 text-[var(--notion-amber-text)] shrink-0" />
             <span>stack</span>
           </h2>
           <span className="font-mono text-xs text-muted-foreground">tooling</span>
@@ -159,13 +164,22 @@ export default function Page() {
         <div className="space-y-3.5 pt-1">
           {coreStack.map((group) => {
             const cat = group.category.toLowerCase();
-            const icon = cat.includes("language") ? (
-              <SketchCode className="size-3 text-muted-foreground/70 shrink-0" />
-            ) : cat.includes("ai") ? (
-              <SketchSparkle className="size-3 text-[var(--notion-orange-text)] shrink-0" />
+            const isLang = cat.includes("language");
+            const isAi = cat.includes("ai");
+
+            const icon = isLang ? (
+              <SketchCode className="size-3 text-[var(--notion-blue-text)] shrink-0" />
+            ) : isAi ? (
+              <SketchSparkle className="size-3 text-[var(--notion-amber-text)] shrink-0" />
             ) : (
-              <SketchGear className="size-3 text-muted-foreground/70 shrink-0" />
+              <SketchGear className="size-3 text-[var(--notion-green-text)] shrink-0" />
             );
+
+            const groupTextColor = isLang
+              ? "text-[var(--notion-blue-text)]"
+              : isAi
+              ? "text-[var(--notion-amber-text)]"
+              : "text-[var(--notion-green-text)]";
 
             return (
               <div key={group.category} className="space-y-1">
@@ -179,7 +193,7 @@ export default function Page() {
                       {idx > 0 && (
                         <span className="text-muted-foreground/40 mx-2 select-none">·</span>
                       )}
-                      <span className={`${getTechInkClass(item)} font-medium select-none`}>
+                      <span className={`${groupTextColor} font-medium select-none`}>
                         {item}
                       </span>
                     </span>
@@ -200,6 +214,7 @@ export default function Page() {
         <div className="flex items-center justify-between border-b border-border pb-2.5">
           <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight flex items-center gap-2">
             <span className="text-muted-foreground/50 font-mono select-none">#</span>
+            <SketchGithub className="size-4 text-[var(--notion-blue-text)] shrink-0" />
             <span>activity</span>
           </h2>
           <span className="font-mono text-xs text-muted-foreground">github</span>
@@ -217,6 +232,7 @@ export default function Page() {
         <div className="flex items-center justify-between border-b border-border pb-2.5">
           <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight flex items-center gap-2">
             <span className="text-muted-foreground/50 font-mono select-none">#</span>
+            <SketchCamera className="size-4 text-[var(--notion-green-text)] shrink-0" />
             <span>artifacts</span>
           </h2>
           <span className="font-mono text-xs text-muted-foreground">gallery</span>
