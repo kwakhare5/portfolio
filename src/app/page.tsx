@@ -95,6 +95,7 @@ export default function Page() {
               fill
               priority
               sizes="(max-width: 640px) 64px, 80px"
+              quality={90}
               className="object-cover"
             />
           </div>

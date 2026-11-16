@@ -64,7 +64,7 @@ export const DATA: ResumeData = {
     "i build ai tools and apps, from grocery shopping on whatsapp to version control for prompts.",
     "for grocer, swiggy whitelisted instamart mcp access and picked me for the builder club.",
   ],
-  avatarUrl: "/me-avatar.png",
+  avatarUrl: "/me.png",
 
   featuredProjects: [
     {
