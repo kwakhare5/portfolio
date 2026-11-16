@@ -382,3 +382,112 @@ export function SketchBackArrow({ className = "size-3.5" }: { readonly className
     </svg>
   );
 }
+
+/**
+ * Hand-drawn monoline close mark for dismissing overlays.
+ */
+export function SketchClose({ className = "size-4" }: { readonly className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M4 4L12 12" />
+      <path d="M12 4L4 12" />
+    </svg>
+  );
+}
+
+/**
+ * Hand-drawn monoline chevron pointing left.
+ */
+export function SketchChevronLeft({ className = "size-4" }: { readonly className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M10 3.5L5.5 8L10 12.5" />
+    </svg>
+  );
+}
+
+/**
+ * Hand-drawn monoline chevron pointing right.
+ */
+export function SketchChevronRight({ className = "size-4" }: { readonly className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M6 3.5L10.5 8L6 12.5" />
+    </svg>
+  );
+}
+
+/**
+ * Hand-drawn monoline sun for light mode.
+ */
+export function SketchSun({ className = "size-4" }: { readonly className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <circle cx="8" cy="8" r="3" />
+      <path d="M8 1.5V3" />
+      <path d="M8 13V14.5" />
+      <path d="M1.5 8H3" />
+      <path d="M13 8H14.5" />
+      <path d="M3.4 3.4L4.5 4.5" />
+      <path d="M11.5 11.5L12.6 12.6" />
+      <path d="M12.6 3.4L11.5 4.5" />
+      <path d="M4.5 11.5L3.4 12.6" />
+    </svg>
+  );
+}
+
+/**
+ * Hand-drawn monoline crescent moon for dark mode.
+ */
+export function SketchMoon({ className = "size-4" }: { readonly className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M13.5 10.2A5.8 5.8 0 0 1 5.8 2.5a5.8 5.8 0 1 0 7.7 7.7Z" />
+    </svg>
+  );
+}

@@ -130,7 +130,7 @@ export default async function ProjectPage({
       <div className="flex items-center justify-between border-b border-border pb-3 font-sans text-sm">
         <Link
           href="/#builds"
-          className="inline-flex items-center gap-1.5 font-medium text-muted-foreground hover:text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors"
+          className="relative inline-flex items-center gap-1.5 font-medium text-muted-foreground hover:text-foreground hover:underline underline-offset-4 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary after:absolute after:-inset-2 after:content-[''] touch-manipulation"
         >
           <SketchBackArrow className="size-3.5" />
           <span>back to builds</span>
@@ -157,7 +157,7 @@ export default async function ProjectPage({
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 font-medium text-[var(--notion-blue-text)] hover:underline underline-offset-4"
+              className="relative inline-flex items-center gap-1 font-medium text-[var(--notion-blue-text)] hover:underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary after:absolute after:-inset-2 after:content-[''] touch-manipulation"
             >
               <span>live</span>
               <SketchArrow className="size-2.5" />
@@ -171,7 +171,7 @@ export default async function ProjectPage({
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 font-medium text-[var(--notion-blue-text)] hover:underline underline-offset-4"
+              className="relative inline-flex items-center gap-1 font-medium text-[var(--notion-blue-text)] hover:underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary after:absolute after:-inset-2 after:content-[''] touch-manipulation"
             >
               <SketchGithub className="size-3.5" />
               <span>github</span>
@@ -201,7 +201,7 @@ export default async function ProjectPage({
 
       <div className="space-y-8">
         <section className="space-y-3">
-          <div className="flex items-center justify-between gap-3 border-b border-border pb-2.5">
+          <div className="flex items-center justify-between gap-3 border-b border-border pb-3">
             <h2 className="flex items-center gap-2 text-base sm:text-lg font-normal text-foreground tracking-tight">
               <span className="text-[var(--notion-red-text)] font-mono select-none">#</span>
               <span>problem</span>
@@ -213,7 +213,7 @@ export default async function ProjectPage({
         </section>
 
         <section className="space-y-3">
-          <div className="flex items-center justify-between gap-3 border-b border-border pb-2.5">
+          <div className="flex items-center justify-between gap-3 border-b border-border pb-3">
             <h2 className="flex items-center gap-2 text-base sm:text-lg font-normal text-foreground tracking-tight">
               <span className="text-[var(--notion-blue-text)] font-mono select-none">#</span>
               <span>architecture</span>
@@ -225,7 +225,7 @@ export default async function ProjectPage({
         </section>
 
         <section className="space-y-3">
-          <div className="flex items-center justify-between gap-3 border-b border-border pb-2.5">
+          <div className="flex items-center justify-between gap-3 border-b border-border pb-3">
             <h2 className="flex items-center gap-2 text-base sm:text-lg font-normal text-foreground tracking-tight">
               <span className="text-[var(--notion-green-text)] font-mono select-none">#</span>
               <span>engineering highlights</span>
@@ -254,7 +254,7 @@ export default async function ProjectPage({
             <Link
               key={other.slug}
               href={`/builds/${other.slug}`}
-              className="group flex items-center justify-between gap-3 py-3 border-b border-border last:border-b-0 rounded-md px-3 -mx-3 hover:bg-muted/40 transition-colors"
+              className="group flex items-center justify-between gap-3 py-3 border-b border-border last:border-b-0 rounded-md px-3 -mx-3 hover:bg-muted/40 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             >
               <div className="flex items-center gap-2.5">
                 <ProjectIcon project={other} />

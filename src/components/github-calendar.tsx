@@ -165,10 +165,10 @@ export function GitHubCalendar() {
           href="https://github.com/kwakhare5"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 text-muted-foreground transition-colors editorial-link notion-blue-hover"
+          className="relative inline-flex items-center gap-1 text-foreground font-medium hover:underline underline-offset-4 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary after:absolute after:-inset-1.5 after:content-[''] touch-manipulation"
         >
-          <span>@kwakhare5</span>
           <SketchGithub className="size-3.5" />
+          <span>@kwakhare5</span>
         </a>
       </div>
 
@@ -176,7 +176,7 @@ export function GitHubCalendar() {
       <div className="relative w-full border border-border rounded-lg p-2.5 sm:p-4 bg-card">
         {loading ? (
           <div className="min-h-[160px] w-full flex items-center justify-center text-xs font-mono text-muted-foreground animate-pulse">
-            Fetching GitHub activity...
+            fetching github activity...
           </div>
         ) : weeks.length > 0 ? (
           <div className="w-full flex flex-col gap-2 select-none">

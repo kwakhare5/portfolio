@@ -33,7 +33,7 @@ export function ProjectRow({ project }: { readonly project: ProjectSpec }) {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="pointer-events-auto inline-flex items-center gap-0.5 font-medium text-[var(--notion-blue-text)] hover:underline underline-offset-4"
+                className="pointer-events-auto relative inline-flex items-center gap-0.5 font-medium text-[var(--notion-blue-text)] hover:underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary after:absolute after:-inset-2 after:content-[''] touch-manipulation"
               >
                 <span>live</span>
                 <SketchArrow className="size-2.5" />

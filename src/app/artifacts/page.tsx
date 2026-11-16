@@ -77,7 +77,7 @@ export default function ArtifactsPage() {
       <div className="flex items-center justify-between border-b border-border pb-3 font-sans text-sm">
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 font-medium text-muted-foreground hover:text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors"
+          className="relative inline-flex items-center gap-1.5 font-medium text-muted-foreground hover:text-foreground hover:underline underline-offset-4 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary after:absolute after:-inset-2 after:content-[''] touch-manipulation"
         >
           <SketchBackArrow className="size-3.5" />
           <span>back to home</span>

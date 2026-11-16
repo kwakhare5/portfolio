@@ -29,10 +29,10 @@ export default function NotFound() {
         <div className="pt-2">
           <Link
             href="/"
-            className="inline-flex items-center gap-1.5 text-xs text-foreground font-mono editorial-link"
+            className="relative inline-flex items-center gap-1.5 text-xs text-muted-foreground font-mono hover:text-foreground hover:underline underline-offset-4 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary after:absolute after:-inset-2 after:content-[''] touch-manipulation"
           >
             <SketchBackArrow className="size-3.5" />
-            <span>Return Home</span>
+            <span>return home</span>
           </Link>
         </div>
       </div>

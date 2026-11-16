@@ -18,6 +18,9 @@ const STACK_ICON: Record<StackIconKey, typeof SketchCode> = {
   gear: SketchGear,
 };
 
+const NAV_LINK =
+  "relative inline-flex items-center font-medium text-muted-foreground hover:text-foreground hover:underline underline-offset-4 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary py-1 px-1 -my-1 -mx-1 after:absolute after:-inset-2 after:content-[''] touch-manipulation";
+
 const profileJsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfilePage",
@@ -47,22 +50,13 @@ export default function Page() {
         {/* Nav Bar */}
         <div className="flex items-center justify-between gap-2 text-sm font-sans border-b border-border pb-3">
           <nav className="flex flex-wrap items-center gap-3 sm:gap-5 text-muted-foreground text-sm">
-            <a
-              href="#builds"
-              className="relative font-medium underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors py-1 px-1 -my-1 -mx-1 after:absolute after:-inset-2 after:content-[''] touch-manipulation"
-            >
+            <a href="#builds" className={NAV_LINK}>
               builds
             </a>
-            <Link
-              href="/artifacts"
-              className="relative font-medium underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors py-1 px-1 -my-1 -mx-1 after:absolute after:-inset-2 after:content-[''] touch-manipulation"
-            >
+            <Link href="/artifacts" className={NAV_LINK}>
               artifacts
             </Link>
-            <a
-              href="#socials"
-              className="relative font-medium underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors py-1 px-1 -my-1 -mx-1 after:absolute after:-inset-2 after:content-[''] touch-manipulation"
-            >
+            <a href="#socials" className={NAV_LINK}>
               socials
             </a>
           </nav>
@@ -82,7 +76,7 @@ export default function Page() {
                 href="https://github.com/kwakhare5"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="editorial-link inline-flex items-center gap-1 text-foreground hover:text-foreground font-medium transition-colors"
+                className="relative inline-flex items-center gap-1 text-foreground hover:text-foreground font-medium hover:underline underline-offset-4 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary after:absolute after:-inset-1.5 after:content-[''] touch-manipulation"
               >
                 <SketchGithub className="size-3.5 shrink-0" />
                 kwakhare5
@@ -94,7 +88,7 @@ export default function Page() {
             </p>
           </div>
 
-          <div className="relative size-16 sm:size-20 shrink-0 overflow-hidden rounded-full border border-border bg-muted hover:ring-2 hover:ring-primary/20 transition-all shadow-xs">
+          <div className="relative size-16 sm:size-20 shrink-0 overflow-hidden rounded-full border border-border bg-muted shadow-xs">
             <Image
               src={avatarUrl}
               alt={name}
@@ -120,12 +114,15 @@ export default function Page() {
         className="reveal space-y-2"
         style={{ animationDelay: "60ms" }}
       >
-        <div className="flex items-center justify-between gap-3 border-b border-border pb-2.5">
+        <div className="flex items-center justify-between gap-3 border-b border-border pb-3">
           <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight flex items-center gap-2">
             <span className="text-[var(--notion-blue-text)] font-mono select-none">#</span>
             <span>builds</span>
           </h2>
-          <span className="font-mono text-xs text-muted-foreground">
+          <span
+            className="font-mono text-xs text-muted-foreground"
+            aria-label={`${featuredProjects.length} builds`}
+          >
             {featuredProjects.length}
           </span>
         </div>
@@ -143,7 +140,7 @@ export default function Page() {
         className="reveal space-y-4"
         style={{ animationDelay: "120ms" }}
       >
-        <div className="flex items-center justify-between gap-3 border-b border-border pb-2.5">
+        <div className="flex items-center justify-between gap-3 border-b border-border pb-3">
           <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight flex items-center gap-2">
             <span className="text-[var(--notion-amber-text)] font-mono select-none">#</span>
             <span>stack</span>
@@ -185,7 +182,7 @@ export default function Page() {
         className="reveal space-y-4"
         style={{ animationDelay: "180ms" }}
       >
-        <div className="flex items-center justify-between gap-3 border-b border-border pb-2.5">
+        <div className="flex items-center justify-between gap-3 border-b border-border pb-3">
           <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight flex items-center gap-2">
             <span className="text-[var(--notion-green-text)] font-mono select-none">#</span>
             <span>activity</span>
@@ -202,7 +199,7 @@ export default function Page() {
         className="reveal space-y-4"
         style={{ animationDelay: "240ms" }}
       >
-        <div className="flex items-center justify-between gap-3 border-b border-border pb-2.5">
+        <div className="flex items-center justify-between gap-3 border-b border-border pb-3">
           <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight flex items-center gap-2">
             <span className="text-[var(--notion-blue-text)] font-mono select-none">#</span>
             <span>artifacts</span>

@@ -22,7 +22,7 @@ export function SocialsFooter() {
       <div className="flex flex-wrap items-center justify-between gap-y-2 gap-x-3 text-xs sm:text-sm font-mono text-muted-foreground">
         <div className="flex flex-wrap items-center gap-2">
           <span className="text-foreground font-medium">find me on</span>
-          <span className="text-muted-foreground/60 select-none">—</span>
+          <span className="text-muted-foreground/60 select-none">·</span>
           <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
             {contact.socials.map((social, idx) => (
               <React.Fragment key={social.name}>
@@ -30,7 +30,7 @@ export function SocialsFooter() {
                 <a
                   href={social.url}
                   {...(social.url.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                  className="inline-flex items-center gap-1 font-medium text-foreground hover:underline underline-offset-4 transition-colors"
+                  className="relative inline-flex items-center gap-1 font-medium text-foreground hover:underline underline-offset-4 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary after:absolute after:-inset-2 after:content-[''] touch-manipulation"
                 >
                   {SOCIAL_ICONS[social.name] ?? null}
                   <span>{social.label}</span>

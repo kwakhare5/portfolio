@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { PhotoItem } from "@/data/resume";
-import { SketchFrame } from "@/components/stationery-icons";
+import { SketchFrame, SketchArrow } from "@/components/stationery-icons";
 
 interface PhotoCardProps {
   readonly photo: PhotoItem;
@@ -23,7 +23,7 @@ export function PhotoCard({ photo, index, onClick, sizes, stamp }: PhotoCardProp
           fill
           sizes={sizes}
           quality={90}
-          className="object-cover transition-transform duration-250 ease-out group-hover:scale-[1.03]"
+          className="object-cover transition-transform duration-200 ease-out group-hover:scale-[1.03]"
         />
       </div>
       <div
@@ -36,6 +36,7 @@ export function PhotoCard({ photo, index, onClick, sizes, stamp }: PhotoCardProp
         <p className="min-w-0 group-hover:text-foreground transition-colors line-clamp-2 leading-normal flex items-center gap-1">
           <SketchFrame className="size-3 shrink-0 text-muted-foreground/50" />
           <span>{photo.caption}</span>
+          <SketchArrow className="size-2.5 shrink-0 opacity-60 transition-opacity group-hover:opacity-100" />
         </p>
         {stamp && <span className="shrink-0 ink-stamp">{stamp}</span>}
       </div>

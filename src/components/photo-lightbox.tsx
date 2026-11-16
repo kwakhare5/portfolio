@@ -2,9 +2,13 @@
 
 import { useCallback, useEffect } from "react";
 import Image from "next/image";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import type { PhotoItem } from "@/data/resume";
-import { SketchFrame } from "@/components/stationery-icons";
+import {
+  SketchFrame,
+  SketchClose,
+  SketchChevronLeft,
+  SketchChevronRight,
+} from "@/components/stationery-icons";
 
 interface PhotoLightboxProps {
   readonly photos: readonly PhotoItem[];
@@ -76,10 +80,10 @@ export function PhotoLightbox({
         <button
           type="button"
           onClick={onClose}
-          className="size-9 rounded-full bg-muted border border-border flex items-center justify-center text-foreground hover:bg-accent focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-hidden transition-[transform,background-color] duration-150 ease-out cursor-pointer active:scale-[0.96]"
+          className="size-9 rounded-full bg-muted border border-border flex items-center justify-center text-foreground hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-[transform,background-color] duration-150 ease-out cursor-pointer active:scale-[0.96]"
           aria-label="Close preview"
         >
-          <X className="size-4" />
+          <SketchClose className="size-4" />
         </button>
       </div>
 
@@ -90,10 +94,10 @@ export function PhotoLightbox({
           e.stopPropagation();
           handlePrev();
         }}
-        className="absolute left-3 sm:left-6 z-50 size-10 rounded-full bg-muted border border-border flex items-center justify-center text-foreground hover:bg-accent focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-hidden transition-[transform,background-color] duration-150 ease-out cursor-pointer active:scale-[0.96]"
+        className="absolute left-3 sm:left-6 z-50 size-10 rounded-full bg-muted border border-border flex items-center justify-center text-foreground hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-[transform,background-color] duration-150 ease-out cursor-pointer active:scale-[0.96]"
         aria-label="Previous photo"
       >
-        <ChevronLeft className="size-5" />
+        <SketchChevronLeft className="size-4" />
       </button>
 
       <button
@@ -102,10 +106,10 @@ export function PhotoLightbox({
           e.stopPropagation();
           handleNext();
         }}
-        className="absolute right-3 sm:right-6 z-50 size-10 rounded-full bg-muted border border-border flex items-center justify-center text-foreground hover:bg-accent focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-hidden transition-[transform,background-color] duration-150 ease-out cursor-pointer active:scale-[0.96]"
+        className="absolute right-3 sm:right-6 z-50 size-10 rounded-full bg-muted border border-border flex items-center justify-center text-foreground hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-[transform,background-color] duration-150 ease-out cursor-pointer active:scale-[0.96]"
         aria-label="Next photo"
       >
-        <ChevronRight className="size-5" />
+        <SketchChevronRight className="size-4" />
       </button>
 
       {/* Active Image Container */}
