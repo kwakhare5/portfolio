@@ -118,15 +118,14 @@ export default function Page() {
         className="reveal space-y-2"
         style={{ animationDelay: "60ms" }}
       >
-        <div className="flex items-center justify-between border-b border-border pb-2.5">
+        <div className="flex items-center justify-between gap-3 border-b border-border pb-2.5">
           <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight flex items-center gap-2">
-            <span className="text-muted-foreground/50 font-mono select-none">#</span>
             <SketchLayersShelf className="size-4 text-[var(--notion-blue-text)] shrink-0" />
             <span>builds</span>
-            <span className="font-mono text-xs font-normal text-muted-foreground">
-              ({featuredProjects.length})
-            </span>
           </h2>
+          <span className="font-mono text-xs text-muted-foreground">
+            {featuredProjects.length}
+          </span>
         </div>
 
         <div className="flex flex-col">
@@ -142,9 +141,8 @@ export default function Page() {
         className="reveal space-y-4"
         style={{ animationDelay: "120ms" }}
       >
-        <div className="flex items-center justify-between border-b border-border pb-2.5">
+        <div className="flex items-center justify-between gap-3 border-b border-border pb-2.5">
           <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight flex items-center gap-2">
-            <span className="text-muted-foreground/50 font-mono select-none">#</span>
             <SketchCode className="size-4 text-[var(--notion-amber-text)] shrink-0" />
             <span>stack</span>
           </h2>
@@ -201,9 +199,8 @@ export default function Page() {
         className="reveal space-y-4"
         style={{ animationDelay: "180ms" }}
       >
-        <div className="flex items-center justify-between border-b border-border pb-2.5">
+        <div className="flex items-center justify-between gap-3 border-b border-border pb-2.5">
           <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight flex items-center gap-2">
-            <span className="text-muted-foreground/50 font-mono select-none">#</span>
             <SketchGithub className="size-4 text-[var(--notion-blue-text)] shrink-0" />
             <span>activity</span>
           </h2>
@@ -219,10 +216,9 @@ export default function Page() {
         className="reveal space-y-4"
         style={{ animationDelay: "240ms" }}
       >
-        <div className="flex items-center justify-between border-b border-border pb-2.5">
+        <div className="flex items-center justify-between gap-3 border-b border-border pb-2.5">
           <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight flex items-center gap-2">
-            <span className="text-muted-foreground/50 font-mono select-none">#</span>
-            <SketchCamera className="size-4 text-[var(--notion-green-text)] shrink-0" />
+            <SketchCamera className="size-4 text-[var(--notion-blue-text)] shrink-0" />
             <span>artifacts</span>
           </h2>
           <span className="font-mono text-xs text-muted-foreground">gallery</span>

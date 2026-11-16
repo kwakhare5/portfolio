@@ -203,30 +203,36 @@ export default async function ProjectPage({
 
       <div className="space-y-8">
         <section className="space-y-3">
-          <h2 className="flex items-center gap-2 border-b border-border pb-2.5 text-base sm:text-lg font-normal text-foreground tracking-tight">
-            <SketchTarget className="size-4 text-[var(--notion-red-text)] shrink-0" />
-            <span>problem</span>
-          </h2>
+          <div className="flex items-center justify-between gap-3 border-b border-border pb-2.5">
+            <h2 className="flex items-center gap-2 text-base sm:text-lg font-normal text-foreground tracking-tight">
+              <SketchTarget className="size-4 text-[var(--notion-red-text)] shrink-0" />
+              <span>problem</span>
+            </h2>
+          </div>
           <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
             {project.specs.problem}
           </p>
         </section>
 
         <section className="space-y-3">
-          <h2 className="flex items-center gap-2 border-b border-border pb-2.5 text-base sm:text-lg font-normal text-foreground tracking-tight">
-            <SketchBlueprint className="size-4 text-[var(--notion-blue-text)] shrink-0" />
-            <span>architecture</span>
-          </h2>
+          <div className="flex items-center justify-between gap-3 border-b border-border pb-2.5">
+            <h2 className="flex items-center gap-2 text-base sm:text-lg font-normal text-foreground tracking-tight">
+              <SketchBlueprint className="size-4 text-[var(--notion-blue-text)] shrink-0" />
+              <span>architecture</span>
+            </h2>
+          </div>
           <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
             {project.specs.architecture}
           </p>
         </section>
 
         <section className="space-y-3">
-          <h2 className="flex items-center gap-2 border-b border-border pb-2.5 text-base sm:text-lg font-normal text-foreground tracking-tight">
-            <SketchCheck className="size-4 text-[var(--notion-green-text)] shrink-0" />
-            <span>engineering highlights</span>
-          </h2>
+          <div className="flex items-center justify-between gap-3 border-b border-border pb-2.5">
+            <h2 className="flex items-center gap-2 text-base sm:text-lg font-normal text-foreground tracking-tight">
+              <SketchCheck className="size-4 text-[var(--notion-green-text)] shrink-0" />
+              <span>engineering highlights</span>
+            </h2>
+          </div>
           <ul className="space-y-2 text-sm sm:text-base font-normal text-muted-foreground">
             {project.specs.highlights.map((highlight, idx) => (
               <li key={idx} className="flex items-start gap-2 leading-relaxed">
@@ -247,7 +253,7 @@ export default async function ProjectPage({
             <Link
               key={other.slug}
               href={`/builds/${other.slug}`}
-              className="group flex items-center justify-between gap-3 py-3 border-b border-border last:border-b-0 rounded-sm px-2 -mx-2 hover:bg-muted/40 transition-colors"
+              className="group flex items-center justify-between gap-3 py-3 border-b border-border last:border-b-0 rounded-md px-3 -mx-3 hover:bg-muted/40 transition-colors"
             >
               <div className="flex items-center gap-2.5">
                 <ProjectIcon project={other} />

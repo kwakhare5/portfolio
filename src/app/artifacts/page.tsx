@@ -77,7 +77,7 @@ export default function ArtifactsPage() {
       <div className="flex items-center justify-between border-b border-border pb-3 font-sans text-sm">
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 font-medium text-muted-foreground hover:text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors cursor-pointer"
+          className="inline-flex items-center gap-1.5 font-medium text-muted-foreground hover:text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors"
         >
           <SketchBackArrow className="size-3.5" />
           <span>back to home</span>
@@ -86,10 +86,10 @@ export default function ArtifactsPage() {
       </div>
 
       {/* Header Intro */}
-      <div className="flex flex-col gap-1.5">
-        <div className="flex items-center gap-2">
-          <SketchCamera className="size-5 text-[var(--notion-blue-text)] shrink-0" />
-          <h1 className="text-xl sm:text-2xl font-semibold tracking-tight text-foreground">
+      <header className="flex flex-col gap-3">
+        <div className="flex items-center gap-3 flex-wrap">
+          <SketchCamera className="size-6 text-[var(--notion-blue-text)] shrink-0" />
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-foreground">
             artifacts
           </h1>
           <span className="ink-stamp">
@@ -99,7 +99,7 @@ export default function ArtifactsPage() {
         <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
           Moments and places from wandering around Dubai, Singapore, Abu Dhabi, Udaipur, and Pune.
         </p>
-      </div>
+      </header>
 
       {/* Interactive Grid & Lightbox */}
       <ArtifactsGallery photos={photos} />
