@@ -11,6 +11,7 @@ import {
   SketchGithub,
   SketchCheck,
 } from "@/components/stationery-icons";
+import { KeywordText } from "@/components/keyword-text";
 
 function getProject(slug: string) {
   return DATA.featuredProjects.find((project) => project.slug === slug);
@@ -147,7 +148,7 @@ export default async function ProjectPage({
         </div>
 
         <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-          {project.oneLiner}
+          <KeywordText text={project.oneLiner} />
         </p>
 
         <div className="flex flex-wrap items-center gap-2 font-mono text-xs sm:text-sm">
@@ -156,7 +157,7 @@ export default async function ProjectPage({
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 font-medium text-[var(--notion-green-text)] hover:underline underline-offset-4"
+              className="inline-flex items-center gap-1 font-medium text-[var(--notion-blue-text)] hover:underline underline-offset-4"
             >
               <span>live</span>
               <SketchArrow className="size-2.5" />
@@ -207,7 +208,7 @@ export default async function ProjectPage({
             </h2>
           </div>
           <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-            {project.specs.problem}
+            <KeywordText text={project.specs.problem} />
           </p>
         </section>
 
@@ -219,7 +220,7 @@ export default async function ProjectPage({
             </h2>
           </div>
           <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-            {project.specs.architecture}
+            <KeywordText text={project.specs.architecture} />
           </p>
         </section>
 
@@ -234,10 +235,13 @@ export default async function ProjectPage({
             {project.specs.highlights.map((highlight, idx) => (
               <li key={idx} className="flex items-start gap-2 leading-relaxed">
                 <SketchCheck className="size-3.5 shrink-0 mt-1 text-[var(--notion-green-text)]" />
-                <span>{highlight}</span>
+                <span><KeywordText text={highlight} /></span>
               </li>
             ))}
           </ul>
+          <p className="pt-1 font-mono text-xs text-muted-foreground leading-relaxed">
+            <KeywordText text={project.specs.status} />
+          </p>
         </section>
       </div>
 

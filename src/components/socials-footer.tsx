@@ -8,10 +8,10 @@ import {
 } from "@/components/stationery-icons";
 
 const SOCIAL_ICONS: Record<string, React.ReactNode> = {
-  X: <SketchX className="size-3.5 shrink-0" />,
-  GitHub: <SketchGithub className="size-3.5 shrink-0" />,
-  LinkedIn: <SketchLinkedin className="size-3.5 shrink-0" />,
-  Email: <SketchMail className="size-3.5 shrink-0" />,
+  X: <SketchX className="size-3.5 shrink-0 text-foreground" />,
+  GitHub: <SketchGithub className="size-3.5 shrink-0 text-[var(--notion-sand-text)]" />,
+  LinkedIn: <SketchLinkedin className="size-3.5 shrink-0 text-[var(--notion-blue-text)]" />,
+  Email: <SketchMail className="size-3.5 shrink-0 text-[var(--notion-red-text)]" />,
 };
 
 export function SocialsFooter() {

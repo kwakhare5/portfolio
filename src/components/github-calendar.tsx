@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { ExternalLink } from "lucide-react";
+import { SketchGithub } from "@/components/stationery-icons";
 import { getComputedLevel } from "@/lib/utils";
 
 interface ContributionDay {
@@ -168,7 +168,7 @@ export function GitHubCalendar() {
           className="inline-flex items-center gap-1 text-muted-foreground transition-colors editorial-link notion-blue-hover"
         >
           <span>@kwakhare5</span>
-          <ExternalLink className="size-3" />
+          <SketchGithub className="size-3.5" />
         </a>
       </div>
 

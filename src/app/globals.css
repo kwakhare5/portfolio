@@ -1,6 +1,9 @@
 /* -- 1. Imports & Directives ------------------------------------------------ */
 @import "tailwindcss";
 
+/* Docs contain example class strings (e.g. wildcard inks) that are not real utilities. */
+@source not "../../**/*.md";
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* -- 2. Design System Tokens ----------------------------------------------- */
@@ -142,10 +145,7 @@
 }
 
 /* Notion link hover color transitions */
-.notion-green-hover:hover  { color: var(--notion-green-text); }
 .notion-blue-hover:hover   { color: var(--notion-blue-text); }
-.notion-amber-hover:hover  { color: var(--notion-amber-text); }
-.notion-red-hover:hover    { color: var(--notion-red-text); }
 
 /* -- 6. Scrollbar Utilities ------------------------------------------------ */
 html,

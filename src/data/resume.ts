@@ -4,6 +4,7 @@ export interface ProjectSpecs {
   readonly problem: string;
   readonly architecture: string;
   readonly highlights: readonly string[];
+  readonly status: string;
 }
 
 export interface ProjectSpec {
@@ -61,6 +62,7 @@ export const DATA: ResumeData = {
   bio: [
     "i'm an ai engineer and full-stack developer studying computer engineering in pune.",
     "i build ai tools and apps, from grocery shopping on whatsapp to version control for prompts.",
+    "grocer got me selected for the swiggy builder club.",
   ],
   avatarUrl: "/me-avatar.png",
 
@@ -70,21 +72,23 @@ export const DATA: ResumeData = {
       slug: "beam",
       year: "'26",
       icon: "sound",
-      oneLiner: "Offline Windows 11 capsule above your taskbar with live music controls, a file shelf, a countdown, and a calendar.",
+      oneLiner: "One offline pill above your Windows 11 taskbar for music, files, countdowns, and a calendar — no cloud, no account.",
       liveUrl: "https://beamm.vercel.app/",
       githubUrl: "https://github.com/kwakhare5/beam",
       stack: ["TypeScript", "Electron", "Vite", ".NET", "Windows SMTC"],
       schemaCategory: "UtilitiesApplication",
       schemaPlatform: "Windows 11",
       specs: {
-        problem: "Windows 11 scatters media controls, timers, and quick file drops across taskbar flyouts and separate apps.",
-        architecture: "An Electron shell renders a 136×42 transparent capsule that reads Windows media sessions through a .NET helper, persists its position, and runs fully offline with no accounts or network calls.",
+        problem: "Windows 11 scatters media controls, timers, and quick file drops across taskbar flyouts and separate apps, so reaching for them breaks your flow.",
+        architecture: "An Electron shell renders a transparent capsule that reads Windows media sessions through a .NET helper, keeps its position across restarts, and makes zero network calls; a global hotkey opens it to whatever the pill shows.",
         highlights: [
           "Live SMTC media controls with seek, artwork, and automatic player switching",
-          "Drag-and-drop file shelf with drag-out back to Explorer and a 50-file cap",
+          "File shelf with drag-out to Explorer, Copy All straight to Ctrl+V, and missing-file badges",
+          "Alt+Space opens the panel to whatever the pill shows, and the pill hides itself in fullscreen",
           "Countdown that chimes and sends a Windows notification while the pill is hidden",
-          "30-check PowerShell suite covering real Explorer drags and helper crash recovery",
+          "30/30 real-app verification checks; ~90 MB memory and zero network sockets",
         ],
+        status: "Shipped v0.1.1 with a one-click installer; the browser demo runs the real renderer.",
       },
     },
     {
@@ -92,20 +96,23 @@ export const DATA: ResumeData = {
       slug: "grocer",
       year: "'26",
       icon: "tote",
-      oneLiner: "WhatsApp grocery assistant that verifies your order against live Swiggy Instamart inventory and auto-fixes out-of-stock items.",
+      oneLiner: "Text your grocery list on WhatsApp; Grocer checks live Swiggy Instamart stock, swaps what's missing, and waits for your tap before ordering.",
       liveUrl: "https://grocerr.vercel.app/",
       githubUrl: "https://github.com/kwakhare5/Grocer",
       stack: ["Python", "FastAPI", "Swiggy Instamart MCP", "WhatsApp API", "Next.js 16"],
       schemaCategory: "BusinessApplication",
       schemaPlatform: "Web",
       specs: {
-        problem: "Quick-commerce carts constantly break when items go out of stock or pack sizes change, forcing you to start over.",
-        architecture: "A FastAPI backend turns WhatsApp messages into a strict order contract, checks live Swiggy Instamart inventory via MCP, and automatically suggests valid swaps before you confirm checkout.",
+        problem: "Quick-commerce carts break when items go out of stock or pack sizes change, and starting over is the only fix the apps give you.",
+        architecture: "WhatsApp Cloud API feeds a FastAPI capability router; Python owns money, stock math, and checkout locks against live Swiggy Instamart via MCP, while the LLM only handles language.",
         highlights: [
-          "Direct Swiggy Instamart cart integration via Model Context Protocol (MCP)",
-          "Automatic cart repair that replaces out-of-stock items without breaking dietary rules",
-          "Explicit 1-tap WhatsApp checkout confirmation to prevent accidental purchases",
+          "Safety classes on every message: a read path can never reach a write path",
+          "3-lock checkout: physical WhatsApp button tap only, live cart re-verification, exactly-once database guard",
+          "₹1,000 cart cap, and coupons applied only when the payable total goes down",
+          "Out-of-stock items reported honestly with valid swaps, never silently dropped",
+          "Addresses and basket snapshots deleted after 24 hours for DPDP compliance",
         ],
+        status: "293 tests (191 offline, 82 database, 20 live) and a 40/40 router eval with zero unsafe writes. Checkout is built but never live-tested — no order has been placed. Independent project, not affiliated with Swiggy.",
       },
     },
     {
@@ -113,20 +120,22 @@ export const DATA: ResumeData = {
       slug: "git-for-prompts",
       year: "'26",
       icon: "prompt",
-      oneLiner: "Git-style version control for AI prompts with commit histories, token diffing, and multi-model evals.",
+      oneLiner: "A local-first package manager for AI prompts: version, diff, and eval them offline in your terminal, then sync to a cloud studio.",
       liveUrl: "https://gitforprompts.vercel.app/",
       githubUrl: "https://github.com/kwakhare5/Git-for-Prompts",
       stack: ["Next.js 16", "TypeScript", "Drizzle ORM", "Monaco Editor", "PostgreSQL", "Tailwind CSS"],
       schemaCategory: "DeveloperApplication",
       schemaPlatform: "Web",
       specs: {
-        problem: "Editing prompts in messy text files leads to broken outputs, lost versions, and unnoticed token cost spikes.",
-        architecture: "A Next.js and PostgreSQL platform that stores immutable prompt versions, renders word-by-word diffs in Monaco Editor, and runs automated tests across multiple AI models simultaneously.",
+        problem: "Prompts live in messy text files, so versions get lost, edits break outputs unseen, and token costs spike without anyone noticing.",
+        architecture: "A pnpm monorepo: a CLI on in-process WebAssembly SQLite works fully offline; a Next.js and PostgreSQL studio syncs snapshots behind transaction-level advisory locks.",
         highlights: [
-          "Monaco Editor diff viewer showing exact word and token changes between versions",
-          "Automated test runner benchmarking accuracy, latency, and cost across models",
-          "Native gfp CLI and webhooks for pulling versioned prompts straight into production code",
+          "Immutable versions track templates, variables, model params, tools, and output schemas",
+          "Monaco side-by-side diffs with word, variable, and model config changes",
+          "Batch regression evals across Groq, OpenRouter, OpenAI, Anthropic, and Ollama",
+          "API keys stored as one-way SHA-256 hashes, HMAC-signed webhooks, and an MCP manifest for Claude Desktop and Cursor",
         ],
+        status: "v1.0.0 under MIT; real-PostgreSQL integration tests with zero internal mocks.",
       },
     },
     {
@@ -134,19 +143,21 @@ export const DATA: ResumeData = {
       slug: "outpost",
       year: "'26",
       icon: "box",
-      oneLiner: "Inventory replenishment decision engine for quick-commerce dark stores that forecasts stockouts and routes inter-store transfers with human-in-the-loop approval.",
+      oneLiner: "A replenishment decision engine for quick-commerce dark stores: forecasts stockouts, proposes transfers and reorders, and waits for human sign-off.",
       githubUrl: "https://github.com/kwakhare5/Outpost",
       stack: ["Python", "FastAPI", "LangGraph", "Next.js 16", "TypeScript", "SQLite"],
       schemaCategory: "BusinessApplication",
       schemaPlatform: "Web",
       specs: {
-        problem: "Quick-commerce dark stores lose margin to sudden stockouts during demand surges and perishable food expiry, while blind auto-reorders risk phantom stock or costly emergency courier runs.",
-        architecture: "A FastAPI and LangGraph 5-node state machine paired with Holt Linear demand forecasting that tracks physical FIFO inventory batches across 5 Mumbai hubs and proposes transfers or purchase orders behind a human approval gate.",
+        problem: "Dark stores lose margin to stockouts and expiry write-offs, and sales logs hide true demand — a stocked-out SKU records zero sales.",
+        architecture: "A FastAPI core and a deterministic 5-node LangGraph DAG with Holt Linear forecasting over a physical FIFO batch ledger across 3 Mumbai nodes; the same seed replays identically, and every high-consequence action waits for human approval.",
         highlights: [
-          "Holt Linear double exponential smoothing evaluated on a 3-day holdout using WAPE and MAE",
-          "Physical FIFO batch ledger enforcing strict conservation of mass and realistic transit ETAs",
-          "Level-2 autonomy gate requiring operator sign-off with stale-state detection and idempotency locks",
+          "Unconstrained demand accounting: requested = fulfilled + lost, so censored demand never becomes fake revenue",
+          "Conservation of mass: destination stock credits only after dock-door crate counts, with road transit ETAs",
+          "Donor safety-buffer proof before any lateral transfer; stale approvals rejected server-side with 409",
+          "109 passing tests; WAPE and MAE reported on a 3-day holdout",
         ],
+        status: "Live operations console on a deterministic simulator stated upfront — not a live dark store network.",
       },
     },
   ],

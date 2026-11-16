@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ModeToggle } from '@/components/mode-toggle';
 import { SocialsFooter } from '@/components/socials-footer';
-import { ArtifactsGallery } from '@/components/artifacts-gallery';
+import { PhotoGrid } from '@/components/photo-grid';
 import { DATA, SITE_NAME } from '@/data/resume';
 import { SketchBackArrow, SketchCamera } from '@/components/stationery-icons';
 
@@ -102,7 +102,7 @@ export default function ArtifactsPage() {
       </header>
 
       {/* Interactive Grid & Lightbox */}
-      <ArtifactsGallery photos={photos} />
+      <PhotoGrid photos={photos} variant="gallery" />
 
       {/* Socials Footer */}
       <SocialsFooter />

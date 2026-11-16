@@ -119,8 +119,7 @@ export function PhotoLightbox({
             alt={currentPhoto.caption || "Photo"}
             width={1500}
             height={2000}
-            sizes="(max-width: 640px) 92vw, 85vw"
-            quality={95}
+            unoptimized
             priority
             className="h-auto max-h-[75dvh] sm:max-h-[80dvh] w-auto max-w-[92vw] sm:max-w-[85vw] object-contain"
           />

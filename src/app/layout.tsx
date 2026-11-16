@@ -112,7 +112,7 @@ const jsonLd = {
       "@id": `${DATA.url}/#person`,
       name: DATA.name,
       url: DATA.url,
-      image: `${DATA.url}/me.png`,
+      image: `${DATA.url}/me-og.png`,
       jobTitle: ROLE,
       description: SITE_DESCRIPTION,
       email: DATA.contact.socials.find((s) => s.url.startsWith("mailto:"))?.url.replace("mailto:", ""),

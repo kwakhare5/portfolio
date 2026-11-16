@@ -3,13 +3,14 @@ import Link from "next/link";
 import { HeroGreeting } from "@/components/hero-greeting";
 import { ProjectRow } from "@/components/project-row";
 import { GitHubCalendar } from "@/components/github-calendar";
-import { PhotoPreview } from "@/components/photo-preview";
+import { PhotoGrid } from "@/components/photo-grid";
 import { LocalClock } from "@/components/local-clock";
 import { ModeToggle } from "@/components/mode-toggle";
 import { SocialsFooter } from "@/components/socials-footer";
 import { DATA } from "@/data/resume";
 import type { StackIconKey } from "@/data/resume";
-import { SketchCode, SketchSparkle, SketchGear } from "@/components/stationery-icons";
+import { SketchCode, SketchSparkle, SketchGear, SketchGithub } from "@/components/stationery-icons";
+import { KeywordText } from "@/components/keyword-text";
 
 const STACK_ICON: Record<StackIconKey, typeof SketchCode> = {
   code: SketchCode,
@@ -81,8 +82,9 @@ export default function Page() {
                 href="https://github.com/kwakhare5"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="editorial-link text-foreground hover:text-foreground font-medium transition-colors"
+                className="editorial-link inline-flex items-center gap-1 text-foreground hover:text-foreground font-medium transition-colors"
               >
+                <SketchGithub className="size-3.5 shrink-0" />
                 kwakhare5
               </a>
               <span className="text-muted-foreground/50 select-none">·</span>
@@ -107,7 +109,7 @@ export default function Page() {
         {/* Bio */}
         <div className="space-y-3 sm:space-y-3.5 text-sm sm:text-base leading-relaxed text-foreground font-normal">
           {bio.map((paragraph, idx) => (
-            <p key={idx}>{paragraph}</p>
+            <p key={idx}><KeywordText text={paragraph} /></p>
           ))}
         </div>
       </section>
@@ -208,7 +210,7 @@ export default function Page() {
           <span className="font-mono text-xs text-muted-foreground">gallery</span>
         </div>
 
-        <PhotoPreview />
+        <PhotoGrid photos={DATA.photos} variant="preview" />
       </section>
 
       {/* -- 6. Socials Footer ----------------------------------------------- */}

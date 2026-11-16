@@ -44,6 +44,14 @@ At the end of a session with meaningful changes:
 
 ### [Portfolio — Dead code, duplication, and docs cleanup] 2026-11-16
 
+#### Work card 3: One action ink, bold keyword rule, GitHub marks, colored social icons
+- **Problem / tension:** Detail-page `live` was green while home actions were blue; weight-carrying words (ai engineer, Swiggy Instamart, WhatsApp, MCP) sat unbolded in prose; the `kwakhare5` handles had no GitHub mark; footer social icons were all plain ink.
+- **Change / decision:** All action links now use the blue notion ink on every page. Added `splitKeywords` (word-boundary, longest-match, case-insensitive) plus a `KeywordText` renderer applied to bio, one-liners, and detail problem/architecture/highlights. SketchGithub added to the hero handle and swapped in for the heatmap's generic external-link arrow. Social icons colored: x ink, github sand, linkedin blue, email red; labels stay plain.
+- **Proof:** `pnpm typecheck` 0, `pnpm lint` 0, Vitest 4/4 (3 new splitKeywords tests), build 14/14 pages. Headless Chrome at 1280×900 on the production build: light `live` rgb(32,84,147) on home and /builds/grocer, dark rgb(133,187,240); social icon colors sand/blue/red confirmed in both themes; screenshots home-light/dark, grocer-light/dark, artifacts-light in temp pf-verify.
+- **Still broken / unproven:** Not committed, not deployed. Local verify skill (.agents/skills) is empty. Photo zoom blur still open (source files downscaled). Pre-existing Tailwind warning from the wildcard class text in AGENTS.md.
+- **Metric context:** Local Windows production build served on port 3100; ports 3000/3001 held by other sessions' servers, left untouched.
+- **Engineering references:** `src/lib/utils.ts`, `src/lib/utils.test.ts`, `src/components/keyword-text.tsx`, `src/components/project-row.tsx`, `src/components/socials-footer.tsx`, `src/components/github-calendar.tsx`, `src/app/page.tsx`, `src/app/builds/[slug]/page.tsx`.
+
 #### Work card 1: Remove dead data, tokens, and duplicated project metadata
 - **Problem / tension:** The app carried unused social accent data, two unused imports, dead Notion background/easing tokens, eight copies of caption prefix stripping, and duplicate slug-to-icon/schema maps that could crash a build when a project was added without a `SCHEMA_META` entry.
 - **Change / decision:** Removed `AccentColor`/`accent`, unused imports, the unused CSS tokens, and caption prefix stripping. Moved icon, schema category, and schema platform onto each project in `resume.ts`; added one `ProjectIcon` module and one shared `PhotoCard`. Replaced the project row's router/click handler with a stretched link, removed the client localStorage contribution cache, made the home page a server component with a small `LocalClock` island, flattened `src/components/` into one folder, and centralized site title/name/description constants.
@@ -59,6 +67,30 @@ At the end of a session with meaningful changes:
 - **Still broken / unproven:** The local `graphify-out/` snapshots and `.next/` build output still occupy disk but are ignored. Google verification now relies on the HTML file only.
 - **Metric context:** Local repo, 2026-11-16.
 - **Engineering references:** `AGENTS.md`, `README.md`, `package.json`, `tsconfig.json`, `.gitignore`, `docs/agents/issue-tracker.md`.
+
+#### Work card 4: Interview-voice copy from project PRDs, per-project icon inks, photo grid merge, dead code purge
+- **Problem / tension:** Portfolio copy was thinner than the real projects and had drifted (Outpost "5 hubs" vs 3 nodes); home rows showed bold keywords the user wanted only inside project pages; project icons were all one blue; two gallery modules duplicated grid+lightbox state; dead icons/CSS and a 5.8 MB portrait referenced only by JSON-LD sat in the tree.
+- **Change / decision:** Rewrote all four project one-liners/specs from each repo's PRD/STATUS/design docs in outcome-first interview voice with measured numbers (Grocer 293 tests + 40/40 router eval, Beam 30/30 + ~90 MB, Outpost 109 tests + seeded replay) and added a `specs.status` honesty line per project (Grocer checkout never live-tested + not affiliated with Swiggy; Outpost simulator boundary). Project icons now carry per-project inks (Grocer green, Beam orange, GfP yellow, Outpost red); bold removed from home rows, kept in bio and detail pages. Merged photo-preview + artifacts-gallery into one `PhotoGrid` module (variant prop owns grid, stamps, preview footer, lightbox state). Deleted 3 unused sketch icons, 3 unused hover rules, `public/me.png` (JSON-LD now points at me-og.png). Outpost keeps no live link per user decision.
+- **Proof:** typecheck 0, lint 0, Vitest 4/4, build 14/14. Headless Chrome on production build: home rows 0 strongs with icon colors rgb(170,80,18)/rgb(44,110,73)/rgb(133,77,14)/rgb(193,43,43); preview lightbox open→next→close driven successfully; artifacts 14 figures with stamps 01–14 and lightbox open; Grocer status line and bold verified in DOM; screenshots home light/dark, grocer, artifacts, lightbox in temp pf-verify2.
+- **Still broken / unproven:** Not committed, not deployed. `.env.local` deletion was blocked by the permission classifier (secret store needs explicit naming) — file kept, unused by app code. Builder Club bio line still awaiting user facts. Photo zoom blur open. Verify skill folder still empty.
+- **Metric context:** Local Windows production build on port 3100; Grocer numbers quoted from Grocer-v5 STATUS.md 2026-11-07 gate, Outpost from README/DESIGN_DECISIONS, Beam from README 2026-11-15.
+- **Engineering references:** `src/data/resume.ts`, `src/components/photo-grid.tsx`, `src/components/project-icon.tsx`, `src/components/project-row.tsx`, `src/components/stationery-icons.tsx`, `src/app/globals.css`, `src/app/layout.tsx`, `src/app/builds/[slug]/page.tsx`.
+
+#### Work card 5: Dev server 500s caused by Tailwind scanning docs
+- **Problem / tension:** localhost:3000 (dev server) returned 500 on every page: Turbopack parsed the generated utility `.text-[var(--notion-*-text)]` — a literal example class Tailwind extracted from AGENTS.md — as a fatal CSS error; production only warned.
+- **Change / decision:** Added `@source not "../../**/*.md"` to globals.css so markdown is never a class source. No process restart; dev hot-reloaded.
+- **Proof:** After the one-line change, `/`, `/builds/grocer`, `/artifacts` on port 3000 all return 200 with the new copy; production rebuild 14/14 with zero CSS warnings.
+- **Still broken / unproven:** Nothing new; batch still uncommitted/undeployed.
+- **Metric context:** Dev server PID 26556 (parent `next dev` 22356), left running untouched.
+- **Engineering references:** `src/app/globals.css`.
+
+#### Work card 6: Builder Club bio fact, original-file lightbox, .env.local removed, batch shipped
+- **Problem / tension:** Bio lacked the Swiggy Builder Club selection (user-confirmed fact: selected for Grocer); lightbox re-encoded photos through Next's optimizer instead of serving the file; unused `.env.local` sat in the tree; whole styling/copy/cleanup batch was uncommitted.
+- **Change / decision:** Added one lowercase bio line "grocer got me selected for the swiggy builder club." in the existing About section (no new section, no invented role label); lightbox Image now `unoptimized` so the original file is served; deleted `.env.local` after explicit approval; committed and pushed the full batch.
+- **Proof:** Vitest 4/4, tsc 0, lint 0, build 14/14 zero warnings. Headless Chrome on dev :3000 — home strongs: ai engineer, full-stack developer, whatsapp, swiggy, builder club; lightbox img src `/photos/burj-khalifa-clouds.jpg` (no `/_next/image`), natural 1500x2000, complete; screenshots home.png/lightbox.png in temp pf-verify3.
+- **Still broken / unproven:** 12 of 14 photos remain downscaled 1500x2000 — originals not found in Pictures/Downloads/OneDrive/D:\tmp or git history (single add commit cf07d67); re-export blocked on Karan's original files. Verify skill folder still empty. Live deployment not yet re-checked after push.
+- **Metric context:** Dev server on :3000 left running; headless Chrome scratch profile pf-verify3 closed after run.
+- **Engineering references:** `src/data/resume.ts`, `src/components/photo-lightbox.tsx`, `.env.local` (deleted).
 
 ### [Portfolio — Layout Redesign, Unified Notion Tag System & Dead Code Purge] 2026-11-15
 
