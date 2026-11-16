@@ -14,11 +14,8 @@
   --color-accent: var(--accent);
   --color-border: var(--border);
 
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
-
-  --ease-apple: cubic-bezier(0.32, 0.72, 0, 1);
-  --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 }
 
 /* -- 3. Color Palette System (Notion Stationery tokens) --------------------- */
@@ -33,22 +30,13 @@
   --border:            #e9e9e7;
 
   /* Notion stationery pastel palette — Light */
-  --notion-green-bg:    #edf6f1;
   --notion-green-text:  #2c6e49;
-  --notion-blue-bg:     #edf3f8;
   --notion-blue-text:   #205493;
-  --notion-amber-bg:    #fbf4e2;
   --notion-amber-text:  #8f6213;
-  --notion-yellow-bg:   #fef9c3;
   --notion-yellow-text: #854d0e;
-  --notion-orange-bg:   #faece3;
   --notion-orange-text: #aa5012;
-  --notion-red-bg:      #fbe4e4;
   --notion-red-text:    #c12b2b;
-  --notion-sand-bg:     #f4eeee;
   --notion-sand-text:   #64473a;
-  --notion-gray-bg:     #f1f1ef;
-  --notion-gray-text:   #5a5a57;
 }
 
 .dark {
@@ -62,22 +50,13 @@
   --border:            #2f2f2f;
 
   /* Notion stationery jewel palette — Dark */
-  --notion-green-bg:    #1c3829;
   --notion-green-text:  #7ce38b;
-  --notion-blue-bg:     #1d334e;
   --notion-blue-text:   #85bbf0;
-  --notion-amber-bg:    #3f311a;
   --notion-amber-text:  #e8c679;
-  --notion-yellow-bg:   #3a3212;
   --notion-yellow-text: #fde047;
-  --notion-orange-bg:   #3a2216;
   --notion-orange-text: #e99a64;
-  --notion-red-bg:      #381c1c;
   --notion-red-text:    #f87171;
-  --notion-sand-bg:     #2e2521;
   --notion-sand-text:   #c49d8c;
-  --notion-gray-bg:     #2a2a2a;
-  --notion-gray-text:   #b0afab;
 }
 
 /* -- 4. Base & Layout System ----------------------------------------------- */

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { SketchBackArrow } from "@/components/home/stationery-icons";
+import { SketchBackArrow } from "@/components/stationery-icons";
 
 export const metadata: Metadata = {
   title: "404 — Page Not Found",

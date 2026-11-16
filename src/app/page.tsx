@@ -1,48 +1,43 @@
-"use client";
-
-import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { HeroGreeting } from "@/components/home/hero-greeting";
-import { ProjectRow } from "@/components/home/project-row";
-import { GitHubCalendar } from "@/components/home/github-calendar";
-import { PhotoPreview } from "@/components/home/photo-preview";
-import { ModeToggle } from "@/components/layout/mode-toggle";
-import { SocialsFooter } from "@/components/layout/socials-footer";
+import { HeroGreeting } from "@/components/hero-greeting";
+import { ProjectRow } from "@/components/project-row";
+import { GitHubCalendar } from "@/components/github-calendar";
+import { PhotoPreview } from "@/components/photo-preview";
+import { LocalClock } from "@/components/local-clock";
+import { ModeToggle } from "@/components/mode-toggle";
+import { SocialsFooter } from "@/components/socials-footer";
 import { DATA } from "@/data/resume";
-import { getTechInkClass } from "@/lib/utils";
 import {
   SketchCode,
   SketchSparkle,
   SketchGear,
-  SketchClock,
   SketchLayersShelf,
   SketchGithub,
   SketchCamera,
-} from "@/components/home/stationery-icons";
+} from "@/components/stationery-icons";
 
-const TIME_FORMATTER = new Intl.DateTimeFormat("en-US", {
-  timeZone: "Asia/Kolkata",
-  hour: "numeric",
-  minute: "2-digit",
-  hour12: true,
-});
+const profileJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "@id": `${DATA.url}/#profilepage`,
+  url: DATA.url,
+  name: `${DATA.name} | Personal Engineering Portfolio`,
+  mainEntity: { "@id": `${DATA.url}/#person` },
+};
 
 export default function Page() {
   const { name, avatarUrl, featuredProjects, coreStack, bio } = DATA;
   const firstName = name.split(" ")[0];
 
-  const [timeStr, setTimeStr] = useState("");
-
-  useEffect(() => {
-    const updateTime = () => setTimeStr(TIME_FORMATTER.format(new Date()));
-    updateTime();
-    const interval = setInterval(updateTime, 10000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <main className="w-full flex flex-col space-y-14 sm:space-y-20 antialiased">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(profileJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       {/* -- 1. Masthead & In-Page Navigation -------------------------------- */}
       <section
         className="reveal flex flex-col gap-6 sm:gap-7"
@@ -72,12 +67,7 @@ export default function Page() {
           </nav>
 
           <div className="flex items-center gap-2 sm:gap-3">
-            {timeStr && (
-              <span className="text-muted-foreground text-xs sm:text-sm font-mono hidden sm:inline-flex items-center gap-1.5">
-                <SketchClock className="size-3 text-muted-foreground/70 shrink-0" />
-                <span>Pune {timeStr}</span>
-              </span>
-            )}
+            <LocalClock />
             <ModeToggle />
           </div>
         </div>

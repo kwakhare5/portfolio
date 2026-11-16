@@ -42,6 +42,24 @@ At the end of a session with meaningful changes:
 
 ## Log entries
 
+### [Portfolio — Dead code, duplication, and docs cleanup] 2026-11-16
+
+#### Work card 1: Remove dead data, tokens, and duplicated project metadata
+- **Problem / tension:** The app carried unused social accent data, two unused imports, dead Notion background/easing tokens, eight copies of caption prefix stripping, and duplicate slug-to-icon/schema maps that could crash a build when a project was added without a `SCHEMA_META` entry.
+- **Change / decision:** Removed `AccentColor`/`accent`, unused imports, the unused CSS tokens, and caption prefix stripping. Moved icon, schema category, and schema platform onto each project in `resume.ts`; added one `ProjectIcon` module and one shared `PhotoCard`. Replaced the project row's router/click handler with a stretched link, removed the client localStorage contribution cache, made the home page a server component with a small `LocalClock` island, flattened `src/components/` into one folder, and centralized site title/name/description constants.
+- **Proof:** `pnpm lint` 0, `pnpm typecheck` 0 with `noUnusedLocals`/`noUnusedParameters` enabled, Vitest 2/2, Next.js production build 14/14 static pages. Generated HTML has `ProfilePage` only on `/`, and no `ProfilePage` on `/artifacts` or `/builds/*`. Theme colors now render `#fbfbfa`/`#191919`. `pnpm install --frozen-lockfile` passes.
+- **Still broken / unproven:** The lightbox still has no focus trap. Image assets were intentionally left untouched, including `me.png` (5.79 MB), `me-avatar.png` (1.7 MB), and the 14 source photos (~12 MB). No commit, push, or deploy.
+- **Metric context:** Local Windows build, Next.js 16.3.2 Turbopack, Node 24.19.0, pnpm 12.16.1.
+- **Engineering references:** `src/data/resume.ts`, `src/components/project-icon.tsx`, `src/components/photo-card.tsx`, `src/components/project-row.tsx`, `src/app/page.tsx`, `src/app/layout.tsx`, `src/app/globals.css`.
+
+#### Work card 2: Consolidate docs and repo hygiene
+- **Problem / tension:** `graphify-out/` was gitignored but tracked, the graph report was stale, docs repeated or contradicted each other, `docs/agents/domain.md` pointed at a glossary/ADR system that does not exist, `.prettierrc.json` had no Prettier dependency, and `.env.local` held unused WakaTime/GitHub tokens.
+- **Change / decision:** Moved `AGENTS.md` to the repo root, deleted `ARCHITECTURE.md`, `CONTEXT.md`, and `docs/agents/domain.md`, untracked `graphify-out/`, removed `.prettierrc.json`, deleted `.scratch/`, removed the unused env keys, dropped the duplicate Google verification meta tag, raised `engines.node` to `>=22.6.0`, and added `packageManager`. README and AGENTS now describe the flat component layout and accurate commands.
+- **Proof:** `git ls-files graphify-out` returns nothing; local graph output remains ignored. `.env.local` no longer contains `WAKATIME_API_KEY` or `GITHUB_TOKEN`. Build and frozen-lockfile install pass.
+- **Still broken / unproven:** The local `graphify-out/` snapshots and `.next/` build output still occupy disk but are ignored. Google verification now relies on the HTML file only.
+- **Metric context:** Local repo, 2026-11-16.
+- **Engineering references:** `AGENTS.md`, `README.md`, `package.json`, `tsconfig.json`, `.gitignore`, `docs/agents/issue-tracker.md`.
+
 ### [Portfolio — Layout Redesign, Unified Notion Tag System & Dead Code Purge] 2026-11-15
 
 #### Work card 1: Notion color token unification, project clickability, and dead code cleanup

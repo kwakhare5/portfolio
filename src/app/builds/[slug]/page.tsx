@@ -1,44 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ModeToggle } from "@/components/layout/mode-toggle";
-import { SocialsFooter } from "@/components/layout/socials-footer";
-import { DATA } from "@/data/resume";
+import { ModeToggle } from "@/components/mode-toggle";
+import { SocialsFooter } from "@/components/socials-footer";
+import { DATA, SITE_NAME } from "@/data/resume";
 import { getTechInkClass } from "@/lib/utils";
+import { ProjectIcon } from "@/components/project-icon";
 import {
   SketchArrow,
   SketchBackArrow,
-  SketchTote,
-  SketchBox,
-  SketchPromptBranch,
-  SketchSoundPill,
   SketchGithub,
   SketchCheck,
   SketchTarget,
   SketchBlueprint,
-} from "@/components/home/stationery-icons";
-
-function renderProjectIcon(slug: string, className = "size-4 shrink-0") {
-  switch (slug) {
-    case "grocer":
-      return <SketchTote className={`${className} text-[var(--notion-green-text)]`} />;
-    case "outpost":
-      return <SketchBox className={`${className} text-[var(--notion-red-text)]`} />;
-    case "git-for-prompts":
-      return <SketchPromptBranch className={`${className} text-[var(--notion-blue-text)]`} />;
-    case "beam":
-      return <SketchSoundPill className={`${className} text-[var(--notion-yellow-text)]`} />;
-    default:
-      return null;
-  }
-}
-
-const SCHEMA_META: Record<string, { category: string; platform: string }> = {
-  grocer: { category: "BusinessApplication", platform: "Web" },
-  outpost: { category: "BusinessApplication", platform: "Web" },
-  "git-for-prompts": { category: "DeveloperApplication", platform: "Web" },
-  beam: { category: "UtilitiesApplication", platform: "Windows 11" },
-};
+} from "@/components/stationery-icons";
 
 function getProject(slug: string) {
   return DATA.featuredProjects.find((project) => project.slug === slug);
@@ -71,7 +46,7 @@ export async function generateMetadata({
       title: `${title} | ${DATA.name}`,
       description: project.oneLiner,
       url: `${DATA.url}/builds/${project.slug}`,
-      siteName: `${DATA.name} Portfolio`,
+      siteName: SITE_NAME,
       locale: "en_US",
       type: "website",
       images: [
@@ -102,7 +77,6 @@ export default async function ProjectPage({
   const project = getProject(slug);
   if (!project) notFound();
 
-  const schemaMeta = SCHEMA_META[project.slug];
   const projectUrl = `${DATA.url}/builds/${project.slug}`;
   const otherProjects = DATA.featuredProjects.filter((item) => item.slug !== project.slug);
 
@@ -114,8 +88,8 @@ export default async function ProjectPage({
         name: project.title,
         description: project.oneLiner,
         url: project.liveUrl ?? projectUrl,
-        applicationCategory: schemaMeta.category,
-        operatingSystem: schemaMeta.platform,
+        applicationCategory: project.schemaCategory,
+        operatingSystem: project.schemaPlatform,
         author: {
           "@type": "Person",
           name: DATA.name,
@@ -168,7 +142,7 @@ export default async function ProjectPage({
 
       <header className="flex flex-col gap-3">
         <div className="flex items-center gap-3 flex-wrap">
-          {renderProjectIcon(project.slug, "size-6")}
+          <ProjectIcon project={project} className="size-6" />
           <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-foreground">
             {project.title}
           </h1>
@@ -276,7 +250,7 @@ export default async function ProjectPage({
               className="group flex items-center justify-between gap-3 py-3 border-b border-border last:border-b-0 rounded-sm px-2 -mx-2 hover:bg-muted/40 transition-colors"
             >
               <div className="flex items-center gap-2.5">
-                {renderProjectIcon(other.slug, "size-4")}
+                <ProjectIcon project={other} />
                 <span className="text-sm sm:text-base font-medium text-foreground group-hover:underline underline-offset-4 transition-all">
                   {other.title}
                 </span>

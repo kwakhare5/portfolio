@@ -1,22 +1,25 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ModeToggle } from '@/components/layout/mode-toggle';
-import { SocialsFooter } from '@/components/layout/socials-footer';
-import { ArtifactsGallery } from '@/components/artifacts/artifacts-gallery';
-import { DATA } from '@/data/resume';
-import { SketchBackArrow, SketchCamera } from '@/components/home/stationery-icons';
+import { ModeToggle } from '@/components/mode-toggle';
+import { SocialsFooter } from '@/components/socials-footer';
+import { ArtifactsGallery } from '@/components/artifacts-gallery';
+import { DATA, SITE_NAME } from '@/data/resume';
+import { SketchBackArrow, SketchCamera } from '@/components/stationery-icons';
+
+const ARTIFACTS_TITLE = "Artifacts & Photography — Karan Wakhare";
+const ARTIFACTS_DESCRIPTION = "High-resolution architectural captures, travel photography, and daily moments by Karan Wakhare across Dubai, Singapore, Abu Dhabi, Udaipur, and Pune.";
 
 export const metadata: Metadata = {
   title: 'Artifacts & Photography',
-  description: 'High-resolution architectural captures, travel photography, and daily moments by Karan Wakhare across Dubai, Singapore, Abu Dhabi, Udaipur, and Pune.',
+  description: ARTIFACTS_DESCRIPTION,
   alternates: {
     canonical: '/artifacts',
   },
   openGraph: {
-    title: 'Artifacts & Photography — Karan Wakhare',
-    description: 'High-resolution architectural captures, travel photography, and daily moments by Karan Wakhare across Dubai, Singapore, Abu Dhabi, Udaipur, and Pune.',
+    title: ARTIFACTS_TITLE,
+    description: ARTIFACTS_DESCRIPTION,
     url: `${DATA.url}/artifacts`,
-    siteName: `${DATA.name} Portfolio`,
+    siteName: SITE_NAME,
     locale: 'en_US',
     type: 'website',
     images: [
@@ -24,14 +27,14 @@ export const metadata: Metadata = {
         url: '/me-og.png',
         width: 1200,
         height: 630,
-        alt: 'Artifacts & Photography — Karan Wakhare',
+        alt: ARTIFACTS_TITLE,
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Artifacts & Photography — Karan Wakhare',
-    description: 'High-resolution architectural captures, travel photography, and daily moments by Karan Wakhare across Dubai, Singapore, Abu Dhabi, Udaipur, and Pune.',
+    title: ARTIFACTS_TITLE,
+    description: ARTIFACTS_DESCRIPTION,
     images: ['/me-og.png'],
     creator: '@kwakhare5',
   },
@@ -43,8 +46,8 @@ export default function ArtifactsPage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ImageGallery',
-    name: 'Artifacts & Photography — Karan Wakhare',
-    description: 'High-resolution architectural captures, travel photography, and daily moments by Karan Wakhare.',
+    name: ARTIFACTS_TITLE,
+    description: ARTIFACTS_DESCRIPTION,
     url: `${DATA.url}/artifacts`,
     author: {
       '@type': 'Person',
@@ -54,8 +57,8 @@ export default function ArtifactsPage() {
     associatedMedia: photos.map((photo) => ({
       '@type': 'ImageObject',
       contentUrl: `${DATA.url}${photo.url}`,
-      caption: photo.caption.replace(/^\/\/\s*/, ''),
-      name: photo.caption.replace(/^\/\/\s*/, '') || 'Photo by Karan Wakhare',
+      caption: photo.caption,
+      name: photo.caption || 'Photo by Karan Wakhare',
       author: {
         '@type': 'Person',
         name: DATA.name,

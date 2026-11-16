@@ -28,6 +28,7 @@ pnpm build           # Build production bundle
 pnpm test            # Run Vitest once
 pnpm typecheck       # Type-check with TypeScript
 pnpm lint            # Run ESLint
+pnpm sync:profile    # Sync project data into the local GitHub profile README
 ```
 
 ---
@@ -35,20 +36,20 @@ pnpm lint            # Run ESLint
 ## 4. LOCAL RULES & DESIGN INVARIANTS
 1. **Anti-AI Slop:** Strict adherence to human writing standards. Zero decorative corporate buzzwords.
 2. **Dark/Light Mode Sync:** All components must support seamless theme switching via `next-themes` (`defaultTheme="system"`, `enableSystem={true}`).
-3. **Unified Color Palette:** Single canonical shade per color family (`emerald-500 dark:emerald-400`, `blue-500 dark:blue-400`, `amber-500 dark:amber-400`, `text-foreground`, `text-muted-foreground`, `border-border`).
+3. **Unified Color Palette:** Notion ink tokens (`--notion-*-text` via `notion-ink-*`) for accents, plus `text-foreground`, `text-muted-foreground`, and `border-border` for structure.
 4. **Minimal Architecture:** YAGNI. Pure presentation components, tested domain helpers, zero unneeded dependencies or pass-through wrappers.
 
 ---
 
 ## 5. KEY PROJECT PATTERNS
-- `src/components/` — Modular UI blocks (`home/`, `artifacts/`, `layout/`).
+- `src/components/` — Flat UI component files.
 - `src/app/` — Next.js 16 App Router pages (`/`, `builds/[slug]`, `artifacts`, `api/contributions`).
 - `src/data/resume.ts` — Centralized portfolio data source (`Grocer`, `Outpost`, `Git for Prompts`, `Beam`).
 
 ---
 
 ## 6. MISTAKES TO AVOID
-- [2026-08-12] High contrast layout caused glare in light mode → Calibrate light mode backgrounds to soft `#f8f7f4` off-white (`oklch(0.985 0.002 90)`).
+- [2026-08-12] High contrast layout caused glare in light mode → Calibrate light mode backgrounds to soft `#fbfbfa` off-white (`oklch(0.985 0.002 90)`).
 - [2026-09-29] Solid `emerald-600` 10×10px SVG squares with gray borders looked twice as dark as 12px green text → Use soft `emerald-500 dark:emerald-400` opacity steps (`/20`, `/40`, `/65`, `/85`) without gray outlines on heatmap squares.
 
 ---

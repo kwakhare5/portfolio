@@ -6,7 +6,7 @@ export function getComputedLevel(count: number): number {
   return 4;
 }
 
-export function getTechColorName(
+function getTechColorName(
   tech: string
 ): "blue" | "yellow" | "green" | "orange" | "amber" | "red" | "sand" {
   const t = tech.toLowerCase();

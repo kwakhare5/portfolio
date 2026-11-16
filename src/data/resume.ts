@@ -1,4 +1,4 @@
-export type AccentColor = "emerald" | "amber" | "blue";
+export type ProjectIconKey = "tote" | "box" | "prompt" | "sound";
 
 export interface ProjectSpecs {
   readonly problem: string;
@@ -10,10 +10,13 @@ export interface ProjectSpec {
   readonly title: string;
   readonly slug: string;
   readonly year: string;
+  readonly icon: ProjectIconKey;
   readonly oneLiner: string;
   readonly liveUrl?: string;
   readonly githubUrl?: string;
   readonly stack: readonly string[];
+  readonly schemaCategory: string;
+  readonly schemaPlatform: string;
   readonly specs: ProjectSpecs;
 }
 
@@ -31,7 +34,6 @@ export interface SocialItem {
   readonly name: string;
   readonly url: string;
   readonly label: string;
-  readonly accent?: AccentColor;
 }
 
 export interface ResumeData {
@@ -64,10 +66,13 @@ export const DATA: ResumeData = {
       title: "Beam",
       slug: "beam",
       year: "'26",
+      icon: "sound",
       oneLiner: "Offline Windows 11 capsule above your taskbar with live music controls, a file shelf, a countdown, and a calendar.",
       liveUrl: "https://beamm.vercel.app/",
       githubUrl: "https://github.com/kwakhare5/beam",
       stack: ["TypeScript", "Electron", "Vite", ".NET", "Windows SMTC"],
+      schemaCategory: "UtilitiesApplication",
+      schemaPlatform: "Windows 11",
       specs: {
         problem: "Windows 11 scatters media controls, timers, and quick file drops across taskbar flyouts and separate apps.",
         architecture: "An Electron shell renders a 136×42 transparent capsule that reads Windows media sessions through a .NET helper, persists its position, and runs fully offline with no accounts or network calls.",
@@ -83,10 +88,13 @@ export const DATA: ResumeData = {
       title: "Grocer",
       slug: "grocer",
       year: "'26",
+      icon: "tote",
       oneLiner: "WhatsApp grocery assistant that verifies your order against live Swiggy Instamart inventory and auto-fixes out-of-stock items.",
       liveUrl: "https://grocerr.vercel.app/",
       githubUrl: "https://github.com/kwakhare5/Grocer",
       stack: ["Python", "FastAPI", "Swiggy Instamart MCP", "WhatsApp API", "Next.js 16"],
+      schemaCategory: "BusinessApplication",
+      schemaPlatform: "Web",
       specs: {
         problem: "Quick-commerce carts constantly break when items go out of stock or pack sizes change, forcing you to start over.",
         architecture: "A FastAPI backend turns WhatsApp messages into a strict order contract, checks live Swiggy Instamart inventory via MCP, and automatically suggests valid swaps before you confirm checkout.",
@@ -101,10 +109,13 @@ export const DATA: ResumeData = {
       title: "Git for Prompts",
       slug: "git-for-prompts",
       year: "'26",
+      icon: "prompt",
       oneLiner: "Git-style version control for AI prompts with commit histories, token diffing, and multi-model evals.",
       liveUrl: "https://gitforprompts.vercel.app/",
       githubUrl: "https://github.com/kwakhare5/Git-for-Prompts",
       stack: ["Next.js 16", "TypeScript", "Drizzle ORM", "Monaco Editor", "PostgreSQL", "Tailwind CSS"],
+      schemaCategory: "DeveloperApplication",
+      schemaPlatform: "Web",
       specs: {
         problem: "Editing prompts in messy text files leads to broken outputs, lost versions, and unnoticed token cost spikes.",
         architecture: "A Next.js and PostgreSQL platform that stores immutable prompt versions, renders word-by-word diffs in Monaco Editor, and runs automated tests across multiple AI models simultaneously.",
@@ -119,9 +130,12 @@ export const DATA: ResumeData = {
       title: "Outpost",
       slug: "outpost",
       year: "'26",
+      icon: "box",
       oneLiner: "Inventory replenishment decision engine for quick-commerce dark stores that forecasts stockouts and routes inter-store transfers with human-in-the-loop approval.",
       githubUrl: "https://github.com/kwakhare5/Outpost",
       stack: ["Python", "FastAPI", "LangGraph", "Next.js 16", "TypeScript", "SQLite"],
+      schemaCategory: "BusinessApplication",
+      schemaPlatform: "Web",
       specs: {
         problem: "Quick-commerce dark stores lose margin to sudden stockouts during demand surges and perishable food expiry, while blind auto-reorders risk phantom stock or costly emergency courier runs.",
         architecture: "A FastAPI and LangGraph 5-node state machine paired with Holt Linear demand forecasting that tracks physical FIFO inventory batches across 5 Mumbai hubs and proposes transfers or purchase orders behind a human approval gate.",
@@ -152,59 +166,59 @@ export const DATA: ResumeData = {
   photos: [
     {
       url: "/photos/burj-khalifa-clouds.jpg",
-      caption: "// downtown, dubai",
+      caption: "downtown, dubai",
     },
     {
       url: "/photos/supertree-grove-gardens-by-the-bay.jpg",
-      caption: "// gardens by the bay",
+      caption: "gardens by the bay",
     },
     {
       url: "/photos/sheikh-zayed-grand-mosque.jpg",
-      caption: "// grand mosque, abu dhabi",
+      caption: "grand mosque, abu dhabi",
     },
     {
       url: "/photos/marina-barrage-singapore.jpg",
-      caption: "// marina barrage park",
+      caption: "marina barrage park",
     },
     {
       url: "/photos/burj-al-arab-gulf.jpg",
-      caption: "// arabian gulf",
+      caption: "arabian gulf",
     },
     {
       url: "/photos/founders-memorial-abu-dhabi.jpg",
-      caption: "// the constellation, abu dhabi",
+      caption: "the constellation, abu dhabi",
     },
     {
       url: "/photos/dubai-marina-golden-hour.jpg",
-      caption: "// dubai marina",
+      caption: "dubai marina",
     },
     {
       url: "/photos/pawna-lake-sunset.jpg",
-      caption: "// pawna lake sunset",
+      caption: "pawna lake sunset",
     },
     {
       url: "/photos/burj-khalifa-night.jpg",
-      caption: "// burj khalifa at night",
+      caption: "burj khalifa at night",
     },
     {
       url: "/photos/dubai-at-the-top.jpg",
-      caption: "// dubai from 148th floor",
+      caption: "dubai from 148th floor",
     },
     {
       url: "/photos/dubai-skyline-mist.jpg",
-      caption: "// dubai skyline in mist",
+      caption: "dubai skyline in mist",
     },
     {
       url: "/photos/sentosa-beach-singapore.jpg",
-      caption: "// sentosa island, singapore",
+      caption: "sentosa island, singapore",
     },
     {
       url: "/photos/singapore-flyer-marina-bay.jpg",
-      caption: "// singapore skyline",
+      caption: "singapore skyline",
     },
     {
       url: "/photos/lake-pichola-udaipur.jpg",
-      caption: "// lake pichola, udaipur",
+      caption: "lake pichola, udaipur",
     },
   ],
 
@@ -214,26 +228,27 @@ export const DATA: ResumeData = {
         name: "X",
         url: "https://x.com/kwakhare5",
         label: "x",
-        accent: "emerald",
       },
       {
         name: "GitHub",
         url: "https://github.com/kwakhare5",
         label: "github",
-        accent: "blue",
       },
       {
         name: "LinkedIn",
         url: "https://www.linkedin.com/in/karanwakhare",
         label: "linkedin",
-        accent: "blue",
       },
       {
         name: "Email",
         url: "mailto:kwakhare5@gmail.com",
         label: "email",
-        accent: "amber",
       },
     ],
   },
 };
+
+export const ROLE = "AI Engineer & Full-Stack Developer";
+export const SITE_NAME = `${DATA.name} Portfolio`;
+export const SITE_TITLE = `${DATA.name} | ${ROLE}`;
+export const SITE_DESCRIPTION = DATA.description;

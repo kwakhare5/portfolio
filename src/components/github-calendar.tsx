@@ -28,8 +28,6 @@ const LEVEL_COLORS = [
   "fill-emerald-500/85 dark:fill-emerald-400/85",
 ] as const;
 
-const CACHE_KEY = "gh_contributions_cache_v2";
-
 export function GitHubCalendar() {
   const [data, setData] = useState<ApiResponse | null>(null);
   const [loading, setLoading] = useState(true);
@@ -46,28 +44,12 @@ export function GitHubCalendar() {
     let isMounted = true;
 
     const fetchContributions = async () => {
-      // 1. Try local cache first
-      try {
-        const cached = localStorage.getItem(CACHE_KEY);
-        if (cached) {
-          const json = JSON.parse(cached);
-          if (isMounted && json?.contributions?.length > 0) {
-            setData(json);
-            setLoading(false);
-          }
-        }
-      } catch {}
-
-      // 2. Fetch fresh data
       try {
         const res = await fetch("/api/contributions");
         if (!res.ok) throw new Error("Failed to fetch contributions");
         const json: ApiResponse = await res.json();
         if (isMounted && json.contributions?.length > 0) {
           setData(json);
-          try {
-            localStorage.setItem(CACHE_KEY, JSON.stringify(json));
-          } catch {}
         }
       } catch {
         // Fallback handled gracefully by state

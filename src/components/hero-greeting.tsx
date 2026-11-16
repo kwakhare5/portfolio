@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { SketchHighlighter } from "@/components/home/stationery-icons";
+import { SketchHighlighter } from "@/components/stationery-icons";
 
 const GREETINGS = [
   "Hi",

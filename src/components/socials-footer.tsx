@@ -5,7 +5,7 @@ import {
   SketchGithub,
   SketchLinkedin,
   SketchMail,
-} from "@/components/home/stationery-icons";
+} from "@/components/stationery-icons";
 
 interface SocialMeta {
   readonly icon: React.ReactNode;

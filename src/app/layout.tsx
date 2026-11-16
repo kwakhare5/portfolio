@@ -1,21 +1,21 @@
 import { ThemeProvider } from "next-themes";
 import { Analytics } from "@vercel/analytics/react";
 
-import { DATA } from "@/data/resume";
+import { DATA, ROLE, SITE_DESCRIPTION, SITE_NAME, SITE_TITLE } from "@/data/resume";
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 const geist = Geist({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-geist-sans",
   weight: ["400", "500", "600", "700"],
 });
 
 const geistMono = Geist_Mono({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-mono",
+  variable: "--font-geist-mono",
 });
 
 export const metadata: Metadata = {
@@ -24,10 +24,10 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   title: {
-    default: `${DATA.name} | AI Engineer & Full-Stack Developer`,
+    default: SITE_TITLE,
     template: `%s | ${DATA.name}`,
   },
-  description: DATA.description,
+  description: SITE_DESCRIPTION,
   category: "technology",
   classification: "Engineering Portfolio & Software Showcase",
   keywords: [
@@ -59,10 +59,10 @@ export const metadata: Metadata = {
   creator: DATA.name,
   publisher: DATA.name,
   openGraph: {
-    title: `${DATA.name} | AI Engineer & Full-Stack Developer`,
-    description: DATA.description,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     url: DATA.url,
-    siteName: `${DATA.name} Portfolio`,
+    siteName: SITE_NAME,
     locale: "en_US",
     type: "website",
     images: [
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
         url: "/me-og.png",
         width: 1200,
         height: 630,
-        alt: `${DATA.name} | AI Engineer & Full-Stack Developer`,
+        alt: SITE_TITLE,
       },
     ],
   },
@@ -86,22 +86,19 @@ export const metadata: Metadata = {
     },
   },
   twitter: {
-    title: `${DATA.name} | AI Engineer & Full-Stack Developer`,
-    description: DATA.description,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     card: "summary_large_image",
     images: ["/me-og.png"],
     creator: "@kwakhare5",
     site: "@kwakhare5",
   },
-  verification: {
-    google: "d608787966abdc5e",
-  },
 };
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f8f7f4" },
-    { media: "(prefers-color-scheme: dark)", color: "#0c0c0c" },
+    { media: "(prefers-color-scheme: light)", color: "#fbfbfa" },
+    { media: "(prefers-color-scheme: dark)", color: "#191919" },
   ],
   width: "device-width",
   initialScale: 1,
@@ -116,8 +113,8 @@ const jsonLd = {
       name: DATA.name,
       url: DATA.url,
       image: `${DATA.url}/me.png`,
-      jobTitle: "AI Engineer & Full-Stack Developer",
-      description: DATA.description,
+      jobTitle: ROLE,
+      description: SITE_DESCRIPTION,
       email: DATA.contact.socials.find((s) => s.url.startsWith("mailto:"))?.url.replace("mailto:", ""),
       sameAs: DATA.contact.socials
         .filter((s) => s.url.startsWith("http"))
@@ -147,15 +144,6 @@ const jsonLd = {
       description: "Personal developer portfolio of Karan Wakhare.",
       inLanguage: "en-US",
       publisher: {
-        "@id": `${DATA.url}/#person`,
-      },
-    },
-    {
-      "@type": "ProfilePage",
-      "@id": `${DATA.url}/#profilepage`,
-      url: DATA.url,
-      name: `${DATA.name} | Personal Engineering Portfolio`,
-      mainEntity: {
         "@id": `${DATA.url}/#person`,
       },
     },

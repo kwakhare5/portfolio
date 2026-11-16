@@ -14,9 +14,9 @@ A high-performance, modern developer portfolio and project showcase built with N
   - **Beam**: Offline Windows 11 capsule for live music controls, a file shelf, a countdown, and a calendar.
 - **Project Case Studies**: Indexable pages for each build with the problem, architecture, and engineering highlights.
 - **Artifacts Gallery**: Interactive photo gallery with keyboard navigation and fullscreen lightbox.
-- **Tooling Radar**: Minimalist tag cloud tracking core languages, AI agent runtimes, and infrastructure stacks.
-- **SEO & Discoverability**: Dynamic XML sitemap (`/sitemap.xml`), `robots.txt`, and Schema.org `Person` & `WebSite` JSON-LD graphs.
-- **Fluid Micro-Interactions**: Expandable architecture spec drawers and seamless system/manual theme switching.
+- **Stack & Tooling**: Core languages, AI agent runtimes, and infrastructure, rendered from one typed data file.
+- **SEO & Discoverability**: Dynamic XML sitemap (`/sitemap.xml`), `robots.txt`, and Schema.org `Person` & `WebSite` JSON-LD graphs plus a `ProfilePage` graph on the home page.
+- **Theme Switching**: System-aware dark/light mode with manual override.
 
 ---
 
@@ -36,7 +36,7 @@ A high-performance, modern developer portfolio and project showcase built with N
 
 ### Prerequisites
 
-- Node.js >= 20.9.0
+- Node.js >= 22.6.0
 - pnpm
 
 ### 1. Clone & Install Dependencies
@@ -67,6 +67,8 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 | `pnpm test` | Run Vitest once |
 | `pnpm typecheck` | Type-check with TypeScript |
 | `pnpm lint` | Run ESLint |
+| `pnpm lint:fix` | Run ESLint with autofix |
+| `pnpm sync:profile` | Sync project data into the local GitHub profile README |
 
 ---
 
