@@ -100,6 +100,14 @@ At the end of a session with meaningful changes:
 - **Metric context:** `git rev-list --objects --all --reflog` = 1062 objects, 35 image blobs; profile repo kwakhare5/kwakhare5 holds only me.webp; Karan-s-iPod holds no jpgs.
 - **Engineering references:** deleted `.agents/skills/verify-portfolio/`, `.scratch/verify-portfolio/`; `vercel git disconnect --yes`, `vercel git connect https://github.com/kwakhare5/portfolio.git`.
 
+#### Work card 8: Underline-all links, stationery controls, human copy, photo originals still missing
+- **Problem / tension:** Three underline models coexisted and arrows appeared only on actions, so clickability wasn't uniform; the Builder Club bio line read robotic; the Grocer status carried an affiliation disclaimer that no longer fits (whitelisted Instamart MCP access); Karan expected the sharp originals to be recoverable.
+- **Change / decision:** Every destination link is underlined at rest (border/muted decoration, foreground on hover), colors stay by meaning (blue actions, identity inks, muted structure). Lightbox and theme toggle now use stationery glyphs (close/chevrons/sun/moon); lucide-react removed. Bio line: "for grocer, swiggy whitelisted instamart mcp access and picked me for the builder club." Grocer/GFP/Outpost statuses rewritten plainly; affiliation sentence deleted.
+- **Proof:** Vitest 4/4, tsc 0, lint 0, build 14/14. Headless CDP on production build: textDecorationLine = underline for nav (3), handle, live, view, footer social, photo caption; Grocer page contains no "not affiliated"/"Independent project" and has the new status; strongs include swiggy + builder club. Live karan30.vercel.app serves the new home and Grocer copy (verified with cache-busted fetches after promote).
+- **Still broken / unproven:** 12 photos remain 1500x2000. Checked every old Vercel deployment (byte-identical files), every git object incl. reflog, and disk — the sharp originals were never here; Karan must drop them (target noted in the report). Vercel Git auto-deploy still dead (no build for e2f0a5b/f62ff37/c8dcb0c/e19984f); CLI deploys used. Build-in-public post not started.
+- **Metric context:** Deploy dpl for e19984f via `vercel --prod` (23s class builds); home Age header confirmed the new deployment after promotion.
+- **Engineering references:** `src/data/resume.ts`, `src/app/page.tsx`, `src/app/builds/[slug]/page.tsx`, `src/components/photo-lightbox.tsx`, `src/components/mode-toggle.tsx`, `src/components/stationery-icons.tsx`, `package.json`.
+
 ### [Portfolio — Layout Redesign, Unified Notion Tag System & Dead Code Purge] 2026-11-15
 
 #### Work card 1: Notion color token unification, project clickability, and dead code cleanup
