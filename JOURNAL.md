@@ -74,6 +74,12 @@ At the end of a session with meaningful changes:
 - **Proof:** typecheck 0, lint 0, Vitest 8/8, build 14/14. DOM: home live link has 1 globe and view 1 arrow, `#stack svg` count 0, 404 `.ink-stamp` count 0, case live link has 1 globe. Screenshots: `C:/Users/kwakh/.qoder/tmp/portfolio-final-v7-2026-11-24`.
 - **Still broken / unproven:** Not deployed; the live site still serves HEAD. `public/me-og.png` still carries the old subtitle.
 
+#### Work card 6: A share card that matches the site
+- **Problem / tension:** The link preview still showed "AI Systems & Full-Stack • Pune, IND" on a blue stock background, unrelated to the warm site and the current role.
+- **Change / decision:** Rebuilt the single `public/me-og.png` at 1200x630 with Geist, the `#fbfbfa` paper background, Karan's name and current role, the four build names, the TypeScript and Python marks, and the original avatar. Every page keeps pointing at the one card.
+- **Proof:** 1200x630, 92,200 bytes. The live `/me-og.png` sha256 matches the local file (`60398e012e106c0eb64cd53f847cceec26b90a115fd464a907fee322c17f8f71`). Production deploy ready and aliased to karan30.vercel.app; live DOM still shows live globe 1, view arrow 1, `#stack svg` 0, and a 404 with no stamp. Screenshots: `C:/Users/kwakh/.qoder/tmp/portfolio-live-2026-11-24`.
+- **Still broken / unproven:** Vercel Git auto-deploy is still broken, so this release used a manual `vercel --prod --yes`.
+
 ### [Portfolio — Unvalley-inspired type pass, lean rows, About socials] 2026-11-23
 
 #### Work card 1: Swap the gray-clone restyle for the original shell with unvalley's type system
