@@ -80,6 +80,12 @@ At the end of a session with meaningful changes:
 - **Proof:** 1200x630, 92,200 bytes. The live `/me-og.png` sha256 matches the local file (`60398e012e106c0eb64cd53f847cceec26b90a115fd464a907fee322c17f8f71`). Production deploy ready and aliased to karan30.vercel.app; live DOM still shows live globe 1, view arrow 1, `#stack svg` 0, and a 404 with no stamp. Screenshots: `C:/Users/kwakh/.qoder/tmp/portfolio-live-2026-11-24`.
 - **Still broken / unproven:** Vercel Git auto-deploy is still broken, so this release used a manual `vercel --prod --yes`.
 
+#### Work card 7: Keep the original share card and edit only its role
+- **Problem / tension:** Card 6 replaced the original blue preview with a new warm layout, but Karan wanted the original image kept and edited, not replaced.
+- **Change / decision:** Restored the original 1200x630 card and replaced only the stale subtitle with "AI Engineer & Full Stack Developer". The name, contacts, blue background, and layout stay as they were. The old line was erased by blending the clean gradient rows and the new line was drawn in Arial 31 at the same center and baseline, so the subtitle width still matches the original.
+- **Proof:** 1200x630, 148,859 bytes. The live `/me-og.png` sha256 matches local (`7d0ca628c97a36cb51c06c166a9dd4668257cccc1be114bb3bc9418e6c52d61d`) and `/` returns 200. Live file: `C:/Users/kwakh/.qoder/tmp/D--Portfolio/me-og-live2.png`.
+- **Still broken / unproven:** Vercel Git auto-deploy is still broken, so the update again used a manual `vercel --prod --yes`.
+
 ### [Portfolio — Unvalley-inspired type pass, lean rows, About socials] 2026-11-23
 
 #### Work card 1: Swap the gray-clone restyle for the original shell with unvalley's type system
