@@ -107,21 +107,7 @@
   }
 }
 
-/* -- 5. Ink Stamp & Hover Utilities ---------------------------------------- */
-/* Ink stamp date styling */
-.ink-stamp {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  line-height: 1rem;
-  padding: 0.1rem 0.35rem;
-  border-radius: 0.2rem;
-  background-color: var(--muted);
-  color: var(--muted-foreground);
-  border: 1px solid var(--border);
-  letter-spacing: -0.02em;
-}
-
-/* -- 6. Scrollbar Utilities ------------------------------------------------ */
+/* -- 5. Scrollbar Utilities ------------------------------------------------ */
 html,
 body,
 .scrollbar-none {

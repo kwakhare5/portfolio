@@ -9,11 +9,7 @@ import { LocalClock } from "@/components/local-clock";
 import { ModeToggle } from "@/components/mode-toggle";
 import { SectionLabel } from "@/components/section-label";
 import { DATA, ROLE } from "@/data/resume";
-import type { StackIconKey } from "@/data/resume";
 import {
-  SketchCode,
-  SketchSparkle,
-  SketchGear,
   SketchGithub,
   SketchX,
   SketchLinkedin,
@@ -22,12 +18,6 @@ import {
 import { KeywordText } from "@/components/keyword-text";
 import { LINK_MUTED, LINK_SOCIAL } from "@/lib/styles";
 import { BODY, BODY_MUTED, LABEL, TITLE } from "@/lib/typography";
-
-const STACK_ICON: Record<StackIconKey, typeof SketchCode> = {
-  code: SketchCode,
-  sparkle: SketchSparkle,
-  gear: SketchGear,
-};
 
 const SOCIAL_ICON: Record<string, ReactNode> = {
   X: <SketchX className="size-3.5 shrink-0 text-foreground" />,
@@ -158,29 +148,24 @@ export default function Page() {
         <SectionLabel ink={INK.amber} title="stack" meta="tools" />
 
         <div className="flex flex-col">
-          {coreStack.map((group) => {
-            const Icon = STACK_ICON[group.icon];
-
-            return (
-              <EntryRow
-                key={group.category}
-                icon={<Icon className="size-4 text-[var(--notion-amber-text)]" />}
-                title={group.category}
-                description={
-                  <>
-                    {group.items.map((item, idx) => (
-                      <span key={item}>
-                        {item}
-                        {idx < group.items.length - 1 && (
-                          <span className="text-muted-foreground select-none">, </span>
-                        )}
-                      </span>
-                    ))}
-                  </>
-                }
-              />
-            );
-          })}
+          {coreStack.map((group) => (
+            <EntryRow
+              key={group.category}
+              title={group.category}
+              description={
+                <>
+                  {group.items.map((item, idx) => (
+                    <span key={item}>
+                      {item}
+                      {idx < group.items.length - 1 && (
+                        <span className="text-muted-foreground select-none">, </span>
+                      )}
+                    </span>
+                  ))}
+                </>
+              }
+            />
+          ))}
         </div>
       </section>
 

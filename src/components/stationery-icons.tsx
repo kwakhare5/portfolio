@@ -20,6 +20,28 @@ export function SketchArrow({ className = "size-3" }: { readonly className?: str
 }
 
 /**
+ * Monoline globe for external live links.
+ */
+export function SketchGlobe({ className = "size-3.5" }: { readonly className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <circle cx="8" cy="8" r="6" />
+      <path d="M2 8H14" />
+      <path d="M8 2C10.2 3.8 11.3 5.8 11.3 8C11.3 10.2 10.2 12.2 8 14C5.8 12.2 4.7 10.2 4.7 8C4.7 5.8 5.8 3.8 8 2Z" />
+    </svg>
+  );
+}
+
+/**
  * Hand-drawn shopping tote bag icon for Grocer.
  */
 export function SketchTote({ className = "size-4" }: { readonly className?: string }) {
@@ -180,69 +202,6 @@ export function SketchMail({ className = "size-3.5" }: { readonly className?: st
     >
       <rect x="2" y="3.5" width="12" height="9" rx="1.5" />
       <path d="M2.5 4.5L8 8.5L13.5 4.5" />
-    </svg>
-  );
-}
-
-/**
- * Monoline code brackets icon for Languages & Frameworks.
- */
-export function SketchCode({ className = "size-3.5" }: { readonly className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 16 16"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.4"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-      aria-hidden="true"
-    >
-      <path d="M5.5 3L2.5 8L5.5 13" />
-      <path d="M10.5 3L13.5 8L10.5 13" />
-      <path d="M9 3L7 13" />
-    </svg>
-  );
-}
-
-/**
- * Monoline sparkle / star for AI, Agents & Workflows.
- */
-export function SketchSparkle({ className = "size-3.5" }: { readonly className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 16 16"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.4"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-      aria-hidden="true"
-    >
-      <path d="M8 2.5C8 5.5 10.5 8 13.5 8C10.5 8 8 10.5 8 13.5C8 10.5 5.5 8 2.5 8C5.5 8 8 5.5 8 2.5Z" />
-    </svg>
-  );
-}
-
-/**
- * Monoline gear / tool for Infrastructure & Dev Tools.
- */
-export function SketchGear({ className = "size-3.5" }: { readonly className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 16 16"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.4"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-      aria-hidden="true"
-    >
-      <circle cx="8" cy="8" r="2.4" />
-      <path d="M8 2.5V4.5M8 11.5V13.5M2.5 8H4.5M11.5 8H13.5M4.1 4.1L5.5 5.5M10.5 10.5L11.9 11.9M4.1 11.9L5.5 10.5M10.5 5.5L11.9 4.1" />
     </svg>
   );
 }

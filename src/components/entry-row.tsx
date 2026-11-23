@@ -1,11 +1,11 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { SketchArrow } from "@/components/stationery-icons";
+import { SketchArrow, SketchGlobe } from "@/components/stationery-icons";
 import { ACTION_TEXT, LINK_ACTION } from "@/lib/styles";
 import { LABEL, ROW_TEXT, ROW_TITLE } from "@/lib/typography";
 
 interface EntryRowProps {
-  readonly icon: ReactNode;
+  readonly icon?: ReactNode;
   readonly title: string;
   readonly href?: string;
   readonly liveUrl?: string;
@@ -39,7 +39,7 @@ export function EntryRow({
       )}
 
       <div className="relative z-10 pointer-events-none flex flex-wrap items-baseline gap-x-2 gap-y-1">
-        <span className="shrink-0 self-center">{icon}</span>
+        {icon && <span className="shrink-0 self-center">{icon}</span>}
         <h3 className={ROW_TITLE}>
           <span
             className={
@@ -61,8 +61,8 @@ export function EntryRow({
                 rel="noopener noreferrer"
                 className={`pointer-events-auto ${LINK_ACTION}`}
               >
+                <SketchGlobe className="size-3.5" />
                 <span>live</span>
-                <SketchArrow className="size-2.5" />
               </a>
             )}
             {showView && (

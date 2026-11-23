@@ -6,7 +6,7 @@ import { SectionLabel } from "@/components/section-label";
 import { ProjectRow } from "@/components/project-row";
 import { DATA, SITE_NAME } from "@/data/resume";
 import { ProjectIcon } from "@/components/project-icon";
-import { SketchArrow, SketchGithub, SketchCheck } from "@/components/stationery-icons";
+import { SketchGlobe, SketchGithub, SketchCheck } from "@/components/stationery-icons";
 import { KeywordText } from "@/components/keyword-text";
 import { LINK_ACTION } from "@/lib/styles";
 import { BODY, LABEL, META, MICRO, ROW_TEXT } from "@/lib/typography";
@@ -147,8 +147,8 @@ export default async function ProjectPage({
               rel="noopener noreferrer"
               className={LINK_ACTION}
             >
+              <SketchGlobe className="size-3.5" />
               <span>live</span>
-              <SketchArrow className="size-2.5" />
             </a>
           )}
           {project.githubUrl && (

@@ -28,6 +28,7 @@ Global rules: read C:\Users\kwakh\.agents\AGENTS.md first. This file adds projec
   - [2026-11-23] One share image only (`public/me-og.png`) -> Keep `og:image` pointed at `/me-og.png` on every page; no per-build OG routes.
   - [2026-11-23] Dark mode is `#171717` with `#1f1f1f` cards, matching the inspiration site -> Light mode stays warm `#fbfbfa`.
   - [2026-11-24] Artifacts photos are bare images -> No border, radius, background, shadow, numbered badge, or boxed counter behind grid photos or in the lightbox; the count is plain meta text.
+  - [2026-11-24] Live links use the monoline globe; view keeps the sketch arrow -> No stack category icons (the category text names them), and the 404 has no "not found" badge (`SketchCode`, `SketchSparkle`, `SketchGear`, and `.ink-stamp` stay deleted).
 - Strict types: No `any` or loose casts.
 - Never commit secrets, passwords or API keys. Keep them in an untracked `.env` or environment variables.
 - Security and privacy rules: Client-side static rendering where possible. No sensitive user data.

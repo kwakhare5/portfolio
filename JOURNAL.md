@@ -68,6 +68,12 @@ At the end of a session with meaningful changes:
 - **Proof:** typecheck 0, lint 0, Vitest 8/8, build 14/14. DOM: artifact stamps 0, lightbox box false, clock icons 0, meta `#buildsprojects`, heading 22px, photo wrapper border 0. Screenshots: `C:/Users/kwakh/.qoder/tmp/portfolio-final-v6-2026-11-24`.
 - **Still broken / unproven:** Stack category icons are the remaining decorative icons, waiting on a yes. Not committed, pushed or deployed. `public/me-og.png` still carries the old subtitle.
 
+#### Work card 5: A globe for live links, and the last decorative icons removed
+- **Problem / tension:** Live links reused the same up arrow as local view links, stack categories carried code, sparkle and gear icons that only repeated their names, and the 404 still showed a boxed "not found" stamp.
+- **Change / decision:** Live links now show a 14px monoline globe on home and case pages; view keeps the sketch arrow. Removed the stack icon map, `StackIconKey`, and the data icon fields, and deleted `SketchCode`, `SketchSparkle`, and `SketchGear`. The 404 is now just "404", "Page not found", and a return link; deleted the `.ink-stamp` style with it.
+- **Proof:** typecheck 0, lint 0, Vitest 8/8, build 14/14. DOM: home live link has 1 globe and view 1 arrow, `#stack svg` count 0, 404 `.ink-stamp` count 0, case live link has 1 globe. Screenshots: `C:/Users/kwakh/.qoder/tmp/portfolio-final-v7-2026-11-24`.
+- **Still broken / unproven:** Not deployed; the live site still serves HEAD. `public/me-og.png` still carries the old subtitle.
+
 ### [Portfolio — Unvalley-inspired type pass, lean rows, About socials] 2026-11-23
 
 #### Work card 1: Swap the gray-clone restyle for the original shell with unvalley's type system

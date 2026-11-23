@@ -13,10 +13,7 @@ export default function NotFound() {
   return (
     <div className="min-h-[60vh] flex flex-col items-center justify-center text-center p-4 select-none">
       <div className="flex flex-col items-center max-w-md gap-3">
-        <div className="flex items-center gap-2">
-          <h1 className={TITLE}>404</h1>
-          <span className="ink-stamp">not found</span>
-        </div>
+        <h1 className={TITLE}>404</h1>
 
         <h2 className={ROW_TITLE}>Page not found</h2>
 
