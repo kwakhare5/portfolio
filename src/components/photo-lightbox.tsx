@@ -4,11 +4,11 @@ import { useCallback, useEffect } from "react";
 import Image from "next/image";
 import type { PhotoItem } from "@/data/resume";
 import {
-  SketchFrame,
   SketchClose,
   SketchChevronLeft,
   SketchChevronRight,
 } from "@/components/stationery-icons";
+import { META, MICRO } from "@/lib/typography";
 
 interface PhotoLightboxProps {
   readonly photos: readonly PhotoItem[];
@@ -69,11 +69,11 @@ export function PhotoLightbox({
       aria-modal="true"
       aria-label="Enlarged photo preview"
       onClick={onClose}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 p-3 sm:p-8 backdrop-blur-xl cursor-zoom-out"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-background p-3 sm:p-8 cursor-zoom-out"
     >
       {/* Top Bar: Counter & Close */}
       <div className="absolute top-4 sm:top-6 pt-[env(safe-area-inset-top)] inset-x-4 sm:inset-x-8 flex items-center justify-between z-50">
-        <span className="ink-stamp select-none text-xs px-2.5 py-0.5">
+        <span className={`${MICRO} select-none`}>
           {activeIndex + 1} / {photos.length}
         </span>
 
@@ -117,7 +117,7 @@ export function PhotoLightbox({
         className="relative max-h-[90dvh] max-w-[95vw] sm:max-w-[90vw] flex flex-col items-center gap-3 select-none"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="relative max-h-[75dvh] sm:max-h-[82dvh] max-w-[92vw] sm:max-w-[85vw] overflow-hidden rounded border border-border shadow-2xl">
+        <div className="relative max-h-[75dvh] sm:max-h-[82dvh] max-w-[92vw] sm:max-w-[85vw] overflow-hidden">
           <Image
             src={currentPhoto.url}
             alt={currentPhoto.caption || "Photo"}
@@ -129,9 +129,8 @@ export function PhotoLightbox({
           />
         </div>
         {currentPhoto.caption && (
-          <p className="text-xs font-mono text-muted-foreground tracking-wide text-center flex items-center justify-center gap-1">
-            <SketchFrame className="size-3 shrink-0 text-muted-foreground/60" />
-            <span>{currentPhoto.caption}</span>
+          <p className={`text-center ${META}`}>
+            {currentPhoto.caption}
           </p>
         )}
       </div>

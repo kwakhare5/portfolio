@@ -12,10 +12,12 @@ A high-performance, modern developer portfolio and project showcase built with N
   - **Outpost**: Quick-commerce inventory replenishment decision engine forecasting stockouts and routing inter-store transfers with human-in-the-loop approval.
   - **Git for Prompts**: Git-style version control for AI prompts with commit histories, token diffing, and multi-model evals.
   - **Beam**: Offline Windows 11 capsule for live music controls, a file shelf, a countdown, and a calendar.
-- **Project Case Studies**: Indexable pages for each build with the problem, architecture, and engineering highlights.
+- **Builds List**: Per-project sketch icons, live links, and solid-separated rows that open the case study.
+- **About & Socials**: AI engineer and full stack developer, inline TypeScript, Python, and Swiggy brand marks, plus GitHub, X, LinkedIn, and email links with identity icons.
+- **Project Case Studies**: Indexable pages for each build with the problem, architecture, engineering highlights, and a generated share card.
 - **Artifacts Gallery**: Interactive photo gallery with keyboard navigation and fullscreen lightbox.
 - **Stack & Tooling**: Core languages, AI agent runtimes, and infrastructure, rendered from one typed data file.
-- **SEO & Discoverability**: Dynamic XML sitemap (`/sitemap.xml`), `robots.txt`, and Schema.org `Person` & `WebSite` JSON-LD graphs plus a `ProfilePage` graph on the home page.
+- **SEO & Discoverability**: Dynamic XML sitemap (`/sitemap.xml`), `robots.txt`, one share image (`me-og.png`), and Schema.org `Person` & `WebSite` JSON-LD graphs plus a `ProfilePage` graph on the home page.
 - **Theme Switching**: System-aware dark/light mode with manual override.
 
 ---

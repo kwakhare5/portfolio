@@ -10,7 +10,6 @@ export interface ProjectSpecs {
 export interface ProjectSpec {
   readonly title: string;
   readonly slug: string;
-  readonly year: string;
   readonly icon: ProjectIconKey;
   readonly oneLiner: string;
   readonly liveUrl?: string;
@@ -37,7 +36,6 @@ export interface PhotoItem {
 export interface SocialItem {
   readonly name: string;
   readonly url: string;
-  readonly label: string;
 }
 
 export interface ResumeData {
@@ -58,11 +56,11 @@ export const DATA: ResumeData = {
   name: "Karan Wakhare",
   url: "https://karan30.vercel.app",
   description:
-    "Karan Wakhare is a computer engineering student and developer in Pune building AI tools and full-stack apps.",
+    "Karan Wakhare is an AI engineer and full stack developer in Pune. He builds AI products and web apps. His work includes a WhatsApp grocery assistant and a tool for saving and comparing AI prompts.",
   bio: [
-    "i'm an ai engineer and full-stack developer studying computer engineering in pune.",
-    "i build ai tools and apps, from grocery shopping on whatsapp to version control for prompts.",
-    "for grocer, swiggy whitelisted instamart mcp access and picked me for the builder club.",
+    "i'm a computer engineering student in Pune. i build AI products and full-stack apps with TypeScript and Python.",
+    "Grocer is my WhatsApp grocery assistant. i'm part of the Swiggy Builder Club for it.",
+    "i take photos when i travel.",
   ],
   avatarUrl: "/me.png",
 
@@ -70,94 +68,91 @@ export const DATA: ResumeData = {
     {
       title: "Beam",
       slug: "beam",
-      year: "'26",
       icon: "sound",
-      oneLiner: "One offline pill above your Windows 11 taskbar for music, files, countdowns, and a calendar — no cloud, no account.",
+      oneLiner: "A small pill above your Windows 11 taskbar for music, files, timers, and your calendar. It works offline, with no account.",
       liveUrl: "https://beamm.vercel.app/",
       githubUrl: "https://github.com/kwakhare5/beam",
       stack: ["TypeScript", "Electron", "Vite", ".NET", "Windows SMTC"],
       schemaCategory: "UtilitiesApplication",
       schemaPlatform: "Windows 11",
       specs: {
-        problem: "Windows 11 scatters media controls, timers, and quick file drops across taskbar flyouts and separate apps, so reaching for them breaks your flow.",
-        architecture: "An Electron shell renders a transparent capsule that reads Windows media sessions through a .NET helper, keeps its position across restarts, and makes zero network calls; a global hotkey opens it to whatever the pill shows.",
+        problem: "Windows 11 keeps media controls, timers, and quick file drops in different places. Reaching them breaks what you are doing.",
+        architecture: "A small app sits above the taskbar and shows what is playing in Windows. It remembers where you put it, and a hotkey opens it. It never connects to the internet.",
         highlights: [
-          "Live SMTC media controls with seek, artwork, and automatic player switching",
-          "File shelf with drag-out to Explorer, Copy All straight to Ctrl+V, and missing-file badges",
-          "Alt+Space opens the panel to whatever the pill shows, and the pill hides itself in fullscreen",
-          "Countdown that chimes and sends a Windows notification while the pill is hidden",
-          "30/30 real-app verification checks; ~90 MB memory and zero network sockets",
+          "Play, pause, skip, and switch players without leaving your work.",
+          "Drag files out to Explorer, or copy them all with one click.",
+          "Press Alt+Space to open the panel. The pill hides itself in fullscreen.",
+          "A timer chimes and sends a Windows notification while the pill is hidden.",
+          "30 checks on the real app, about 90 MB of memory, and no network calls.",
         ],
-        status: "Shipped v0.1.1 with a one-click installer; the browser demo runs the real renderer.",
+        status: "v0.1.1 is out with a one-click installer. The browser demo runs the real app.",
       },
     },
     {
       title: "Grocer",
       slug: "grocer",
-      year: "'26",
       icon: "tote",
-      oneLiner: "Text your grocery list on WhatsApp; Grocer checks live Swiggy Instamart stock, swaps what's missing, and waits for your tap before ordering.",
+      oneLiner: "Send Grocer your grocery list on WhatsApp. It checks live Instamart stock, suggests swaps for anything missing, and waits for your tap before ordering.",
       liveUrl: "https://grocerr.vercel.app/",
       githubUrl: "https://github.com/kwakhare5/Grocer",
       stack: ["Python", "FastAPI", "Swiggy Instamart MCP", "WhatsApp API", "Next.js 16"],
       schemaCategory: "BusinessApplication",
       schemaPlatform: "Web",
       specs: {
-        problem: "Quick-commerce carts break when items go out of stock or pack sizes change, and starting over is the only fix the apps give you.",
-        architecture: "WhatsApp Cloud API feeds a FastAPI capability router; Python owns money, stock math, and checkout locks against live Swiggy Instamart via MCP, while the LLM only handles language.",
+        problem: "Grocery apps make you start over when one item is out of stock or a pack size changes. Fixing one item should not mean rebuilding the cart.",
+        architecture: "WhatsApp passes your message to a Python server. The server checks stock, prices, and checkout with live Instamart data. The AI only reads the message. Nothing is ordered until you tap the WhatsApp button.",
         highlights: [
-          "Safety classes on every message: a read path can never reach a write path",
-          "3-lock checkout: physical WhatsApp button tap only, live cart re-verification, exactly-once database guard",
-          "₹1,000 cart cap, and coupons applied only when the payable total goes down",
-          "Out-of-stock items reported honestly with valid swaps, never silently dropped",
-          "Addresses and basket snapshots deleted after 24 hours for DPDP compliance",
+          "Checks live stock and prices before it asks you to confirm.",
+          "Suggests a real replacement when an item is out of stock.",
+          "One WhatsApp tap approves the order. Nothing is ordered without it.",
+          "Caps the cart at ₹1,000, and applies a coupon only if the total drops.",
+          "Deletes addresses and basket data after 24 hours.",
         ],
-        status: "293 tests (191 offline, 82 database, 20 live) and a 40/40 router eval with zero unsafe writes. Checkout is built; no live order has been placed yet.",
+        status: "293 tests pass. Checkout is built, but I have not placed a real order yet.",
       },
     },
     {
       title: "Git for Prompts",
       slug: "git-for-prompts",
-      year: "'26",
       icon: "prompt",
-      oneLiner: "A local-first package manager for AI prompts: version, diff, and eval them offline in your terminal, then sync to a cloud studio.",
+      oneLiner: "Save every version of an AI prompt, compare changes, and test old versions offline from your terminal.",
       liveUrl: "https://gitforprompts.vercel.app/",
       githubUrl: "https://github.com/kwakhare5/Git-for-Prompts",
       stack: ["Next.js 16", "TypeScript", "Drizzle ORM", "Monaco Editor", "PostgreSQL", "Tailwind CSS"],
       schemaCategory: "DeveloperApplication",
       schemaPlatform: "Web",
       specs: {
-        problem: "Prompts live in messy text files, so versions get lost, edits break outputs unseen, and token costs spike without anyone noticing.",
-        architecture: "A pnpm monorepo: a CLI on in-process WebAssembly SQLite works fully offline; a Next.js and PostgreSQL studio syncs snapshots behind transaction-level advisory locks.",
+        problem: "Prompts live in loose text files. Old versions get lost, small edits can break the output, and the cost creeps up without anyone noticing.",
+        architecture: "The command-line tool uses a local database, so it works offline. A web studio syncs your versions to Postgres when you want to share them.",
         highlights: [
-          "Immutable versions track templates, variables, model params, tools, and output schemas",
-          "Monaco side-by-side diffs with word, variable, and model config changes",
-          "Batch regression evals across Groq, OpenRouter, OpenAI, Anthropic, and Ollama",
-          "API keys stored as one-way SHA-256 hashes, HMAC-signed webhooks, and an MCP manifest for Claude Desktop and Cursor",
+          "Each version keeps its template, variables, model settings, tools, and expected output.",
+          "Compare two versions side by side and see exactly what changed.",
+          "Run a batch of test prompts across Groq, OpenAI, Anthropic, and Ollama.",
+          "API keys are stored as one-way hashes, webhooks are signed, and Claude Desktop and Cursor can connect through MCP.",
         ],
-        status: "v1.0.0, MIT licensed, with real-postgres integration tests and no mocks.",
+        status: "v1.0.0, MIT licensed. The tests run against a real Postgres database.",
       },
     },
     {
       title: "Outpost",
       slug: "outpost",
-      year: "'26",
       icon: "box",
-      oneLiner: "A replenishment decision engine for quick-commerce dark stores: forecasts stockouts, proposes transfers and reorders, and waits for human sign-off.",
+      oneLiner: "A planning tool for stores that deliver groceries in minutes. It spots likely stockouts and suggests stock moves or reorders. A person approves each one.",
       githubUrl: "https://github.com/kwakhare5/Outpost",
       stack: ["Python", "FastAPI", "LangGraph", "Next.js 16", "TypeScript", "SQLite"],
       schemaCategory: "BusinessApplication",
       schemaPlatform: "Web",
       specs: {
-        problem: "Dark stores lose margin to stockouts and expiry write-offs, and sales logs hide true demand — a stocked-out SKU records zero sales.",
-        architecture: "A FastAPI core and a deterministic 5-node LangGraph DAG with Holt Linear forecasting over a physical FIFO batch ledger across 3 Mumbai nodes; the same seed replays identically, and every high-consequence action waits for human approval.",
+        problem: "These stores lose money when popular items run out or stock expires. Sales logs hide it because a sold-out item records zero sales.",
+        architecture: "A Python server reads stock and sales and plans the next few days. It uses sample data from three Mumbai stores, so the same data always gives the same plan. Anything risky waits for a person to approve it.",
         highlights: [
-          "Unconstrained demand accounting: requested = fulfilled + lost, so censored demand never becomes fake revenue",
-          "Conservation of mass: destination stock credits only after dock-door crate counts, with road transit ETAs",
-          "Donor safety-buffer proof before any lateral transfer; stale approvals rejected server-side with 409",
-          "109 passing tests; WAPE and MAE reported on a 3-day holdout",
+          "Counts lost sales, not just fulfilled ones, so demand is not hidden.",
+          "Moves stock only after the crates are counted at the dock.",
+          "Checks that the sending store still has enough stock before a transfer.",
+          "Rejects an approval if the stock changed after the plan was made.",
+          "109 tests pass. Forecasts are checked against three days of held-back data.",
         ],
-        status: "The live console runs on a seeded simulator, not a real dark store network.",
+        status: "The live console uses sample data, not a real store network.",
       },
     },
   ],
@@ -187,7 +182,7 @@ export const DATA: ResumeData = {
     },
     {
       url: "/photos/supertree-grove-gardens-by-the-bay.jpg",
-      caption: "gardens by the bay",
+      caption: "gardens by the bay, singapore",
     },
     {
       url: "/photos/sheikh-zayed-grand-mosque.jpg",
@@ -195,15 +190,15 @@ export const DATA: ResumeData = {
     },
     {
       url: "/photos/marina-barrage-singapore.jpg",
-      caption: "marina barrage park",
+      caption: "marina barrage, singapore",
     },
     {
       url: "/photos/burj-al-arab-gulf.jpg",
-      caption: "arabian gulf",
+      caption: "arabian gulf, dubai",
     },
     {
       url: "/photos/founders-memorial-abu-dhabi.jpg",
-      caption: "the constellation, abu dhabi",
+      caption: "founders memorial, abu dhabi",
     },
     {
       url: "/photos/dubai-marina-golden-hour.jpg",
@@ -211,19 +206,19 @@ export const DATA: ResumeData = {
     },
     {
       url: "/photos/pawna-lake-sunset.jpg",
-      caption: "pawna lake sunset",
+      caption: "pawna lake, lonavala",
     },
     {
       url: "/photos/burj-khalifa-night.jpg",
-      caption: "burj khalifa at night",
+      caption: "burj khalifa at night, dubai",
     },
     {
       url: "/photos/dubai-at-the-top.jpg",
-      caption: "dubai from 148th floor",
+      caption: "at the top, dubai",
     },
     {
       url: "/photos/dubai-skyline-mist.jpg",
-      caption: "dubai skyline in mist",
+      caption: "dubai skyline",
     },
     {
       url: "/photos/sentosa-beach-singapore.jpg",
@@ -231,7 +226,7 @@ export const DATA: ResumeData = {
     },
     {
       url: "/photos/singapore-flyer-marina-bay.jpg",
-      caption: "singapore skyline",
+      caption: "singapore flyer, singapore",
     },
     {
       url: "/photos/lake-pichola-udaipur.jpg",
@@ -242,30 +237,26 @@ export const DATA: ResumeData = {
   contact: {
     socials: [
       {
-        name: "X",
-        url: "https://x.com/kwakhare5",
-        label: "x",
-      },
-      {
         name: "GitHub",
         url: "https://github.com/kwakhare5",
-        label: "github",
+      },
+      {
+        name: "X",
+        url: "https://x.com/kwakhare5",
       },
       {
         name: "LinkedIn",
         url: "https://www.linkedin.com/in/karanwakhare",
-        label: "linkedin",
       },
       {
         name: "Email",
         url: "mailto:kwakhare5@gmail.com",
-        label: "email",
       },
     ],
   },
 };
 
-export const ROLE = "AI Engineer & Full-Stack Developer";
+export const ROLE = "AI Engineer & Full Stack Developer";
 export const SITE_NAME = `${DATA.name} Portfolio`;
 export const SITE_TITLE = `${DATA.name} | ${ROLE}`;
 export const SITE_DESCRIPTION = DATA.description;

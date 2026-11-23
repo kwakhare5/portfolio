@@ -3,6 +3,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { SketchGithub } from "@/components/stationery-icons";
 import { getComputedLevel } from "@/lib/utils";
+import { LINK_SOCIAL } from "@/lib/styles";
+import { META, MICRO_SIZE } from "@/lib/typography";
 
 interface ContributionDay {
   date: string;
@@ -150,13 +152,13 @@ export function GitHubCalendar() {
   return (
     <div className="w-full flex flex-col gap-3">
       {/* Header Info */}
-      <div className="flex items-center justify-between text-xs font-mono text-muted-foreground pb-1 flex-wrap gap-1">
+      <div className={`${META} flex items-center justify-between gap-2 pb-1 flex-wrap`}>
         <span>
           {loading ? (
-            <span className="animate-pulse">Loading contributions...</span>
+            <span className="animate-pulse">loading GitHub activity...</span>
           ) : (
             <span>
-              <strong className="text-foreground font-semibold">{totalCount.toLocaleString()}</strong> contributions in the last year
+              <span className="text-foreground">{totalCount.toLocaleString()}</span> contributions in the last year
             </span>
           )}
         </span>
@@ -165,7 +167,7 @@ export function GitHubCalendar() {
           href="https://github.com/kwakhare5"
           target="_blank"
           rel="noopener noreferrer"
-          className="relative inline-flex items-center gap-1 text-foreground font-medium underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary after:absolute after:-inset-1.5 after:content-[''] touch-manipulation"
+          className={LINK_SOCIAL}
         >
           <SketchGithub className="size-3.5" />
           <span>@kwakhare5</span>
@@ -175,7 +177,7 @@ export function GitHubCalendar() {
       {/* Unified Non-Sliding Heatmap Container */}
       <div className="relative w-full border border-border rounded-lg p-2.5 sm:p-4 bg-card">
         {loading ? (
-          <div className="min-h-[160px] w-full flex items-center justify-center text-xs font-mono text-muted-foreground animate-pulse">
+          <div className={`min-h-[160px] w-full flex items-center justify-center ${META} animate-pulse`}>
             fetching github activity...
           </div>
         ) : weeks.length > 0 ? (
@@ -202,7 +204,7 @@ export function GitHubCalendar() {
                       key={i}
                       x={lbl.xPos}
                       y={10}
-                      className="fill-muted-foreground font-mono text-xs"
+                      className={`fill-muted-foreground ${MICRO_SIZE}`}
                     >
                       {lbl.month}
                     </text>
@@ -238,19 +240,19 @@ export function GitHubCalendar() {
             </div>
 
             {/* Footer with Legend & Tooltip detail */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-0 text-xs font-mono text-muted-foreground pt-1.5 border-t border-border">
+            <div className={`${META} flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-0 pt-1.5 border-t border-border`}>
               <div className="min-h-[16px]">
                 {hoveredDay ? (
                   <span className="text-foreground">
-                    <strong className="text-foreground">{hoveredDay.count}</strong> contribution
+                    <span className="text-foreground">{hoveredDay.count}</span> contribution
                     {hoveredDay.count === 1 ? "" : "s"} on {formatDate(hoveredDay.date)}
                   </span>
                 ) : (
-                  <span>Hover / tap a square for details</span>
+                  <span>tap or hover a square to see the day</span>
                 )}
               </div>
 
-              <div className="flex items-center gap-1.5 text-xs self-end sm:self-auto">
+              <div className="flex items-center gap-1.5 self-end sm:self-auto">
                 <span>Less</span>
                 <div className="size-[9px] rounded-[2px] bg-muted dark:bg-muted/50" />
                 <div className="size-[9px] rounded-[2px] bg-emerald-500/20 dark:bg-emerald-400/20" />
@@ -262,8 +264,8 @@ export function GitHubCalendar() {
             </div>
           </div>
         ) : (
-          <div className="h-[100px] w-full flex items-center justify-center text-xs font-mono text-muted-foreground">
-            Activity telemetry temporarily unavailable.
+          <div className={`h-[100px] w-full flex items-center justify-center ${META}`}>
+            GitHub activity is unavailable right now.
           </div>
         )}
       </div>

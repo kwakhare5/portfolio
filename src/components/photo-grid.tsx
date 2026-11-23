@@ -5,7 +5,8 @@ import Link from "next/link";
 import type { PhotoItem } from "@/data/resume";
 import { PhotoLightbox } from "@/components/photo-lightbox";
 import { PhotoCard } from "@/components/photo-card";
-import { SketchCamera, SketchArrow } from "@/components/stationery-icons";
+import { LINK_ACTION } from "@/lib/styles";
+import { META } from "@/lib/typography";
 
 const PREVIEW_COUNT = 4;
 
@@ -34,23 +35,20 @@ export function PhotoGrid({
             index={index}
             onClick={() => setActivePhotoIndex(index)}
             sizes={preview ? "(max-width: 640px) 50vw, 25vw" : "(max-width: 640px) 50vw, 33vw"}
-            stamp={preview ? undefined : index + 1 < 10 ? `0${index + 1}` : String(index + 1)}
           />
         ))}
       </div>
 
       {preview && (
-        <div className="flex items-center justify-between text-xs font-mono text-muted-foreground pt-0.5">
+        <div className={`${META} flex flex-wrap items-center justify-between gap-2 pt-0.5`}>
           <span>
-            showing {PREVIEW_COUNT} of {photos.length} captures
+            showing {PREVIEW_COUNT} of {photos.length} photos
           </span>
           <Link
             href="/artifacts"
-            className="relative inline-flex items-center gap-1 font-medium text-[var(--notion-blue-text)] underline underline-offset-4 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary after:absolute after:-inset-2 after:content-[''] touch-manipulation"
+            className={LINK_ACTION}
           >
-            <SketchCamera className="size-3.5" />
-            <span>see all {photos.length} images</span>
-            <SketchArrow className="size-2.5 opacity-80" />
+            <span>see all {photos.length} photos</span>
           </Link>
         </div>
       )}

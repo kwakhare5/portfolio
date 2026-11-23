@@ -42,6 +42,77 @@ At the end of a session with meaningful changes:
 
 ## Log entries
 
+### [Portfolio — Avatar scale, brand marks, row lines] 2026-11-24
+
+#### Work card 1: Fit the avatar to the name block and give brands real marks
+- **Problem / tension:** The 128/112px avatar outgrew the name and role, bold text moved to a cold near-black, rows had no visible separation, TypeScript and Python had no marks, and the keyword rule bolded tech names the user did not want bold.
+- **Change / decision:** The avatar is 64px and shows the original `me.png` uncropped, matching the 62px name block. Bold ink is back to warm `#37352f`. Rows carry a 1px solid separator, none after the last. Added local Simple Icons SVGs for TypeScript, Python, and Swiggy at 14px inline. TypeScript and Python render at 450 with their marks; Swiggy and Instamart are 600 with the Swiggy mark; socials stay 600.
+- **Proof:** typecheck 0, lint 0, Vitest 7/7, build 14/14. DOM checks: avatar box 64, TypeScript/Python 450 with loaded icons, Swiggy 600 with icon, row borders 1px/0, heading color rgb(55,53,47), live and view 14px underlined. Screenshots: `C:/Users/kwakh/.qoder/tmp/portfolio-final-v3-2026-11-24`.
+- **Still broken / unproven:** Not committed, pushed or deployed. `public/me-og.png` still says "AI Systems & Full-Stack • Pune, IND" and needs a new card image.
+
+#### Work card 2: Bare photo grid and the linked Swiggy Builder Club
+- **Problem / tension:** Artifacts photos sat inside bordered cards with shadows and a boxed count badge, and the About called the program "swiggy builder club" with no official name or link.
+- **Change / decision:** Removed borders, radius, background, and shadow from grid photos and the lightbox frame; the artifacts count is now plain meta text. The About now uses the official "Swiggy Builder Club" name as one bold 600 link to `https://mcp.swiggy.com/builders/` with the Swiggy mark.
+- **Proof:** typecheck 0, lint 0, Vitest 8/8, build 14/14. DOM: builder link text, href, 600 weight, underline, and `/icons/swiggy.svg`; photo wrapper border 0px, shadow none, radius 0px. Screenshots: `C:/Users/kwakh/.qoder/tmp/portfolio-final-v4-2026-11-24`.
+- **Still broken / unproven:** Not committed, pushed or deployed. `public/me-og.png` still carries the old subtitle.
+
+#### Work card 3: Larger page titles and official name casing
+- **Problem / tension:** The 20px page titles read small next to the 16px body, and the About used lowercase brand names like typescript, python, whatsapp, and pune.
+- **Change / decision:** The title token is now 22/28, so Hi I'm Karan, Beam, artifacts, and 404 all grow slightly while the name block still matches the 64px avatar. Copy now uses official casing for TypeScript, Python, WhatsApp, Grocer, Instamart, Swiggy Builder Club, Pune, AI, and GitHub, including the activity meta and case GitHub action.
+- **Proof:** typecheck 0, lint 0, Vitest 8/8, build 14/14. DOM: h1 22px, bio names capitalized, TypeScript/Python 450 with marks, Swiggy Builder Club link, photo borders 0. Screenshots: `C:/Users/kwakh/.qoder/tmp/portfolio-final-v5-2026-11-24`.
+- **Still broken / unproven:** Not committed, pushed or deployed. `public/me-og.png` still carries the old subtitle.
+
+#### Work card 4: Remove the last artifact boxes and decorative icon clutter
+- **Problem / tension:** Artifacts still had numbered badge boxes on every photo, a boxed lightbox counter, a camera icon in the header and see-all link, and a clock icon before Pune; the builds label still said selected.
+- **Change / decision:** Removed all numbered photo badges, the boxed lightbox counter, both camera icons, and the Pune clock icon; deleted the now-unused SketchCamera and SketchClock exports. Builds meta is now projects.
+- **Proof:** typecheck 0, lint 0, Vitest 8/8, build 14/14. DOM: artifact stamps 0, lightbox box false, clock icons 0, meta `#buildsprojects`, heading 22px, photo wrapper border 0. Screenshots: `C:/Users/kwakh/.qoder/tmp/portfolio-final-v6-2026-11-24`.
+- **Still broken / unproven:** Stack category icons are the remaining decorative icons, waiting on a yes. Not committed, pushed or deployed. `public/me-og.png` still carries the old subtitle.
+
+### [Portfolio — Unvalley-inspired type pass, lean rows, About socials] 2026-11-23
+
+#### Work card 1: Swap the gray-clone restyle for the original shell with unvalley's type system
+- **Problem / tension:** The uncommitted restyle replaced the nav, hero, clock, pastels and copy with a monochrome unvalley.me clone; Karan wanted his original site back with only the reference's type, row and spacing taste, plus real color.
+- **Change / decision:** Stashed the clone, restored HEAD, then set a 672px column with 16/28 body, 14/24 section labels in per-section Notion inks, dotted-leader rows, soft gray link underlines and a 600ms blur/fade stagger. Kept the warm paper background, pastels, nav, hero, clock and case-study copy.
+- **Proof:** `pnpm typecheck` 0, `pnpm lint` 0, Vitest 4/4, production build 14/14. Headless Chrome at 1280px light/dark and 390px: `.scratch/shots/home-light.png`, `home-dark`, `home-mobile-light`, `artifacts-light`, `case-light`, `case-dark`, `not-found`.
+- **Still broken / unproven:** Not committed, pushed or deployed; the live site still serves HEAD. The disliked clone is recoverable in stash `unvalley restyle attempt (disliked)`.
+
+#### Work card 2: Role, About socials, row declutter and dead-code purge
+- **Problem / tension:** The hero repeated the stack in a mono meta line, the bio repeated the role, socials lived in a separate footer, and every project row carried a '26 stamp, project chip, live and view arrows.
+- **Change / decision:** The role now reads `AI Engineer` under the name; the bio no longer repeats it and ends with "you can reach me on GitHub, X, LinkedIn and email."; removed the socials nav link and footer, deleted `socials-footer.tsx` plus five unused Sketch exports, dropped project years, row icons/stamps/actions, photo caption icons and the unused sand ink, and restored `sm:px-8` side padding.
+- **Proof:** Same checks as card 1; the 390px shot shows stack items wrapping at separators without clipping; rows and About verified in `home-mobile-light.png` and `home-light.png`.
+- **Still broken / unproven:** Tech logos in the About paragraph are text-only because no brand SVG assets exist in the repo. Not committed or deployed.
+- **Engineering references:** `src/app/page.tsx`, `src/components/project-row.tsx`, `src/data/resume.ts`, `src/components/stationery-icons.tsx`, `src/components/photo-card.tsx`, `src/components/photo-grid.tsx`, `src/components/photo-lightbox.tsx`, `src/app/builds/[slug]/page.tsx`.
+
+#### Work card 3: Clear hero, About socials, build row identity
+- **Problem / tension:** The rotating multilingual greeting sat next to a bare "AI Engineer" line and read as two unrelated things; socials were plain text; build rows had no project identity or live links.
+- **Change / decision:** Hero is now `Hi, I'm Karan` + `AI engineer in Pune.` + a green-dot `now: building Outpost` line; `hero-greeting.tsx` and its highlighter icon were deleted. About links carry colored X, GitHub, LinkedIn and mail icons (sand ink restored). Rows regained the per-project sketch icon plus `live` and `view` links, still without years.
+- **Proof:** `pnpm typecheck` 0, `pnpm lint` 0, Vitest 4/4, production build 14/14. Headless shots: `.scratch/shots/home-light.png`, `home-dark`, `home-mobile-light`, `case-light`, `case-dark`, `not-found`.
+- **Still broken / unproven:** Not committed, pushed or deployed.
+
+#### Work card 4: Type/spacing normalization, shared styles, per-build OG cards
+- **Problem / tension:** Eight ad-hoc text sizes, mixed 32/40px section gaps, 15 duplicated link recipes, seven copies of the section heading, a shared `me-og.png` on every case page, and graphify docs for an absent tool.
+- **Change / decision:** Standardized on 24/30 titles, 16/28 body, 14/24 small and 12/16 mono micro; 40px sections, 8px heading→content, 24px rows; 672px text column via `max-w-[720px] px-4 sm:px-6`. Added `src/lib/styles.ts` link recipes and one `SectionLabel`, removed the 18px size, and added `builds/[slug]/opengraph-image.tsx` with per-project title, one-liner and ink dot. Deleted `hero-greeting.tsx`, the graphify rules/workflow docs and their ignore entries.
+- **Proof:** Checks and build as in card 3; `/builds/beam/opengraph-image` returns `image/png` 48,504 bytes; case HTML points `og:image` at the generated route; screenshots verify the new rhythm.
+- **Still broken / unproven:** Not committed or deployed. `graphify-out/` (3.0 MB) is still on disk and now untracked; deletion needs Karan's word. Tech logos in About remain text-only because no brand SVGs exist.
+
+#### Work card 5: Pure black, stack parity, share-card rollback, SEO repair
+- **Problem / tension:** Dark mode was charcoal, the stack section did not match build rows, case titles rendered `Beam | Karan Wakhare | Karan Wakhare`, every case generated its own OG image, the tab icon existed twice, and `llms.txt`/description still described a student/full-stack developer.
+- **Change / decision:** Dark tokens are now pure `#000` with `#0a0a0a` cards; hero keeps `Hi, I'm Karan` + `AI Engineer` only; stack rows mirror build rows (icon, label, dotted leader, comma list, count meta); more-builds rows regained icons; photo captions use place + city only; case titles use the layout template once and `og:image` points back to `me-og.png`; the generated OG route was deleted; favicon consolidated to `src/app/favicon.ico`; `llms.txt`, description, manifest, robots (explicit AI crawlers) and sitemap dates were refreshed; `graphify-out/` and the unused `.agents` graphify docs were deleted.
+- **Proof:** `pnpm typecheck` 0, `pnpm lint` 0, Vitest 4/4, build 14/14. Live checks: `<title>Beam | Karan Wakhare</title>`, `og:image` = `/me-og.png`, `/builds/beam/opengraph-image` 404, `/favicon.ico` 200, `/icon.png` gone, robots lists GPTBot/ClaudeBot/PerplexityBot, sitemap carries `lastmod`. Screenshots: `home-light`, `home-dark`, `home-mobile-light`, `artifacts-light`, `case-light`, `case-dark`, `not-found`.
+- **Still broken / unproven:** Not committed, pushed or deployed. Google Search Console and Bing submission still need Karan's account. No unused or duplicate photos exist; all 14 map to one file each.
+
+#### Work card 6: One type scale, one row primitive, honest emphasis
+- **Problem / tension:** 43 raw type classes lived across 10 files, page titles ran 30px while 404 ran 60px, the stack used a different row structure and sizes from builds, every link and tool was medium weight, the GitHub mark sat in muddy sand ink, and the 80px avatar showed the 2410px travel scene with a tiny face.
+- **Change / decision:** Added `src/lib/typography.ts` (20/28 title, 16/28 body and row title, 14/24 row text and meta, 12/16 mono micro) and replaced every raw size. Builds, stack and more-builds now share `EntryRow`; case and artifacts share `PageBar` and `PageHeading`. Weight 500 is limited to the page title, Swiggy/Instamart, and GitHub/X/LinkedIn/email; project titles, tools, nav and numbers are 400. Keyword bolding now matches companies only. GitHub mark uses foreground ink; avatar is 96/80px with a face-centered 2.2x crop; description clamping and the lightbox blur were removed.
+- **Proof:** `pnpm typecheck` 0, `pnpm lint` 0, Vitest 5/5 (new plain-tools test), build 14/14. Grep gate: zero `text-*`/`leading-*` outside `typography.ts` and only three `font-medium` uses. Headless Chrome at 1280 light/dark, 390 mobile, case, artifacts, 404 and a 4x avatar crop in `C:\Users\kwakh\.qoder\tmp\portfolio-type-pass-2026-11-23`.
+- **Still broken / unproven:** Not committed, pushed or deployed. All prior cards in this date batch also remain local.
+
+#### Work card 7: One avatar file, shorter About, heavier names, cleaner tree
+- **Problem / tension:** The avatar existed as five files cut from the same photo, the About carried an awkward Swiggy sentence, company and social names were too light, dark mode was pitch black, rows had dotted leaders, live and view used different styles, commas were 40% muted, and the build copy read like engineering notes.
+- **Change / decision:** The avatar now loads only `me.png` in a 128/112px circle with a CSS crop. Deleted `icon-192.png`, `icon-512.png`, `apple-icon.png`, `manifest.ts`, `docs/agents/issue-tracker.md`, and the empty `.agents` folder. The About is three short lines naming TypeScript and Python. Company and social names use weight 600 on `#0a0a0a` ink. Dark mode is `#171717` with `#1f1f1f` cards. Section metas are selected/tools/github/gallery, dotted leaders are gone, live and view share 14px underlined blue, commas use full muted ink, and every build page was rewritten in plain first-person copy.
+- **Proof:** typecheck 0, lint 0, Vitest 5/5, build 14/14. DOM checks: paragraphs 450, keywords and socials 600, live and view both 14px underlined, dark body `rgb(23,23,23)`, avatar natural 2410x2410. Screenshots: `C:/Users/kwakh/.qoder/tmp/portfolio-final-v2-2026-11-23`.
+- **Still broken / unproven:** Not committed, pushed or deployed. `public/me-og.png` still says "AI Systems & Full-Stack • Pune, IND" and needs a new card image.
+
 ### [Portfolio — Dead code, duplication, and docs cleanup] 2026-11-16
 
 #### Work card 3: One action ink, bold keyword rule, GitHub marks, colored social icons

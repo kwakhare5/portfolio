@@ -9,7 +9,6 @@ import "./globals.css";
 const geist = Geist({
   subsets: ["latin"],
   variable: "--font-geist-sans",
-  weight: ["400", "500", "600", "700"],
 });
 
 const geistMono = Geist_Mono({
@@ -32,9 +31,8 @@ export const metadata: Metadata = {
   classification: "Engineering Portfolio & Software Showcase",
   keywords: [
     "Karan Wakhare",
-    "Full Stack Developer",
-    "Software Engineer",
     "AI Engineer",
+    "Full Stack Developer",
     "AI Agents",
     "MCP",
     "Next.js",
@@ -98,7 +96,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#fbfbfa" },
-    { media: "(prefers-color-scheme: dark)", color: "#191919" },
+    { media: "(prefers-color-scheme: dark)", color: "#171717" },
   ],
   width: "device-width",
   initialScale: 1,
@@ -161,7 +159,7 @@ export default function RootLayout({
         className={`min-h-screen bg-background font-sans antialiased relative selection:bg-foreground selection:text-background ${geist.variable} ${geistMono.variable}`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <div className="max-w-[720px] mx-auto px-6 sm:px-8 pt-8 sm:pt-14 pb-16 sm:pb-28 w-full overflow-x-hidden">
+          <div className="max-w-[720px] mx-auto px-4 sm:px-6 pt-8 sm:pt-12 pb-16 sm:pb-24 w-full overflow-x-hidden">
             {children}
           </div>
         </ThemeProvider>

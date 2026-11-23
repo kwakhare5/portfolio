@@ -1,0 +1,9 @@
+export const TITLE = "text-[22px] leading-7 font-medium tracking-tight text-foreground";
+export const BODY = "text-base leading-7 font-[450] text-body";
+export const BODY_MUTED = "text-base leading-7 font-[450] text-muted-foreground";
+export const ROW_TITLE = "text-base leading-7 font-medium text-foreground";
+export const ROW_TEXT = "text-sm leading-6 font-[450] text-body";
+export const META = "text-sm leading-6 font-[450] text-muted-foreground";
+export const LABEL = "text-sm leading-6 font-[450]";
+export const MICRO_SIZE = "font-mono text-xs leading-4";
+export const MICRO = `${MICRO_SIZE} text-muted-foreground`;

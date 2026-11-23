@@ -1,18 +1,18 @@
 # Karan Wakhare
 
-> Computer engineering student and developer in Pune building AI tools and full-stack apps.
+> AI engineer and full stack developer in Pune. He builds AI products and web apps. He built a WhatsApp grocery assistant and a tool for saving and comparing AI prompts.
 
 ## Builds
 
-- [Grocer](https://karan30.vercel.app/builds/grocer): WhatsApp grocery assistant that verifies orders against live Swiggy Instamart inventory and auto-fixes out-of-stock items.
-- [Outpost](https://karan30.vercel.app/builds/outpost): Inventory replenishment decision engine for quick-commerce dark stores.
-- [Git for Prompts](https://karan30.vercel.app/builds/git-for-prompts): Git-style version control for AI prompts with commit histories, token diffing, and multi-model evals.
-- [Beam](https://karan30.vercel.app/builds/beam): Offline Windows 11 capsule with live music controls, a file shelf, a countdown, and a calendar.
+- [Grocer](https://karan30.vercel.app/builds/grocer): A WhatsApp grocery assistant. Send it a list, and it checks live Instamart stock, suggests swaps, and waits for your tap before ordering.
+- [Outpost](https://karan30.vercel.app/builds/outpost): A planning tool for stores that deliver groceries in minutes. It spots likely stockouts and suggests stock moves or reorders. A person approves each one.
+- [Git for Prompts](https://karan30.vercel.app/builds/git-for-prompts): Save every version of an AI prompt, compare changes, and test old versions offline.
+- [Beam](https://karan30.vercel.app/builds/beam): A small pill above your Windows 11 taskbar for music, files, timers, and your calendar. It works offline.
 
 ## Site
 
-- [Portfolio](https://karan30.vercel.app)
-- [Artifacts](https://karan30.vercel.app/artifacts)
+- [Portfolio](https://karan30.vercel.app): About, builds, stack, GitHub activity, and photos.
+- [Artifacts](https://karan30.vercel.app/artifacts): Photos from trips to Dubai, Singapore, Abu Dhabi, Udaipur, and Pune.
 
 ## Profiles
 

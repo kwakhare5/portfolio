@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { SketchClock } from "@/components/stationery-icons";
+import { MICRO } from "@/lib/typography";
 
 const TIME_FORMATTER = new Intl.DateTimeFormat("en-US", {
   timeZone: "Asia/Kolkata",
@@ -23,9 +23,8 @@ export function LocalClock() {
   if (!timeStr) return null;
 
   return (
-    <span className="text-muted-foreground text-xs sm:text-sm font-mono hidden sm:inline-flex items-center gap-1.5">
-      <SketchClock className="size-3 text-muted-foreground/70 shrink-0" />
-      <span>Pune {timeStr}</span>
+    <span className={`${MICRO} hidden sm:inline`}>
+      Pune {timeStr}
     </span>
   );
 }

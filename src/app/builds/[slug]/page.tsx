@@ -1,17 +1,15 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ModeToggle } from "@/components/mode-toggle";
-import { SocialsFooter } from "@/components/socials-footer";
+import { PageBar } from "@/components/page-bar";
+import { PageHeading } from "@/components/page-heading";
+import { SectionLabel } from "@/components/section-label";
+import { ProjectRow } from "@/components/project-row";
 import { DATA, SITE_NAME } from "@/data/resume";
 import { ProjectIcon } from "@/components/project-icon";
-import {
-  SketchArrow,
-  SketchBackArrow,
-  SketchGithub,
-  SketchCheck,
-} from "@/components/stationery-icons";
+import { SketchArrow, SketchGithub, SketchCheck } from "@/components/stationery-icons";
 import { KeywordText } from "@/components/keyword-text";
+import { LINK_ACTION } from "@/lib/styles";
+import { BODY, LABEL, META, MICRO, ROW_TEXT } from "@/lib/typography";
 
 function getProject(slug: string) {
   return DATA.featuredProjects.find((project) => project.slug === slug);
@@ -32,7 +30,8 @@ export async function generateMetadata({
   const project = getProject(slug);
   if (!project) return {};
 
-  const title = `${project.title} | ${project.year}`;
+  const title = project.title;
+  const fullTitle = `${project.title} | ${DATA.name}`;
 
   return {
     title,
@@ -41,7 +40,7 @@ export async function generateMetadata({
       canonical: `/builds/${project.slug}`,
     },
     openGraph: {
-      title: `${title} | ${DATA.name}`,
+      title: fullTitle,
       description: project.oneLiner,
       url: `${DATA.url}/builds/${project.slug}`,
       siteName: SITE_NAME,
@@ -52,13 +51,13 @@ export async function generateMetadata({
           url: "/me-og.png",
           width: 1200,
           height: 630,
-          alt: `${title} | ${DATA.name}`,
+          alt: fullTitle,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${title} | ${DATA.name}`,
+      title: fullTitle,
       description: project.oneLiner,
       images: ["/me-og.png"],
       creator: "@kwakhare5",
@@ -85,6 +84,7 @@ export default async function ProjectPage({
         "@type": "SoftwareApplication",
         name: project.title,
         description: project.oneLiner,
+        image: `${DATA.url}/me-og.png`,
         url: project.liveUrl ?? projectUrl,
         applicationCategory: project.schemaCategory,
         operatingSystem: project.schemaPlatform,
@@ -121,160 +121,103 @@ export default async function ProjectPage({
   };
 
   return (
-    <section className="flex flex-col space-y-10 sm:space-y-14 antialiased">
+    <section className="flex flex-col">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
 
-      <div className="flex items-center justify-between border-b border-border pb-3 font-sans text-sm">
-        <Link
-          href="/#builds"
-          className="relative inline-flex items-center gap-1.5 font-medium text-muted-foreground underline underline-offset-4 decoration-muted-foreground/40 hover:text-foreground hover:decoration-foreground transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary after:absolute after:-inset-2 after:content-[''] touch-manipulation"
-        >
-          <SketchBackArrow className="size-3.5" />
-          <span>back to builds</span>
-        </Link>
-        <ModeToggle />
-      </div>
+      <PageBar href="/#builds" label="back to builds" />
 
-      <header className="flex flex-col gap-3">
-        <div className="flex items-center gap-3 flex-wrap">
-          <ProjectIcon project={project} className="size-6" />
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-foreground">
-            {project.title}
-          </h1>
-          <span className="ink-stamp">{project.year}</span>
-        </div>
+      <header className="mt-6 flex flex-col gap-3">
+        <PageHeading
+          icon={<ProjectIcon project={project} className="size-6" />}
+          title={project.title}
+        />
 
-        <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+        <p className={BODY}>
           <KeywordText text={project.oneLiner} />
         </p>
 
-        <div className="flex flex-wrap items-center gap-2 font-mono text-xs sm:text-sm">
+        <div className={`flex flex-wrap items-center gap-3 ${LABEL}`}>
           {project.liveUrl && (
             <a
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative inline-flex items-center gap-1 font-medium text-[var(--notion-blue-text)] underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary after:absolute after:-inset-2 after:content-[''] touch-manipulation"
+              className={LINK_ACTION}
             >
               <span>live</span>
               <SketchArrow className="size-2.5" />
             </a>
-          )}
-          {project.liveUrl && project.githubUrl && (
-            <span className="text-muted-foreground/40 select-none">·</span>
           )}
           {project.githubUrl && (
             <a
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative inline-flex items-center gap-1 font-medium text-[var(--notion-blue-text)] underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary after:absolute after:-inset-2 after:content-[''] touch-manipulation"
+              className={LINK_ACTION}
             >
               <SketchGithub className="size-3.5" />
-              <span>github</span>
-              <SketchArrow className="size-2.5" />
+              <span>GitHub</span>
             </a>
           )}
         </div>
 
         <div className="space-y-1 pt-1">
-          <span className="font-mono text-xs text-muted-foreground block">
-            technologies
-          </span>
-          <p className="text-xs sm:text-sm font-mono leading-relaxed">
+          <span className={`block ${META}`}>tools</span>
+          <p className={ROW_TEXT}>
             {project.stack.map((tech, idx) => (
               <span key={tech}>
-                {idx > 0 && (
-                  <span className="text-muted-foreground/40 mx-2 select-none">·</span>
+                {tech}
+                {idx < project.stack.length - 1 && (
+                  <span className="text-muted-foreground select-none">, </span>
                 )}
-                <span className="text-foreground font-medium">
-                  {tech}
-                </span>
               </span>
             ))}
           </p>
         </div>
       </header>
 
-      <div className="space-y-8">
-        <section className="space-y-3">
-          <div className="flex items-center justify-between gap-3 border-b border-border pb-3">
-            <h2 className="flex items-center gap-2 text-base sm:text-lg font-normal text-foreground tracking-tight">
-              <span className="text-[var(--notion-red-text)] font-mono select-none">#</span>
-              <span>problem</span>
-            </h2>
-          </div>
-          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+      <div className="mt-6 space-y-10">
+        <section className="space-y-2">
+          <SectionLabel ink="text-[var(--notion-red-text)]" title="the problem" />
+          <p className={BODY}>
             <KeywordText text={project.specs.problem} />
           </p>
         </section>
 
-        <section className="space-y-3">
-          <div className="flex items-center justify-between gap-3 border-b border-border pb-3">
-            <h2 className="flex items-center gap-2 text-base sm:text-lg font-normal text-foreground tracking-tight">
-              <span className="text-[var(--notion-blue-text)] font-mono select-none">#</span>
-              <span>architecture</span>
-            </h2>
-          </div>
-          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+        <section className="space-y-2">
+          <SectionLabel ink="text-[var(--notion-blue-text)]" title="how it works" />
+          <p className={BODY}>
             <KeywordText text={project.specs.architecture} />
           </p>
         </section>
 
-        <section className="space-y-3">
-          <div className="flex items-center justify-between gap-3 border-b border-border pb-3">
-            <h2 className="flex items-center gap-2 text-base sm:text-lg font-normal text-foreground tracking-tight">
-              <span className="text-[var(--notion-green-text)] font-mono select-none">#</span>
-              <span>engineering highlights</span>
-            </h2>
-          </div>
-          <ul className="space-y-2 text-sm sm:text-base font-normal text-muted-foreground">
+        <section className="space-y-2">
+          <SectionLabel ink="text-[var(--notion-green-text)]" title="highlights" />
+          <ul className={`space-y-2 ${BODY}`}>
             {project.specs.highlights.map((highlight, idx) => (
-              <li key={idx} className="flex items-start gap-2 leading-relaxed">
-                <SketchCheck className="size-3.5 shrink-0 mt-1 text-[var(--notion-green-text)]" />
+              <li key={idx} className="flex items-start gap-2">
+                <SketchCheck className="size-3.5 shrink-0 mt-1.5 text-[var(--notion-green-text)]" />
                 <span><KeywordText text={highlight} /></span>
               </li>
             ))}
           </ul>
-          <p className="pt-1 font-mono text-xs text-muted-foreground leading-relaxed">
+          <p className={`pt-1 ${MICRO}`}>
             <KeywordText text={project.specs.status} />
           </p>
         </section>
       </div>
 
-      <nav className="space-y-3 border-t border-border pt-6" aria-label="More builds">
-        <p className="font-mono text-xs lowercase tracking-wide text-muted-foreground">
-          more builds
-        </p>
-        <div className="flex flex-col">
+      <nav className="mt-10 border-t border-border pt-6" aria-label="Other builds">
+        <p className={META}>other builds</p>
+        <div className="mt-2 flex flex-col">
           {otherProjects.map((other) => (
-            <Link
-              key={other.slug}
-              href={`/builds/${other.slug}`}
-              className="group flex items-center justify-between gap-3 py-3 border-b border-border last:border-b-0 rounded-md px-3 -mx-3 hover:bg-muted/40 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-            >
-              <div className="flex items-center gap-2.5">
-                <ProjectIcon project={other} />
-                <span className="text-sm sm:text-base font-medium text-foreground underline underline-offset-4 decoration-border group-hover:decoration-foreground transition-colors">
-                  {other.title}
-                </span>
-              </div>
-              <div className="flex items-center gap-2 font-mono text-xs">
-                <span className="ink-stamp">{other.year}</span>
-                <span className="inline-flex items-center gap-0.5 font-medium text-[var(--notion-blue-text)] underline underline-offset-4 transition-colors">
-                  <span>view</span>
-                  <SketchArrow className="size-2.5 opacity-80" />
-                </span>
-              </div>
-            </Link>
+            <ProjectRow key={other.slug} project={other} showDescription={false} />
           ))}
         </div>
       </nav>
-
-      <SocialsFooter />
     </section>
   );
 }

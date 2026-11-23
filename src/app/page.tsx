@@ -1,15 +1,27 @@
 import Link from "next/link";
-import { HeroGreeting } from "@/components/hero-greeting";
+import { Fragment } from "react";
+import type { ReactNode } from "react";
 import { ProjectRow } from "@/components/project-row";
+import { EntryRow } from "@/components/entry-row";
 import { GitHubCalendar } from "@/components/github-calendar";
 import { PhotoGrid } from "@/components/photo-grid";
 import { LocalClock } from "@/components/local-clock";
 import { ModeToggle } from "@/components/mode-toggle";
-import { SocialsFooter } from "@/components/socials-footer";
-import { DATA } from "@/data/resume";
+import { SectionLabel } from "@/components/section-label";
+import { DATA, ROLE } from "@/data/resume";
 import type { StackIconKey } from "@/data/resume";
-import { SketchCode, SketchSparkle, SketchGear, SketchGithub } from "@/components/stationery-icons";
+import {
+  SketchCode,
+  SketchSparkle,
+  SketchGear,
+  SketchGithub,
+  SketchX,
+  SketchLinkedin,
+  SketchMail,
+} from "@/components/stationery-icons";
 import { KeywordText } from "@/components/keyword-text";
+import { LINK_MUTED, LINK_SOCIAL } from "@/lib/styles";
+import { BODY, BODY_MUTED, LABEL, TITLE } from "@/lib/typography";
 
 const STACK_ICON: Record<StackIconKey, typeof SketchCode> = {
   code: SketchCode,
@@ -17,8 +29,18 @@ const STACK_ICON: Record<StackIconKey, typeof SketchCode> = {
   gear: SketchGear,
 };
 
-const NAV_LINK =
-  "relative inline-flex items-center font-medium text-muted-foreground underline underline-offset-4 decoration-muted-foreground/40 hover:text-foreground hover:decoration-foreground transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary py-1 px-1 -my-1 -mx-1 after:absolute after:-inset-2 after:content-[''] touch-manipulation";
+const SOCIAL_ICON: Record<string, ReactNode> = {
+  X: <SketchX className="size-3.5 shrink-0 text-foreground" />,
+  GitHub: <SketchGithub className="size-3.5 shrink-0 text-foreground" />,
+  LinkedIn: <SketchLinkedin className="size-3.5 shrink-0 text-[var(--notion-blue-text)]" />,
+  Email: <SketchMail className="size-3.5 shrink-0 text-[var(--notion-red-text)]" />,
+};
+
+const INK = {
+  blue: "text-[var(--notion-blue-text)]",
+  amber: "text-[var(--notion-amber-text)]",
+  green: "text-[var(--notion-green-text)]",
+} as const;
 
 const profileJsonLd = {
   "@context": "https://schema.org",
@@ -30,11 +52,11 @@ const profileJsonLd = {
 };
 
 export default function Page() {
-  const { name, avatarUrl, featuredProjects, coreStack, bio } = DATA;
+  const { name, avatarUrl, featuredProjects, coreStack, bio, contact } = DATA;
   const firstName = name.split(" ")[0];
 
   return (
-    <main className="w-full flex flex-col space-y-14 sm:space-y-20 antialiased">
+    <main className="w-full flex flex-col space-y-10">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -43,21 +65,18 @@ export default function Page() {
       />
       {/* -- 1. Masthead & In-Page Navigation -------------------------------- */}
       <section
-        className="reveal flex flex-col gap-6 sm:gap-7"
+        className="reveal flex flex-col gap-6"
         style={{ animationDelay: "0ms" }}
       >
         {/* Nav Bar */}
-        <div className="flex items-center justify-between gap-2 text-sm font-sans border-b border-border pb-3">
-          <nav className="flex flex-wrap items-center gap-3 sm:gap-5 text-muted-foreground text-sm">
-            <a href="#builds" className={NAV_LINK}>
+        <div className={`flex items-center justify-between gap-2 border-b border-border pb-3 ${LABEL}`}>
+          <nav className="flex flex-wrap items-center gap-3 sm:gap-5">
+            <a href="#builds" className={LINK_MUTED}>
               builds
             </a>
-            <Link href="/artifacts" className={NAV_LINK}>
+            <Link href="/artifacts" className={LINK_MUTED}>
               artifacts
             </Link>
-            <a href="#socials" className={NAV_LINK}>
-              socials
-            </a>
           </nav>
 
           <div className="flex items-center gap-2 sm:gap-3">
@@ -66,29 +85,15 @@ export default function Page() {
           </div>
         </div>
 
-        {/* Name & Avatar */}
-        <div className="flex items-center justify-between gap-5 pt-1">
-          <div className="space-y-2">
-            <HeroGreeting name={firstName} />
-            <p className="font-mono text-xs sm:text-sm text-muted-foreground tracking-normal flex flex-wrap items-center gap-1.5 lowercase">
-              <a
-                href="https://github.com/kwakhare5"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative inline-flex items-center gap-1 text-foreground hover:text-foreground font-medium underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary after:absolute after:-inset-1.5 after:content-[''] touch-manipulation"
-              >
-                <SketchGithub className="size-3.5 shrink-0" />
-                kwakhare5
-              </a>
-              <span className="text-muted-foreground/50 select-none">·</span>
-              <span>typescript / python</span>
-              <span className="text-muted-foreground/50 select-none">·</span>
-              <span>ai systems &amp; full-stack</span>
-            </p>
+        {/* Name, Role & Avatar */}
+        <div className="flex items-center justify-between gap-5">
+          <div className="space-y-1.5">
+            <h1 className={TITLE}>Hi, I&apos;m {firstName}</h1>
+            <p className={BODY_MUTED}>{ROLE}</p>
           </div>
 
-          <div className="relative size-16 sm:size-20 shrink-0 overflow-hidden rounded-full border border-border bg-muted shadow-xs">
-            {/* Raw original, no optimizer: browser zoom needs the real pixels. */}
+          <div className="relative size-16 shrink-0 overflow-hidden rounded-full border border-border bg-muted shadow-xs">
+            {/* One avatar file: the original me.png. */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={avatarUrl}
@@ -102,11 +107,30 @@ export default function Page() {
           </div>
         </div>
 
-        {/* Bio */}
-        <div className="space-y-3 sm:space-y-3.5 text-sm sm:text-base leading-relaxed text-foreground font-normal">
+        {/* About */}
+        <div className={`space-y-3 ${BODY}`}>
           {bio.map((paragraph, idx) => (
             <p key={idx}><KeywordText text={paragraph} /></p>
           ))}
+          <p>
+            find me on{" "}
+            {contact.socials.map((social, idx) => (
+              <Fragment key={social.name}>
+                {idx > 0 && (idx === contact.socials.length - 1 ? ", or " : ", ")}
+                <a
+                  href={social.url}
+                  {...(social.url.startsWith("http")
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                  className={LINK_SOCIAL}
+                >
+                  {SOCIAL_ICON[social.name] ?? null}
+                  <span>{social.name === "Email" ? "email" : social.name}</span>
+                </a>
+              </Fragment>
+            ))}
+            .
+          </p>
         </div>
       </section>
 
@@ -114,20 +138,9 @@ export default function Page() {
       <section
         id="builds"
         className="reveal space-y-2"
-        style={{ animationDelay: "60ms" }}
+        style={{ animationDelay: "100ms" }}
       >
-        <div className="flex items-center justify-between gap-3 border-b border-border pb-3">
-          <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight flex items-center gap-2">
-            <span className="text-[var(--notion-blue-text)] font-mono select-none">#</span>
-            <span>builds</span>
-          </h2>
-          <span
-            className="font-mono text-xs text-muted-foreground"
-            aria-label={`${featuredProjects.length} builds`}
-          >
-            {featuredProjects.length}
-          </span>
-        </div>
+        <SectionLabel ink={INK.blue} title="builds" meta="projects" />
 
         <div className="flex flex-col">
           {featuredProjects.map((project) => (
@@ -139,40 +152,33 @@ export default function Page() {
       {/* -- 3. Tech Stack & Tooling ----------------------------------------- */}
       <section
         id="stack"
-        className="reveal space-y-4"
-        style={{ animationDelay: "120ms" }}
+        className="reveal space-y-2"
+        style={{ animationDelay: "200ms" }}
       >
-        <div className="flex items-center justify-between gap-3 border-b border-border pb-3">
-          <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight flex items-center gap-2">
-            <span className="text-[var(--notion-amber-text)] font-mono select-none">#</span>
-            <span>stack</span>
-          </h2>
-          <span className="font-mono text-xs text-muted-foreground">tooling</span>
-        </div>
+        <SectionLabel ink={INK.amber} title="stack" meta="tools" />
 
-        <div className="space-y-3.5 pt-1">
+        <div className="flex flex-col">
           {coreStack.map((group) => {
             const Icon = STACK_ICON[group.icon];
 
             return (
-              <div key={group.category} className="space-y-1">
-                <span className="font-mono text-xs font-medium text-muted-foreground inline-flex items-center gap-1.5">
-                  <Icon className="size-3 shrink-0 text-[var(--notion-amber-text)]" />
-                  <span>{group.category}</span>
-                </span>
-                <p className="text-xs sm:text-sm font-mono leading-relaxed">
-                  {group.items.map((item, idx) => (
-                    <span key={item}>
-                      {idx > 0 && (
-                        <span className="text-muted-foreground/40 mx-2 select-none">·</span>
-                      )}
-                      <span className="text-foreground font-medium select-none">
+              <EntryRow
+                key={group.category}
+                icon={<Icon className="size-4 text-[var(--notion-amber-text)]" />}
+                title={group.category}
+                description={
+                  <>
+                    {group.items.map((item, idx) => (
+                      <span key={item}>
                         {item}
+                        {idx < group.items.length - 1 && (
+                          <span className="text-muted-foreground select-none">, </span>
+                        )}
                       </span>
-                    </span>
-                  ))}
-                </p>
-              </div>
+                    ))}
+                  </>
+                }
+              />
             );
           })}
         </div>
@@ -181,16 +187,10 @@ export default function Page() {
       {/* -- 4. GitHub Activity --------------------------------------------- */}
       <section
         id="activity"
-        className="reveal space-y-4"
-        style={{ animationDelay: "180ms" }}
+        className="reveal space-y-2"
+        style={{ animationDelay: "300ms" }}
       >
-        <div className="flex items-center justify-between gap-3 border-b border-border pb-3">
-          <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight flex items-center gap-2">
-            <span className="text-[var(--notion-green-text)] font-mono select-none">#</span>
-            <span>activity</span>
-          </h2>
-          <span className="font-mono text-xs text-muted-foreground">github</span>
-        </div>
+        <SectionLabel ink={INK.green} title="activity" meta="GitHub" />
 
         <GitHubCalendar />
       </section>
@@ -198,24 +198,13 @@ export default function Page() {
       {/* -- 5. Artifacts ---------------------------------------------------- */}
       <section
         id="artifacts"
-        className="reveal space-y-4"
-        style={{ animationDelay: "240ms" }}
+        className="reveal space-y-2"
+        style={{ animationDelay: "400ms" }}
       >
-        <div className="flex items-center justify-between gap-3 border-b border-border pb-3">
-          <h2 className="text-base sm:text-lg font-normal text-foreground tracking-tight flex items-center gap-2">
-            <span className="text-[var(--notion-blue-text)] font-mono select-none">#</span>
-            <span>artifacts</span>
-          </h2>
-          <span className="font-mono text-xs text-muted-foreground">gallery</span>
-        </div>
+        <SectionLabel ink={INK.blue} title="artifacts" meta="gallery" />
 
         <PhotoGrid photos={DATA.photos} variant="preview" />
       </section>
-
-      {/* -- 6. Socials Footer ----------------------------------------------- */}
-      <div className="reveal" style={{ animationDelay: "300ms" }}>
-        <SocialsFooter />
-      </div>
     </main>
   );
 }

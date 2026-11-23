@@ -16,6 +16,7 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-border: var(--border);
+  --color-body: var(--body);
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -31,6 +32,7 @@
   --muted-foreground:  #787774;
   --accent:            #f1f1ef;
   --border:            #e9e9e7;
+  --body:              #57534b;
 
   /* Notion stationery pastel palette — Light */
   --notion-green-text:  #2c6e49;
@@ -39,18 +41,18 @@
   --notion-yellow-text: #854d0e;
   --notion-orange-text: #aa5012;
   --notion-red-text:    #c12b2b;
-  --notion-sand-text:   #64473a;
 }
 
 .dark {
-  --background:        #191919;
-  --foreground:        #f1f1ef;
-  --card:              #202020;
-  --primary:           #f1f1ef;
-  --muted:             #2a2a2a;
-  --muted-foreground:  #9b9a97;
-  --accent:            #2a2a2a;
-  --border:            #2f2f2f;
+  --background:        #171717;
+  --foreground:        #fafafa;
+  --card:              #1f1f1f;
+  --primary:           #fafafa;
+  --muted:             #262626;
+  --muted-foreground:  #a1a1a1;
+  --accent:            #262626;
+  --border:            #2a2a2a;
+  --body:              #d4d4d4;
 
   /* Notion stationery jewel palette — Dark */
   --notion-green-text:  #7ce38b;
@@ -59,7 +61,6 @@
   --notion-yellow-text: #fde047;
   --notion-orange-text: #e99a64;
   --notion-red-text:    #f87171;
-  --notion-sand-text:   #c49d8c;
 }
 
 /* -- 4. Base & Layout System ----------------------------------------------- */
@@ -75,7 +76,7 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply bg-background text-body antialiased;
   }
 
   section[id] {
@@ -83,7 +84,7 @@
   }
 
   .reveal {
-    animation: reveal-up 350ms cubic-bezier(0.32, 0.72, 0, 1) both;
+    animation: reveal-up 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -96,10 +97,12 @@
 @keyframes reveal-up {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    filter: blur(4px);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
+    filter: blur(0);
     transform: none;
   }
 }
@@ -108,7 +111,8 @@
 /* Ink stamp date styling */
 .ink-stamp {
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
   padding: 0.1rem 0.35rem;
   border-radius: 0.2rem;
   background-color: var(--muted);
