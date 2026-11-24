@@ -92,6 +92,12 @@ At the end of a session with meaningful changes:
 - **Proof:** typecheck 0, lint 0, Vitest 8/8, build 12/12. DOM: About now has one bio paragraph plus the find-me line, bio text matches exactly, Python/TypeScript marks at 450, Swiggy Builder Club 600 with link and icon. Page height 1840 → 1760. Screenshots: `C:/Users/kwakh/.qoder/tmp/portfolio-about-2026-11-24`.
 - **Still broken / unproven:** Not pushed or deployed.
 
+#### Work card 9: New avatar, same treatment
+- **Problem / tension:** The original avatar file was replaced with a 1768px version, but the page still declared the old 2410px dimensions.
+- **Change / decision:** Kept one original file and the same 64px circle treatment; updated the intrinsic width and height to 1768. No resized copy or crop was added.
+- **Proof:** typecheck 0, lint 0, Vitest 8/8, build 12/12. DOM: avatar natural 1768x1768 in a 64px box. The live `/me.png` sha256 matches local (`d4c2a1480f1337d067aa0aafbedb0d2295c4915c08a7e68c1d1b1f506c54fbdd`) on the Git-built deployment `68d43d0`. Screenshots: `C:/Users/kwakh/.qoder/tmp/portfolio-live-avatar-2026-11-24`.
+- **Still broken / unproven:** None for the avatar.
+
 ### [Portfolio — Unvalley-inspired type pass, lean rows, About socials] 2026-11-23
 
 #### Work card 1: Swap the gray-clone restyle for the original shell with unvalley's type system
