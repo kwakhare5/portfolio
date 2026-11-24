@@ -88,8 +88,8 @@ export default function Page() {
             <img
               src={avatarUrl}
               alt={name}
-              width={2410}
-              height={2410}
+              width={1768}
+              height={1768}
               fetchPriority="high"
               decoding="async"
               className="absolute inset-0 size-full object-cover"
