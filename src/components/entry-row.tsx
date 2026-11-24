@@ -40,17 +40,7 @@ export function EntryRow({
 
       <div className="relative z-10 pointer-events-none flex flex-wrap items-baseline gap-x-2 gap-y-1">
         {icon && <span className="shrink-0 self-center">{icon}</span>}
-        <h3 className={ROW_TITLE}>
-          <span
-            className={
-              interactive
-                ? "underline underline-offset-4 decoration-muted-foreground/40 group-hover:decoration-foreground transition-colors"
-                : undefined
-            }
-          >
-            {title}
-          </span>
-        </h3>
+        <h3 className={ROW_TITLE}>{title}</h3>
 
         {hasActions && (
           <span className={`${LABEL} ml-auto inline-flex items-center gap-3`}>

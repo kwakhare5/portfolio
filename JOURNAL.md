@@ -104,6 +104,12 @@ At the end of a session with meaningful changes:
 - **Proof:** typecheck 0, lint 0, Vitest 8/8, build 12/12. DOM: bio matches, builder and social links 600 at rgb(55, 53, 47), body 450, heading 500. Screenshots: `C:/Users/kwakh/.qoder/tmp/portfolio-about-final-2026-11-24`.
 - **Still broken / unproven:** Project-title underlines are waiting on a decision. Not pushed or deployed.
 
+#### Work card 11: Clean project names and the final About line
+- **Problem / tension:** Every project row title carried a static underline, and the About needed the "Grocer is one of them" wording.
+- **Change / decision:** Removed the underline span from the shared row; rows keep their hover background and the live/view cues. About now reads "i build AI agents and full-stack apps with Python and TypeScript. Grocer is one of them, which got me into the Swiggy Builder Club."
+- **Proof:** typecheck 0, lint 0, Vitest 8/8, build 12/12. DOM: all four home titles and three case titles report `text-decoration: none`; About text matches; Swiggy Builder Club is 600 at rgb(55, 53, 47). Screenshots: `C:/Users/kwakh/.qoder/tmp/portfolio-underline-2026-11-24-home.png` and `-case.png`.
+- **Still broken / unproven:** Live check not run at write time.
+
 ### [Portfolio — Unvalley-inspired type pass, lean rows, About socials] 2026-11-23
 
 #### Work card 1: Swap the gray-clone restyle for the original shell with unvalley's type system
