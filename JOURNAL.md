@@ -86,6 +86,12 @@ At the end of a session with meaningful changes:
 - **Proof:** 1200x630, 148,859 bytes. The live `/me-og.png` sha256 matches local (`7d0ca628c97a36cb51c06c166a9dd4668257cccc1be114bb3bc9418e6c52d61d`) and `/` returns 200. Live file: `C:/Users/kwakh/.qoder/tmp/D--Portfolio/me-og-live2.png`.
 - **Still broken / unproven:** Vercel Git auto-deploy is still broken, so the update again used a manual `vercel --prod --yes`.
 
+#### Work card 8: One About paragraph
+- **Problem / tension:** The About was three separate paragraphs (student, Grocer/WhatsApp, photos) with gaps between them, and the copy no longer matched how Karan describes his work.
+- **Change / decision:** Merged it into one paragraph: "i build AI agents and full-stack apps with Python and TypeScript. i built Grocer as part of the Swiggy Builder Club." Removed the student and photos lines. Kept every spacing value: 6px name to role, 24px role to About, 12px before the socials line, 40px between sections.
+- **Proof:** typecheck 0, lint 0, Vitest 8/8, build 12/12. DOM: About now has one bio paragraph plus the find-me line, bio text matches exactly, Python/TypeScript marks at 450, Swiggy Builder Club 600 with link and icon. Page height 1840 → 1760. Screenshots: `C:/Users/kwakh/.qoder/tmp/portfolio-about-2026-11-24`.
+- **Still broken / unproven:** Not pushed or deployed.
+
 ### [Portfolio — Unvalley-inspired type pass, lean rows, About socials] 2026-11-23
 
 #### Work card 1: Swap the gray-clone restyle for the original shell with unvalley's type system

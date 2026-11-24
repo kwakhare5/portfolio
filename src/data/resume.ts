@@ -55,9 +55,7 @@ export const DATA: ResumeData = {
   description:
     "Karan Wakhare is an AI engineer and full stack developer in Pune. He builds AI products and web apps. His work includes a WhatsApp grocery assistant and a tool for saving and comparing AI prompts.",
   bio: [
-    "i'm a computer engineering student in Pune. i build AI products and full-stack apps with TypeScript and Python.",
-    "Grocer is my WhatsApp grocery assistant. i'm part of the Swiggy Builder Club for it.",
-    "i take photos when i travel.",
+    "i build AI agents and full-stack apps with Python and TypeScript. i built Grocer as part of the Swiggy Builder Club.",
   ],
   avatarUrl: "/me.png",
 
