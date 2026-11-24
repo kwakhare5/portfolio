@@ -98,6 +98,12 @@ At the end of a session with meaningful changes:
 - **Proof:** typecheck 0, lint 0, Vitest 8/8, build 12/12. DOM: avatar natural 1768x1768 in a 64px box. The live `/me.png` sha256 matches local (`d4c2a1480f1337d067aa0aafbedb0d2295c4915c08a7e68c1d1b1f506c54fbdd`) on the Git-built deployment `68d43d0`. Screenshots: `C:/Users/kwakh/.qoder/tmp/portfolio-live-avatar-2026-11-24`.
 - **Still broken / unproven:** None for the avatar.
 
+#### Work card 10: Grocer intro in the About, black bold restored
+- **Problem / tension:** The About still used "built Grocer as part of..." and the 90% bold ink experiment felt wrong.
+- **Change / decision:** The one About paragraph now reads "i build AI agents and full-stack apps with Python and TypeScript. one of them, Grocer, got me into the Swiggy Builder Club." Bold ink is back to the original foreground (`#37352f` light, `#fafafa` dark) at 600. No spacing changed.
+- **Proof:** typecheck 0, lint 0, Vitest 8/8, build 12/12. DOM: bio matches, builder and social links 600 at rgb(55, 53, 47), body 450, heading 500. Screenshots: `C:/Users/kwakh/.qoder/tmp/portfolio-about-final-2026-11-24`.
+- **Still broken / unproven:** Project-title underlines are waiting on a decision. Not pushed or deployed.
+
 ### [Portfolio — Unvalley-inspired type pass, lean rows, About socials] 2026-11-23
 
 #### Work card 1: Swap the gray-clone restyle for the original shell with unvalley's type system
